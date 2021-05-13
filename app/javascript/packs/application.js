@@ -9,6 +9,7 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "styles"
 import "icon/fontawesome"
+import "quest"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
