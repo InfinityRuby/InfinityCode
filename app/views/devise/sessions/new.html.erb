@@ -1,18 +1,18 @@
-<div class="usercontainer">
-  <section class="userwrap">
-    <div class="sociallogin"><i class="icon-light fas fa-lightbulb"></i><span>|</span><i class="icon-light fas fa-lightbulb"></i><span>|</span><i class="icon-light fas fa-lightbulb"></i>
+<div class="user-container">
+  <section class="user-wrap">
+    <div class="user-sociallogin"><i class="user-icon-light fas fa-lightbulb"></i><span>|</span><i class="user-icon-light fas fa-lightbulb"></i><span>|</span><i class="user-icon-light fas fa-lightbulb"></i>
     </div>
-    <span class="labeltext">or</span>
+    <span class="user-labeltext">or</span>
     <div class="m-1">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="field">
-          <p class="inputtext"><%= f.label :email %></p>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input", placeholder: "EMAIL", size: 30 %>
+          <p class="user-inputtext"><%= f.label :email %></p>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "user-input", placeholder: "EMAIL", size: 30 %>
         </div>
   
         <div class="field">
-          <p class="inputtext"><%= f.label :password %></p>
-          <%= f.password_field :password, autocomplete: "current-password", class: "input", placeholder: "PASSWORD", size: 30 %>
+          <p class="user-inputtext"><%= f.label :password %></p>
+          <%= f.password_field :password, autocomplete: "current-password", class: "user-input", placeholder: "PASSWORD", size: 30 %>
         </div>
   
         <% if devise_mapping.rememberable? %>
@@ -23,11 +23,11 @@
         <% end %>
   
         <div class="actions">
-          <%= f.submit "Log in", class: "submitbtn" %>
+          <%= f.submit "Log in", class: "user-submitbtn" %>
         </div>
       <% end %>
   
-      <div class="sharelink"><%= render "devise/shared/links" %></div>
+      <div class="user-sharelink"><%= render "devise/shared/links" %></div>
     </div>
   </section>
 </div>

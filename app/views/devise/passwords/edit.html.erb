@@ -1,5 +1,5 @@
-<div class="usercontainer">
-  <section class="userwrap">
+<div class="user-container">
+  <section class="user-wrap">
     <h2>Change your password</h2>
   
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
@@ -7,23 +7,23 @@
       <%= f.hidden_field :reset_password_token %>
   
       <div class="field">
-        <p class="inputtext"><%= f.label :password, "New password" %></p>
+        <p class="user-inputtext"><%= f.label :password, "New password" %></p>
         <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> characters minimum)</em><br />
         <% end %>
-        <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "input", placeholder: "NEWPASSWORD", size: 30 %>
+        <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "user-input", placeholder: "NEWPASSWORD", size: 30 %>
       </div>
   
       <div class="field">
-        <p class="inputtext"><%= f.label :password_confirmation, "Confirm new password" %></p>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input", placeholder: "NEWPASSWORD", size: 30 %>
+        <p class="user-inputtext"><%= f.label :password_confirmation, "Confirm new password" %></p>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "user-input", placeholder: "NEWPASSWORD", size: 30 %>
       </div>
   
       <div class="actions">
-        <%= f.submit "Change my password", class: 'submitbtn' %>
+        <%= f.submit "Change my password", class: "user-submitbtn" %>
       </div>
     <% end %>
   
-    <div class="sharelink"><%= render "devise/shared/links" %></div>
+    <div class="user-sharelink"><%= render "devise/shared/links" %></div>
   </section>
 </div>

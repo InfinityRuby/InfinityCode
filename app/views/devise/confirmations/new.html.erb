@@ -1,19 +1,19 @@
-<div class="usercontainer">
-  <section class="userwrap">
+<div class="user-container">
+  <section class="user-wrap">
     <h2>Resend confirmation instructions</h2>
     <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
     
       <div class="field">
-        <p class="inputtext"><%= f.label :email %></p>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: "input", placeholder: "EMAIL", size: 30 %>
+        <p class="user-inputtext"><%= f.label :email %></p>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: "user-input", placeholder: "EMAIL", size: 30 %>
       </div>
     
       <div class="actions">
-        <%= f.submit "Resend confirmation instructions", class: 'submitbtn' %>
+        <%= f.submit "Resend confirmation instructions", class: "user-submitbtn" %>
       </div>
     <% end %>
     
-    <div class="sharelink"><%= render "devise/shared/links" %></div>
+    <div class="user-sharelink"><%= render "devise/shared/links" %></div>
   </section>
 </div>
