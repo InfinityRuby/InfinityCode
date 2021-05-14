@@ -1,3 +1,8 @@
+import "codemirror/lib/codemirror.js"
+import "codemirror/lib/codemirror.css"
+import "codemirror/theme/dracula.css"
+import "codemirror/mode/ruby/ruby.js"
+import CodeMirror from "codemirror"
 
 document.addEventListener('DOMContentLoaded', () => {
   const tabs = document.querySelector(".quest-buttonWrapper");
@@ -20,4 +25,20 @@ document.addEventListener('DOMContentLoaded', () => {
       element.classList.add("active");
     }
   }
+
+  var editor = CodeMirror.fromTextArea(document.querySelector("#editor"),{
+    mode: "ruby",
+    theme: "default",
+    lineNumbers: true,
+    smartIndent: true,
+    lineWrapping: true,
+    lineSeparator: '\n',
+    matchBrackets:true,
+  })
+  editor.setSize("100%","645")
+
+  const resetbtn = document.querySelector(".quest-footer-button:nth-child(1)")
+  resetbtn.addEventListener("click", (el)=>{
+    editor.setValue('')
+  })
 })
