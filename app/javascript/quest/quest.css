@@ -90,6 +90,9 @@
   font-size: 18px;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, .1);
 }
+.CodeMirror-gutters{
+  width: 50px;
+}
 .quest-edit-container{
   display: flex;
   background-color: #f0f0f0;
