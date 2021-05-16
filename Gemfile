@@ -28,11 +28,18 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise', '~> 4.8'
+gem 'omniauth', '~> 2.0', '>= 2.0.4'
+gem 'omniauth-facebook', '~> 8.0'
+gem 'omniauth-google-oauth2', '~> 1.0'
+gem 'omniauth-github', '~> 2.0'
+gem "figaro", "~> 1.2"
+gem 'omniauth-rails_csrf_protection', '~> 1.0'
+
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem "figaro", "~> 1.2"
   gem 'foreman', '~> 0.87.2'
 end
 
