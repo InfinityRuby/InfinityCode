@@ -1,9 +1,10 @@
 class PostsController < ApplicationController
+  before_action：find_post, only: [:show, :edit, :update, :destroy]
+
   def  index
   end
 
   def show
-    @post = Post.find(params[:id])
   end
   def new
     @post = Post.new
@@ -12,10 +13,28 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
-      redirect_to post_path, notice: "新增留言成功!"
+      redirect_to post_path(@post),notice: "新增留言成功!"
     else
       render 'new'
     end
+  end
+
+  def edit
+    if @post.update
+      redirect_to post_path(@post)
+    else
+      render 'edit'
+    end
+  end
+
+  def update
+  end
+
+  def destroy
+  end
+
+  def find_post
+    @post = Post.find(params[:id])
   end
 
   private
