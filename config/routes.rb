@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   resources :tests
   resources :posts
 
@@ -6,4 +7,6 @@ Rails.application.routes.draw do
   root 'posts#index'
 
   get "/jsons/data", to: "jsons#data"
+  resources :demos
+
 end

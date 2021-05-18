@@ -7,3 +7,4 @@ Astro Camp No.1 - Demo主題
 - tang
 - shan
 - 黃威誠
+# rails_forum
