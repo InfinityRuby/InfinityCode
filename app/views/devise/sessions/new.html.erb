@@ -1,7 +1,6 @@
 <div class="user-container">
   <section class="user-wrap">
-    <div class="user-sociallogin"><i class="user-icon-light fas fa-lightbulb"></i><span>|</span><i class="user-icon-light fas fa-lightbulb"></i><span>|</span><i class="user-icon-light fas fa-lightbulb"></i>
-    </div>
+    <%= render "devise/shared/sociallogin" %>
     <span class="user-labeltext">or</span>
     <div class="m-1">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -15,12 +14,14 @@
           <%= f.password_field :password, autocomplete: "current-password", class: "user-input", placeholder: "PASSWORD", size: 30 %>
         </div>
   
-        <% if devise_mapping.rememberable? %>
-          <div class="field">
-            <%= f.check_box :remember_me %>
-            <%= f.label :remember_me %>
-          </div>
-        <% end %>
+        <div class="user-rem">
+          <% if devise_mapping.rememberable? %>
+            <div class="field">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </div>
+          <% end %>
+        </div>
   
         <div class="actions">
           <%= f.submit "Log in", class: "user-submitbtn" %>

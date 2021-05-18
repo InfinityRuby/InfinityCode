@@ -10,8 +10,8 @@ body, html {
       }
       .user-sociallogin{
         @apply my-2  m-auto items-baseline;
-        .user-icon-light { 
-          @apply text-4xl text-gray-600 mx-10;
+        .user-icon { 
+          @apply text-4xl text-gray-600 mx-10 hover:text-yellow-500;
         }
         span {
           @apply text-gray-400;
@@ -61,11 +61,15 @@ body, html {
         .user-submitbtn {
           @apply bg-gray-500 text-white w-full p-3 my-2;
         }
+
+        .user-rem {
+          @apply text-left;
+        }
       }
       .user-sharelink {
         @apply mx-2 text-gray-500;
-        span {
-          @apply text-gray-300 text-lg;
+        .user-account {
+          @apply text-gray-300 text-base;
         }
         p {
           @apply text-gray-500;

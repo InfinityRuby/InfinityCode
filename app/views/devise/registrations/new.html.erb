@@ -1,8 +1,8 @@
 <div class="user-container">
-
   <section class="user-wrap">
-    <div class="user-sociallogin"><i class="user-icon-light fas fa-lightbulb"></i><span>|</span><i class="user-icon-light fas fa-lightbulb"></i><span>|</span><i class="user-icon-light fas fa-lightbulb"></i>
-    </div>
+    
+    <%= render "devise/shared/sociallogin" %>
+
     <span class="user-labeltext">or</span>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
@@ -30,6 +30,6 @@
       </div>
     <% end %>
   
-    <div class="user-sharelink"><span>Have an account?</span><%= render "devise/shared/links" %></div>
+    <div class="user-sharelink"><span class="user-account">Have an account?</span><%= render "devise/shared/links"%></div>
   </section>
 </div>

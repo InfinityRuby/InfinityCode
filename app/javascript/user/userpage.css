@@ -1,0 +1,95 @@
+body, html {
+  @apply h-full m-0 p-0;
+}
+
+body .user-container, html .user-container {
+  @apply w-full h-full bg-gray-200;
+}
+
+body .user-container .user-wrap, html .user-container .user-wrap {
+  @apply px-4 py-40 text-center m-auto w-1/3 h-full font-thin bg-white flex flex-col items-stretch;
+}
+
+body .user-container .user-wrap h2, html .user-container .user-wrap h2 {
+  @apply text-3xl text-gray-500 font-thin;
+}
+
+body .user-container .user-wrap .user-sociallogin, html .user-container .user-wrap .user-sociallogin {
+  @apply my-2  m-auto items-baseline;
+}
+
+body .user-container .user-wrap .user-sociallogin .user-icon-light, html .user-container .user-wrap .user-sociallogin .user-icon-light {
+  @apply text-4xl text-gray-600 mx-10;
+}
+
+body .user-container .user-wrap .user-sociallogin span, html .user-container .user-wrap .user-sociallogin span {
+  @apply text-gray-400;
+}
+
+body .user-container .user-wrap .user-labeltext, html .user-container .user-wrap .user-labeltext {
+  @apply text-xl relative;
+}
+
+body .user-container .user-wrap .user-labeltext::before, html .user-container .user-wrap .user-labeltext::before {
+  position: absolute;
+  content: '';
+  width: 200px;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  height: 1px;
+  background-color: #929292;
+  top: 15px;
+  left: 0;
+  right: 0;
+}
+
+body .user-container .user-wrap .user-labeltext::after, html .user-container .user-wrap .user-labeltext::after {
+  position: absolute;
+  content: '';
+  width: 200px;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  height: 1px;
+  background-color: #929292;
+  top: 15px;
+  right: 0;
+}
+
+body .user-container .user-wrap span, html .user-container .user-wrap span {
+  @apply text-3xl;
+}
+
+body .user-container .user-wrap .new_user, html .user-container .user-wrap .new_user {
+  @apply flex flex-col items-stretch;
+}
+
+body .user-container .user-wrap .new_user .user-inputtext, html .user-container .user-wrap .new_user .user-inputtext {
+  @apply hidden;
+}
+
+body .user-container .user-wrap .new_user .user-input, html .user-container .user-wrap .new_user .user-input {
+  @apply border-2 text-xs p-3 w-full;
+}
+
+body .user-container .user-wrap .new_user .field, html .user-container .user-wrap .new_user .field {
+  @apply py-2.5;
+}
+
+body .user-container .user-wrap .new_user .user-submitbtn, html .user-container .user-wrap .new_user .user-submitbtn {
+  @apply bg-gray-500 text-white w-full p-3 my-2;
+}
+
+body .user-container .user-wrap .user-sharelink, html .user-container .user-wrap .user-sharelink {
+  @apply mx-2 text-gray-500;
+}
+
+body .user-container .user-wrap .user-sharelink span, html .user-container .user-wrap .user-sharelink span {
+  @apply text-gray-300 text-lg;
+}
+
+body .user-container .user-wrap .user-sharelink p, html .user-container .user-wrap .user-sharelink p {
+  @apply text-gray-500;
+}
+/*# sourceMappingURL=userpage.css.map */
