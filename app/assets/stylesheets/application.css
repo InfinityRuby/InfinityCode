@@ -12,8 +12,3 @@
  *
  *= require_tree .
  *= require_self
- */
-
- input{border: 1px solid #ccc; width: 250px;}
- textarea{border: 1px solid #ccc;  width: 250px;}
- input[type="submit"]{border: 1px solid #ccc; width: 100px}

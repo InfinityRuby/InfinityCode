@@ -12,3 +12,4 @@ import "icon/fontawesome"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+import "../reactJS/react"
