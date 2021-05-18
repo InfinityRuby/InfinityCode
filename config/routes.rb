@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   resources :tests
   resources :posts
 
@@ -8,5 +9,4 @@ Rails.application.routes.draw do
 
   get "/jsons/data", to: "jsons#data"
   resources :demos
-
 end
