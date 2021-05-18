@@ -3,6 +3,10 @@ class PostsController < ApplicationController
 
   def  index
     @post = Post.all.order("created_at DESC")
+    respond_to do |format|
+      format.json { render json: @post }
+      format.html { render :index }
+    end
   end
 
   def show
