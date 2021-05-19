@@ -6,46 +6,57 @@ import {useEffect, useState} from "react"
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  function Clock() {
+  function LittleForum(props) {
+    const {title, content} = props
+    return(
+      <div className="item">
+        <img src="https://picsum.photos/50/50?grayscale" alt="jpg" />
+        <div>      
+            <h2><a href="#">{title}</a></h2>
+            <h3>{content}</h3>
+        </div>
+      </div>
+    )
+  }
+
+  function Forum() {
     const [list, useList] = useState([])
     useEffect(() => {
-      fetch('/app/javascript/reactJS/comman.json')
-    })
+      fetch('/jsons/data')
+      .then(res => res.json())
+      .then(post => useList(post))    
+  }, [])
    
     return(
     <div>
         <div className="item">
-                <a href="#">All Interview Quesions</a>
-                <a href="#">System Design</a>
-                <a href="#">Operating System</a>
-                <a href="#">Object-Oriented Design</a>
+          <a href="#">All Interview Quesions</a>
+          <a href="#">System Design</a>
+          <a href="#">Operating System</a>
+          <a href="#">Object-Oriented Design</a>
         </div>
         <div className="item">
             <div>
-                <a href="#">Hot</a>
-                <a href="#">Newest to Oidest</a>
-                <a href="#">Most Votes</a>
+              <a href="#">Hot</a>
+              <a href="#">Newest to Oidest</a>
+              <a href="#">Most Votes</a>
             </div>
             <div>
-                <input type="text" placeholder="Search topics or comments" />
-                <button>New +</button>
+              <input type="text" id="forum_input" placeholder="Search topics or comments" />
+              <button>New +</button>
             </div>
         </div>
-        <div className="item">
-          <img src="https://picsum.photos/50/50?grayscale" alt="jpg" />
-          <div>
-              <h2>Microsoft Online Assessment Questions</h2>
-              <h3>Sithis created at:August 6, 2019 7:16 PM | Last Reply: sg3932 18 hours ago</h3>
-          </div>
-        </div>
+        {
+          list.map((list) => {
+            return <LittleForum key={list.id} title={list.title} content={list.content} />
+          })
+        }
     </div>
     )
   }
 
   ReactDOM.render(
-      <Clock />,
+    <Forum />,
     document.getElementById('wwrap')
   )
-
 })
-
