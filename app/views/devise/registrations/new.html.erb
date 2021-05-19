@@ -1,0 +1,35 @@
+<div class="user-container">
+  <section class="user-wrap">
+    
+    <%= render "devise/shared/sociallogin" %>
+
+    <span class="user-labeltext">or</span>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+  
+      <div class="field">
+        <p class="user-inputtext"><%= f.label :email信箱 %></p>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "user-input", placeholder: "EMAIL", size: 30  %>
+      </div>
+  
+      <div class="field">
+        <p class="user-inputtext"><%= f.label :password密碼 %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %></p>
+        <%= f.password_field :password, autocomplete: "new-password", class: "user-input",placeholder: "PASSWORD" , size: 30%>
+      </div>
+  
+      <div class="field">
+        <p class="user-inputtext"><%= f.label :password_confirmation密碼確認 %></p>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "user-input",placeholder: "PASSWORD CONFIRM", size: 30 %>
+      </div>
+  
+      <div class="actions">
+        <%= f.submit "Sign up", class: "user-submitbtn" %>
+      </div>
+    <% end %>
+  
+    <div class="user-sharelink"><span class="user-account">Have an account?</span><%= render "devise/shared/links"%></div>
+  </section>
+</div>
