@@ -1,3 +1,6 @@
 Rails.application.routes.draw do
-  resources :quests
+  resources :quests 
+
+  get "/quests/questdata", to: "quests#questdata"
+
 end
