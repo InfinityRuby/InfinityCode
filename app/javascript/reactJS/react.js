@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function Clock() {
     const [list, useList] = useState([])
     useEffect(() => {
-      fetch('/app/javascript/reactJS/comman.json')
+      fetch('/app/javascript/reactJS/common.json')
     })
    
     return(
