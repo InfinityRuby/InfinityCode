@@ -2,17 +2,20 @@ class PostsController < ApplicationController
   before_action :find_post, only: [:show, :edit, :update, :destroy]
 
   def  index
+    @post = Post.all.order("created_at DESC")
   end
 
   def show
   end
 
   def new
-    @post = Post.new
+    @post = current_user.posts.build
+    # @post = Post.new
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.build(post_params)
+    # @post = Post.new(post_params)
     if @post.save
       redirect_to post_path(@post),notice: "新增留言成功!"
     else
