@@ -21,11 +21,7 @@ Quest.create!(
   You may assume that each input would have exactly one solution, and you may not use the same element twice.<br />
   You can return the answer in any order.',
   picture: '',
-  problem: '```# @param {Integer[]} nums<br />
-  # @param {Integer} target<br />
-  # @return {Integer[]}<br />
-  def two_sum(nums, target)<br />
-  end```',
+  problem: '# @param {Integer[]} nums<br /># @param {Integer} target<br /># @return {Integer[]}<br />def two_sum(nums, target)<br />end',
   created_at: Time.now,
   updated_at: Time.now
 )
@@ -35,11 +31,7 @@ Quest.create!(
   description: 'Given the array `nums` consisting of `2n` elements in the form `[x1,x2,...,xn,y1,y2,...,yn]`.<br />
   *Return the array in the form* `[x1,y1,x2,y2,...,xn,yn]`.',
   picture: '[./app/assets/images/quest/3-picture.png][]',
-  problem: '`# @param {Integer[]} nums<br />
-  # @param {Integer} n<br />
-  # @return {Integer[]}<br />
-  def shuffle(nums, n)<br />
-  end`',
+  problem: '# @param {Integer[]} nums<br /># @param {Integer} n<br /># @return {Integer[]}<br />def shuffle(nums, n)<br />end',
   created_at: Time.now,
   updated_at: Time.now
 )
@@ -49,10 +41,7 @@ Quest.create!(
   description: 'Given an integer array nums, return all the triplets `[nums[i], nums[j], nums[k]]` such that `i != j`, `i != k`, and `j != k`, and `nums[i] + nums[j] + nums[k] == 0`.<br />
   Notice that the solution set must not contain duplicate triplets.',
   picture: '[./app/assets/images/quest/4-picture.png][]',
-  problem: '`# @param {Integer[]} nums<br />
-  # @return {Integer[][]}<br />
-  def three_sum(nums)<br />
-  end`',
+  problem: '# @param {Integer[]} nums<br /># @return {Integer[][]}<br />def three_sum(nums)<br />end',
   created_at: Time.now,
   updated_at: Time.now
 )
@@ -62,10 +51,7 @@ Quest.create!(
   description: 'Given an unsorted integer array `nums`, find the smallest missing positive integer.<br />
   You must implement an algorithm that runs in `O(n)` time and uses constant extra space.',
   picture: '[./app/assets/images/quest/5-picture.png][]',
-  problem: '# @param {Integer[]} nums<br />
-  # @return {Integer}<br />
-  def first_missing_positive(nums)<br />
-  end',
+  problem: '# @param {Integer[]} nums<br /># @return {Integer}<br />def first_missing_positive(nums)<br />end',
   created_at: Time.now,
   updated_at: Time.now
 )
@@ -115,10 +101,7 @@ Prompt.create!(
 Prompt.create!(
   questId: 4,
   aseq: 2,
-  hint: 'For the two-sum problem, if we fix one of the numbers, say`x`<br />
-  , we have to scan the entire array to find the next number`y`<br />
-  which is `value - x`<br />
-  where value is the input parameter. Can we change our array somehow so that this search becomes faster?',
+  hint: 'For the two-sum problem, if we fix one of the numbers, say`x`<br />, we have to scan the entire array to find the next number`y`<br />which is `value - x`<br />where value is the input parameter. Can we change our array somehow so that this search becomes faster?',
   created_at: Time.now,
   updated_at: Time.now
 )

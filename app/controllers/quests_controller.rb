@@ -2,6 +2,7 @@ class QuestsController < ApplicationController
   def index
     
   end
+  
   def show
     @quests = Quest.all 
     # find(params[:id])
