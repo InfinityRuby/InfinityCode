@@ -10,6 +10,10 @@ class PostsController < ApplicationController
 
   def new
     @post = current_user.posts.build
+    if current_user == nil
+      current_user = 1
+    end
+
     # @post = Post.new
   end
 
