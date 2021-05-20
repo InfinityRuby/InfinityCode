@@ -1,14 +1,17 @@
-<h1>討論區列表</h1>
-
-<%= form_for(@post) do |f| %>
-  <%= f.label :title, "標題" %>
-  <%= f.text_field :title %> <br />
-
-  <%= f.label :content, "內容" %>
-  <%= f.text_area :content %> <br />
-
-  <%= f.submit %>
-<% end %>
-
-<br />
-<%= link_to '返回討論區列表', root_path %>
+<div class="posts_container">
+  <div class="posts_wrap">
+    <h1 class="posts_h1">新增討論區內容</h1>
+    
+    <%= form_for(@post) do |f| %>
+      <%= f.label :title, "標題" ,class: 'posts_label' %><br>
+      <%= f.text_field :title , class: 'posts_input' %> <br>
+    
+      <%= f.label :content, "內容" ,class: 'posts_label' %><br>
+      <%= f.text_area :content, class: 'posts_textarea' %> <br>
+    
+      <%= f.submit class: 'posts_submit'  %>
+    <% end %>
+    
+    <%= link_to '返回討論區列表', root_path, class: 'posts_home' %>
+  </div>
+</div>
