@@ -1,5 +1,5 @@
 .container_nav{
-  @apply flex justify-between w-full p-2
+  @apply flex justify-between w-full p-2 bg-white
 }
 
 .discuss_nav_left{
@@ -15,7 +15,7 @@
 }
 
 .discuss_nav_right{
-  @apply w-1/5
+  @apply w-1/5 
 }
 
 .discuss_nav_right > a > svg{
@@ -32,7 +32,7 @@
 }
 
 .wrap{
-  @apply flex flex-col shadow w-9/12
+  @apply flex flex-col w-9/12
 }
 
 .item{
@@ -116,5 +116,21 @@
 }
 
 .search button{
-    @apply border-2 rounded-sm text-black bg-gray-200 block mt-2 mb-2 text-sm
+  @apply border-2 rounded-sm text-black bg-gray-200 block mt-2 mb-2 text-sm
+}
+
+.pagination{
+  @apply flex justify-center my-3
+}
+
+.pagination > button{
+  @apply mx-1  rounded-lg border-black border-2 p-1 bg-gray-300 font-black text-sm w-16 hover:bg-gray-400
+}
+
+.pagination > input{
+  @apply border-black border rounded-sm mx-2 text-center
+}
+
+body{
+  background-color: rgba(243, 244, 246);
 }
