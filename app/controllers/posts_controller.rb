@@ -10,16 +10,10 @@ class PostsController < ApplicationController
 
   def new
     @post = current_user.posts.build
-    if current_user == nil
-      current_user = 1
-    end
-
-    # @post = Post.new
   end
 
   def create
     @post = current_user.posts.build(post_params)
-    # @post = Post.new(post_params)
     if @post.save
       redirect_to post_path(@post),notice: "新增留言成功!"
     else

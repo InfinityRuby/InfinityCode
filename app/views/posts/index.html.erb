@@ -3,6 +3,7 @@
   <li>
     <h2 style="font-size: 20px; color: blue";><%= link_to post.title, post %></h2>
     <p>發布於<%= time_ago_in_words(post.created_at) %></p>
+    <p>使用者為<%= post.user.email %></p>
     <br/>
   </li>
 <% end %>
