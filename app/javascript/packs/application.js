@@ -13,3 +13,4 @@ import "user"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+import "../reactJS/react"
