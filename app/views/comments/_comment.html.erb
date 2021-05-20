@@ -1,6 +1,10 @@
 <div class="comment">
-  <p><%= comment.comment%> </p>
-  <p><%= comment.user.email %></p>
-  <%= link_to "編輯", edit_post_comment_path(comment.post, comment)%>  
-  <%= link_to "刪除", [comment.post, comment], method: :delete, data:{ confirm: "確定要刪除留言嗎？"}%>
+  <div class="content">
+    <p class="comment_content"><%= comment.comment%> </p>
+    <p class="comment_auther"><%= comment.user.email %></p>
+  </div>
+  </div class="buttons">
+    <%= link_to "編輯", edit_post_comment_path(comment.post, comment)%>  
+    <%= link_to "刪除", [comment.post, comment], method: :delete, data:{ confirm: "確定要刪除留言嗎？"}%>
+  </div>
 </div>
