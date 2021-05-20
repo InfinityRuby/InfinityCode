@@ -7,11 +7,12 @@ Rails.application.routes.draw do
   get "/jsons/data", to: "jsons#data"
   get "/quests/questdata", to: "quests#questdata"
 
+  # API 路徑設定
   namespace :api do
     namespace :v1 do
-      resources :quests do
+      resources :quests, except: [:new, :edit] do
         resources :prompts, only: [:index, :show]
-        
+
       end
     end
   end

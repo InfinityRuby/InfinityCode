@@ -1,4 +1,4 @@
-class Api::V1::QuestsController < ApplicationController
+class Api::V1::QuestsController < ApiController
 
   # 查詢題目列表  /api/v1/quests
   def index
