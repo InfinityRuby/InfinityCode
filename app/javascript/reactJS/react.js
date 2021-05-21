@@ -4,12 +4,12 @@ import PropTypes from 'prop-types'
 import {useEffect, useState, useRef} from 'react'
 import { faEraser } from '@fortawesome/free-solid-svg-icons'
   function SearchForum(props) {
-    const {title, content} = props
+    const {title, content, id} = props
     return(
       <div className="item">
         <img src="https://picsum.photos/50/50?grayscale" alt="jpg" />
         <div>      
-            <h2><a href="#">{title}</a></h2>
+            <h2><a href={"http://localhost:3000/posts/"+id}>{title}</a></h2>
             <h3>{content}</h3>
         </div>
       </div>
@@ -26,12 +26,12 @@ import { faEraser } from '@fortawesome/free-solid-svg-icons'
  
     const displayPage = list.slice(numberPage - 10, numberPage)
     const nowList = displayPage.map((list) => {
-      return <SearchForum key={list.id} title={list.title} content={list.content} /> 
+      return <SearchForum key={list.id} id={list.id} title={list.title} content={list.content} /> 
     })
 
     const searchNowPage = search.slice(numberPage - 10, numberPage)
     const searchList = searchNowPage.map((search) => {
-      return <SearchForum key={search.id} title={search.title} content={search.content} />
+      return <SearchForum key={search.id} id={search.id} title={search.title} content={search.content} />
     })
     
     useEffect(() => {

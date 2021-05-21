@@ -14,8 +14,8 @@
   @apply w-2/12 flex justify-center border-r border-gray-300
 }
 
-.single_article_title_goback > h2{
-  @apply text-xl text-gray-400
+.single_article_title_goback > a{
+  @apply text-xl text-gray-400 hover:text-gray-700
 }
 
 .single_article_title_word{

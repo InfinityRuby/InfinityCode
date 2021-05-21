@@ -5,11 +5,11 @@
   <div class="single_article_wrap">
       <div class="single_article_title">
           <div class="single_article_title_goback">
-              <h2>《 Back</h2>
+              <a href="http://localhost:3000/demos">《 Back</a>
           </div>
           <div class="single_article_title_word">
               <i class="fas fa-paperclip"></i>
-              <h2>This is Title</h2>
+              <h2><%= @post.title %></h2>
           </div>
           <div class="single_article_title_icon">
             <i class="fas fa-exclamation-triangle"></i>
@@ -26,7 +26,7 @@
             </div>
             <div class="single_article_content_body">
                 <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptate ad cupiditate, nam, quasi aspernatur, assumenda asperiores quaerat perferendis dicta necessitatibus distinctio aliquam ut repellat accusamus neque numquam aperiam nostrum corrupti.
+                    <%= @post.content %>
                 </p>
                 <div class="single_article_content_span">
                     <span>online assessment</span>
