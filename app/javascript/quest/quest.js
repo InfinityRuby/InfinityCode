@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
     element.classList.add("active");
   })
 
-  var editor = CodeMirror.fromTextArea(document.querySelector("#editor"),{
+  const editor = CodeMirror.fromTextArea(document.querySelector("#editor"),{
     mode: "ruby",
     theme: "default",
     lineNumbers: true,
