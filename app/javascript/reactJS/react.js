@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import {useEffect, useState, useRef} from 'react'
+import { faEraser } from '@fortawesome/free-solid-svg-icons'
   function SearchForum(props) {
     const {title, content} = props
     return(
@@ -22,7 +23,6 @@ import {useEffect, useState, useRef} from 'react'
 
     const [initPage, setInitPage] = useState(1)
     const numberPage = initPage * 10
-    const refB1 = useRef()
  
     const displayPage = list.slice(numberPage - 10, numberPage)
     const nowList = displayPage.map((list) => {
@@ -48,7 +48,7 @@ import {useEffect, useState, useRef} from 'react'
       }
       const previousPage = () => {
         if(initPage > 1){
-          setTimeout(() => {setInitPage(initPage - 1)}, 1000)     
+          setInitPage(initPage - 1)
         }
       }
       const changePage = () => {

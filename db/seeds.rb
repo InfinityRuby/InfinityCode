@@ -133,3 +133,11 @@ Prompt.create!(
   created_at: Time.now,
   updated_at: Time.now
 )
+
+10.times do
+  Post.create(
+    title: "大獲全勝",
+    content: "舒服",
+    user_id: 1
+  )
+end
