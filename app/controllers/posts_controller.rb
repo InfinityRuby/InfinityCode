@@ -9,11 +9,13 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new
+    @post = current_user.posts.build
+    # @post = Post.new
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.build(post_params)
+    # @post = Post.new(post_params)
     if @post.save
       redirect_to post_path(@post),notice: "新增留言成功!"
     else

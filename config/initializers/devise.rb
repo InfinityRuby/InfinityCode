@@ -14,7 +14,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'f05e4a39d8ff7ce7dd2d293a783b39acb528bf7d07451940ea4e18d983c9755639e595e09c286144570bda5f727eb5686e54b7843d9a5bc04ae69c611611111e'
+  # config.secret_key = 'd689785305df7a379e5e1c3b02e72ed25b2aa406361e92fc6c32e0fe830e3fb4d7d1f74b061bffc98fb29e4752478c2de5226dc52a5dc7526127c3bb53c32875'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -24,10 +24,12 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = 'info<info@infinitycode.com>'
+  # 設定顯示寄件人
 
   # Configure the class responsible to send e-mails.
-  # config.mailer = 'Devise::Mailer'
+  config.mailer = 'Devise::Mailer'
+  # 將註解拿掉後，就會由 devise 預設的 Mailer 寄信 (從 Devise::Mailer 作 deliver 調用 ActionMailer)
 
   # Configure the parent class responsible to send e-mails.
   # config.parent_mailer = 'ActionMailer::Base'
@@ -126,7 +128,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '4bb547d45fdab22b762f303278fabca180f1b74f7d96ce02c6224fd3a392d66cb7dc0eb18b49298693c51de9be12bfb71abf9eee5cad9c2b1bf19cc049e2357e'
+  # config.pepper = '575cf35943dd4854d4417a4899ff0714887f61dad6bc1c47232e80753723c632513a85cb44df42e029e06a42b4ab3748facc73679d01da8ccc792c3df63b97f8'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -157,14 +159,14 @@ Devise.setup do |config|
   # initial account confirmation) to be applied. Requires additional unconfirmed_email
   # db field (see migrations). Until confirmed, new email is stored in
   # unconfirmed_email column, and copied to email column on successful confirmation.
-  config.reconfirmable = true
+  config.reconfirmable = false
 
   # Defines which key will be used when confirming an account
   # config.confirmation_keys = [:email]
 
   # ==> Configuration for :rememberable
   # The time the user will be remembered without asking for credentials again.
-  # config.remember_for = 2.weeks
+  config.remember_for = 2.weeks
 
   # Invalidates all the remember me tokens when the user signs out.
   config.expire_all_remember_me_on_sign_out = true
@@ -272,6 +274,9 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
+  config.omniauth :facebook, ENV['fb_client_id'], ENV['fb_client_secret'], scope: "public_profile,email", info_fields: "email,name", token_params: { parse: :json }
+  config.omniauth :google_oauth2, ENV['google_client_id'], ENV['google_client_secret'],{access_type: "offline", approval_prompt: ""}
+  config.omniauth :github, ENV['github_client_id'], ENV['github_client_secret'], scope: 'user,public_repo'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

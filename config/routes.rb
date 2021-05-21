@@ -1,7 +1,23 @@
 Rails.application.routes.draw do
-  resources :tests
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
+  resources :users
   resources :posts
+  resources :quests 
+  resources :demos
+  
+  get "/jsons/data", to: "jsons#data"
+  get "/quests/questdata", to: "quests#questdata"
 
+  # API 路徑設定
+  namespace :api do
+    namespace :v1 do
+      resources :quests, except: [:new, :edit] do
+        resources :prompts, only: [:index, :show]
 
-  root 'posts#index'
+      end
+    end
+  end
+
+  root to: "users#index" #devise 用，之後有必要再換名稱
+
 end
