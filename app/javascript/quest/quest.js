@@ -3,6 +3,8 @@ import "codemirror/lib/codemirror.css"
 import "codemirror/theme/dracula.css"
 import "codemirror/mode/ruby/ruby.js"
 import CodeMirror from "codemirror"
+const marked = require("marked");
+const html = marked('# Marked in Node.js\n\nRendered by **marked**.');
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -26,11 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
   fetch('/quests/questdata')
     .then(request => request.json())
     .then(posts => {
-      const firstPost = posts[9]
+      const firstPost = posts[3]
       editor.setValue(firstPost.problem)   
       document.querySelector('.css-title').textContent = firstPost.title
       document.querySelector('.css-level').textContent = firstPost.level
-      document.querySelector('.css-description').textContent = firstPost.description
+      document.querySelector('.css-description').innerHTML = marked(firstPost.description)
+      document.querySelector('.css-picture').innerHTML = marked(firstPost.picture)
 
       const resetbtn = document.querySelector(".quest-footer-button:nth-child(1)")
       resetbtn.addEventListener("click", (el)=>{
