@@ -37,7 +37,8 @@
               <li class="user-account">
                 <a href="#"><%= current_user.email %> <i class="fas fa-chevron-down"></i></a>
                   <ul class="sub1">
-                      <li><a href="/users/edit">Profile</a></li>
+
+                      <li><%= link_to "Profile",profile_path %></li>
                       <li><a href="#Bookmarks-path">Bookmarks</a></li>
                       <li><%= link_to "Logout", destroy_user_session_path, method: :delete, class: 'navbar-link' %></li>
                   </ul>
