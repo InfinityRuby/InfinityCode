@@ -209,9 +209,13 @@ GEM
       actionpack (>= 5.0)
       railties (>= 5.0)
 <<<<<<< HEAD
+<<<<<<< HEAD
     ruby2_keywords (0.0.4)
 =======
 >>>>>>> a108a7b (新增: 會員登入登出模組)
+=======
+    ruby2_keywords (0.0.4)
+>>>>>>> 07785b6 (新增: 會員模組第三方登入 - google, fb, github)
     rubyzip (2.3.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
