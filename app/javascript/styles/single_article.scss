@@ -31,7 +31,11 @@
 }
 
 .single_article_content{
-  @apply w-full h-3/5 border-b border-gray-200  pt-10 pb-4 pl-40 flex flex-col
+  @apply w-full flex justify-center
+}
+
+.single_article_content_wrap{
+  @apply w-3/5 border-b border-gray-200 pt-6 pb-4 flex flex-col items-center
 }
 
 .single_article_content_author{
@@ -51,15 +55,15 @@
 }
 
 .single_article_content_body{
-  @apply w-full pr-64 mt-10 leading-8 flex-grow h-full flex flex-col justify-between 
+  @apply w-full px-5 mt-8 flex-grow h-full flex flex-col justify-between 
 } 
 
 .single_article_content_body p{
-  @apply flex flex-col py-2 text-gray-600 
+  @apply flex flex-col py-2 text-gray-600 leading-9
 }
 
 .single_article_content_span{
-  @apply mt-44
+  @apply mt-28
 }
 
 .single_article_content_span > span{
