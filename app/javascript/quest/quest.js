@@ -4,6 +4,7 @@ import "codemirror/theme/dracula.css"
 import "codemirror/mode/ruby/ruby.js"
 import CodeMirror from "codemirror"
 
+
 document.addEventListener('DOMContentLoaded', () => {
   const tabs = document.querySelector(".quest-buttonWrapper");
   const tabButton = document.querySelectorAll(".quest-tab-button");
@@ -18,13 +19,14 @@ document.addEventListener('DOMContentLoaded', () => {
     lineWrapping: true,
     lineSeparator: '\n',
     matchBrackets:true,
+    scrollbarStyle: null
   })
   editor.setSize("100%","645")
 
   fetch('/quests/questdata')
     .then(request => request.json())
     .then(posts => {
-      const firstPost = posts[1]
+      const firstPost = posts[9]
       editor.setValue(firstPost.problem)   
       document.querySelector('.css-title').textContent = firstPost.title
       document.querySelector('.css-level').textContent = firstPost.level
@@ -32,8 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const resetbtn = document.querySelector(".quest-footer-button:nth-child(1)")
       resetbtn.addEventListener("click", (el)=>{
-      editor.setValue(firstPost.problem)
-  })
+      editor.getValue(firstPost.problem)
+      
+      })
     })
 
   tabs.addEventListener("click", (event) => {

@@ -24,6 +24,7 @@
   justify-content:space-between;
 }
 .quest-tablist {
+  padding-top: 25px;
   text-align: center;
   font-family: 'Jost', sans-serif;
   height: 700px;
