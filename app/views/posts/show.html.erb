@@ -1,21 +1,27 @@
-<div id="poxt_content">
+<br/>
+<br/>
+<div id="post_content">
   <h1><%=@post.title%></h1>
   <p><%=@post.content%></p>
+</div>
 
   <div id="comment">
     <h2><%= @post.comments.count %>個人回應</h2>
     <%= render @post.comments %>
-
+  </div>
+  <div class="replay_post">
     <h3>回覆主題</h3>
     <%= render "comments/form" %>
   </div>
+  <br/>
+<div class = "post_show_btn">
+  <%= link_to '編輯', edit_post_path(@post), class: "button" %>
+  <%= link_to '刪除', post_path(@post), method: :delete , data: { confirm: "確定要刪除嗎?" }, class: "button" %>
+  <%= link_to "Home", posts_path, class: "button" %>
 </div>
-
 <br>
 <hr/>
 <br>
 
-<%= link_to '編輯', edit_post_path(@post), class: "button" %>
-<%= link_to '刪除', post_path(@post), method: :delete , data: { confirm: "確定要刪除嗎?" }, class: "button" %>
-<%= link_to "Home", posts_path, class: "button" %>
+
 
