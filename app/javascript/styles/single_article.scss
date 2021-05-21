@@ -1,0 +1,107 @@
+.single_article_container{
+  @apply w-full flex justify-center pt-7
+}
+
+.single_article_wrap{
+  @apply w-7/12 bg-white shadow-md h-full
+}
+
+.single_article_title{
+  @apply w-full px-2 py-4 flex justify-center items-center border-b border-gray-200
+}
+
+.single_article_title_goback{
+  @apply w-2/12 flex justify-center border-r border-gray-300
+}
+
+.single_article_title_goback > h2{
+  @apply text-xl text-gray-400
+}
+
+.single_article_title_word{
+  @apply w-8/12 flex justify-center items-center text-2xl text-gray-900 opacity-70
+}
+
+.single_article_title_word > svg{
+  @apply text-2xl mx-2
+}
+
+.single_article_title_icon{
+  @apply w-2/12 flex justify-center border-l border-gray-300 text-2xl text-red-500
+}
+
+.single_article_content{
+  @apply w-full h-3/5 border-b border-gray-200  pt-10 pb-4 pl-40 flex flex-col
+}
+
+.single_article_content_author{
+  @apply w-full text-xl flex items-center text-gray-400 flex-grow-0
+}
+
+.single_article_content_author > img{
+  @apply rounded-full mr-4 
+}
+
+.single_article_content_author > svg{
+  @apply ml-3 text-gray-200
+}
+
+.single_article_content_author > span{
+  @apply mx-2
+}
+
+.single_article_content_body{
+  @apply w-full pr-64 mt-10 leading-8 flex-grow h-full flex flex-col justify-between 
+} 
+
+.single_article_content_body p{
+  @apply flex flex-col py-2 text-gray-600 
+}
+
+.single_article_content_span{
+  @apply mt-44
+}
+
+.single_article_content_span > span{
+  @apply border-gray-700 bg-gray-100 p-2 rounded-md text-gray-500
+}
+
+.single_article_content_comments{
+  @apply w-full
+}
+
+.single_article_comments_count{
+  @apply flex justify-between border-b border-gray-300 p-2 bg-gray-300 opacity-40
+}
+
+.single_article_comments_count div > svg{
+  @apply ml-2
+}
+
+.single_article_comments_count div > span{
+  @apply text-base text-black mx-2
+}
+
+.single_article_content_input{
+  @apply p-2 my-4 w-full flex flex-col items-center
+}
+
+.single_article_content_input > textarea{
+  @apply  w-11/12 h-24 border-l-2 border-r-2 border-t-2 border-gray-300 rounded-t-md p-3 text-lg resize-none outline-none
+}
+
+.single_article_textarea_border{
+  @apply w-11/12 border-2 rounded-b-md border-gray-300 flex justify-end
+}
+
+.single_article_textarea_border > button{
+  @apply border-l-2 border-gray-300 rounded-b-sm p-2 bg-gray-400 opacity-70 text-white hover:bg-gray-800 
+}
+
+.single_article_page{
+  @apply w-full flex justify-center my-3 opacity-50
+}
+
+.single_article_page span{
+  @apply text-lg text-gray-700 mx-3 px-3  border border-gray-300 bg-gray-200 rounded-md text-black 
+}
