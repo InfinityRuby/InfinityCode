@@ -1,9 +1,5 @@
 class ProfilesController < ApplicationController
 
-  def new
-    @profile = current_user.build_profile
-  end
-
   def create
     @user = User.find(params[:user_id])
     @profile = @user.profile.create(profile_params)
@@ -31,11 +27,6 @@ class ProfilesController < ApplicationController
       else
         render :edit
       end
-  end
-
-  def delete
-    @profile = current_user.profile.find(params[:id])
-    @profile.destroy
   end
 
   private

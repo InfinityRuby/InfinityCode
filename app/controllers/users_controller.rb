@@ -4,11 +4,11 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-      if @user.save
-        redirect_to root_url 
-      else
-        render :new 
-      end
+    if @user.save
+      @profile = @user.create_profile
+      redirect_to root_url 
+    else
+      render :new 
     end
 
   def show
