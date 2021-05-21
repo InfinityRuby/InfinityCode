@@ -1,2 +1,10 @@
-database_username: "YOUR_DB_USERNAME"
-database_password: "YOUR_DB_PASSWORD"
+development:
+  google_client_id: "CLIENT_ID"
+  google_client_secret: "CLIENT_SECRET"
+  fb_client_id: "CLIENT_ID"
+  fb_client_secret: "CLIENT_SECRET"
+  github_client_id: "CLIENT_ID"
+  github_client_secret: "CLIENT_SECRET"
+  domain: "DOMAIN"
+  user_name: "USER_NAME"
+  password: "PASSWORD"
