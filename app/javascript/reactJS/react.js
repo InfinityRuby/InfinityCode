@@ -1,8 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
-import {useEffect, useState} from 'react'
-
+import {useEffect, useState, useRef} from 'react'
   function SearchForum(props) {
     const {title, content} = props
     return(
@@ -23,6 +22,7 @@ import {useEffect, useState} from 'react'
 
     const [initPage, setInitPage] = useState(1)
     const numberPage = initPage * 10
+    const refB1 = useRef()
  
     const displayPage = list.slice(numberPage - 10, numberPage)
     const nowList = displayPage.map((list) => {
@@ -32,8 +32,8 @@ import {useEffect, useState} from 'react'
     const searchNowPage = search.slice(numberPage - 10, numberPage)
     const searchList = searchNowPage.map((search) => {
       return <SearchForum key={search.id} title={search.title} content={search.content} />
-    })  
-
+    })
+    
     useEffect(() => {
       fetch('jsons/data')
       .then(res => res.json())
@@ -48,7 +48,7 @@ import {useEffect, useState} from 'react'
       }
       const previousPage = () => {
         if(initPage > 1){
-          setInitPage(initPage - 1)
+          setTimeout(() => {setInitPage(initPage - 1)}, 1000)     
         }
       }
       const changePage = () => {
@@ -97,22 +97,33 @@ import {useEffect, useState} from 'react'
         </div>
       )
     }
+    
 
     function searchlist(event) {
       if(event.key == 'Enter'){
-        setTimeout(() => {setList([])}, 150)
-        setTimeout(() => {
-          setChange(false)
+        fetch('jsons/data')
+        .then(res => res.json())
+        .then((post) => {
+           list.splice(0, list.length)
+           post.map(el => list.push(el))
+        }) 
+
+        setTimeout(() => {setList([])}, 300) 
+        setTimeout(() => {       
           const current_search = list.filter(hash => hash.title.includes(event.target.value))
+          setChange(false) 
           setList(current_search)
+          setChange(true)
+          setInitPage(1)
 
           if(current_search != undefined){    
             setSearch(current_search)
           }
+        }, 700)
+      }      
+    }
 
-        }, 400)
-      }
-      if(event.target.value == ''){
+    function clickReset(event){
         setTimeout(() => {
           setChange(true)
           setInitPage(1)
@@ -120,7 +131,6 @@ import {useEffect, useState} from 'react'
           .then(res => res.json())
           .then(post => setList(post)) 
         }, 400)
-      }  
     }
    
     return(
@@ -139,8 +149,8 @@ import {useEffect, useState} from 'react'
               <a href="#">文章數量 {list.length}</a>
             </div>
             <div>
-              <input type="text" id="forum_input" placeholder="Search topics or comments" onKeyDown={searchlist} />
-              <button>New +</button>
+              <input type="text" id="forum_input" placeholder="Search topics or comments" onKeyPress={searchlist} />
+              <button onClick={clickReset}>Reset</button>
             </div>
         </div>
         { change ? nowList : searchList }   
