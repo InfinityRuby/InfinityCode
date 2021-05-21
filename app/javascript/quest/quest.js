@@ -49,5 +49,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     const element = document.getElementById(id);
     element.classList.add("active");
+    contents.forEach(content => {
+      content.classList.remove("active");
+    });
+    const element = document.getElementById(id);
+    element.classList.add("active");
+  })
+
+  var editor = CodeMirror.fromTextArea(document.querySelector("#editor"),{
+    mode: "ruby",
+    theme: "default",
+    lineNumbers: true,
+    smartIndent: true,
+    lineWrapping: true,
+    lineSeparator: '\n',
+    matchBrackets:true,
+  })
+  editor.setSize("100%","645")
+
+  const resetbtn = document.querySelector(".quest-footer-button:nth-child(1)")
+  resetbtn.addEventListener("click", (el)=>{
+    editor.setValue('')
   })
 })
