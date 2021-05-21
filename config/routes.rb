@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :users
   resources :posts
   resources :quests 
+  resources :demos
   
   get "/jsons/data", to: "jsons#data"
   get "/quests/questdata", to: "quests#questdata"
