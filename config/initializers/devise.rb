@@ -24,12 +24,19 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
+<<<<<<< HEAD
   config.mailer_sender = 'info<info@infinitycode.com>'
   # 設定顯示寄件人
 
   # Configure the class responsible to send e-mails.
   config.mailer = 'Devise::Mailer'
   # 將註解拿掉後，就會由 devise 預設的 Mailer 寄信 (從 Devise::Mailer 作 deliver 調用 ActionMailer)
+=======
+  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+
+  # Configure the class responsible to send e-mails.
+  # config.mailer = 'Devise::Mailer'
+>>>>>>> a108a7b (新增: 會員登入登出模組)
 
   # Configure the parent class responsible to send e-mails.
   # config.parent_mailer = 'ActionMailer::Base'
