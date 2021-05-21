@@ -21,7 +21,7 @@ import {useEffect, useState} from 'react'
     const [search, setSearch] = useState([]) 
     const [change, setChange] = useState(true)
 
-    const [initPage, setNowPage] = useState(1)
+    const [initPage, setInitPage] = useState(1)
     const numberPage = initPage * 10
  
     const displayPage = list.slice(numberPage - 10, numberPage)
@@ -43,40 +43,40 @@ import {useEffect, useState} from 'react'
     function Pagenumber() {
       const nextPage = () => {
         if(numberPage < list.length){
-          setNowPage(initPage + 1)
+          setInitPage(initPage + 1)
         }  
       }
       const previousPage = () => {
         if(initPage > 1){
-          setNowPage(initPage - 1)
+          setInitPage(initPage - 1)
         }
       }
       const changePage = () => {
         if(initPage > 0){
-          setNowPage(initPage - 2)
+          setInitPage(initPage - 2)
         }
       }
       const changePage2 = () => {
         if(initPage > 0) {
-          setNowPage(initPage - 1)
+          setInitPage(initPage - 1)
         }
       }
       const changePage3 = () => {
         if(numberPage < list.length) {
-          setNowPage(initPage + 1)
+          setInitPage(initPage + 1)
         }
       }
       const changePage4 = () => {
         if(numberPage < list.length){
-          setNowPage(initPage + 2)
+          setInitPage(initPage + 2)
         }
       }
 
-      const returnHome = () => {setNowPage(1)}
+      const returnHome = () => {setInitPage(1)}
       const searchPage = (event) => {
         if(event.key == 'Enter'){
           if(Number(event.target.value) && Number(event.target.value) * 10 <= list.length + 10){
-            setNowPage(Number(event.target.value))
+            setTimeout(() => {setInitPage(Number(event.target.value))}, 300)
           }
         }
       }
@@ -100,21 +100,26 @@ import {useEffect, useState} from 'react'
 
     function searchlist(event) {
       if(event.key == 'Enter'){
-        setChange(false)
-        const current_search = list.filter(hash => hash.title.includes(event.target.value))
-        setList(current_search)
-        
-      
-        if(current_search != undefined){    
-          setSearch(current_search)
-        }
+        setTimeout(() => {setList([])}, 150)
+        setTimeout(() => {
+          setChange(false)
+          const current_search = list.filter(hash => hash.title.includes(event.target.value))
+          setList(current_search)
+
+          if(current_search != undefined){    
+            setSearch(current_search)
+          }
+
+        }, 400)
       }
       if(event.target.value == ''){
-        setChange(true)
-        setNowPage(1)
-        fetch('jsons/data')
-        .then(res => res.json())
-        .then(post => setList(post)) 
+        setTimeout(() => {
+          setChange(true)
+          setInitPage(1)
+          fetch('jsons/data')
+          .then(res => res.json())
+          .then(post => setList(post)) 
+        }, 400)
       }  
     }
    
@@ -131,6 +136,7 @@ import {useEffect, useState} from 'react'
               <a href="#">Hot</a>
               <a href="#">Newest to Oidest</a>
               <a href="#">Most Votes</a>
+              <a href="#">文章數量 {list.length}</a>
             </div>
             <div>
               <input type="text" id="forum_input" placeholder="Search topics or comments" onKeyDown={searchlist} />
@@ -143,9 +149,12 @@ import {useEffect, useState} from 'react'
     )
   }
 
-document.addEventListener('turbolinks:load', () => {
-  ReactDOM.render(
-    <Forum />,
-      document.getElementById('wrap')
-  )
-})
+  document.addEventListener('turbolinks:load', () => {
+    if(document.getElementById('wrap')){
+      ReactDOM.render(
+        <Forum />,
+          document.getElementById('wrap')
+      )
+    }
+  })
+

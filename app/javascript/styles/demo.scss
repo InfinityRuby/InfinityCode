@@ -3,7 +3,7 @@
 }
 
 .discuss_nav_left{
-  @apply flex text-base justify-center w-7/12
+  @apply flex text-base justify-center w-7/12 items-center
 }
 
 .discuss_nav_left > a{
@@ -15,15 +15,19 @@
 }
 
 .discuss_nav_right{
-  @apply w-1/5 
+  @apply w-3/12 
 }
 
-.discuss_nav_right > a > svg{
+.icon{
+  @apply flex justify-center items-center
+}
+
+.discuss_nav_right .icon a > svg{
   @apply mx-3 text-xl text-gray-400
 }
 
 
-.discuss_nav_right > a:nth-child(1){
+.discuss_nav_right > .icon > a:nth-child(1){
   @apply border-2 p-1 text-yellow-300 border-yellow-300 rounded-lg
 }
 
@@ -48,7 +52,7 @@
 }
 
 .item:nth-child(2){
-  @apply justify-between p-2 bg-gray-100
+  @apply justify-between p-2 bg-green-50
 }
 
 .item:nth-child(2) > div:nth-child(1){
@@ -124,11 +128,11 @@
 }
 
 .pagination > button{
-  @apply mx-1  rounded-lg border-black border-2 p-1 bg-gray-300 font-black text-sm w-16 hover:bg-gray-400
+  @apply mx-1  rounded-lg border-gray-300 border-2 p-1 bg-white font-black text-sm w-16 hover:bg-gray-200 hover:text-white text-gray-400
 }
 
 .pagination > input{
-  @apply border-black border rounded-sm mx-2 text-center
+  @apply border-gray-300 border rounded-sm mx-2 text-center
 }
 
 body{
