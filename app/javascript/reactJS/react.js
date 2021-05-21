@@ -132,6 +132,7 @@ import {useEffect, useState, useRef} from 'react'
           .then(post => setList(post)) 
         }, 400)
     }
+
    
     return(
     <div>

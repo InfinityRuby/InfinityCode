@@ -1,0 +1,80 @@
+body, html {
+  @apply h-full m-0 p-0;
+  
+  .user-container{  
+    @apply w-full h-full bg-gray-200; 
+    .user-wrap {
+      @apply px-4 py-40 text-center m-auto w-1/3 h-full font-thin bg-white flex flex-col items-stretch 	;
+      h2 {
+        @apply text-3xl text-gray-500 font-thin;
+      }
+      .user-sociallogin{
+        @apply my-2  m-auto items-baseline;
+        .user-icon { 
+          @apply text-4xl text-gray-600 mx-10 hover:text-yellow-500;
+        }
+        span {
+          @apply text-gray-400;
+        }
+      }
+      .user-labeltext {
+        @apply text-xl relative;
+      }
+      .user-labeltext::before {
+        position: absolute;
+        content:'';
+        width: 200px;
+        flex-grow: 1;
+        height: 1px;
+        background-color: #929292;
+        top: 15px;
+        left: 0;
+        right: 0;
+      }
+      .user-labeltext::after {
+        position: absolute;
+        content:'';
+        width: 200px;
+        flex-grow: 1;
+        height: 1px;
+        background-color: #929292;
+        top: 15px;
+        right: 0;
+      }
+      span {
+        @apply text-3xl;
+      }
+      .new_user {
+        @apply flex flex-col items-stretch;
+        
+        .user-inputtext {
+          @apply hidden;
+        }
+    
+        .user-input {
+          @apply border-2 text-xs p-3 w-full ;
+        }
+        .field {
+          @apply py-2.5;
+        }
+    
+        .user-submitbtn {
+          @apply bg-gray-500 text-white w-full p-3 my-2;
+        }
+
+        .user-rem {
+          @apply text-left;
+        }
+      }
+      .user-sharelink {
+        @apply mx-2 text-gray-500;
+        .user-account {
+          @apply text-gray-300 text-base;
+        }
+        p {
+          @apply text-gray-500;
+        }
+      }
+    }
+  }
+}
