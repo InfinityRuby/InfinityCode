@@ -9,7 +9,8 @@
 # migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
-ActiveRecord::Schema.define(version: 2021_05_14_132954) do
+
+ActiveRecord::Schema.define(version: 2021_05_19_145701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +31,24 @@ ActiveRecord::Schema.define(version: 2021_05_14_132954) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
+  end
+
+  create_table "prompts", force: :cascade do |t|
+    t.integer "questId"
+    t.integer "aseq"
+    t.text "hint"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "quests", force: :cascade do |t|
+    t.string "title"
+    t.string "level"
+    t.text "description"
+    t.string "picture"
+    t.text "problem"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|

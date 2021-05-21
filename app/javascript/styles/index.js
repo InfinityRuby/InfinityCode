@@ -1,2 +1,4 @@
+import "./tailwind.scss"
 import "tailwindcss/tailwind.css"
-import "./discuss.scss"
+import "./demo.scss"
+import "./posts_new.scss"
