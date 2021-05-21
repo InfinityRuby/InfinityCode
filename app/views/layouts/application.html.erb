@@ -13,32 +13,7 @@
   </head>
 
   <body>
-<<<<<<< HEAD
-    <header class="main_header clearfix">
-      <div class="wapper">
-        <div id="logo" class="post_title">
-          <p><%= link_to "InfinityCode 討論區", root_path%></p>
-        </div>
-        <div id="botom">
-        <%if user_signed_in? %>
-          <%= link_to "New Post", new_post_path %>
-        <% else %>
-          <%= link_to "sign_up", new_user_registration_path %>
-          <%= link_to "sign_in", new_user_session_path %>
-        <% end %>
-        </div>
-
-    </header>
-      <div class="wrapper">
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
-      </div>
-
-    <div class="wrapper">
-      <%= yield %>
-    </div>
-=======
-    <nav class="home-nav">
+    <nav class="home-nav" >
       <div class="home-logo">
         <a href="/"><p class="home-logo-text">InfinityCode <i class="user-icon-light fas fa-lightbulb"></i> fixed待修</p></a>
       </div>
@@ -83,7 +58,6 @@
     <p class="alert"><%= alert %></p> 
     <%= yield %>
     <%= render "devise/shared/footer" %>
->>>>>>> 43855276bcd8c95b08044e946535f5bcc8de650e
 
   </body>
 </html>
