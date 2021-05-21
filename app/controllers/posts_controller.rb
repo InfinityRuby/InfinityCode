@@ -17,7 +17,7 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
-      redirect_to post_path(@post),notice: "新增留言成功!"
+      redirect_to posts_path(@post),notice: "新增留言成功!"
     else
       render 'new'
     end

@@ -1,4 +1,4 @@
-/*
+ /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
  *
@@ -101,7 +101,6 @@ background: #EDEFF0;
 
 #post_content {
   background:white;
-  padding: 2em 5%;
   border-radius: .5em;
   h1{
     font-weight: 100;
@@ -161,6 +160,7 @@ input[type="submit"]{
   font-weight: 100;
   padding: .5em 1em;
   border-radius: .2em;
+  width: 30%;
 }
 textarea {
   width: 100%;
@@ -169,3 +169,16 @@ textarea {
   border-radius: .2em;
   margin: 1em 0;
 }
+
+.return_posts{
+  margin-left: 60px;
+  margin-top: 20px;
+  background: #397CAC;
+  border: none;
+  color:white;
+  font-weight: 100;
+  padding: .5em 1em;
+  border-radius: .2em;
+  width: 8%;
+}
+

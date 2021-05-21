@@ -1,0 +1,10 @@
+development:
+  google_client_id: "43938707204-l08ge63i8fevgsdnlu7n2b9gs93on4c0.apps.googleusercontent.com"
+  google_client_secret: "wduv3pPtfSPIy9K3rbsTR6j0"
+  fb_client_id: "168461361870000"
+  fb_client_secret: "3df0de4d6ce05ab006c3cc1c9bade41b"
+  github_client_id: "c92fc8a7f8b71b257d4b"
+  github_client_secret: "9846cf32d3f958ef76c384f9045626c8bda79980"
+  domain: "sandboxc39f5709e9e04e97bac91e7ac1b687df.mailgun.org"
+  user_name: "postmaster@sandboxc39f5709e9e04e97bac91e7ac1b687df.mailgun.org"
+  password: "3e2f62fdff0a66207429eafdeb79ee08-71b35d7e-cf706e06"
