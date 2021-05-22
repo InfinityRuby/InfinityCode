@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
+
   resources :users
+  resources :tests
+
   resources :posts do
     resources :comments
   end
+
   resources :quests 
-  resources :demos
   resource :profile
   
   get "/jsons/data", to: "jsons#data"
