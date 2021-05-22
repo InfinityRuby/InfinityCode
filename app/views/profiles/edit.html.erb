@@ -1,0 +1,24 @@
+<div class="user-index-container">
+  <div class="profile-wrap">
+    <%= form_for @profile do |f| %>
+      <div>
+        <%= f.label :avatar %>
+        <%= f.file_field :avatar %>
+      </div>
+  
+      <div>
+        <%= f.label :name, 'Name' %>
+        <%= f.text_field :name %>
+      </div>
+  
+      <div>
+        <%= f.label :bio, 'Bio'%>
+        <%= f.text_field :bio %>
+      </div>
+  
+      <div>
+        <%= f.submit "Edit profile" %>
+      </div>
+    <% end %>
+  </div>
+</div>

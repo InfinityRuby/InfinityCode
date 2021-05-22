@@ -24,6 +24,7 @@
   justify-content:space-between;
 }
 .quest-tablist {
+  padding-top: 25px;
   text-align: center;
   font-family: 'Jost', sans-serif;
   height: 700px;
@@ -37,12 +38,12 @@
 }
 .quest-buttonWrapper {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
 }
 .quest-buttonWrapper button:nth-child(1) {
   border-top-left-radius: 10px; 
 }
-.quest-buttonWrapper button:nth-child(3){
+.quest-buttonWrapper button:nth-child(2){
   border-top-right-radius: 10px;
 }
 .questbtn {

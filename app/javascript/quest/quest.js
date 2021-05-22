@@ -3,6 +3,9 @@ import "codemirror/lib/codemirror.css"
 import "codemirror/theme/dracula.css"
 import "codemirror/mode/ruby/ruby.js"
 import CodeMirror from "codemirror"
+const marked = require("marked");
+const html = marked('# Marked in Node.js\n\nRendered by **marked**.');
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const tabs = document.querySelector(".quest-buttonWrapper");
@@ -18,26 +21,29 @@ document.addEventListener('DOMContentLoaded', () => {
     lineWrapping: true,
     lineSeparator: '\n',
     matchBrackets:true,
+    scrollbarStyle: null
   })
   editor.setSize("100%","645")
 
-  fetch('/quests/questdata')
+  fetch('/api/v1/quests')
     .then(request => request.json())
     .then(posts => {
-      const firstPost = posts[1]
+      console.log(posts)
+      const firstPost = posts[3]
       editor.setValue(firstPost.problem)   
       document.querySelector('.css-title').textContent = firstPost.title
       document.querySelector('.css-level').textContent = firstPost.level
-      document.querySelector('.css-description').textContent = firstPost.description
+      document.querySelector('.css-description').innerHTML = marked(firstPost.description)
+      document.querySelector('.css-picture').innerHTML = marked(firstPost.picture)
 
       const resetbtn = document.querySelector(".quest-footer-button:nth-child(1)")
       resetbtn.addEventListener("click", (el)=>{
-      editor.setValue(firstPost.problem)
-  })
+      editor.getValue(firstPost.problem)
+      
+      })
     })
 
   tabs.addEventListener("click", (event) => {
-    console.log(event.target.dataset)
     const id = event.target.dataset.id;
     tabButton.forEach(btn => {
       btn.classList.remove("active");
@@ -49,5 +55,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     const element = document.getElementById(id);
     element.classList.add("active");
+    contents.forEach(content => {
+      content.classList.remove("active");
+    });
+    const content = document.getElementById(id);
+    content.classList.add("active");
   })
 })
