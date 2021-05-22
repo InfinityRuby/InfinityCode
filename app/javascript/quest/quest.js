@@ -25,9 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
   })
   editor.setSize("100%","645")
 
-  fetch('/quests/questdata')
+  fetch('/api/v1/quests')
     .then(request => request.json())
     .then(posts => {
+      console.log(posts)
       const firstPost = posts[3]
       editor.setValue(firstPost.problem)   
       document.querySelector('.css-title').textContent = firstPost.title
@@ -43,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
   tabs.addEventListener("click", (event) => {
-    console.log(event.target.dataset)
     const id = event.target.dataset.id;
     tabButton.forEach(btn => {
       btn.classList.remove("active");
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     contents.forEach(content => {
       content.classList.remove("active");
     });
-    const element = document.getElementById(id);
-    element.classList.add("active");
+    const content = document.getElementById(id);
+    content.classList.add("active");
   })
 })
