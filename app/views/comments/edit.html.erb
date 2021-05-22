@@ -1,0 +1,7 @@
+<div class="replay_comment_edit"></div>
+<h1> 編輯留言回覆 </h1>
+
+<%= form_for([@post, @comment]) do |f| %>
+  <%= f.text_area :comment %>
+  <%= f.submit %>
+<% end %>
