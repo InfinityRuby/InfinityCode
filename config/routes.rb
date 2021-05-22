@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
   resources :users
   resources :quests 
+  resources :demos
   
   get "/jsons/data", to: "jsons#data"
   get "/quests/questdata", to: "quests#questdata"
