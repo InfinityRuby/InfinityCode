@@ -9,9 +9,6 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
-
-  
-
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
@@ -277,12 +274,6 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  config.omniauth :facebook, ENV['fb_client_id'], ENV['fb_client_secret'], scope: "public_profile,email", info_fields: "email,name", token_params: { parse: :json }
-  config.omniauth :google_oauth2, ENV['google_client_id'], ENV['google_client_secret'],{access_type: "offline", approval_prompt: ""}
-  config.omniauth :github, ENV['github_client_id'], ENV['github_client_secret'], scope: 'user,public_repo'
-
-
-  
   config.omniauth :facebook, ENV['fb_client_id'], ENV['fb_client_secret'], scope: "public_profile,email", info_fields: "email,name", token_params: { parse: :json }
   config.omniauth :google_oauth2, ENV['google_client_id'], ENV['google_client_secret'],{access_type: "offline", approval_prompt: ""}
   config.omniauth :github, ENV['github_client_id'], ENV['github_client_secret'], scope: 'user,public_repo'
