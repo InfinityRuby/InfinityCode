@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   resources :tests
   resources :posts
 
-  resources :demos
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
   resources :users
