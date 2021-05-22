@@ -5,7 +5,7 @@
   <div class="single_article_wrap">
       <div class="single_article_title">
           <div class="single_article_title_goback">
-              <a href="/demos">《 Back</a>
+              <a href="/posts">《 Back</a>
           </div>
           <div class="single_article_title_word">
               <i class="fas fa-paperclip"></i>
@@ -31,6 +31,7 @@
                 <div class="single_article_content_span">
                     <span>online assessment</span>
                     <span>microsoft</span>
+                    <span>Create Time: <%= time_ago_in_words(@post.created_at) %></span>
                 </div>
             </div>
         </div>

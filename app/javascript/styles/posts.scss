@@ -1,163 +1,144 @@
-// Place all the styles related to the Posts controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+.container_nav{
+  @apply flex justify-between w-full p-2 bg-white
+}
+
+.discuss_nav_left{
+  @apply flex text-base justify-center w-7/12 items-center
+}
+
+.discuss_nav_left > a{
+  @apply mr-5
+}
+
+.discuss_nav_left > a:nth-child(n+2){
+  @apply text-gray-400 
+}
+
+.discuss_nav_right{
+  @apply w-3/12 
+}
+
+.icon{
+  @apply flex justify-center items-center
+}
+
+.discuss_nav_right .icon a > svg{
+  @apply mx-3 text-xl text-gray-400
+}
+
+
+.discuss_nav_right > .icon > a:nth-child(1){
+  @apply border-2 p-1 text-yellow-300 border-yellow-300 rounded-lg
+}
+
+.container_discuss{
+  @apply w-full bg-gray-100 pt-2 pl-32 flex mt-7
+}
+
+.wrap{
+  @apply flex flex-col w-9/12
+}
+
+.item{
+  @apply flex bg-white border-b
+}
+
+.item:nth-child(1) > a{
+  @apply m-3 text-xl
+}
+
+.item:nth-child(1) > a:nth-child(n+2){
+  @apply text-gray-400
+}
+
+.item:nth-child(2){
+  @apply justify-between p-2 bg-green-50
+}
+
+.item:nth-child(2) > div:nth-child(1){
+  @apply pt-1
+}
+
+.item:nth-child(2) > div:nth-child(1) > a{
+  @apply mx-1
+}
+
+.item:nth-child(2) > div:nth-child(1) > a:nth-child(n+2){
+  @apply mx-4 text-gray-500
+}
+
+.item:nth-child(2) button{
+  @apply bg-gray-800 w-16 h-8 rounded-sm text-white
+}
+
+.item:nth-child(2) input{
+  @apply w-48 h-7 rounded-sm text-sm text-center border-2
+}
+
+.item:nth-child(n+3){
+  @apply p-2
+}
+
+.item:nth-child(n+3) div h2 > a {
+  @apply hover:text-gray-400
+}
+
+.item:nth-child(n+3) div{
+    @apply ml-5
+}
+
+.item img{
+  @apply rounded-full
+}
+
+.item div h2{
+  @apply text-lg
+}
+
+.item div h3{
+  @apply text-sm text-gray-400
+}
+
+.discuss_right{
+  @apply w-1/5 ml-3
+}
+
+.adver{
+  @apply bg-blue-300 w-full h-36 rounded-xl shadow
+}
+
+.search{
+  @apply bg-white w-full mt-6 rounded-sm shadow
+}
+
+.search div:nth-child(1){
+  @apply w-full p-3 border-b border-gray-200
+}
+
+.search div:nth-child(2){
+  @apply w-full p-3
+}
+
+.search input{
+  @apply border-2 border-gray-200 rounded-sm w-11/12 text-center
+}
+
+.search button{
+  @apply border-2 rounded-sm text-black bg-gray-200 block mt-2 mb-2 text-sm
+}
+
+.pagination{
+  @apply flex justify-center my-3
+}
+
+.pagination > button{
+  @apply mx-1  rounded-lg border-gray-300 border-2 p-1 bg-white font-black text-sm w-16 hover:bg-gray-200 hover:text-white text-gray-400
+}
+
+.pagination > input{
+  @apply border-gray-300 border rounded-sm mx-2 text-center
+}
 
 body{
-  background: #EDEFF0;
-  }
-
-#posts {
-  .return_posts{
-    margin-left: 60px;
-    margin-top: 70px;
-    background: #397CAC;
-    border: none;
-    color:white;
-    font-weight: 100;
-    padding: .5em 1em;
-    border-radius: .2em;
-    width: 8%;
-  }
-  .post {
-    background:white;
-    padding: 2em 5%;
-    border-radius: .5em;
-    .title {
-      margin: 0;
-      color: #397CAC;
-      text-decoration: none;
-      font-weight: 100;
-      font-size: 1.25rem;
-    }
-    .date {
-      margin-top: .25rem;
-      font-size: 0.9rem;
-      color: #B2BAC2;
-    }
-  }
-}
-
-#post_content {
-  margin-bottom:10px;
-  .new_post{
-    margin-bottom:60px;
-  }
-  h1 {
-    font-weight: 100;
-    font-size: 2.5em;
-    color: #397CAC;
-    margin-top: 30px;
-  }
-  p {
-    color: #492fcb;
-    font-size:1.5rem;
-    font-weight: 100;
-    line-height: 1.5;
-    margin-top:5px;
-  }
-}
-
-.post_show_btn{
-  .button {
-    color: #397CAC;
-    border: 1px solid #397CAC;
-    padding: .5em 1em;
-    border-radius: 0.2em;
-    text-decoration: none;
-    margin-right: 2%;
-  }
-}
-
-replay_post{
-  h3{
-    color: #397CAC;
-    border: 1px solid #397CAC;
-    padding: .5em 1em;
-    border-radius: 0.2em;
-    text-decoration: none;
-    
-  }
-}
-
-
-
-input[type="submit"]{
-  background: #397CAC;
-  border: none;
-  color:white;
-  font-weight: 100;
-  padding: .5em 1em;
-  border-radius: .2em;
-  width: 30%;
-}
-textarea {
-  width: 100%;
-  min-height: 200px;
-  border: 1px solid #d1d1d1;
-  border-radius: .2em;
-  margin: 1em 0;
-}
-
-.wrapper {
-  width: 100%;
-  max-width: 1140px;
-  margin: 0 auto;
-}
-
-.post_title {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-}
-.posts_home {
-  background: #397CAC;
-  border: none;
-  color: white;
-  font-weight: 100;
-  padding: 0.5em 1em;
-  border-radius: 0.2em;
-  width: 30%;
-  text-align: center;
-}
-
-.main_header {
-  width: 80%;
-  max-width: 1140px;
-  margin: 0 auto;
-  background-color: white;
-  #logo {
-    float: left;
-    a {
-      text-transform: uppercase;
-      font-weight: 700;
-      letter-spacing: -1px;
-      font-size: 1.2rem;
-      text-decoration: none;
-      color: #397CAC;
-    }
-  }
-  #buttons {
-    float: right;
-    a {
-      line-height: 60px;
-      background: #397CAC;
-      padding: .5em 1em;
-      border-radius: 0.2em;
-      color: white;
-      text-decoration: none;
-      font-weight: 100;
-    }
-  }
-}
-
-.title_h2 {
-  padding-bottom: 5px;
-}
-.title_link {
-  display: block;
-  margin-top: 10px;
-}
-
-.posts_container {
-  margin-top: 3em;
+  background-color: rgba(243, 244, 246);
 }
