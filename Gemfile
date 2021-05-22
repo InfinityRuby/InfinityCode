@@ -35,6 +35,7 @@ gem 'omniauth-facebook', '~> 8.0'
 gem 'omniauth-google-oauth2', '~> 1.0'
 gem 'omniauth-github', '~> 2.0'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
+gem 'nokogiri', '~> 1.6', '>= 1.6.8'
 
 # 管理密碼或機密資訊
 gem "figaro", "~> 1.2"
@@ -51,7 +52,6 @@ group :development do
   # Display performance information such as SQL time and flame graphs for each request in your browser.
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
 
-  # gem 'rack-mini-profiler', '~> 2.0'
   gem 'faker'
 
  
