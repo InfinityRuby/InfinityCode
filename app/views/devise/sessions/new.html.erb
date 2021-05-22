@@ -8,12 +8,10 @@
           <p class="user-inputtext"><%= f.label :email %></p>
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "user-input", placeholder: "EMAIL", size: 30 %>
         </div>
-  
         <div class="field">
           <p class="user-inputtext"><%= f.label :password %></p>
           <%= f.password_field :password, autocomplete: "current-password", class: "user-input", placeholder: "PASSWORD", size: 30 %>
-        </div>
-  
+        </div>  
         <div class="user-rem">
           <% if devise_mapping.rememberable? %>
             <div class="field">
@@ -21,13 +19,11 @@
               <%= f.label :remember_me %>
             </div>
           <% end %>
-        </div>
-  
+        </div>  
         <div class="actions">
           <%= f.submit "Log in", class: "user-submitbtn" %>
         </div>
-      <% end %>
-  
+      <% end %>  
       <div class="user-sharelink"><%= render "devise/shared/links" %></div>
     </div>
   </section>

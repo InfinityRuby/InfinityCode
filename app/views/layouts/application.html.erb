@@ -11,11 +11,6 @@
   </head>
 
   <body>
-<<<<<<< HEAD
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-      <%= yield %>
-=======
     <nav class="home-nav">
       <div class="home-logo">
         <a href="/"><p class="home-logo-text">InfinityCode <i class="user-icon-light fas fa-lightbulb"></i> fixed待修</p></a>
@@ -42,7 +37,8 @@
               <li class="user-account">
                 <a href="#"><%= current_user.email %> <i class="fas fa-chevron-down"></i></a>
                   <ul class="sub1">
-                      <li><a href="/users/edit">Profile</a></li>
+
+                      <li><%= link_to "Profile",profile_path %></li>
                       <li><a href="#Bookmarks-path">Bookmarks</a></li>
                       <li><%= link_to "Logout", destroy_user_session_path, method: :delete, class: 'navbar-link' %></li>
                   </ul>
@@ -60,8 +56,6 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p> 
     <%= yield %>
-    <%= render "devise/shared/footer" %>
-
->>>>>>> 8e7f5b5af476415f8c4d60d9c2b7485c9c8ece03
+    <%= render "layouts/footer" %>
   </body>
 </html>
