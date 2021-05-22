@@ -134,10 +134,10 @@ Prompt.create!(
   updated_at: Time.now
 )
 
-10.times do
+55.times do
   Post.create(
-    title: "大獲全勝",
-    content: "舒服",
+    title: Faker::Name.name,
+    content: Faker::Lorem.paragraph(sentence_count: 7),
     user_id: 1
   )
 end
