@@ -5,7 +5,7 @@
   <div class="single_article_wrap">
       <div class="single_article_title">
           <div class="single_article_title_goback">
-              <a href="http://localhost:3000/demos">《 Back</a>
+              <a href="/demos">《 Back</a>
           </div>
           <div class="single_article_title_word">
               <i class="fas fa-paperclip"></i>
@@ -22,7 +22,7 @@
               <h3>王小明</h3>
               <i class="fa fa-star"></i>
               <span>11212</span>
-              <span>Last Edit: February 6, 2021 6:49 AM</span>
+              <span>Last Edit: <%= @post.updated_at %></span>
             </div>
             <div class="single_article_content_body">
                 <p>
@@ -67,6 +67,6 @@
   </div>
 </div>
 
-<%= link_to '編輯', edit_post_path(@post) %>
+<!-- <%= link_to '編輯', edit_post_path(@post) %>
 <%= link_to '刪除', post_path(@post), method: :delete , data: { confirm: "確定要刪除嗎?" } %>
-<%= link_to "Home", root_path %>
+<%= link_to "Home", root_path %> -->

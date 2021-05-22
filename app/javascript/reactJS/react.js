@@ -9,7 +9,7 @@ import { faEraser } from '@fortawesome/free-solid-svg-icons'
       <div className="item">
         <img src="https://picsum.photos/50/50?grayscale" alt="jpg" />
         <div>      
-            <h2><a href={"http://localhost:3000/posts/"+id}>{title}</a></h2>
+            <h2><a href={"posts/"+id}>{title}</a></h2>
             <h3>{content}</h3>
         </div>
       </div>
