@@ -60,5 +60,6 @@
 }
 
 footer {
-  @apply py-2 text-center bg-yellow-500 text-white ; 
+  @apply absolute bottom-0 w-full py-2 text-center bg-yellow-500 text-white mb-0 ; 
 }
+
