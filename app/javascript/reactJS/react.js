@@ -2,7 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import {useEffect, useState, useRef} from 'react'
-import { faEraser } from '@fortawesome/free-solid-svg-icons'
   function SearchForum(props) {
     const {title, content, id} = props
     return(
@@ -132,7 +131,6 @@ import { faEraser } from '@fortawesome/free-solid-svg-icons'
           .then(post => setList(post)) 
         }, 400)
     }
-
    
     return(
     <div>
