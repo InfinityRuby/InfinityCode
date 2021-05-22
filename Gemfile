@@ -35,6 +35,7 @@ gem 'omniauth-facebook', '~> 8.0'
 gem 'omniauth-google-oauth2', '~> 1.0'
 gem 'omniauth-github', '~> 2.0'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
+gem 'nokogiri', '~> 1.6', '>= 1.6.8'
 
 # 管理密碼或機密資訊
 gem "figaro", "~> 1.2"
@@ -50,6 +51,7 @@ group :development do
   gem 'web-console', '>= 4.1.0'
   # Display performance information such as SQL time and flame graphs for each request in your browser.
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
+ 
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
