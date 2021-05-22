@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable, :omniauthable, omniauth_providers: [:facebook, :google_oauth2, :github]
   has_many :posts
+  has_many :comments
   has_one :profile
 
   def self.create_from_provider_data(provider_data) 

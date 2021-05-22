@@ -1,11 +1,14 @@
-<ul>
-<% @post.each do |post| %>
-  <li>
-    <h2 style="font-size: 20px; color: blue";><%= link_to post.title, post %></h2>
-    <p>發布於<%= time_ago_in_words(post.created_at) %></p>
-    <br/>
-  </li>
-<% end %>
+<div id="posts">
+  <div class="return_posts"><%= link_to '新的討論區', new_post_path %></div>
+  <% @post.each do |post| %>
+    <div class="post">
+      <h1 class="title"><%= link_to post.title, post %></h1>
+      <p class="date"><%= time_ago_in_words(post.created_at) %></p>
+      <%= post.user.email %>
+    </div>
+  <% end %>
 
-<%= link_to '新的討論區', new_post_path %>
-</ul>
+</div>
+
+
+
