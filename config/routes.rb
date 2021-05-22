@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :users
   resources :quests 
   resources :demos
+  resource :profile
   
   get "/jsons/data", to: "jsons#data"
   get "/quests/questdata", to: "quests#questdata"
@@ -22,6 +23,7 @@ Rails.application.routes.draw do
       end
     end
   end
+
 
   root to: "users#index" #devise 用，之後有必要再換名稱
 

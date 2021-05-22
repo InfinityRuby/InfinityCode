@@ -21,7 +21,7 @@ Quest.create!(
   You may assume that each input would have exactly one solution, and you may not use the same element twice.<br />
   You can return the answer in any order.',
   picture: '',
-  problem: '# @param {Integer[]} nums<br /># @param {Integer} target<br /># @return {Integer[]}<br />def two_sum(nums, target)<br />end',
+  problem: File.read("./public/problem/q-2.txt"),
   created_at: Time.now,
   updated_at: Time.now
 )
@@ -30,8 +30,8 @@ Quest.create!(
   level: 'Easy',
   description: 'Given the array `nums` consisting of `2n` elements in the form `[x1,x2,...,xn,y1,y2,...,yn]`.<br />
   *Return the array in the form* `[x1,y1,x2,y2,...,xn,yn]`.',
-  picture: '[./app/assets/images/quest/3-picture.png][]',
-  problem: '# @param {Integer[]} nums<br /># @param {Integer} n<br /># @return {Integer[]}<br />def shuffle(nums, n)<br />end',
+  picture: '![](quest/3-picture.png)',
+  problem: File.read("./public/problem/q-3.txt"),
   created_at: Time.now,
   updated_at: Time.now
 )
@@ -40,8 +40,8 @@ Quest.create!(
   level: 'Medium',
   description: 'Given an integer array nums, return all the triplets `[nums[i], nums[j], nums[k]]` such that `i != j`, `i != k`, and `j != k`, and `nums[i] + nums[j] + nums[k] == 0`.<br />
   Notice that the solution set must not contain duplicate triplets.',
-  picture: '[./app/assets/images/quest/4-picture.png][]',
-  problem: '# @param {Integer[]} nums<br /># @return {Integer[][]}<br />def three_sum(nums)<br />end',
+  picture: '![](quest/4-picture.png)',
+  problem: File.read("./public/problem/q-4.txt"),
   created_at: Time.now,
   updated_at: Time.now
 )
@@ -50,8 +50,8 @@ Quest.create!(
   level: 'Hard',
   description: 'Given an unsorted integer array `nums`, find the smallest missing positive integer.<br />
   You must implement an algorithm that runs in `O(n)` time and uses constant extra space.',
-  picture: '[./app/assets/images/quest/5-picture.png][]',
-  problem: '# @param {Integer[]} nums<br /># @return {Integer}<br />def first_missing_positive(nums)<br />end',
+  picture: '![](quest/5-picture.png)',
+  problem: File.read("./public/problem/q-5.txt"),
   created_at: Time.now,
   updated_at: Time.now
 )
@@ -133,11 +133,3 @@ Prompt.create!(
   created_at: Time.now,
   updated_at: Time.now
 )
-
-55.times do
-  Post.create(
-    title: Faker::Name.name,
-    content: Faker::Lorem.paragraph(sentence_count: 7),
-    user_id: 1
-  )
-end

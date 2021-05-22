@@ -1,0 +1,1 @@
+import './profilepage.scss'
