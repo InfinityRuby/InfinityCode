@@ -11,6 +11,7 @@ import "styles"
 import "icon/fontawesome"
 import "quest"
 import "user"
+import "profile"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()

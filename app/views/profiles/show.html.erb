@@ -1,0 +1,9 @@
+<div class="user-index-container">
+   <div class="profile-wrap">
+   
+      <li><span class="profile-table"><%= current_user.profile.avatar %></span></li>
+      <li><span class="profile-table">使用者名稱：<%= current_user.profile.name %></span></li>
+      <li><span class="profile-table">簡介：<%= current_user.profile.bio %></span></li>
+      <button><%= link_to "編輯", edit_profile_path %></button>
+   </div>
+</div>
