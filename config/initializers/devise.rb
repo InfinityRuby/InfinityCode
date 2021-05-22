@@ -14,6 +14,8 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
+
+
   # config.secret_key = 'd689785305df7a379e5e1c3b02e72ed25b2aa406361e92fc6c32e0fe830e3fb4d7d1f74b061bffc98fb29e4752478c2de5226dc52a5dc7526127c3bb53c32875'
 
   # ==> Controller configuration
@@ -24,6 +26,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
+
   config.mailer_sender = 'info<info@infinitycode.com>'
   # 設定顯示寄件人
 
@@ -128,6 +131,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
+
   # config.pepper = '575cf35943dd4854d4417a4899ff0714887f61dad6bc1c47232e80753723c632513a85cb44df42e029e06a42b4ab3748facc73679d01da8ccc792c3df63b97f8'
 
   # Send a notification to the original email when the user's email is changed.
@@ -159,6 +163,7 @@ Devise.setup do |config|
   # initial account confirmation) to be applied. Requires additional unconfirmed_email
   # db field (see migrations). Until confirmed, new email is stored in
   # unconfirmed_email column, and copied to email column on successful confirmation.
+
   config.reconfirmable = false
 
   # Defines which key will be used when confirming an account
@@ -274,6 +279,7 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
+
   config.omniauth :facebook, ENV['fb_client_id'], ENV['fb_client_secret'], scope: "public_profile,email", info_fields: "email,name", token_params: { parse: :json }
   config.omniauth :google_oauth2, ENV['google_client_id'], ENV['google_client_secret'],{access_type: "offline", approval_prompt: ""}
   config.omniauth :github, ENV['github_client_id'], ENV['github_client_secret'], scope: 'user,public_repo'
