@@ -113,6 +113,16 @@ textarea {
   width: 100%;
   justify-content: space-between;
 }
+.posts_home {
+  background: #397CAC;
+  border: none;
+  color: white;
+  font-weight: 100;
+  padding: 0.5em 1em;
+  border-radius: 0.2em;
+  width: 30%;
+  text-align: center;
+}
 
 .main_header {
   width: 80%;
@@ -144,3 +154,14 @@ textarea {
   }
 }
 
+.title_h2 {
+  padding-bottom: 5px;
+}
+.title_link {
+  display: block;
+  margin-top: 10px;
+}
+
+.posts_container {
+  margin-top: 3em;
+}
