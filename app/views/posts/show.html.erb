@@ -49,21 +49,16 @@
                 <span>Oldest to Newest</span>
             </div>
         </div>
+        <%= form_for([@post, @post.comments.build]) do |f| %>
         <div class="single_article_content_input">
-            <textarea name="singeArticle" cols="10" rows="10" placeholder="此處留言...請注意用詞"></textarea>
-            <div class="single_article_textarea_border">
-              <button>送出</button>
+            <!-- <textarea name="singeArticle" cols="10" rows="10" placeholder="此處留言...請注意用詞"></textarea> -->
+            <%= f.text_area :comment, id: 'comment_texarea' %>     
+            <div class="single_article_textarea_border">        
+                <%= f.button "送出",  id: 'comment_button' %>
             </div>
+        <% end %>
         </div>
-        <div class="single_article_page">
-            <span><</span>
-            <span>1</span>
-            <span>2</span>
-            <span>3</span>
-            <span>4</span>
-            <span>5</span>
-            <span>></span>
-        </div>
+        <div id="single_article_user_comments"></div>
       </div>
   </div>
 </div>

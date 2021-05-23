@@ -1,38 +1,5 @@
-.container_nav{
-  @apply flex justify-between w-full p-2 bg-white
-}
-
-.discuss_nav_left{
-  @apply flex text-base justify-center w-7/12 items-center
-}
-
-.discuss_nav_left > a{
-  @apply mr-5
-}
-
-.discuss_nav_left > a:nth-child(n+2){
-  @apply text-gray-400 
-}
-
-.discuss_nav_right{
-  @apply w-3/12 
-}
-
-.icon{
-  @apply flex justify-center items-center
-}
-
-.discuss_nav_right .icon a > svg{
-  @apply mx-3 text-xl text-gray-400
-}
-
-
-.discuss_nav_right > .icon > a:nth-child(1){
-  @apply border-2 p-1 text-yellow-300 border-yellow-300 rounded-lg
-}
-
 .container_discuss{
-  @apply w-full bg-gray-100 pt-2 pl-32 flex mt-7
+  @apply w-full bg-gray-100 pt-14 pl-32 flex mt-7
 }
 
 .wrap{
@@ -68,7 +35,7 @@
 }
 
 .item:nth-child(2) button{
-  @apply bg-gray-800 w-16 h-8 rounded-sm text-white
+  @apply bg-blue-600 w-16 h-8 rounded-sm text-white opacity-80 hover:bg-blue-900 rounded-sm ml-2
 }
 
 .item:nth-child(2) input{
