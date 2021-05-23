@@ -14,5 +14,4 @@ import "profile"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
-import "styles/user"
 import "../reactJS"
