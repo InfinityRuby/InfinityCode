@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import {useEffect, useState, useRef} from 'react'
+
   function SearchForum(props) {
     const {title, content, id} = props
     return(
@@ -17,61 +18,23 @@ import {useEffect, useState, useRef} from 'react'
 
   function Forum() {
     const [list, setList] = useState([])
-    const [search, setSearch] = useState([]) 
-    const [change, setChange] = useState(true)
-
     const [initPage, setInitPage] = useState(1)
     const numberPage = initPage * 10
- 
     const displayPage = list.slice(numberPage - 10, numberPage)
     const nowList = displayPage.map((list) => {
       return <SearchForum key={list.id} id={list.id} title={list.title} content={list.content} /> 
     })
 
-    const searchNowPage = search.slice(numberPage - 10, numberPage)
-    const searchList = searchNowPage.map((search) => {
-      return <SearchForum key={search.id} id={search.id} title={search.title} content={search.content} />
-    })
-    
     useEffect(() => {
-      fetch('jsons/data')
+      fetch('/jsons/data')
       .then(res => res.json())
       .then(post => setList(post))    
     }, [])
 
     function Pagenumber() {
-      const nextPage = () => {
-        if(numberPage < list.length){
-          setInitPage(initPage + 1)
-        }  
-      }
-      const previousPage = () => {
-        if(initPage > 1){
-          setInitPage(initPage - 1)
-        }
-      }
-      const changePage = () => {
-        if(initPage > 0){
-          setInitPage(initPage - 2)
-        }
-      }
-      const changePage2 = () => {
-        if(initPage > 0) {
-          setInitPage(initPage - 1)
-        }
-      }
-      const changePage3 = () => {
-        if(numberPage < list.length) {
-          setInitPage(initPage + 1)
-        }
-      }
-      const changePage4 = () => {
-        if(numberPage < list.length){
-          setInitPage(initPage + 2)
-        }
-      }
-
-      const returnHome = () => {setInitPage(1)}
+      const nextPage = number => numberPage < list.length && setInitPage(initPage + number)
+      const previousPage = () => initPage > 1 && setInitPage(initPage - 1)
+      const jumpPage = number => initPage > 0 && setInitPage(initPage - number)
       const searchPage = (event) => {
         if(event.key == 'Enter'){
           if(Number(event.target.value) && Number(event.target.value) * 10 <= list.length + 10){
@@ -79,28 +42,25 @@ import {useEffect, useState, useRef} from 'react'
           }
         }
       }
-      
+
       return(
         <div className="pagination">
           <button onClick={previousPage}>上一頁</button>
-
-          {initPage > 2 ? <button onClick={changePage}>{initPage - 2}</button> : null}
-          {initPage > 1 ? <button onClick={changePage2}>{initPage - 1} </button> : null}
+          {initPage > 2 ? <button onClick={jumpPage.bind(this, 2)}>{initPage - 2}</button> : null}
+          {initPage > 1 ? <button onClick={jumpPage.bind(this, 1)}>{initPage - 1} </button> : null}
           <button>{initPage}</button>
-          {initPage * 10 < list.length ? <button onClick={changePage3}>{initPage + 1}</button> : null}
-          {initPage * 10 + 10 < list.length ? <button onClick={changePage4}>{initPage + 2}</button> : null}
-          
-          <button onClick={nextPage}>下一頁</button>
+          {initPage * 10 < list.length ? <button onClick={nextPage.bind(this, 1)}>{initPage + 1}</button> : null}
+          {initPage * 10 + 10 < list.length ? <button onClick={nextPage.bind(this, 2)}>{initPage + 2}</button> : null}
+          <button onClick={nextPage.bind(this, 1)}>下一頁</button>
           <input type="text" onKeyDown={searchPage} placeholder={"目前在第"+initPage+"頁"} />
-          <button onClick={returnHome}>回首頁</button>
+          <button onClick={() => setInitPage(1)}>回首頁</button>
         </div>
       )
     }
     
-
     function searchlist(event) {
       if(event.key == 'Enter'){
-        fetch('jsons/data')
+        fetch('/jsons/data')
         .then(res => res.json())
         .then((post) => {
            list.splice(0, list.length)
@@ -109,24 +69,16 @@ import {useEffect, useState, useRef} from 'react'
 
         setTimeout(() => {setList([])}, 300) 
         setTimeout(() => {       
-          const current_search = list.filter(hash => hash.title.includes(event.target.value))
-          setChange(false) 
+          const current_search = list.filter(hash => hash.title.includes(event.target.value)) 
           setList(current_search)
-          setChange(true)
           setInitPage(1)
-
-          if(current_search != undefined){    
-            setSearch(current_search)
-          }
         }, 700)
       }      
     }
 
     function clickReset(event){
         setTimeout(() => {
-          setChange(true)
-          setInitPage(1)
-          fetch('jsons/data')
+          fetch('/jsons/data')
           .then(res => res.json())
           .then(post => setList(post)) 
         }, 400)
@@ -152,7 +104,7 @@ import {useEffect, useState, useRef} from 'react'
               <button onClick={clickReset}>Reset</button>
             </div>
         </div>
-        { change ? nowList : searchList }   
+         { nowList }
         <Pagenumber />
     </div>
     )
@@ -166,5 +118,3 @@ import {useEffect, useState, useRef} from 'react'
       )
     }
   })
-
-  

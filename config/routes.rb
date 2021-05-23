@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resource :profile
   
   get "/jsons/data", to: "jsons#data"
+  get "/jsons/commentsJson/:id", to: "jsons#commentsJson"
   get "/quests/questdata", to: "quests#questdata"
 
   # API 路徑設定
