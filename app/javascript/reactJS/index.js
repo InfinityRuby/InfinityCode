@@ -1,2 +1,2 @@
-import "./react"
-import "./search"
+import "./posts"
+import "./comments"
