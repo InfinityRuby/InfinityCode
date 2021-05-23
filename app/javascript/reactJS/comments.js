@@ -2,7 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import {useEffect, useState, useRef} from 'react'
-import { comment } from 'postcss'
 
 function Comments_user(props) {
   const comments = props
