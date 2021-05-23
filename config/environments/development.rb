@@ -35,7 +35,18 @@ Rails.application.configure do
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
+  # rails_delivery_errors 設定為 false 可讓寄信時的錯誤被忽略，如果要 debug 就設 true
 
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  config.action_mailer.delivery_method = :smtp
+  # delivery_method 有三種寄信方式 :test、:sendmail 和 :smtp
+  # sendmail 須搭配 server 的 /user/bin/sendmail application
+  # 而這邊是透過 mailgun(and gmail) 的 smtp 協定作寄信
+  config.action_mailer.smtp_settings = config_for(:email).symbolize_keys
+  # config_for 會讀取 config 目錄下的 YAML 設定檔，由於 smtp_settings 需帶入 Symbol key
+  # 所以透過 .symbolize_keys 將 Hash 中的 String key 轉成 Symbol key
+  
   config.action_mailer.perform_caching = false
 
   # Print deprecation notices to the Rails logger.
@@ -73,4 +84,6 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+  # Needed for Devise Gem
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 end
