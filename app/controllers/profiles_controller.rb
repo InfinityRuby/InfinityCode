@@ -1,18 +1,6 @@
 class ProfilesController < ApplicationController
 
-  def create
-    @user = User.find(params[:user_id])
-    @profile = @user.profile.create(profile_params)
-
-    if @profile.save
-      redirect_to @user
-    else
-      render 'new'
-    end
-  end
-
   def show
-    # @profile = Profile.find_by(user_id: params[:user_id])
     @profile = current_user.profile
   end
 
