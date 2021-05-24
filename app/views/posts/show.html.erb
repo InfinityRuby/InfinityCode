@@ -1,0 +1,68 @@
+<h1><%=@post.title%></h1>
+<p><%=@post.content%></p>
+<h1>這是標題</h1>
+<div class="single_article_container">
+  <div class="single_article_wrap">
+      <div class="single_article_title">
+          <div class="single_article_title_goback">
+              <a href="/posts">《 Back</a>
+          </div>
+          <div class="single_article_title_word">
+              <i class="fas fa-paperclip"></i>
+              <h2><%= @post.title %></h2>
+          </div>
+          <div class="single_article_title_icon">
+            <i class="fas fa-exclamation-triangle"></i>
+          </div>
+      </div>
+      <div class="single_article_content">
+        <div class="single_article_content_wrap">
+            <div class="single_article_content_author">
+              <img src="https://picsum.photos/50/50?grayscale" alt="jpg" />
+              <h3>王小明</h3>
+              <i class="fa fa-star"></i>
+              <span>11212</span>
+              <span>Last Edit: <%= @post.updated_at %></span>
+            </div>
+            <div class="single_article_content_body">
+                <p>
+                    <%= @post.content %>
+                </p>
+                <div class="single_article_content_span">
+                    <span>online assessment</span>
+                    <span>microsoft</span>
+                    <span>Create Time: <%= time_ago_in_words(@post.created_at) %></span>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="single_article_content_comments">
+        <div class="single_article_comments_count">
+            <div>
+                <i class="fa fa-comment-alt"></i>
+                <span>Comments: 274</span>
+            </div>
+            <div>
+                <span>Best</span>
+                <span>Most Votes</span>
+                <span>Newest to Oldest</span>
+                <span>Oldest to Newest</span>
+            </div>
+        </div>
+        <%= form_for([@post, @post.comments.build]) do |f| %>
+        <div class="single_article_content_input">
+            <!-- <textarea name="singeArticle" cols="10" rows="10" placeholder="此處留言...請注意用詞"></textarea> -->
+            <%= f.text_area :comment, id: 'comment_texarea' %>     
+            <div class="single_article_textarea_border">        
+                <%= f.button "送出",  id: 'comment_button' %>
+            </div>
+        <% end %>
+        </div>
+        <div id="single_article_user_comments"></div>
+      </div>
+  </div>
+</div>
+
+<!-- <%= link_to '編輯', edit_post_path(@post) %>
+<%= link_to '刪除', post_path(@post), method: :delete , data: { confirm: "確定要刪除嗎?" } %>
+<%= link_to "Home", root_path %> -->

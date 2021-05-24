@@ -1,0 +1,65 @@
+.home-nav {
+  @apply flex items-center justify-between py-5 px-10 bg-white shadow-md fixed w-full top-0;
+
+  .home-logo {
+    @apply flex items-center flex-shrink-0 text-black mr-6;
+    
+    .home-logo-text {
+      @apply font-semibold text-xl tracking-tight;
+    }
+    .user-icon-light {
+      @apply text-yellow-500;
+    }
+  }
+
+  .home-nav-item {
+    @apply w-full block flex-grow lg:flex lg:items-center lg:w-auto;
+
+    .home-nav-item-link {
+      @apply flex text-base lg:flex-grow pl-7 justify-end;
+
+      ul {
+        @apply flex;
+
+        li:hover ul {
+          @apply block;
+        }
+
+        ul {
+          @apply hidden absolute border-gray-500 px-6 py-3;
+
+          ul {
+            @apply absolute left-full top-2;
+
+            ul {
+              @apply absolute top-1/4 left-full;
+            }
+          }
+        }
+      }
+      a {
+        @apply block mt-4 lg:inline-block lg:mt-0 hover:text-yellow-500 mx-4;
+      }
+
+      .user-account {
+        @apply mr-0;
+      }
+
+      .user-btn {
+        @apply mr-0;
+
+        .user-btn-signup {
+          @apply border-gray-500 rounded border py-2 px-3 hover:text-yellow-500 hover:border-yellow-500 ;
+        }
+        .user-btn-login {
+          @apply py-2 px-3;
+        }
+      }
+    }
+  }
+}
+
+footer {
+  @apply w-full mt-10 py-2 text-center bg-yellow-500 text-white mb-0 ; 
+}
+
