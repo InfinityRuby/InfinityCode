@@ -1,34 +1,34 @@
 <h1><%=@post.title%></h1>
 <p><%=@post.content%></p>
 <h1>這是標題</h1>
-<div class="single_article_container">
-  <div class="single_article_wrap">
-      <div class="single_article_title">
-          <div class="single_article_title_goback">
+<div class="single-article-container">
+  <div class="single-article-wrap">
+      <div class="single-article-title">
+          <div class="single-article-title-goback">
               <a href="/posts">《 Back</a>
           </div>
-          <div class="single_article_title_word">
+          <div class="single-article-title-word">
               <i class="fas fa-paperclip"></i>
               <h2><%= @post.title %></h2>
           </div>
-          <div class="single_article_title_icon">
+          <div class="single-article-title-icon">
             <i class="fas fa-exclamation-triangle"></i>
           </div>
       </div>
-      <div class="single_article_content">
-        <div class="single_article_content_wrap">
-            <div class="single_article_content_author">
+      <div class="single-article-content">
+        <div class="single-article-content-wrap">
+            <div class="single-article-content-author">
               <img src="https://picsum.photos/50/50?grayscale" alt="jpg" />
               <h3>王小明</h3>
               <i class="fa fa-star"></i>
               <span>11212</span>
               <span>Last Edit: <%= @post.updated_at %></span>
             </div>
-            <div class="single_article_content_body">
+            <div class="single-article-content-body">
                 <p>
                     <%= @post.content %>
                 </p>
-                <div class="single_article_content_span">
+                <div class="single-article-content-span">
                     <span>online assessment</span>
                     <span>microsoft</span>
                     <span>Create Time: <%= time_ago_in_words(@post.created_at) %></span>
@@ -36,8 +36,8 @@
             </div>
         </div>
       </div>
-      <div class="single_article_content_comments">
-        <div class="single_article_comments_count">
+      <div class="single-article-content-comments">
+        <div class="single-article-comments-count">
             <div>
                 <i class="fa fa-comment-alt"></i>
                 <span>Comments: 274</span>
@@ -50,15 +50,15 @@
             </div>
         </div>
         <%= form_for([@post, @post.comments.build]) do |f| %>
-        <div class="single_article_content_input">
+        <div class="single-article-content-input">
             <!-- <textarea name="singeArticle" cols="10" rows="10" placeholder="此處留言...請注意用詞"></textarea> -->
-            <%= f.text_area :comment, id: 'comment_texarea' %>     
-            <div class="single_article_textarea_border">        
-                <%= f.button "送出",  id: 'comment_button' %>
+            <%= f.text_area :comment, id: 'comment-texarea' %>     
+            <div class="single-article-textarea-border">        
+                <%= f.button "送出",  id: 'comment-button' %>
             </div>
         <% end %>
         </div>
-        <div id="single_article_user_comments"></div>
+        <div id="single-article-user-comments"></div>
       </div>
   </div>
 </div>

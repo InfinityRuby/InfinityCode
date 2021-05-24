@@ -1,2 +1,1 @@
-import "./posts"
-import "./comments"
+import "./post" 

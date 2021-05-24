@@ -11,7 +11,7 @@ import "styles"
 import "icon/fontawesome"
 import "quest"
 import "profile"
+import "reactjs"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
-import "../reactJS"

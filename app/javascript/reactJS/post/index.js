@@ -1,0 +1,2 @@
+import "./discuss"
+import "./comments"
