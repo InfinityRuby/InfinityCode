@@ -8,39 +8,31 @@ function UserComments(props) {
   const comments = props
   const commentRef = useRef()
   const [selectOption, setSelectOption] = useState('')
-  // function TestClick() { 
-  //   const apiDestroy = () => {
-  //     const token = document.querySelector('meta[name=csrf-token]').content
-  //     const id = commentRef.current.dataset.id
-  //     let url = window.location.href
-  //     let localID = url.substring(url.lastIndexOf('/') + 1)
-  //     const api = {
-  //       method: 'DELETE',
-  //       headers: {
-  //         'X-CSRF-Token': token
-  //       }
-  //     }
-  //     confirm('確認刪除嗎？')
-  //     fetch(`/posts/${localID}/comments/${id}`, api)
-  //     .then(res => res.json())
-  //     .then(posts => {
-  //       console.log(posts)
-  //     })
-  //     setTimeout(() => location.href = "/posts", 200)
-  //   }
+  function DeletePost() { 
+    const apiDestroy = () => {
+      const token = document.querySelector('meta[name=csrf-token]').content
+      const id = commentRef.current.dataset.id
+      let url = window.location.href
+      let localID = url.substring(url.lastIndexOf('/') + 1)
+      const api = {
+        method: 'DELETE',
+        headers: {
+          'X-CSRF-Token': token
+        }
+      }
+      confirm('確認刪除嗎？')
+      fetch(`/posts/${localID}/comments/${id}`, api)
+      .then(res => res.json())
+      .then(posts => {
+        console.log(posts)
+      })
+      setTimeout(() => location.href = "/posts", 200)
+    }
 
-  //   return(
-  //     <button onClick={apiDestroy}>測試用按鈕</button>
-  //   )
-  // }
-
-  // document.getElementById('allLanguage').addEventListener('change', () => {
-  //   const obj = document.getElementById('allLanguage')
-  //   const index = obj.selectedIndex
-  //   const selectedOption = obj.options[index].value
-  //   console.log(selectedOption)
-  //   setSelectOption(selectedOption)   
-  // })
+    return(
+      <button onClick={apiDestroy}>刪除這篇文章按鈕</button>
+    )
+  }
 
   return(
     <div data-id={comments.id} ref={commentRef} className="single-article-user-comments">
@@ -53,7 +45,7 @@ function UserComments(props) {
       <div>
         <div className="single-article-user-content markdown-body" dangerouslySetInnerHTML={{__html: marked(comments.content)}}></div>
       </div>
-      {/* <TestClick /> */}
+      <DeletePost />
     </div>
   )
 }
@@ -116,9 +108,9 @@ function Comments() {
   return(
     
     <div className="single-article-body">
-      <div class="single-article-comments-count">
+      <div className="single-article-comments-count">
         <div>
-            <i class="fa fa-comment-alt"></i>
+            <i className="fa fa-comment-alt"></i>
             <span>{`留言總數: ${commentsApi.length}`}</span>
         </div>
         <div>
