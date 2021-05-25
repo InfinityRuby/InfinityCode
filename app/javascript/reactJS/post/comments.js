@@ -2,36 +2,45 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import {useEffect, useState, useRef} from 'react'
+import marked from 'marked'
 
 function UserComments(props) {
   const comments = props
   const commentRef = useRef()
-  
-  function TestClick() { 
-    const apiDestroy = () => {
-      const token = document.querySelector('meta[name=csrf-token]').content
-      const id = commentRef.current.dataset.id
-      let url = window.location.href
-      let localID = url.substring(url.lastIndexOf('/') + 1)
-      const api = {
-        method: 'DELETE',
-        headers: {
-          'X-CSRF-Token': token
-        }
-      }
-      confirm('確認刪除嗎？')
-      fetch(`/posts/${localID}/comments/${id}`, api)
-      .then(res => res.json())
-      .then(posts => {
-        console.log(posts)
-      })
-      setTimeout(() => location.href = "/posts", 200)
-    }
+  const [selectOption, setSelectOption] = useState('')
+  // function TestClick() { 
+  //   const apiDestroy = () => {
+  //     const token = document.querySelector('meta[name=csrf-token]').content
+  //     const id = commentRef.current.dataset.id
+  //     let url = window.location.href
+  //     let localID = url.substring(url.lastIndexOf('/') + 1)
+  //     const api = {
+  //       method: 'DELETE',
+  //       headers: {
+  //         'X-CSRF-Token': token
+  //       }
+  //     }
+  //     confirm('確認刪除嗎？')
+  //     fetch(`/posts/${localID}/comments/${id}`, api)
+  //     .then(res => res.json())
+  //     .then(posts => {
+  //       console.log(posts)
+  //     })
+  //     setTimeout(() => location.href = "/posts", 200)
+  //   }
 
-    return(
-      <button onClick={apiDestroy}>測試用按鈕</button>
-    )
-  }
+  //   return(
+  //     <button onClick={apiDestroy}>測試用按鈕</button>
+  //   )
+  // }
+
+  // document.getElementById('allLanguage').addEventListener('change', () => {
+  //   const obj = document.getElementById('allLanguage')
+  //   const index = obj.selectedIndex
+  //   const selectedOption = obj.options[index].value
+  //   console.log(selectedOption)
+  //   setSelectOption(selectedOption)   
+  // })
 
   return(
     <div data-id={comments.id} ref={commentRef} className="single-article-user-comments">
@@ -41,8 +50,10 @@ function UserComments(props) {
           <span>0</span>
           <span>a few seconds ago</span>
       </div>
-      <div className="single-article-user-content">{comments.content}</div>
-      <TestClick />
+      <div>
+        <div className="single-article-user-content markdown-body" dangerouslySetInnerHTML={{__html: marked(comments.content)}}></div>
+      </div>
+      {/* <TestClick /> */}
     </div>
   )
 }
@@ -53,28 +64,26 @@ function Comments() {
   const commentTotal = commentsApi.slice(commentPages * 6 - 6, commentPages * 6).map(comments => {
     return <UserComments key={comments.id} id={comments.id} content={comments.comment} />
   })
-
   const commentButton = document.getElementById('comment-button')
   const commentTexarea = document.getElementById('comment-texarea')
+  const url = window.location.href
+  const id = url.substring(url.lastIndexOf('/') + 1)
 
   useEffect(() => {
-    let url = window.location.href
-    let id = url.substring(url.lastIndexOf('/') + 1)
     fetch(`/jsons/postscomments/${id}`)
     .then(res => res.json())
     .then(posts => setcommentsApi(posts))
   }, [])
 
-  commentButton.addEventListener('click', () => {
+  const postComment = () => {
     const postNewComment = {id: commentsApi.length + 1 ,comment: commentTexarea.value}
     const newCommentsTotal = commentsApi.concat(postNewComment)
-
     newCommentsTotal.pop()
     newCommentsTotal.unshift(postNewComment)
     setcommentsApi(newCommentsTotal)
     setcommentPages(1)
-    setTimeout(() => commentTexarea.value = '', 0)
-  })
+    setTimeout(() => {commentTexarea.value = ''}, 0)
+  }
 
   const previousPage = () => commentPages > 1 && setcommentPages(commentPages - 1)  
   const nextPage = () => commentPages * 6 < commentsApi.length && setcommentPages(commentPages + 1)
@@ -82,9 +91,7 @@ function Comments() {
   const lastPage = event => setcommentPages(Number(event.target.textContent))
   const returnPage = () => setcommentPages(1)
 
-  const reversecomments = () => {
-    let url = window.location.href
-    let id = url.substring(url.lastIndexOf('/') + 1)
+  const reverseComments = () => {
     commentsApi.splice(0, commentsApi.length)
     fetch(`/jsons/postscomments/${id}`)
     .then(res => res.json())
@@ -95,9 +102,7 @@ function Comments() {
     }) 
   }
 
-  const reverseCommentscomments = () => {
-    let url = window.location.href
-    let id = url.substring(url.lastIndexOf('/') + 1)
+  const sortComments = () => {
     commentsApi.splice(0, commentsApi.length)
     fetch(`/jsons/postscomments/${id}`)
     .then(res => res.json())
@@ -109,11 +114,33 @@ function Comments() {
   }
 
   return(
-    <div>
-      { commentTotal }
+    
+    <div className="single-article-body">
+      <div class="single-article-comments-count">
+        <div>
+            <i class="fa fa-comment-alt"></i>
+            <span>{`留言總數: ${commentsApi.length}`}</span>
+        </div>
+        <div>
+            <span>Best</span>
+            <span>Most Votes</span>
+            <span>Newest to Oldest</span>
+            <span>Oldest to Newest</span>
+        </div>
+      </div>
+      <div className="single-article-content-input">
+          <div className="single-article-reverse-comments">
+            <button onClick={ sortComments }>最新</button>
+            <button onClick={ reverseComments }>最舊</button>
+          </div>
+          <textarea name="singeArticle" id="comment-texarea" cols="10" rows="10" placeholder="此處留言...請注意用詞">
+          </textarea>
+          <div className="single-article-textarea-border">        
+            <button id="comment-button" onClick={postComment}>送出</button>
+          </div>
+      </div>
+        { commentTotal }
       <div className="single-article-page">
-          <button onClick={ reverseCommentscomments }>最新</button>
-          <button onClick={ reversecomments }>最舊</button>
           <span onClick={previousPage}>◀</span>
          { commentPages >= 5 ?  <span onClick={returnPage}>{1}</span> : null}
          { commentPages >= 5 ? <h5>...</h5> : null}
@@ -134,7 +161,7 @@ document.addEventListener('turbolinks:load', () => {
   if(document.getElementById('single-article-user-comments')){
     ReactDOM.render(
         <Comments />,
-        document.getElementById('single-article-user-comments')
+      document.getElementById('single-article-user-comments')
     )
   }
 })

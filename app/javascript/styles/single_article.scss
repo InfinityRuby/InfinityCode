@@ -3,7 +3,7 @@
 }
 
 .single-article-wrap{
-  @apply w-7/12 bg-white shadow-md h-full
+  @apply w-6/12 bg-white shadow-md h-full
 }
 
 .single-article-title{
@@ -35,11 +35,11 @@
 }
 
 .single-article-content-wrap{
-  @apply w-3/5 border-b border-gray-200 pt-6 pb-4 flex flex-col items-center
+  @apply w-4/5 border-b border-gray-200 pt-6 pb-4 flex flex-col items-center
 }
 
 .single-article-content-author{
-  @apply w-full text-xl flex items-center text-gray-400 flex-grow-0
+  @apply w-full text-base flex items-center text-gray-400
 }
 
 .single-article-content-author > img{
@@ -55,7 +55,7 @@
 }
 
 .single-article-content-body{
-  @apply w-full px-5 mt-8 flex-grow h-full flex flex-col justify-between 
+  @apply w-full mt-8 h-full flex flex-col justify-between 
 } 
 
 .single-article-content-body p{
@@ -68,6 +68,14 @@
 
 .single-article-content-span > span{
   @apply border-gray-700 bg-gray-100 p-2 rounded-md text-gray-500
+}
+
+.single-article-reverse-comments{
+  @apply flex justify-start w-4/5 pb-1
+}
+
+.single-article-reverse-comments > button{
+  @apply text-base text-white border p-1 bg-gray-500 mr-2 hover:bg-gray-300 hover:text-black
 }
 
 .single-article-content-comments{
@@ -91,24 +99,19 @@
 }
 
 .single-article-content-input > textarea{
-  @apply  w-11/12 h-24 border-l-2 border-r-2 border-t-2 border-gray-300 rounded-t-md p-3 text-lg resize-none outline-none
+  @apply  w-4/5 h-24 border-l-2 border-r-2 border-t-2 border-gray-300 rounded-t-md p-3 text-lg resize-none outline-none
 }
 
 .single-article-textarea-border{
-  @apply w-11/12 border-2 rounded-b-md border-gray-300 flex justify-end
+  @apply w-4/5 border-2 rounded-b-md border-gray-300 flex justify-end
 }
 
 .single-article-textarea-border > button{
   @apply border-l-2 border-gray-300 rounded-b-sm p-2 bg-gray-400 opacity-70 text-white hover:bg-gray-800
 }
 
-
-#single-article-user-comments{
-  @apply w-10/12 m-auto
-}
-
 .single-article-user-comments{
-  @apply flex flex-col text-base w-10/12 my-10
+  @apply m-auto flex flex-col text-base w-4/5 my-10 m-auto
 }
 
 .single-article-user-comments img{

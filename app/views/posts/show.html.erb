@@ -37,27 +37,14 @@
         </div>
       </div>
       <div class="single-article-content-comments">
-        <div class="single-article-comments-count">
-            <div>
-                <i class="fa fa-comment-alt"></i>
-                <span>Comments: 274</span>
-            </div>
-            <div>
-                <span>Best</span>
-                <span>Most Votes</span>
-                <span>Newest to Oldest</span>
-                <span>Oldest to Newest</span>
-            </div>
-        </div>
-        <%= form_for([@post, @post.comments.build]) do |f| %>
-        <div class="single-article-content-input">
-            <!-- <textarea name="singeArticle" cols="10" rows="10" placeholder="此處留言...請注意用詞"></textarea> -->
-            <%= f.text_area :comment, id: 'comment-texarea' %>     
-            <div class="single-article-textarea-border">        
-                <%= f.button "送出",  id: 'comment-button' %>
-            </div>
-        <% end %>
-        </div>
+        <!-- <select name="language" id="allLanguage">
+          <option value="ruby">ruby</option>
+          <option value="C">C</option>
+          <option value="java">java</option>
+          <option value="php">php</option>
+          <option value="javascript">javascript</option>
+          <option value="python">python</option>
+        </select> -->
         <div id="single-article-user-comments"></div>
       </div>
   </div>
