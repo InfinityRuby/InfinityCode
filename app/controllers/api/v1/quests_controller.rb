@@ -1,16 +1,17 @@
 class Api::V1::QuestsController < ApiController
+  before_action :authenticate_user_token, except: [:index, :show]
 
-  # 查詢題目列表  /api/v1/quests
+  # 【GET】查詢題目列表  /api/v1/quests
   def index
     @quests = Quest.all 
 
-    render json: @quests
+    json_response(@quests)
   end
 
-  # 查詢指定題目  /api/v1/quests/:id
+  # 【GET】查詢指定題目  /api/v1/quests/:id
   def show
-    @quests = Quest.find_by(id: params[:id]) 
+    @quest = Quest.find_by(id: params[:id]) 
 
-    render json: @quests
+    json_response(@quest)
   end
 end
