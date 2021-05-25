@@ -1,2 +1,2 @@
-import './userpage.scss'
-import './useredit.scss'
+import './user-page.scss'
+import './user-edit.scss'
