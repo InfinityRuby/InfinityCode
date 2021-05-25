@@ -22,7 +22,7 @@ function Comments() {
   const [commentCount, setCommentCount] = useState([])
   const [commentPage, setCommentPage] = useState(1)
   const commentTotal = commentCount.slice(commentPage * 6 - 6, commentPage * 6).map(comments => {
-    return <Comments_user key={comments.id} content={comments.comment} />
+    return <Comments_user key={comments.id} content={comments.content} />
   })
 
   const comment_button = document.getElementById('comment_button')
