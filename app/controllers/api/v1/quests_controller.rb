@@ -1,5 +1,5 @@
 class Api::V1::QuestsController < ApiController
-  before_action :authenticate_user_token, except: [:index, :show]
+  before_action :signed_in?, except: [:index, :show]
 
   # 【GET】查詢題目列表  /api/v1/quests
   def index

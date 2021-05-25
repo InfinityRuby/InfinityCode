@@ -1,5 +1,5 @@
 class Api::V1::PromptsController < ApiController
-  before_action :authenticate_user_token
+  before_action :signed_in?
 
   # 【GET】 查詢指定題目的提示列表  /api/v1/quests/:quest_id/prompts
   def index
