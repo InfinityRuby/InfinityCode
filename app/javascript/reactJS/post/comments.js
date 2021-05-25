@@ -51,8 +51,8 @@ function UserComments(props) {
 }
 
 function Comments() {
-  const [commentsApi, setcommentsApi] = useState([])
-  const [commentPages, setcommentPages] = useState(1)
+  const [commentsApi, setCommentsApi] = useState([])
+  const [commentPages, setCommentPages] = useState(1)
   const commentTotal = commentsApi.slice(commentPages * 6 - 6, commentPages * 6).map(comments => {
     return <UserComments key={comments.id} id={comments.id} content={comments.comment} />
   })
@@ -62,9 +62,9 @@ function Comments() {
   const id = url.substring(url.lastIndexOf('/') + 1)
 
   useEffect(() => {
-    fetch(`/jsons/postscomments/${id}`)
+    fetch(`/jsons/posts_comments/${id}`)
     .then(res => res.json())
-    .then(posts => setcommentsApi(posts))
+    .then(posts => setCommentsApi(posts))
   }, [])
 
   const postComment = () => {
@@ -72,36 +72,36 @@ function Comments() {
     const newCommentsTotal = commentsApi.concat(postNewComment)
     newCommentsTotal.pop()
     newCommentsTotal.unshift(postNewComment)
-    setcommentsApi(newCommentsTotal)
-    setcommentPages(1)
+    setCommentsApi(newCommentsTotal)
+    setCommentPages(1)
     setTimeout(() => {commentTexarea.value = ''}, 0)
   }
 
-  const previousPage = () => commentPages > 1 && setcommentPages(commentPages - 1)  
-  const nextPage = () => commentPages * 6 < commentsApi.length && setcommentPages(commentPages + 1)
-  const changePage = event => commentPages * 6 < commentsApi.length + 6 && setcommentPages(Number(event.target.textContent))
-  const lastPage = event => setcommentPages(Number(event.target.textContent))
-  const returnPage = () => setcommentPages(1)
+  const previousPage = () => commentPages > 1 && setCommentPages(commentPages - 1)  
+  const nextPage = () => commentPages * 6 < commentsApi.length && setCommentPages(commentPages + 1)
+  const changePage = event => commentPages * 6 < commentsApi.length + 6 && setCommentPages(Number(event.target.textContent))
+  const lastPage = event => setCommentPages(Number(event.target.textContent))
+  const returnPage = () => setCommentPages(1)
 
   const reverseComments = () => {
     commentsApi.splice(0, commentsApi.length)
-    fetch(`/jsons/postscomments/${id}`)
+    fetch(`/jsons/posts_comments/${id}`)
     .then(res => res.json())
     .then(posts => {
       const spaceArray = []
       const reverseComments = spaceArray.concat(posts.reverse())
-      setcommentsApi(reverseComments)
+      setCommentsApi(reverseComments)
     }) 
   }
 
   const sortComments = () => {
     commentsApi.splice(0, commentsApi.length)
-    fetch(`/jsons/postscomments/${id}`)
+    fetch(`/jsons/posts_comments/${id}`)
     .then(res => res.json())
     .then(posts => {
       const spaceArray = []
       const reverseComments = spaceArray.concat(posts)
-      setcommentsApi(reverseComments)
+      setCommentsApi(reverseComments)
     }) 
   }
 
