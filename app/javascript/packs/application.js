@@ -12,7 +12,6 @@ import "icon/fontawesome"
 import "quest"
 import "profile"
 import "reactjs"
-import "highlight"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
