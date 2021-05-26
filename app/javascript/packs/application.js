@@ -10,7 +10,6 @@ import "channels"
 import "styles"
 import "icon/fontawesome"
 import "quest"
-import "profile"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()

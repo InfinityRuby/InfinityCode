@@ -1,24 +1,22 @@
 <div class="user-index-container">
-  <div class="profile-wrap">
-    <%= form_for @profile do |f| %>
-      <div>
-        <%= f.label :avatar %>
-        <%= f.file_field :avatar %>
-      </div>
-  
-      <div>
-        <%= f.label :name, 'Name' %>
-        <%= f.text_field :name %>
-      </div>
-  
-      <div>
-        <%= f.label :bio, 'Bio'%>
-        <%= f.text_field :bio %>
-      </div>
-  
-      <div>
-        <%= f.submit "Edit profile" %>
-      </div>
-    <% end %>
+  <div class="profile-edit-wrap">
+    <div class="edit-box">
+      <%= form_for @profile do |f| %>
+        <div class="profile-edit-table">
+          <%= f.label :avatar, '上傳圖片' %>
+          <%= f.file_field :avatar, accept: 'image/jpg, image/jpeg, image/png, image/gif', class: 'avatar-btn' %>
+        </div>
+        <div class="profile-edit-table">
+          <%= f.label :name, '使用者姓名：' %>
+          <%= f.text_field :name, class: 'edit-input'  %>
+        </div>
+        <div class="profile-edit-table">
+          <%= f.label :bio, '簡介：'%>
+          <%= f.text_area :bio, id: 'avatar-text', class: 'edit-input edit-text-input', cols: 20, rows: 10 %>
+        </div>
+        <button><%= f.submit "編輯送出", class: 'profile-submitbtn' %></button>
+        <button><%= link_to '回上一頁', profile_path, class: 'profile-submitbtn profile-back' %></button>
+      <% end %>
+    </div>
   </div>
 </div>

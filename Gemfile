@@ -43,6 +43,11 @@ gem "figaro", "~> 1.2"
 # 軟刪除
 gem "paranoia", "~> 2.2"
 
+# 圖片上傳
+gem 'carrierwave', '~> 2.2', '>= 2.2.1'
+gem 'mini_magick', '~> 4.11'
+gem 'fog-aws', '~> 3.10'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
