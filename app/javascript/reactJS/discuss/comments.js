@@ -84,7 +84,6 @@ function Comments() {
   const returnPage = () => setCommentPages(1)
 
   const sortComments = (status = false) => {
-    console.log(status == true)
     commentsAPI.splice(0, commentsAPI.length)
     fetch(`/jsons/posts_comments/${id}`)
     .then(res => res.json())
@@ -92,7 +91,7 @@ function Comments() {
       const spaceArray = []
       const sortComments = spaceArray.concat(posts)
       const reverseComments = spaceArray.concat(posts.reverse())
-      status ? setCommentsAPI(sortComments) : setCommentsAPI(reverseComments)
+      status == true ? setCommentsAPI(sortComments) : setCommentsAPI(reverseComments)
     }) 
   }
 
