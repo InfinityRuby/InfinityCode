@@ -9,19 +9,19 @@ function UserComments(props) {
   const commentRef = useRef()
   const [selectOption, setSelectOption] = useState('')
   function DeletePost() { 
-    const apiDestroy = () => {
+    const APIDestroy = () => {
       const token = document.querySelector('meta[name=csrf-token]').content
       const id = commentRef.current.dataset.id
       let url = window.location.href
       let localID = url.substring(url.lastIndexOf('/') + 1)
-      const api = {
+      const API = {
         method: 'DELETE',
         headers: {
           'X-CSRF-Token': token
         }
       }
       confirm('確認刪除嗎？')
-      fetch(`/posts/${localID}/comments/${id}`, api)
+      fetch(`/posts/${localID}/comments/${id}`, API)
       .then(res => res.json())
       .then(posts => {
         console.log(posts)
@@ -30,7 +30,7 @@ function UserComments(props) {
     }
 
     return(
-      <button onClick={apiDestroy}>刪除這篇文章按鈕</button>
+      <button onClick={APIDestroy}>刪除這篇文章按鈕</button>
     )
   }
 
@@ -51,9 +51,9 @@ function UserComments(props) {
 }
 
 function Comments() {
-  const [commentsApi, setCommentsApi] = useState([])
+  const [commentsAPI, setCommentsAPI] = useState([])
   const [commentPages, setCommentPages] = useState(1)
-  const commentTotal = commentsApi.slice(commentPages * 6 - 6, commentPages * 6).map(comments => {
+  const commentTotal = commentsAPI.slice(commentPages * 6 - 6, commentPages * 6).map(comments => {
     return <UserComments key={comments.id} id={comments.id} content={comments.comment} />
   })
   const commentButton = document.getElementById('comment-button')
@@ -64,35 +64,35 @@ function Comments() {
   useEffect(() => {
     fetch(`/jsons/posts_comments/${id}`)
     .then(res => res.json())
-    .then(posts => setCommentsApi(posts))
+    .then(posts => setCommentsAPI(posts))
   }, [])
 
   const postComment = () => {
-    const postNewComment = {id: commentsApi.length + 1 ,comment: commentTexarea.value}
-    const newCommentsTotal = commentsApi.concat(postNewComment)
+    const postNewComment = {id: commentsAPI.length + 1 ,comment: commentTexarea.value}
+    const newCommentsTotal = commentsAPI.concat(postNewComment)
     newCommentsTotal.pop()
     newCommentsTotal.unshift(postNewComment)
-    setCommentsApi(newCommentsTotal)
+    setCommentsAPI(newCommentsTotal)
     setCommentPages(1)
     setTimeout(() => {commentTexarea.value = ''}, 0)
   }
 
   const previousPage = () => commentPages > 1 && setCommentPages(commentPages - 1)  
-  const nextPage = () => commentPages * 6 < commentsApi.length && setCommentPages(commentPages + 1)
-  const changePage = event => commentPages * 6 < commentsApi.length + 6 && setCommentPages(Number(event.target.textContent))
+  const nextPage = () => commentPages * 6 < commentsAPI.length && setCommentPages(commentPages + 1)
+  const changePage = event => commentPages * 6 < commentsAPI.length + 6 && setCommentPages(Number(event.target.textContent))
   const lastPage = event => setCommentPages(Number(event.target.textContent))
   const returnPage = () => setCommentPages(1)
 
   const sortComments = (status = false) => {
     console.log(status == true)
-    commentsApi.splice(0, commentsApi.length)
+    commentsAPI.splice(0, commentsAPI.length)
     fetch(`/jsons/posts_comments/${id}`)
     .then(res => res.json())
     .then(posts => {
       const spaceArray = []
       const sortComments = spaceArray.concat(posts)
       const reverseComments = spaceArray.concat(posts.reverse())
-      status ? setCommentsApi(sortComments) : setCommentsApi(reverseComments)
+      status ? setCommentsAPI(sortComments) : setCommentsAPI(reverseComments)
     }) 
   }
 
@@ -102,7 +102,7 @@ function Comments() {
       <div className="single-article-comments-count">
         <div>
             <i className="fa fa-comment-alt"></i>
-            <span>{`留言總數: ${commentsApi.length}`}</span>
+            <span>{`留言總數: ${commentsAPI.length}`}</span>
         </div>
         <div>
             <span>Best</span>
@@ -127,13 +127,13 @@ function Comments() {
           <span onClick={previousPage}>◀</span>
          { commentPages >= 5 ?  <span onClick={returnPage}>{1}</span> : null}
          { commentPages >= 5 ? <h5>...</h5> : null}
-         { commentPages * 6 < commentsApi.length + 6 ? <span className="first-button-color" onClick={changePage}>{commentPages}</span> : null }
-         { commentPages * 6 < commentsApi.length - 6 ?  <span id="2" onClick={changePage}>{commentPages + 1}</span> : null }
-         { commentPages * 6 < commentsApi.length -12 ? <span id="3" onClick={changePage}>{commentPages + 2}</span> : null }
-         { commentPages * 6 < commentsApi.length - 18 ? <span id="4" onClick={changePage}>{commentPages + 3}</span> : null }
-         { commentPages * 6 < commentsApi.length - 24 ? <span id="5" onClick={changePage}>{commentPages + 4}</span> : null }
-         { commentPages < Math.ceil(commentsApi.length / 6) ? <h5>...</h5> : null}
-         { commentPages < Math.ceil(commentsApi.length / 6) ? <span onClick={lastPage}>{Math.ceil(commentsApi.length / 6)}</span> : null }
+         { commentPages * 6 < commentsAPI.length + 6 ? <span className="first-button-color" onClick={changePage}>{commentPages}</span> : null }
+         { commentPages * 6 < commentsAPI.length - 6 ?  <span id="2" onClick={changePage}>{commentPages + 1}</span> : null }
+         { commentPages * 6 < commentsAPI.length -12 ? <span id="3" onClick={changePage}>{commentPages + 2}</span> : null }
+         { commentPages * 6 < commentsAPI.length - 18 ? <span id="4" onClick={changePage}>{commentPages + 3}</span> : null }
+         { commentPages * 6 < commentsAPI.length - 24 ? <span id="5" onClick={changePage}>{commentPages + 4}</span> : null }
+         { commentPages < Math.ceil(commentsAPI.length / 6) ? <h5>...</h5> : null}
+         { commentPages < Math.ceil(commentsAPI.length / 6) ? <span onClick={lastPage}>{Math.ceil(commentsAPI.length / 6)}</span> : null }
           <span onClick={nextPage}>▶</span>
       </div>
     </div>
