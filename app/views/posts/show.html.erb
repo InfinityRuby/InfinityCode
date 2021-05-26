@@ -22,9 +22,11 @@
           <span>Last Edit: <%= @post.updated_at %></span>
         </div>
         <div class="single-article-content-body">
-          <p>
-            <%= @post.content %>
-          </p>
+          <div>
+            <p>
+              <%= @post.content %>
+            </p>
+          </div>
           <div class="single-article-content-span">
             <span>online assessment</span>
             <span>microsoft</span>
@@ -38,6 +40,7 @@
     </div>
   </div>
 </div>
+
 
 <!-- <%= link_to '編輯', edit_post_path(@post) %>
 <%= link_to '刪除', post_path(@post), method: :delete , data: { confirm: "確定要刪除嗎?" } %>

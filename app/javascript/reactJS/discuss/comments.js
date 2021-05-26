@@ -83,25 +83,16 @@ function Comments() {
   const lastPage = event => setCommentPages(Number(event.target.textContent))
   const returnPage = () => setCommentPages(1)
 
-  const reverseComments = () => {
+  const sortComments = (status = false) => {
+    console.log(status == true)
     commentsApi.splice(0, commentsApi.length)
     fetch(`/jsons/posts_comments/${id}`)
     .then(res => res.json())
     .then(posts => {
       const spaceArray = []
+      const sortComments = spaceArray.concat(posts)
       const reverseComments = spaceArray.concat(posts.reverse())
-      setCommentsApi(reverseComments)
-    }) 
-  }
-
-  const sortComments = () => {
-    commentsApi.splice(0, commentsApi.length)
-    fetch(`/jsons/posts_comments/${id}`)
-    .then(res => res.json())
-    .then(posts => {
-      const spaceArray = []
-      const reverseComments = spaceArray.concat(posts)
-      setCommentsApi(reverseComments)
+      status ? setCommentsApi(sortComments) : setCommentsApi(reverseComments)
     }) 
   }
 
@@ -122,8 +113,8 @@ function Comments() {
       </div>
       <div className="single-article-content-input">
           <div className="single-article-reverse-comments">
-            <button onClick={ sortComments }>最新</button>
-            <button onClick={ reverseComments }>最舊</button>
+            <button onClick={ sortComments.bind(this, true)  }>最新</button>
+            <button onClick={ sortComments }>最舊</button>
           </div>
           <textarea name="singeArticle" id="comment-texarea" cols="10" rows="10" placeholder="此處留言...請注意用詞">
           </textarea>

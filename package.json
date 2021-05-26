@@ -13,6 +13,7 @@
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.3.0",
     "@tailwindcss/postcss7-compat": "^2.1.2",
+    "@uiw/react-md-editor": "^3.1.1",
     "autoprefixer": "^9",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "codemirror": "^5.61.0",

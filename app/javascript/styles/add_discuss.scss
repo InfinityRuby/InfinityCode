@@ -1,0 +1,15 @@
+.add-discuss-container {
+  @apply w-full flex justify-center
+}
+  
+.add-discuss {
+  @apply w-10/12 pt-20
+}
+
+.add-discuss-title {
+  @apply w-full pb-5
+}
+
+.add-discuss-input {
+  @apply w-full h-10 p-2 border border-gray-200
+}
