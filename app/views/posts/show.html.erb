@@ -1,6 +1,3 @@
-<h1><%=@post.title%></h1>
-<p><%=@post.content%></p>
-<h1>這是標題</h1>
 <div class="single_article_container">
   <div class="single_article_wrap">
       <div class="single_article_title">
@@ -52,7 +49,7 @@
         <%= form_for([@post, @post.comments.build]) do |f| %>
         <div class="single_article_content_input">
             <!-- <textarea name="singeArticle" cols="10" rows="10" placeholder="此處留言...請注意用詞"></textarea> -->
-            <%= f.text_area :comment, id: 'comment_texarea' %>     
+            <%= f.text_area :content, id: 'comment_texarea' %>     
             <div class="single_article_textarea_border">        
                 <%= f.button "送出",  id: 'comment_button' %>
             </div>
