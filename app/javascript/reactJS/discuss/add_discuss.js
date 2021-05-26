@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom"
 import PropTypes from 'prop-types'
-import {useEffect, useState, useRef} from 'react'
+import { useEffect, useState, useRef } from 'react'
 import MDEditor, { commands, ICommand, TextState, TextApi } from '@uiw/react-md-editor'
 
 function App() {
@@ -15,13 +15,13 @@ function App() {
     <div className="add-discuss">
       <div className="add-discuss-title"><input type="text" row="30" col="30" className="add-discuss-input"/></div>
       <MDEditor
-        textareaProps={{
+        textareaProps={ {
           placeholder: '可以輸入markdown語法',
           icon: <span style={{ padding: '0 5px' }}>Custom Toolbar</span>
-        }}
-        value={value}
-        onChange={inputValue}
-        height={650}
+        } }
+        value={ value }
+        onChange={ inputValue }
+        height={ 650 }
       />
     </div>
   )
