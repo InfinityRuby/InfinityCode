@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
-import {useEffect, useState, useRef} from 'react'
-import UserComments from './users_comments'
+import { useEffect, useState, useRef } from 'react'
+import UserComments from './UsersComments'
 
 export default function Comments() {
   const [commentsAPI, setCommentsAPI] = useState([])
@@ -13,10 +13,10 @@ export default function Comments() {
   const commentButton = document.getElementById('comment-button')
   const commentTexarea = document.getElementById('comment-texarea')
   const url = window.location.href
-  const id = url.substring(url.lastIndexOf('/') + 1)
+  const postID = url.substring(url.lastIndexOf('/') + 1)
 
   useEffect(() => {
-    fetch(`/jsons/posts_comments/${id}`)
+    fetch(`/jsons/posts_comments/${postID}`)
     .then(res => res.json())
     .then(posts => setCommentsAPI(posts))
   }, [])
@@ -24,11 +24,22 @@ export default function Comments() {
   const postComment = () => {
     const postNewComment = {id: commentsAPI.length + 1 ,content: commentTexarea.value}
     const newCommentsTotal = commentsAPI.concat(postNewComment)
+    const token = document.querySelector('meta[name=csrf-token]').content
+    const apiData = { content: commentTexarea.value }
+    const API = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': token
+      },
+      body: JSON.stringify(apiData)
+    }
     newCommentsTotal.pop()
     newCommentsTotal.unshift(postNewComment)
     setCommentsAPI(newCommentsTotal)
     setCommentPages(1)
     setTimeout(() => {commentTexarea.value = ''}, 0)
+    fetch(`/api/v1/posts/${postID}/comments`, API)  
   }
 
   const previousPage = () => commentPages > 1 && setCommentPages(commentPages - 1)  
@@ -39,7 +50,7 @@ export default function Comments() {
 
   const sortComments = (status = false) => {
     commentsAPI.splice(0, commentsAPI.length)
-    fetch(`/jsons/posts_comments/${id}`)
+    fetch(`/jsons/posts_comments/${postID}`)
     .then(res => res.json())
     .then(posts => {
       const spaceArray = []
@@ -65,8 +76,8 @@ export default function Comments() {
       </div>
       <div className="single-article-content-input">
           <div className="single-article-reverse-comments">
-            <button onClick={ sortComments.bind(this, true) }>最新</button>
-            <button onClick={ sortComments }>最舊</button>
+            <button onClick={ sortComments.bind(this, true) }>最新留言</button>
+            <button onClick={ sortComments }>最舊留言</button>
           </div>
           <textarea name="singeArticle" id="comment-texarea" cols="10" rows="10" placeholder="此處留言...請注意用詞">
           </textarea>

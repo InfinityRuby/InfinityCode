@@ -32,7 +32,7 @@ export default function Discuss() {
 
     return(
       <div className="pagination">
-        <button onClick={previousPage}>上一頁</button>
+        <button onClick={ previousPage }>上一頁</button>
         { initPage > 2 ? <button onClick={ jumpPage.bind(this, 2) }>{ initPage - 2 }</button> : null }
         { initPage > 1 ? <button onClick={ jumpPage.bind(this, 1) }>{ initPage - 1 } </button> : null }
         <button>{ initPage}</button>
@@ -53,13 +53,13 @@ export default function Discuss() {
           list.splice(0, list.length)
           post.map(el => list.push(el))
       }) 
-
-      setTimeout(() => {setList([])}, 300) 
+      setTimeout(() => { setList([])}, 300 ) 
       setTimeout(() => {       
         const currentSearch = list.filter(hash => hash.title.includes(event.target.value)) 
         setList(currentSearch)
         setInitPage(1)
       }, 700)
+      event.target.value = ''
     }      
   }
 
@@ -88,7 +88,7 @@ export default function Discuss() {
             <a href="#">文章數量 { list.length }</a>
           </div>
           <div>
-            <input type="text" placeholder="Search topics or comments" onKeyPress={searchDiscuss} />
+            <input type="text" placeholder="Search topics or comments" onKeyPress={ searchDiscuss } />
             <button onClick={ clickReset }>Reset</button>
           </div>
       </div>

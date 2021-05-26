@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Comments from './comments'
+import Comments from './Comments'
 
 document.addEventListener('turbolinks:load', () => {
   if(document.getElementById('single-article-user-comments')){

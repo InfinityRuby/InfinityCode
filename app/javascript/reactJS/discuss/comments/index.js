@@ -1,1 +1,1 @@
-import './comments_render'
+import './CommentsRender'
