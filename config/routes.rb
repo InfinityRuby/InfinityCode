@@ -20,8 +20,12 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :quests, except: [:new, :edit] do
         resources :prompts, only: [:index, :show]
-
       end
+
+      resources :posts, except: [:new, :edit] do
+        resources :comments, except: [:new, :edit]
+      end
+      
     end
   end
 

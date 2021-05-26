@@ -57,79 +57,87 @@ Quest.create!(
 )
 
 Prompt.create!(
-  questId: 1,
+  quest_id: 1,
   aseq: 1,
   hint: 'using puts or print in ruby',
   created_at: Time.now,
   updated_at: Time.now
 )
 Prompt.create!(
-  questId: 1,
+  quest_id: 1,
   aseq: 2,
   hint: 'using double quotes in a string→ ""',
   created_at: Time.now,
   updated_at: Time.now
 )
 Prompt.create!(
-  questId: 2,
+  quest_id: 2,
   aseq: 1,
   hint: 'A really brute force way would be to search for all possible pairs of numbers but that would be too slow. Again, it\'s best to try out brute force solutions for just for completeness. It is from these brute force solutions that you can come up with optimizations.',
   created_at: Time.now,
   updated_at: Time.now
 )
 Prompt.create!(
-  questId: 2,
+  quest_id: 2,
   aseq: 2,
   hint: 'The second train of thought is, without changing the array, can we use additional space somehow? Like maybe a hash map to speed up the search?',
   created_at: Time.now,
   updated_at: Time.now
 )
 Prompt.create!(
-  questId: 3,
+  quest_id: 3,
   aseq: 1,
   hint: 'Use two pointers to create the new array of 2n elements. The first starting at the beginning and the other starting at $(n+1)^{th}$ position. Alternate between them and create the new array.',
   created_at: Time.now,
   updated_at: Time.now
 )
 Prompt.create!(
-  questId: 4,
+  quest_id: 4,
   aseq: 1,
   hint: 'So, we essentially need to find three numbers x, y, and z such that they add up to the given value. If we fix one of the numbers say x, we are left with the two-sum problem at hand!',
   created_at: Time.now,
   updated_at: Time.now
 )
 Prompt.create!(
-  questId: 4,
+  quest_id: 4,
   aseq: 2,
   hint: 'For the two-sum problem, if we fix one of the numbers, say`x`<br />, we have to scan the entire array to find the next number`y`<br />which is `value - x`<br />where value is the input parameter. Can we change our array somehow so that this search becomes faster?',
   created_at: Time.now,
   updated_at: Time.now
 )
 Prompt.create!(
-  questId: 4,
+  quest_id: 4,
   aseq: 3,
   hint: 'The second train of thought for two-sum is, without changing the array, can we use additional space somehow? Like maybe a hash map to speed up the search?The second train of thought for two-sum is, without changing the array, can we use additional space somehow? Like maybe a hash map to speed up the search?',
   created_at: Time.now,
   updated_at: Time.now
 )
 Prompt.create!(
-  questId: 5,
+  quest_id: 5,
   aseq: 1,
   hint: 'Think about how you would solve the problem in non-constant space. Can you apply that logic to the existing space?',
   created_at: Time.now,
   updated_at: Time.now
 )
 Prompt.create!(
-  questId: 5,
+  quest_id: 5,
   aseq: 2,
   hint: 'We don\'t care about duplicates or non-positive integers',
   created_at: Time.now,
   updated_at: Time.now
 )
 Prompt.create!(
-  questId: 5,
+  quest_id: 5,
   aseq: 3,
   hint: 'Remember that O(2n) = O(n)',
   created_at: Time.now,
   updated_at: Time.now
 )
+
+10.times do
+  Post.create!(
+    title: Faker::Lorem.paragraph(sentence_count: 10),
+    content: Faker::Lorem.paragraph(sentence_count: 2),
+    user_id: Faker::Number.between(from: 1, to: 2)
+  )
+end

@@ -1,9 +1,12 @@
 <div class="user-index-container">
    <div class="profile-wrap">
-   
-      <li><span class="profile-table"><%= current_user.profile.avatar %></span></li>
-      <li><span class="profile-table">使用者名稱：<%= current_user.profile.name %></span></li>
-      <li><span class="profile-table">簡介：<%= current_user.profile.bio %></span></li>
-      <button><%= link_to "編輯", edit_profile_path %></button>
+      <div class="profile-user-wrap">
+         <p class="profile-table profile-avatar"><%= image_tag(@profile.avatar_url, class: 'avatar') if @profile.avatar_url %></p>
+         <p class="profile-table profile-name">使用者名稱：<%= current_user.profile.name %></p>
+         <p class="profile-table">簡介：<br/><span class="profile-text markdown-body"><%= current_user.profile.bio %></span></p>
+         <button><%= link_to "編輯", edit_profile_path %></button>
+      </div>
+      <div class="profile-quest-wrap">題目完成度</div>
+      <div class="profile-medal-wrap">獎牌區</div>
    </div>
 </div>

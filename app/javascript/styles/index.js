@@ -6,3 +6,5 @@ import "./single_article.scss"
 import "./user"
 import "./marked.scss"
 import "./add_discuss.scss"
+import './home'
+import './profile'
