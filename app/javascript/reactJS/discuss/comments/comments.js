@@ -2,14 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import {useEffect, useState, useRef} from 'react'
-import marked from 'marked'
 import UserComments from './users_comments'
 
 export default function Comments() {
   const [commentsAPI, setCommentsAPI] = useState([])
   const [commentPages, setCommentPages] = useState(1)
   const commentTotal = commentsAPI.slice(commentPages * 6 - 6, commentPages * 6).map(comments => {
-    return <UserComments key={ comments.id } id={ comments.id } content={ comments.comment } />
+    return <UserComments key={ comments.id } id={ comments.id } content={ comments.content } />
   })
   const commentButton = document.getElementById('comment-button')
   const commentTexarea = document.getElementById('comment-texarea')
@@ -23,7 +22,7 @@ export default function Comments() {
   }, [])
 
   const postComment = () => {
-    const postNewComment = {id: commentsAPI.length + 1 ,comment: commentTexarea.value}
+    const postNewComment = {id: commentsAPI.length + 1 ,content: commentTexarea.value}
     const newCommentsTotal = commentsAPI.concat(postNewComment)
     newCommentsTotal.pop()
     newCommentsTotal.unshift(postNewComment)
@@ -54,14 +53,14 @@ export default function Comments() {
     <div className="single-article-body">
       <div className="single-article-comments-count">
         <div>
-            <i className="fa fa-comment-alt"></i>
-            <span>{ `留言總數: ${commentsAPI.length}` }</span>
+          <i className="fa fa-comment-alt"></i>
+          <span>{ `留言總數: ${commentsAPI.length}` }</span>
         </div>
         <div>
-            <span>Best</span>
-            <span>Most Votes</span>
-            <span>Newest to Oldest</span>
-            <span>Oldest to Newest</span>
+          <span>Best</span>
+          <span>Most Votes</span>
+          <span>Newest to Oldest</span>
+          <span>Oldest to Newest</span>
         </div>
       </div>
       <div className="single-article-content-input">
