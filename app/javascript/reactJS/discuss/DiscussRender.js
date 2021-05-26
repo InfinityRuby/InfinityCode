@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Discuss from './discuss'
+import Discuss from './Discuss'
 
 document.addEventListener('turbolinks:load', () => {
   if(document.getElementById('discuss-wrap')){

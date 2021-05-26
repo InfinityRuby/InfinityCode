@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { useEffect, useState, useRef } from 'react'
 import MDEditor, { commands, ICommand, TextState, TextApi } from '@uiw/react-md-editor'
 
-function App() {
+function AddDiscuss() {
   const [value, setValue] = React.useState("")
   const inputValue = () => {
     const getValue = document.querySelector('.w-md-editor-text-input')
@@ -29,6 +29,6 @@ function App() {
 
 document.addEventListener('turbolinks:load', () => {
   if(document.getElementById("add-discuss-container")) {
-    ReactDOM.render(<App />, document.getElementById("add-discuss-container"))
+    ReactDOM.render(<AddDiscuss />, document.getElementById("add-discuss-container"))
   }
 })

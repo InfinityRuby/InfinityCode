@@ -10,7 +10,7 @@ export default function UserComments(props) {
   const url = window.location.href
   const postID = url.substring(url.lastIndexOf('/') + 1)
 
-  function EditComments() { 
+  function CommentsAction() { 
     const postAPI = () => {
       const token = document.querySelector('meta[name=csrf-token]').content
       const commentsID = commentRef.current.dataset.id
@@ -27,9 +27,10 @@ export default function UserComments(props) {
       setTimeout(() => location.href = `/posts/${postID}`, 200)
     }
     const postCreate = () => {
+      const commentTexarea = document.getElementById('comment-texarea').value
+      const apiData = { content: commentTexarea }
       const token = document.querySelector('meta[name=csrf-token]').content
       const commentsID = commentRef.current.dataset.id
-      const apiData = { title: '這是個標題', content: '這是文章的內容' }
       const API = {
         method: 'POST',
         headers: {
@@ -38,11 +39,11 @@ export default function UserComments(props) {
         },
         body: JSON.stringify(apiData)
       }
-      fetch(`/api/v1/posts`, API)  
-      setTimeout(() => location.href = `/posts`, 200)
+      fetch(`/api/v1/posts/${postID}/comments`, API)  
+      setTimeout(() => location.href = `/posts/${postID}`, 200)
     }
       return(
-        <div>
+        <div className="user-comments-action">
           <button onClick={ postAPI }>編輯</button>
           <button onClick={ postCreate }>新增</button>
         </div>
@@ -56,10 +57,10 @@ export default function UserComments(props) {
         <span>0</span>
         <span>a few seconds ago</span>
       </div>
-      <div>
-        <div className="single-article-user-content markdown-body" dangerouslySetInnerHTML={ {__html: marked(comments.content)} }></div>
+      <div className="single-article-user-content">
+        <div className="single-article-content-markdown markdown-body" dangerouslySetInnerHTML={ {__html: marked(comments.content)} }></div>
+        <CommentsAction />
       </div>
-      <EditComments />
     </div>
   )  
 }
