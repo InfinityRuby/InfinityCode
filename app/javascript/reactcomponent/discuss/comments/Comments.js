@@ -21,7 +21,7 @@ export default function Comments() {
     .then(posts => setCommentsAPI(posts))
   }, [])
 
-  const postComment = () => {
+  const postComment = (event) => {
     const postNewComment = {id: commentsAPI.length + 1 ,content: commentTexarea.value}
     const newCommentsTotal = commentsAPI.concat(postNewComment)
     const token = document.querySelector('meta[name=csrf-token]').content
@@ -34,12 +34,14 @@ export default function Comments() {
       },
       body: JSON.stringify(apiData)
     }
-    newCommentsTotal.pop()
-    newCommentsTotal.unshift(postNewComment)
-    setCommentsAPI(newCommentsTotal)
-    setCommentPages(1)
-    setTimeout(() => {commentTexarea.value = ''}, 0)
-    fetch(`/api/v1/posts/${postID}/comments`, API)  
+    if(commentTexarea.value != '') {
+      newCommentsTotal.pop()
+      newCommentsTotal.unshift(postNewComment)
+      setCommentsAPI(newCommentsTotal)
+      setCommentPages(1)
+      setTimeout(() => {commentTexarea.value = ''}, 0)
+      fetch(`/api/v1/posts/${postID}/comments`, API) 
+    } 
   }
 
   const previousPage = () => commentPages > 1 && setCommentPages(commentPages - 1)  

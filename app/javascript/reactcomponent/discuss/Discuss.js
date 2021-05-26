@@ -57,9 +57,9 @@ export default function Discuss() {
       setTimeout(() => {       
         const currentSearch = list.filter(hash => hash.title.includes(event.target.value)) 
         setList(currentSearch)
+        event.target.value = ''
         setInitPage(1)
       }, 700)
-      event.target.value = ''
     }      
   }
 
