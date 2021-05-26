@@ -6,16 +6,13 @@
       @apply border-gray-500 border 
     }
     .profile-avatar {
-      @apply justify-center;
+      @apply justify-center w-36 h-36 overflow-hidden;
     }
     .profile-table {
       @apply block p-3 whitespace-pre-line;
     }
     button {
       @apply bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded m-3;
-    }
-    .avatar {
-      @apply h-1/2 w-1/2;
     }
     .profile-name {
       @apply relative;
