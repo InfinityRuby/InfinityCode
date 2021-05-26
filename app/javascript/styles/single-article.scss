@@ -142,6 +142,10 @@
   @apply w-full
 }
 
+.single-article-single-input{
+  @apply w-full bg-gray-100 opacity-70 mb-auto pl-0.5 outline-none
+}
+
 .single-article-page{
   @apply w-full flex justify-center my-4 opacity-90
 }
@@ -162,6 +166,6 @@
   @apply w-4/12 flex justify-end pt-12 pb-2
 }
 
-.user-comments-action > button{
+.user-comments-action button{
   @apply mx-2 text-base hover:text-red-300
 }
