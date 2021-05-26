@@ -3,7 +3,7 @@ class JsonsController < ApplicationController
     render json: Post.all.order("created_at DESC")
   end
 
-  def commentsJson
+  def posts_comments
     render json: Comment.where(post_id: params[:id]).order("created_at DESC")
   end
 end

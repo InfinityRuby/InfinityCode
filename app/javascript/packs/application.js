@@ -10,7 +10,7 @@ import "channels"
 import "styles"
 import "icon/fontawesome"
 import "quest"
+import "reactjs"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
-import "../reactJS"

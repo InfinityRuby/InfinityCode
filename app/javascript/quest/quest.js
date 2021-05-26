@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const tabButton = document.querySelectorAll(".quest-tab-button");
   const contents = document.querySelectorAll(".quest-content");
   const submit = document.querySelector('.quest-footer-button:nth-child(2)')
-
   const editor = CodeMirror.fromTextArea(document.querySelector("#editor"),{
     mode: "ruby",
     theme: "default",
