@@ -1,5 +1,10 @@
 class ApiController < ApplicationController
-  # 預設所有資料皆須登入方可取得
-  before_action :authenticate_user!
+  include Response
+  include ExceptionHandler
 
+  def signed_in?
+    if !user_signed_in?
+      json_response({message:'invalid token'}, :unauthorized)
+    end
+  end
 end
