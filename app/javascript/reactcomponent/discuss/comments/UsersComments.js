@@ -7,16 +7,16 @@ import marked from 'marked'
 export default function UserComments(props) {
   const comments = props
   const commentRef = useRef()
-  const [editDisplay, setEditDisplay] = useState(0)
+  const [currentComment, setCurrentComment] = useState(0)
   const url = window.location.href
   const postID = url.substring(url.lastIndexOf('/') + 1)
   const token = document.querySelector('meta[name=csrf-token]').content
 
-  const editNewComments = (event) => {
+  const editNewComment = (event) => {   
     if(event.key == 'Enter' && event.target.value != '') {
       const apiData = { content: event.target.value }
       const commentsID = commentRef.current.dataset.id
-      const editCommentsAPI = {
+      const editCommentAPI = {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -24,24 +24,24 @@ export default function UserComments(props) {
         },
         body: JSON.stringify(apiData)
       }
-      fetch(`/api/v1/posts/${postID}/comments/${commentsID}`, editCommentsAPI)  
-      setEditDisplay(0)
+      fetch(`/api/v1/posts/${postID}/comments/${commentsID}`, editCommentAPI)  
+      setCurrentComment(0)
       setTimeout(() => {
         document.querySelector(`.single-article-comments-${commentsID} p`).textContent = event.target.value
       }, 0) 
     }
   }
 
-  function CommentsAction() { 
-    const editComments = () => {
+  function CommentsAction() {   
+    const editComment = () => {  
       const commentsID = commentRef.current.dataset.id
-      setEditDisplay(commentsID)
+      setCurrentComment(commentsID)
       setTimeout(() => { document.getElementById(`${commentsID}`).focus() }, 0)
     }
 
-    const destroyComments = () => {
+    const destroyComment = () => {    
       const commentsID = commentRef.current.dataset.id
-      const destroyCommentsAPI = {
+      const destroyCommentAPI = {
         method: 'DELETE',
         headers: {
           'X-CSRF-Token': token
@@ -49,24 +49,25 @@ export default function UserComments(props) {
       }
       if(confirm('確認要刪除這則留言？')) {
         commentRef.current.style = 'display: none'
-        fetch(`/api/v1/posts/${postID}/comments/${commentsID}`, destroyCommentsAPI)
+        fetch(`/api/v1/posts/${postID}/comments/${commentsID}`, destroyCommentAPI)
       } 
     }
-    const cancelEditComments = () => {
-      setEditDisplay(0)
+    const cancelEditComment = () => {
+      setCurrentComment(0)
     }
-      return(
-        <div className="user-comments-action">
-          { editDisplay ? 
-          <button onClick={ cancelEditComments }>取消</button> 
-          : 
-          <div>
-            <button onClick={ editComments }>編輯</button>
-            <button onClick={ destroyComments }>刪除</button>
-          </div> 
-          }
-        </div>
-      )
+    return(
+      <div className="user-comments-action">
+        { currentComment 
+        ? 
+        <button onClick={ cancelEditComment }>取消</button> 
+        : 
+        <div>
+          <button onClick={ editComment }>編輯</button>
+          <button onClick={ destroyComment }>刪除</button>
+        </div> 
+        }
+      </div>
+    )
   }
 
   return(
@@ -78,9 +79,9 @@ export default function UserComments(props) {
         <span>a few seconds ago</span>
       </div>
       <div className="single-article-user-content" >
-        { editDisplay == comments.id 
+        { currentComment == comments.id 
           ? 
-          <input className="single-article-single-input" type="text" defaultValue={ document.querySelector(`.single-article-comments-${editDisplay} p`).textContent } id={ comments.id } onKeyPress={ editNewComments } /> 
+          <input className="single-article-single-input" type="text" defaultValue={ document.querySelector(`.single-article-comments-${currentComment} p`).textContent } id={ comments.id } onKeyPress={ editNewComment } /> 
           :
           <div className={ `single-article-comments-${comments.id} single-article-content-markdown  markdown-body` } dangerouslySetInnerHTML={ {__html: marked(comments.content)} }></div>
         }

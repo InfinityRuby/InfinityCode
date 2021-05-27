@@ -1,5 +1,5 @@
 .container-discuss{
-  @apply w-full bg-gray-100 pt-14 pl-32 flex mt-7
+  @apply w-full bg-gray-100 pt-14 flex mt-7 justify-center
 }
 
 .discuss-wrap{
@@ -7,7 +7,7 @@
 }
 
 .discuss{
-  @apply flex bg-white border-b
+  @apply flex bg-white border-b shadow-md
 }
 
 .discuss:nth-child(1) > a{

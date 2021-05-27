@@ -7,10 +7,9 @@ import UserComments from './UsersComments'
 export default function Comments() {
   const [commentsAPI, setCommentsAPI] = useState([])
   const [commentPages, setCommentPages] = useState(1)
-  const commentTotal = commentsAPI.slice(commentPages * 6 - 6, commentPages * 6).map(comments => {
+  const currentComments = commentsAPI.slice(commentPages * 6 - 6, commentPages * 6).map(comments => {
     return <UserComments key={ comments.id } id={ comments.id } content={ comments.content } />
   })
-  const commentButton = document.getElementById('comment-button')
   const commentTexarea = document.getElementById('comment-texarea')
   const url = window.location.href
   const postID = url.substring(url.lastIndexOf('/') + 1)
@@ -22,7 +21,7 @@ export default function Comments() {
   }, [])
 
   const postComment = (event) => {
-    const postNewComment = {id: commentsAPI.length + 1 ,content: commentTexarea.value}
+    const postNewComment = { id: commentsAPI.length + 1 ,content: commentTexarea.value }
     const newCommentsTotal = commentsAPI.concat(postNewComment)
     const token = document.querySelector('meta[name=csrf-token]').content
     const apiData = { content: commentTexarea.value }
@@ -39,7 +38,7 @@ export default function Comments() {
       newCommentsTotal.unshift(postNewComment)
       setCommentsAPI(newCommentsTotal)
       setCommentPages(1)
-      setTimeout(() => {commentTexarea.value = ''}, 0)
+      setTimeout(() => { commentTexarea.value = '' }, 0)
       fetch(`/api/v1/posts/${postID}/comments`, API) 
     } 
   }
@@ -55,9 +54,9 @@ export default function Comments() {
     fetch(`/jsons/posts_comments/${postID}`)
     .then(res => res.json())
     .then(posts => {
-      const spaceArray = []
-      const sortComments = spaceArray.concat(posts)
-      const reverseComments = spaceArray.concat(posts.reverse())
+      const storageCache = []
+      const sortComments = storageCache.concat(posts)
+      const reverseComments = storageCache.concat(posts.reverse())
       status == true ? setCommentsAPI(sortComments) : setCommentsAPI(reverseComments)
     }) 
   }
@@ -87,18 +86,18 @@ export default function Comments() {
             <button id="comment-button" onClick={ postComment }>送出</button>
           </div>
       </div>
-        { commentTotal }
+        { currentComments }
       <div className="single-article-page">
         <span onClick={ previousPage }>◀</span>
-        { commentPages >= 5 ?  <span onClick={ returnPage }>{1}</span> : null}
+        { commentPages >= 5 ?  <span onClick={ returnPage }>{ 1 }</span> : null}
         { commentPages >= 5 ? <h5>...</h5> : null}
         { commentPages * 6 < commentsAPI.length + 6 ? <span className="first-button-color" onClick={ changePage }>{commentPages}</span> : null }
-        { commentPages * 6 < commentsAPI.length - 6 ?  <span id="2" onClick={ changePage }>{ commentPages + 1}</span> : null }
-        { commentPages * 6 < commentsAPI.length -12 ? <span id="3" onClick={ changePage }>{ commentPages + 2}</span> : null }
-        { commentPages * 6 < commentsAPI.length - 18 ? <span id="4" onClick={ changePage }>{ commentPages + 3}</span> : null }
-        { commentPages * 6 < commentsAPI.length - 24 ? <span id="5" onClick={ changePage }>{ commentPages + 4}</span> : null }
+        { commentPages * 6 < commentsAPI.length - 6 ?  <span id="2" onClick={ changePage }>{ commentPages + 1 }</span> : null }
+        { commentPages * 6 < commentsAPI.length -12 ? <span id="3" onClick={ changePage }>{ commentPages + 2 }</span> : null }
+        { commentPages * 6 < commentsAPI.length - 18 ? <span id="4" onClick={ changePage }>{ commentPages + 3 }</span> : null }
+        { commentPages * 6 < commentsAPI.length - 24 ? <span id="5" onClick={ changePage }>{ commentPages + 4 }</span> : null }
         { commentPages < Math.ceil(commentsAPI.length / 6) ? <h5>...</h5> : null}
-        { commentPages < Math.ceil(commentsAPI.length / 6) ? <span onClick={ lastPage }>{Math.ceil(commentsAPI.length / 6)}</span> : null }
+        { commentPages < Math.ceil(commentsAPI.length / 6) ? <span onClick={ lastPage }>{ Math.ceil(commentsAPI.length / 6) }</span> : null }
         <span onClick={ nextPage }>▶</span>
       </div>
     </div>

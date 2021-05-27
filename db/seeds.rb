@@ -135,9 +135,17 @@ Prompt.create!(
 )
 
 10.times do
-  Post.create!(
-    title: Faker::Lorem.paragraph(sentence_count: 10),
+  Post.create(
+    title: Faker::Lorem.paragraph,
     content: Faker::Lorem.paragraph(sentence_count: 2),
     user_id: Faker::Number.between(from: 1, to: 2)
+  )
+end
+
+10.times do
+  Comment.create(
+    content: Faker::Lorem.paragraph,
+    user_id: 1,
+    post_id: 1
   )
 end
