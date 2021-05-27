@@ -6,6 +6,12 @@
   button {
     outline: none !important;
   }
+  ol li {
+    @apply list-decimal;
+  }
+  ul li {
+    @apply list-disc;
+  }
 }
 
 

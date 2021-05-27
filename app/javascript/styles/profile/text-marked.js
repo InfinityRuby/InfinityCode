@@ -25,16 +25,4 @@ marked.setOptions({
 document.addEventListener("turbolinks:load", function() {
   const text = document.querySelector('.profile-text');
   text.innerHTML = marked(text.innerHTML);
-  if(document.querySelector(".markdown-body ol li"))
-  var olLi, i;
-  olLi = document.querySelectorAll(".markdown-body ol li");
-  for (i = 0; i < olLi.length; i++) {
-    olLi[i].className = "list-decimal";
-  };
-  if(document.querySelector(".markdown-body ul li"))
-  var ulLi, i;
-  ulLi = document.querySelectorAll(".markdown-body ul li");
-  for (i = 0; i < ulLi.length; i++) {
-    ulLi[i].className = "list-disc";
-  };
 });
