@@ -6,10 +6,10 @@ import { useEffect, useState, useRef } from 'react'
 export default function Discuss() {
   const [list, setList] = useState([])
   const [initPage, setInitPage] = useState(1)
-  const numberPage = initPage * 10
-  const displayPage = list.slice(numberPage - 10, numberPage)
-  const nowList = displayPage.map((list) => {
-    return <SearchDiscuss key={ list.id } id={ list.id } title={ list.title } content={ list.content } /> 
+  const listAmount = initPage * 10
+  const currentListAmount = list.slice(listAmount - 10, listAmount)
+  const currentList = currentListAmount.map((list) => {
+    return <SearchDisplayList key={ list.id } id={ list.id } title={ list.title } content={ list.content } /> 
   })
 
   useEffect(() => {
@@ -18,8 +18,8 @@ export default function Discuss() {
     .then(post => setList(post))    
   }, [])
 
-  function PageNumber() {
-    const nextPage = number => numberPage < list.length && setInitPage(initPage + number)
+  function CurrentPageNumber() {
+    const nextPage = number => listAmount < list.length && setInitPage(initPage + number)
     const previousPage = () => initPage > 1 && setInitPage(initPage - 1)
     const jumpPage = number => initPage > 0 && setInitPage(initPage - number)
     const searchPage = (event) => {
@@ -45,25 +45,32 @@ export default function Discuss() {
     )
   }
   
-  const searchDiscuss = (event) => {
+  const searchList = (event) => {
+    const searchValue = []
+    const searchInput = document.getElementById('searchListInput')
     if(event.key == 'Enter'){
       fetch('/jsons/data')
       .then(res => res.json())
       .then((post) => {
           list.splice(0, list.length)
           post.map(el => list.push(el))
-      }) 
-      setTimeout(() => { setList([])}, 300 ) 
+      })
+
+      setTimeout(() => {
+        searchValue.push(event.target.value) 
+        searchInput.value = ''
+      }, 0)
+
+      setTimeout(() => { setList([]) }, 300) 
       setTimeout(() => {       
-        const currentSearch = list.filter(hash => hash.title.includes(event.target.value)) 
+        const currentSearch = list.filter(hash => hash.title.includes(searchValue.join())) 
         setList(currentSearch)
-        event.target.value = ''
         setInitPage(1)
       }, 700)
     }      
   }
 
-  const clickReset = () => {  
+  const resetDiscuss = () => {  
     setInitPage(1)
     setTimeout(() => {
       fetch('/jsons/data')
@@ -88,17 +95,17 @@ export default function Discuss() {
             <a href="#">文章數量 { list.length }</a>
           </div>
           <div>
-            <input type="text" placeholder="Search topics or comments" onKeyPress={ searchDiscuss } />
-            <button onClick={ clickReset }>Reset</button>
+            <input type="text" placeholder="Search topics or comments" id="searchListInput" onKeyPress={ searchList } />
+            <button onClick={ resetDiscuss }>Reset</button>
           </div>
       </div>
-        { nowList }
-      <PageNumber />
+        { currentList }
+      <CurrentPageNumber />
   </div>
   )
 }
 
-function SearchDiscuss(props) {
+function SearchDisplayList(props) {
   const { title, content, id } = props
   return(
     <div className="discuss">
