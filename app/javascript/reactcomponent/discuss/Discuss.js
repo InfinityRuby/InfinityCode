@@ -1,5 +1,4 @@
-import React from 'react'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import marked from 'marked'
 
 function CurrentList({ listAmount }) {
@@ -20,7 +19,9 @@ export default function Discuss() {
   useEffect(() => {
     fetch('/jsons/data')
     .then(res => res.json())
-    .then(post => setList(post))    
+    .then(post => {
+      setTimeout(() => {setList(post)}, 300)
+    })    
   }, [])
 
   function CurrentPageNumber() {
@@ -117,7 +118,7 @@ function SearchDisplayList({ title, content, id }) {
       <img src="https://picsum.photos/50/50?grayscale" alt="jpg" />
       <div>      
           <h2><a href={ `posts/${id}` }>{ title }</a></h2>
-          <h3 className="markdown-body" dangerouslySetInnerHTML={ {__html: marked(content)} }>
+          <h3 dangerouslySetInnerHTML={ {__html: marked(`${content.slice(0, 10)}...`)} }>
           </h3>
       </div>
     </div>

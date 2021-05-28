@@ -1,6 +1,7 @@
 import React, { useEffect, useState }  from 'react'
 import UserComments from './UsersComments'
-import { api } from '../lib/api'
+import api from '../lib/api'
+import { url } from '../lib/url'
 import marked from 'marked'
 
 function CurrentComments({ commentsAmount }) {
@@ -17,33 +18,33 @@ export default function Comments() {
   const [commentPages, setCommentPages] = useState(1)
   const commentsAmount = commentsAPI.slice(commentPages * 6 - 6, commentPages * 6)
   const commentTexarea = document.getElementById('comment-texarea')
-  const url = window.location.href
-  const postID = url.substring(url.lastIndexOf('/') + 1)
 
   useEffect(() => {
-    fetch(`/jsons/posts_comments/${postID}`)
+    fetch(`/jsons/posts_comments/${url()}`)
     .then(res => res.json())
     .then(post => setCommentsAPI(post))
     fetch(`/jsons/data`)
     .then(res => res.json())
     .then(post => {
-      const currentPostID = post.filter(item => item.id == postID)[0]
+      const currentPostID = post.filter(item => item.id == url())[0]
       setPostValue(currentPostID)
     })
   }, [])
 
   const postComment = event => {
-    const postNewComment = { id: commentsAPI[0].id + 1 ,content: commentTexarea.value }
-    const newCommentsTotal = commentsAPI.concat(postNewComment)
-    
-    if(commentTexarea.value != '') {
+    if(commentsAPI.length && commentTexarea.value) {
+      const postNewComment = { id: commentsAPI[0].id + 1, content: commentTexarea.value }
+      const newCommentsTotal = commentsAPI.concat(postNewComment)
       newCommentsTotal.pop()
       newCommentsTotal.unshift(postNewComment)
       setCommentsAPI(newCommentsTotal)
       setCommentPages(1)
       setTimeout(() => { commentTexarea.value = '' }, 0)    
-      api('POST', false, commentTexarea.value, postID)
-    } 
+      api('POST', false, commentTexarea.value, url())  
+    }else if(commentsAPI.length == 0){
+      api('POST', false, commentTexarea.value, url())
+      location.href = `/posts/${url()}`
+    }
   }
 
   const previousPage = () => commentPages > 1 && setCommentPages(commentPages - 1)  
@@ -54,7 +55,7 @@ export default function Comments() {
 
   const sortComments = (status = false) => {
     commentsAPI.splice(0, commentsAPI.length)
-    fetch(`/jsons/posts_comments/${postID}`)
+    fetch(`/jsons/posts_comments/${url()}`)
     .then(res => res.json())
     .then(posts => {
       const storageCache = []
@@ -62,6 +63,13 @@ export default function Comments() {
       const reverseComments = storageCache.concat(posts.reverse())
       status == true ? setCommentsAPI(sortComments) : setCommentsAPI(reverseComments)
     }) 
+  }
+
+  const destroyPost = () => {
+    if(confirm('確認要刪除這篇文章嗎？')) {
+      api('DELETE', 'postDelete', '', url())
+      location.href = '/posts'
+    }
   }
 
   return( 
@@ -93,11 +101,23 @@ export default function Comments() {
               <div className="single-article-content-span">
                 <span>online assessment</span>
                 <span>microsoft</span>
-                <span>Create Time: 1</span>
+                <span>Create Time: 1</span>     
               </div>
             </div>
           </div>
-        </div>  
+        </div>
+        <div className="single-article-comments-count">
+        <div>
+          <i className="fa fa-comment-alt"></i>
+          <span>{ `留言總數: ${commentsAPI.length}` }</span>
+        </div>
+        <div>
+          <span><a href={ `/posts/${url()}/edit` }>文章編輯</a></span>
+          <span onClick={ destroyPost }>文章刪除</span> 
+          <span>Newest to Oldest</span>
+          <span>Oldest to Newest</span>
+        </div>
+      </div> 
         <div className="single-article-content-input">
           <div className="single-article-reverse-comments">
             <button onClick={ sortComments.bind(this, true) }>最新留言</button>

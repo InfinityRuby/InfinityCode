@@ -1,31 +1,31 @@
-const url = window.location.href
-const postID = url.substring(url.lastIndexOf('/') + 1)
+import { url2 } from '../lib/url'
+
 const token = document.querySelector('meta[name=csrf-token]').content
 
-function api(action, commentsID, inputValue = '', postURL) {  // 為什麼會有第四參數，因為不知道為什麼Comments.js直接import postID卻吃不到
-  const apiData1 = { content: inputValue }
-  const apiData2 = { title: inputValue, content: postURL} // 這邊的postURL之後要換掉
-
-  const actionCommentAPI = (action, apiData) => {
-    const actionCommentData = {
-      method: action,
-      headers: {
-          'Content-Type': 'application/json',
-          'X-CSRF-Token': token
-    },
-      body: JSON.stringify(apiData)
-    }
-    return actionCommentData
-  }
+export default function api(action, status, inputValue, postURL) {  // 為什麼會有第四參數，因為不知道為什麼Comments.js直接import postID卻吃不到
+  const commentData = { content: inputValue }
+  const postData = { title: inputValue, content: postURL} // 這邊的postURL之後要換掉
   
-  if(commentsID == 'postNew') {
-    fetch(`/api/v1/posts`, actionCommentAPI(action, apiData2))
+  if(status == 'postNew') {
+    fetch(`/api/v1/posts`, actionCommentAPI(action, postData))  
+  }else if(status == 'postEdit' || status == 'postDelete') {
+    fetch(`/api/v1/posts/${url2()}`, actionCommentAPI(action, postData))
   }else {
-    commentsID ? 
-               fetch(`/api/v1/posts/${postID}/comments/${commentsID}`, actionCommentAPI(action, apiData1)) 
-               : 
-               fetch(`/api/v1/posts/${postURL}/comments`, actionCommentAPI(action, apiData1))
+    status ? 
+            fetch(`/api/v1/posts/${postURL}/comments/${status}`, actionCommentAPI(action, commentData)) 
+            : 
+            fetch(`/api/v1/posts/${postURL}/comments`, actionCommentAPI(action, commentData))
   }
 }
 
-export { postID, api }
+const actionCommentAPI = (action, apiData) => {
+  const actionCommentData = {
+    method: action,
+    headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': token
+  },
+    body: JSON.stringify(apiData)
+  }
+  return actionCommentData
+}

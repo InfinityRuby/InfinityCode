@@ -1,0 +1,30 @@
+.post-edit-container {
+  @apply w-full flex justify-center;  
+  .post-edit-wrap {
+    @apply w-9/12 pt-20;
+    .post-edit-title {
+      @apply w-full pb-5
+    }
+    .post-edit-title {
+      @apply w-full pb-5
+    }
+    .post-edit-input {
+      @apply w-full h-10 p-2 border border-gray-200
+    }
+    .post-edit-button-wrap {
+      @apply w-full flex justify-end;
+      .post-edit-button {
+        @apply w-20 h-12 border border-gray-900 bg-yellow-500 rounded-md mt-2 text-lg hover:bg-yellow-600 hover:text-white
+      }
+    }
+  }
+}
+  
+  
+  
+  
+  
+  
+  
+  
+  
