@@ -1,16 +1,20 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import PropTypes from 'prop-types'
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
+
+function CurrentList({ listAmount }) {
+  return listAmount.map(list => {
+    return <SearchDisplayList key={ list.id } 
+                              id={ list.id } 
+                              title={ list.title } 
+                              content={ list.content } /> 
+  })
+}
 
 export default function Discuss() {
   const [list, setList] = useState([])
   const [initPage, setInitPage] = useState(1)
   const listAmount = initPage * 10
   const currentListAmount = list.slice(listAmount - 10, listAmount)
-  const currentList = currentListAmount.map((list) => {
-    return <SearchDisplayList key={ list.id } id={ list.id } title={ list.title } content={ list.content } /> 
-  })
 
   useEffect(() => {
     fetch('/jsons/data')
@@ -22,7 +26,7 @@ export default function Discuss() {
     const nextPage = number => listAmount < list.length && setInitPage(initPage + number)
     const previousPage = () => initPage > 1 && setInitPage(initPage - 1)
     const jumpPage = number => initPage > 0 && setInitPage(initPage - number)
-    const searchPage = (event) => {
+    const searchPage = event => {
       if(event.key == 'Enter'){
         if(Number(event.target.value) && Number(event.target.value) * 10 <= list.length + 10){
           setTimeout(() => { setInitPage(Number(event.target.value)) }, 300)
@@ -45,7 +49,7 @@ export default function Discuss() {
     )
   }
   
-  const searchList = (event) => {
+  const searchList = event => {
     const searchValue = []
     const searchInput = document.getElementById('searchListInput')
     if(event.key == 'Enter'){
@@ -93,25 +97,25 @@ export default function Discuss() {
             <a href="#">Newest to Oidest</a>
             <a href="#">Most Votes</a>
             <a href="#">文章數量 { list.length }</a>
+            <a href="/posts/new">新增文章</a>
           </div>
           <div>
             <input type="text" placeholder="Search topics or comments" id="searchListInput" onKeyPress={ searchList } />
             <button onClick={ resetDiscuss }>Reset</button>
           </div>
       </div>
-        { currentList }
+      <CurrentList listAmount={ currentListAmount } />
       <CurrentPageNumber />
   </div>
   )
 }
 
-function SearchDisplayList(props) {
-  const { title, content, id } = props
+function SearchDisplayList({ title, content, id }) {
   return(
     <div className="discuss">
       <img src="https://picsum.photos/50/50?grayscale" alt="jpg" />
       <div>      
-          <h2><a href={ "posts/"+id }>{ title }</a></h2>
+          <h2><a href={ `posts/${id}` }>{ title }</a></h2>
           <h3>{ content }</h3>
       </div>
     </div>

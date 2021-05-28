@@ -1,73 +1,75 @@
 .container-discuss{
-  @apply w-full bg-gray-100 pt-14 flex mt-7 justify-center
-}
+  @apply w-full bg-gray-100 pt-14 flex mt-7 justify-center;
+  .discuss-wrap{
+    @apply flex flex-col w-9/12;
+    .discuss{
+      @apply flex bg-white border-b shadow-md
+    }
+    
+    .discuss:nth-child(1) > a{
+      @apply m-3 text-xl
+    }
+    
+    .discuss:nth-child(1) > a:nth-child(n+2){
+      @apply text-gray-400
+    }
+    
+    .discuss:nth-child(2){
+      @apply justify-between p-2 bg-green-50
+    }
+    
+    .discuss:nth-child(2) > div:nth-child(1){
+      @apply pt-1
+    }
+    
+    .discuss:nth-child(2) > div:nth-child(1) > a{
+      @apply mx-1
+    }
 
-.discuss-wrap{
-  @apply flex flex-col w-9/12
-}
-
-.discuss{
-  @apply flex bg-white border-b shadow-md
-}
-
-.discuss:nth-child(1) > a{
-  @apply m-3 text-xl
-}
-
-.discuss:nth-child(1) > a:nth-child(n+2){
-  @apply text-gray-400
-}
-
-.discuss:nth-child(2){
-  @apply justify-between p-2 bg-green-50
-}
-
-.discuss:nth-child(2) > div:nth-child(1){
-  @apply pt-1
-}
-
-.discuss:nth-child(2) > div:nth-child(1) > a{
-  @apply mx-1
-}
-
-.discuss:nth-child(2) > div:nth-child(1) > a:nth-child(n+2){
-  @apply mx-4 text-gray-500
-}
-
-.discuss:nth-child(2) button{
-  @apply bg-blue-600 w-16 h-8 rounded-sm text-white opacity-80 hover:bg-blue-900 rounded-sm ml-2
-}
-
-.discuss:nth-child(2) input{
-  @apply w-48 h-7 rounded-sm text-sm text-center border-2
-}
-
-.discuss:nth-child(n+3){
-  @apply p-2
-}
-
-.discuss:nth-child(n+3) div h2 > a {
-  @apply hover:text-gray-400
-}
-
-.discuss:nth-child(n+3) div{
-    @apply ml-5
-}
-
-.discuss img{
-  @apply rounded-full w-16 h-16
-}
-
-.discuss div h2{
-  @apply text-lg
-}
-
-.discuss div h3{
-  @apply text-sm text-gray-400
-}
-
-.discuss-right{
-  @apply w-1/5 ml-3
+    .discuss:nth-child(2) > div:nth-child(1) > a:nth-child(5){
+      @apply text-lg text-gray-900
+    }
+    
+    .discuss:nth-child(2) > div:nth-child(1) > a:nth-child(n+2){
+      @apply mx-4 text-gray-500
+    }
+    
+    .discuss:nth-child(2) button{
+      @apply bg-blue-600 w-16 h-8 rounded-sm text-white opacity-80 hover:bg-blue-900 rounded-sm ml-2
+    }
+    
+    .discuss:nth-child(2) input{
+      @apply w-48 h-7 rounded-sm text-sm text-center border-2
+    }
+    
+    .discuss:nth-child(n+3){
+      @apply p-2
+    }
+    
+    .discuss:nth-child(n+3) div h2 > a {
+      @apply hover:text-gray-400
+    }
+    
+    .discuss:nth-child(n+3) div{
+        @apply ml-5
+    }
+    
+    .discuss img{
+      @apply rounded-full w-16 h-16
+    }
+    
+    .discuss div h2{
+      @apply text-lg
+    }
+    
+    .discuss div h3{
+      @apply text-sm text-gray-400
+    }
+    
+    .discuss-right{
+      @apply w-1/5 ml-3
+    }
+  }
 }
 
 .adver{

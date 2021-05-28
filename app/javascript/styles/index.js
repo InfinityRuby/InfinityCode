@@ -4,6 +4,6 @@ import "./discuss.scss"
 import "./single-article.scss"
 import "./user"
 import "./marked.scss"
-import "./add-discuss.scss"
+import "./post-new.scss"
 import './home'
 import './profile'

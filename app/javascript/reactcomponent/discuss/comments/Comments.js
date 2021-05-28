@@ -1,15 +1,19 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import PropTypes from 'prop-types'
-import { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState }  from 'react'
 import UserComments from './UsersComments'
+import { api } from '../lib/api'
+
+function CurrentComments({ commentsAmount }) {
+  return commentsAmount.map(comments => {
+    return <UserComments key={ comments.id } 
+                         id={ comments.id } 
+                         content={ comments.content } />
+  })
+}
 
 export default function Comments() {
   const [commentsAPI, setCommentsAPI] = useState([])
   const [commentPages, setCommentPages] = useState(1)
-  const currentComments = commentsAPI.slice(commentPages * 6 - 6, commentPages * 6).map(comments => {
-    return <UserComments key={ comments.id } id={ comments.id } content={ comments.content } />
-  })
+  const commentsAmount = commentsAPI.slice(commentPages * 6 - 6, commentPages * 6)
   const commentTexarea = document.getElementById('comment-texarea')
   const url = window.location.href
   const postID = url.substring(url.lastIndexOf('/') + 1)
@@ -20,26 +24,17 @@ export default function Comments() {
     .then(posts => setCommentsAPI(posts))
   }, [])
 
-  const postComment = (event) => {
-    const postNewComment = { id: commentsAPI.length + 1 ,content: commentTexarea.value }
+  const postComment = event => {
+    const postNewComment = { id: commentsAPI[0].id + 1 ,content: commentTexarea.value }
     const newCommentsTotal = commentsAPI.concat(postNewComment)
-    const token = document.querySelector('meta[name=csrf-token]').content
-    const apiData = { content: commentTexarea.value }
-    const API = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRF-Token': token
-      },
-      body: JSON.stringify(apiData)
-    }
+    
     if(commentTexarea.value != '') {
       newCommentsTotal.pop()
       newCommentsTotal.unshift(postNewComment)
       setCommentsAPI(newCommentsTotal)
       setCommentPages(1)
-      setTimeout(() => { commentTexarea.value = '' }, 0)
-      fetch(`/api/v1/posts/${postID}/comments`, API) 
+      setTimeout(() => { commentTexarea.value = '' }, 0)    
+      api('POST', false, commentTexarea.value, postID)
     } 
   }
 
@@ -86,11 +81,11 @@ export default function Comments() {
             <button id="comment-button" onClick={ postComment }>送出</button>
           </div>
       </div>
-        { currentComments }
+        <CurrentComments commentsAmount={ commentsAmount } />
       <div className="single-article-page">
         <span onClick={ previousPage }>◀</span>
-        { commentPages >= 5 ?  <span onClick={ returnPage }>{ 1 }</span> : null}
-        { commentPages >= 5 ? <h5>...</h5> : null}
+        { commentPages >= 5 ?  <span onClick={ returnPage }>{ 1 }</span> : null }
+        { commentPages >= 5 ? <h5>...</h5> : null }
         { commentPages * 6 < commentsAPI.length + 6 ? <span className="first-button-color" onClick={ changePage }>{commentPages}</span> : null }
         { commentPages * 6 < commentsAPI.length - 6 ?  <span id="2" onClick={ changePage }>{ commentPages + 1 }</span> : null }
         { commentPages * 6 < commentsAPI.length -12 ? <span id="3" onClick={ changePage }>{ commentPages + 2 }</span> : null }
