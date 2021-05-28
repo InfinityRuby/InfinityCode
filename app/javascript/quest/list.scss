@@ -1,5 +1,5 @@
 .listquest-wrapper {
-  @apply pt-24  m-auto  max-w-screen-xl
+  @apply pt-24  m-auto  max-w-screen-xl bg-gray-100
 }
 #list-quest {
   @apply grid grid-cols-2
@@ -8,7 +8,7 @@
   @apply font-mono flex px-2
 }
 .quest-name {
-  @apply rounded-md shadow-lg bg-white m-4 hover:bg-gray-300 
+  @apply rounded-md shadow-2xl bg-white m-4 hover:bg-gray-300 
 }
 .quest-name > h3{
   @apply font-mono text-xl pt-4 px-4
