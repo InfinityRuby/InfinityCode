@@ -30,7 +30,7 @@ Quest.create!(
   level: 'Easy',
   description: 'Given the array `nums` consisting of `2n` elements in the form `[x1,x2,...,xn,y1,y2,...,yn]`.<br />
   *Return the array in the form* `[x1,y1,x2,y2,...,xn,yn]`.',
-  picture: '![](quest/3-picture.png)',
+  picture: '![](/quest/3-picture.png)',
   problem: File.read("./public/problem/q-3.txt"),
   created_at: Time.now,
   updated_at: Time.now
@@ -40,7 +40,7 @@ Quest.create!(
   level: 'Medium',
   description: 'Given an integer array nums, return all the triplets `[nums[i], nums[j], nums[k]]` such that `i != j`, `i != k`, and `j != k`, and `nums[i] + nums[j] + nums[k] == 0`.<br />
   Notice that the solution set must not contain duplicate triplets.',
-  picture: '![](quest/4-picture.png)',
+  picture: '![](/quest/4-picture.png)',
   problem: File.read("./public/problem/q-4.txt"),
   created_at: Time.now,
   updated_at: Time.now
@@ -50,7 +50,7 @@ Quest.create!(
   level: 'Hard',
   description: 'Given an unsorted integer array `nums`, find the smallest missing positive integer.<br />
   You must implement an algorithm that runs in `O(n)` time and uses constant extra space.',
-  picture: '![](quest/5-picture.png)',
+  picture: '![](/quest/5-picture.png)',
   problem: File.read("./public/problem/q-5.txt"),
   created_at: Time.now,
   updated_at: Time.now
@@ -60,7 +60,7 @@ Quest.create!(
   level: 'Easy',
   description: 'Given an integer `x`, return `true` if `x` is palindrome integer.<br />
   An integer is a **palindrome** when it reads the same backward as forward. For example, `121` is palindrome while `123` is not.',
-  picture: '![](quest/6-picture.png)',
+  picture: '![](/quest/6-picture.png)',
   problem: '',
   created_at: Time.now,
   updated_at: Time.now
@@ -70,7 +70,7 @@ Quest.create!(
   level: 'Medium',
   description: 'Given the `head` of a linked list, remove the `$n^{th}$` node from the end of the list and return its head.<br />
   **Follow up:** Could you do this in one pass?',
-  picture: '![](quest/7-picture.png)',
+  picture: '![](/quest/7-picture.png)',
   problem: '',
   created_at: Time.now,
   updated_at: Time.now
@@ -82,7 +82,7 @@ Quest.create!(
   An input string is valid if:<br />
   1. Open brackets must be closed by the same type of brackets.<br />
   2. Open brackets must be closed in the correct order.',
-  picture: '![](quest/8-picture.png)',
+  picture: '![](/quest/8-picture.png)',
   problem: '',
   created_at: Time.now,
   updated_at: Time.now
@@ -96,7 +96,7 @@ Quest.create!(
   Confused why the returned value is an integer but your answer is an array?<br />
   Note that the input array is passed in by **reference**, which means a modification to the input array will be known to the caller as well.<br />
   Internally you can think of this:',
-  picture: '![](quest/9-picture.png)',
+  picture: '![](/quest/9-picture.png)',
   problem: '',
   created_at: Time.now,
   updated_at: Time.now
@@ -110,7 +110,7 @@ Quest.create!(
   - `countAndSay(n)` is the way you would "say" the digit string from `countAndSay(n-1)`, which is then converted into a different digit string.<br />
   To determine how you "say" a digit string, split it into the **minimal** number of groups so that each group is a contiguous section all of the **same character.** Then for each group, say the number of characters, then say the character. To convert the saying into a digit string, replace the counts with a number and concatenate every saying.<br />
   For example, the saying and conversion for digit string `"3322251"`:',
-  picture: '![](quest/10-picture.png)',
+  picture: '![](/quest/10-picture.png)',
   problem: '',
   created_at: Time.now,
   updated_at: Time.now
@@ -120,7 +120,7 @@ Quest.create!(
   level: 'Easy',
   description: 'Given a non-negative integer `x`, compute and return *the square root of* `x`.<br />
   Since the return type is an integer, the decimal digits are **truncated**, and only **the integer part** of the result is returned.',
-  picture: '![](quest/11-picture.png)',
+  picture: '![](/quest/11-picture.png)',
   problem: '',
   created_at: Time.now,
   updated_at: Time.now
@@ -130,7 +130,7 @@ Quest.create!(
   level: 'Easy',
   description: 'You are climbing a staircase. It takes `n` steps to reach the top.<br />
   Each time you can either climb `1` or `2` steps. In how many distinct ways can you climb to the top?',
-  picture: '![](quest/12-picture.png)',
+  picture: '![](/quest/12-picture.png)',
   problem: '',
   created_at: Time.now,
   updated_at: Time.now
@@ -143,7 +143,7 @@ Quest.create!(
   - A straight forward solution using O(*m*n*) space is probably a bad idea.<br />
   - A simple improvement uses O(*m* + *n*) space, but still not the best solution.<br />
   - Could you devise a constant space solution?',
-  picture: '![](quest/13-picture.png)',
+  picture: '![](/quest/13-picture.png)',
   problem: '',
   created_at: Time.now,
   updated_at: Time.now
@@ -154,7 +154,7 @@ Quest.create!(
   description: 'Given an array `nums` with `n` objects colored red, white, or blue, sort them **in-place** so that objects of the same color are adjacent, with the colors in the order red, white, and blue.<br />
   We will use the integers `0`, `1`, and `2` to represent the color red, white, and blue, respectively.<br />
   You must solve this problem without using the library\'s sort function.',
-  picture: '![](quest/14-picture.png)',
+  picture: '![](/quest/14-picture.png)',
   problem: '',
   created_at: Time.now,
   updated_at: Time.now
@@ -164,7 +164,7 @@ Quest.create!(
   level: 'Hard',
   description: 'Given two strings `s` and `t` of lengths `m` and `n` respectively, return *the minimum window in `s` which will contain all the characters in `t`*. If there is no such window in `s` that covers all characters in `t`, return *the empty string `""`*.<br />
   **Note** that If there is such a window, it is guaranteed that there will always be only one unique minimum window in `s`.',
-  picture: '![](quest/15-picture.png)',
+  picture: '![](/quest/15-picture.png)',
   problem: '',
   created_at: Time.now,
   updated_at: Time.now
