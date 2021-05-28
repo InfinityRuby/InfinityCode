@@ -1,2 +1,3 @@
-import "./quest.css"
-import "./quest.js"
+import "./question.js"
+import "./list.scss"
+import "./question.scss"
