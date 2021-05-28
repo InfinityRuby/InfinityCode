@@ -14,17 +14,17 @@ function ListQuest() {
     const question = props
     console.log(question)
     return (
-      <a className = "quest-name" href={`/quests/${question.id}`}>
-        <h3>{question.title}</h3>
+      <a className = "quest-name" href={`/quests/${ question.id }`}>
+        <h3>{ question.title }</h3>
         <div className = "listWrapper">
-          <div className="questionLevel"><p>{question.level}</p></div>
+          <div className="questionLevel"><p>{ question.level }</p></div>
           <button className="questionBtn">已解決</button></div>
       </a>
     )
   }
     return(
     listQuest.map(quest => {
-      return <Quest key={quest.id}  id={quest.id} title={quest.title} level={quest.level} />
+      return <Quest key={ quest.id }  id={ quest.id } title={ quest.title } level={ quest.level } />
     })
     )
 }
