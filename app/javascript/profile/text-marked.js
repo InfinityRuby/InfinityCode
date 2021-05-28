@@ -1,13 +1,14 @@
 import './github-markdown.css'
 import hljs from 'highlight.js'
 import marked from 'marked'
-import '../highlight/atelier-dune-dark.css'
+import 'styles/highlight/atelier-dune-dark.css'
+
 
 const html = marked('# Marked in Node.js\n\nRendered by **marked**.');
 hljs.configure({
   tabReplace: '  ',
   classPrefix: 'hljs-',
-  languages: ['CSS', 'HTML, XML', 'JavaScript', 'PHP', 'Python', 'Stylus', 'TypeScript', 'Markdown']
+  languages: ['CSS', 'HTML', 'JavaScript', 'Ruby', 'PHP', 'Python', 'Markdown']
 })
 
 marked.setOptions({
