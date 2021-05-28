@@ -37,8 +37,7 @@ export default function UserComments(props) {
     const cancelEditComment = () => { setCurrentComment(0) }
     return(
       <div className="user-comments-action">
-        { currentComment 
-        ? 
+        { currentComment ? 
         <button onClick={ cancelEditComment }>取消</button> 
         : 
         <div>

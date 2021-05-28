@@ -1,6 +1,7 @@
 import React, { useEffect, useState }  from 'react'
 import UserComments from './UsersComments'
 import { api } from '../lib/api'
+import marked from 'marked'
 
 function CurrentComments({ commentsAmount }) {
   return commentsAmount.map(comments => {
@@ -12,6 +13,7 @@ function CurrentComments({ commentsAmount }) {
 
 export default function Comments() {
   const [commentsAPI, setCommentsAPI] = useState([])
+  const [postValue, setPostValue] = useState([])
   const [commentPages, setCommentPages] = useState(1)
   const commentsAmount = commentsAPI.slice(commentPages * 6 - 6, commentPages * 6)
   const commentTexarea = document.getElementById('comment-texarea')
@@ -21,7 +23,13 @@ export default function Comments() {
   useEffect(() => {
     fetch(`/jsons/posts_comments/${postID}`)
     .then(res => res.json())
-    .then(posts => setCommentsAPI(posts))
+    .then(post => setCommentsAPI(post))
+    fetch(`/jsons/data`)
+    .then(res => res.json())
+    .then(post => {
+      const currentPostID = post.filter(item => item.id == postID)[0]
+      setPostValue(currentPostID)
+    })
   }, [])
 
   const postComment = event => {
@@ -57,20 +65,40 @@ export default function Comments() {
   }
 
   return( 
-    <div className="single-article-body">
-      <div className="single-article-comments-count">
-        <div>
-          <i className="fa fa-comment-alt"></i>
-          <span>{ `留言總數: ${commentsAPI.length}` }</span>
+      <div>
+        <div className="single-article-title">
+          <div className="single-article-title-goback">
+            <a href="/posts">《 Back</a>
+          </div>
+          <div className="single-article-title-word">
+            <i className="fas fa-paperclip"></i>
+            <h2>{ postValue.title }</h2>
+          </div>
+          <div className="single-article-title-icon">
+            <i className="fas fa-exclamation-triangle"></i>
+          </div>
         </div>
-        <div>
-          <span>Best</span>
-          <span>Most Votes</span>
-          <span>Newest to Oldest</span>
-          <span>Oldest to Newest</span>
-        </div>
-      </div>
-      <div className="single-article-content-input">
+        <div className="single-article-content">
+          <div className="single-article-content-wrap">
+            <div className="single-article-content-author">
+              <img src="https://picsum.photos/50/50?grayscale" alt="jpg" />
+              <h3>王小明</h3>
+              <i className="fa fa-star"></i>
+              <span>11212</span>
+              <span>Last Edit: 3</span>
+            </div>
+            <div className="single-article-content-body">
+              <div className="markdown-body" dangerouslySetInnerHTML={ {__html: marked(postValue.content + '')} }>
+              </div>
+              <div className="single-article-content-span">
+                <span>online assessment</span>
+                <span>microsoft</span>
+                <span>Create Time: 1</span>
+              </div>
+            </div>
+          </div>
+        </div>  
+        <div className="single-article-content-input">
           <div className="single-article-reverse-comments">
             <button onClick={ sortComments.bind(this, true) }>最新留言</button>
             <button onClick={ sortComments }>最舊留言</button>

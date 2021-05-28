@@ -1,40 +1,5 @@
 <div class="single-article-container">
   <div class="single-article-wrap">
-    <div class="single-article-title">
-      <div class="single-article-title-goback">
-        <a href="/posts">《 Back</a>
-      </div>
-      <div class="single-article-title-word">
-        <i class="fas fa-paperclip"></i>
-        <h2><%= @post.title %></h2>
-      </div>
-      <div class="single-article-title-icon">
-        <i class="fas fa-exclamation-triangle"></i>
-      </div>
-    </div>
-    <div class="single-article-content">
-      <div class="single-article-content-wrap">
-        <div class="single-article-content-author">
-          <img src="https://picsum.photos/50/50?grayscale" alt="jpg" />
-          <h3>王小明</h3>
-          <i class="fa fa-star"></i>
-          <span>11212</span>
-          <span>Last Edit: <%= @post.updated_at %></span>
-        </div>
-        <div class="single-article-content-body">
-          <div>
-            <p>
-              <%= @post.content %>
-            </p>
-          </div>
-          <div class="single-article-content-span">
-            <span>online assessment</span>
-            <span>microsoft</span>
-            <span>Create Time: <%= time_ago_in_words(@post.created_at) %></span>
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="single-article-content-comments">
       <div id="single-article-user-comments"></div>
     </div>

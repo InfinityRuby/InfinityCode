@@ -1,77 +1,72 @@
 .single-article-container{
-  @apply w-full flex justify-center pt-20
-}
-
-.single-article-wrap{
-  @apply w-7/12 bg-white shadow-md h-full
-}
-
-.single-article-title{
-  @apply w-full px-2 py-4 flex justify-center items-center border-b border-gray-200
-}
-
-.single-article-title-goback{
-  @apply w-2/12 flex justify-center border-r border-gray-300
-}
-
-.single-article-title-goback > a{
-  @apply text-xl text-gray-400 hover:text-gray-700
-}
-
-.single-article-title-word{
-  @apply w-8/12 flex justify-center items-center text-2xl text-gray-900 opacity-70
-}
-
-.single-article-title-word > svg{
-  @apply text-2xl mx-2
-}
-
-.single-article-title-icon{
-  @apply w-2/12 flex justify-center border-l border-gray-300 text-2xl text-red-500
-}
-
-.single-article-content{
-  @apply w-full flex justify-center
-}
-
-.single-article-content-wrap{
-  @apply w-10/12 border-b border-gray-200 pt-6 pb-4 flex flex-col items-center
-}
-
-.single-article-content-author{
-  @apply w-full text-base flex items-center text-gray-400
-}
-
-.single-article-content-author > img{
-  @apply rounded-full mr-4 
-}
-
-.single-article-content-author > svg{
-  @apply ml-3 text-gray-200
-}
-
-.single-article-content-author > span{
-  @apply mx-2
+  @apply w-full flex justify-center pt-24;
+  .single-article-wrap{
+    @apply w-7/12 bg-white shadow-md h-full;
+    .single-article-title{
+      @apply w-full px-2 py-4 flex justify-center items-center border-b border-gray-200;
+      .single-article-title-goback{
+        @apply w-2/12 flex justify-center border-r border-gray-300
+      } 
+      .single-article-title-goback > a{
+        @apply text-xl text-gray-400 hover:text-gray-700
+      }    
+      .single-article-title-word{
+        @apply w-8/12 flex justify-center items-center text-2xl text-gray-900 opacity-70
+      }      
+      .single-article-title-word > svg{
+        @apply text-2xl mx-2
+      }     
+      .single-article-title-icon{
+        @apply w-2/12 flex justify-center border-l border-gray-300 text-2xl text-red-500
+      }
+    }
+    .single-article-content{
+      @apply w-full flex justify-center;
+      .single-article-content-wrap{
+        @apply w-10/12 border-b border-gray-200 pt-6 pb-4 flex flex-col items-center;
+        .single-article-content-author{
+          @apply w-full text-base flex items-center text-gray-400
+        }        
+        .single-article-content-author > img{
+          @apply rounded-full mr-4 
+        }       
+        .single-article-content-author > svg{
+          @apply ml-3 text-gray-200
+        }        
+        .single-article-content-author > span{
+          @apply mx-2
+        }
+        .single-article-content-author > div{
+          @apply mx-2
+        }
+      }
+    }
+    .single-article-content-comments{
+      @apply w-full;
+      .single-article-user-comments{
+        @apply flex flex-col text-base w-10/12 my-7 m-auto;
+      }      
+      .single-article-user-comments img{
+        @apply rounded-full              
+      }
+    } 
+  }
 }
 
 .single-article-content-body{
-  @apply w-full mt-8 h-full flex flex-col 
-} 
-
-.single-article-content-body > div:nth-child(1){
-  @apply w-10/12
-}
-
-.single-article-content-body p{
-  @apply flex flex-col py-2 text-gray-600 leading-9 
-}
-
-.single-article-content-span{
-  @apply mt-28
-}
-
-.single-article-content-span > span{
-  @apply border-gray-700 bg-gray-100 p-2 rounded-md text-gray-500
+  @apply w-full mt-8 h-full flex flex-col;
+  .single-article-content-body > div:nth-child(1){
+    @apply w-10/12
+  }
+  .single-article-content-body p{
+    @apply flex flex-col py-2 text-gray-600 leading-9 
+  }
+  .single-article-content-span{
+    @apply mt-28
+  }
+  .single-article-content-span > span{
+    @apply border-gray-700 bg-gray-100 p-2 rounded-md text-gray-500
+  }
 }
 
 .single-article-reverse-comments{
@@ -80,10 +75,6 @@
 
 .single-article-reverse-comments > button{
   @apply text-base text-white border p-1 bg-gray-500 mr-2 hover:bg-gray-300 hover:text-black
-}
-
-.single-article-content-comments{
-  @apply w-full
 }
 
 .single-article-comments-count{
@@ -112,14 +103,6 @@
 
 .single-article-textarea-border > button{
   @apply border-l-2 border-gray-300 rounded-b-sm p-2 bg-gray-400 opacity-70 text-white hover:bg-gray-800
-}
-
-.single-article-user-comments{
-  @apply flex flex-col text-base w-10/12 my-7 m-auto
-}
-
-.single-article-user-comments img{
-  @apply rounded-full 
 }
 
 .single-article-user-title{

@@ -1,5 +1,6 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
+import marked from 'marked'
 
 function CurrentList({ listAmount }) {
   return listAmount.map(list => {
@@ -116,7 +117,8 @@ function SearchDisplayList({ title, content, id }) {
       <img src="https://picsum.photos/50/50?grayscale" alt="jpg" />
       <div>      
           <h2><a href={ `posts/${id}` }>{ title }</a></h2>
-          <h3>{ content }</h3>
+          <h3 className="markdown-body" dangerouslySetInnerHTML={ {__html: marked(content)} }>
+          </h3>
       </div>
     </div>
   )
