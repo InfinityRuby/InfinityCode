@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import PropTypes from 'prop-types'
-import {useEffect, useState, useRef} from 'react'
+import { useEffect, useState } from 'react'
 
 function ListQuest() {
   const [listQuest, setListQuest] = useState([])
