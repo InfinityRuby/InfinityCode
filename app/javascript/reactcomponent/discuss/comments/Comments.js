@@ -4,17 +4,19 @@ import API from '../lib/API'
 import allID from '../lib/ID'
 import marked from 'marked'
 
-function CurrentComments({ commentsAmount }) {
+function CurrentComments({ commentsAmount, userName }) {
   return commentsAmount.map(comments => {
     return <UserComments key={ comments.id } 
                          id={ comments.id } 
                          content={ comments.content }
-                         create={ comments.created_at } />
+                         create={ comments.created_at }
+                         userName={ userName } />
   })
 }
 
 export default function Comments() {
   const [commentsAPI, setCommentsAPI] = useState([])
+  const [currentPost, setCurrentPost] = useState([])
   const [postValue, setPostValue] = useState([])
   const [commentPages, setCommentPages] = useState(1)
   const commentsAmount = commentsAPI.slice(commentPages * 6 - 6, commentPages * 6)
@@ -30,6 +32,16 @@ export default function Comments() {
       const currentPostID = post.filter(item => item.id == allID('post'))[0]
       setPostValue(currentPostID)
     })
+    fetch(`/api/v1/posts/${allID('post')}/user`)
+    .then(res => res.json())
+    .then(post => { 
+      const currentUser = `${post.email}`
+      const currentUserName = currentUser.substring(0, currentUser.indexOf('@'))
+      setUserValue(currentUserName)
+     })
+    fetch(`/api/v1/posts/${allID('post')}`)
+    .then(res => res.json())
+    .then(post => setCurrentPost(post))
   }, [])
 
   const postComment = event => {
@@ -91,7 +103,7 @@ export default function Comments() {
         <div className="single-article-content-wrap">
           <div className="single-article-content-author">
             <img src="https://picsum.photos/50/50?grayscale" alt="jpg" />
-            <h3>王小明</h3>
+            <h3>{ currentPost.unknown == true ? '匿名' : userValue }</h3>
             <i className="fa fa-star"></i>
             <span>11212</span>
             <span>上次編輯日期: { `${postValue.created_at}`.slice(0, 10) }</span>
@@ -128,7 +140,7 @@ export default function Comments() {
           <button id="comment-button" onClick={ postComment }>送出</button>
         </div>
     </div>
-      <CurrentComments commentsAmount={ commentsAmount } />
+      <CurrentComments commentsAmount={ commentsAmount } userName={ userValue } />
     <div className="single-article-page">
       <span onClick={ previousPage }><i className="fas fa-chevron-left"></i></span>
       { commentPages >= 5 ?  <span onClick={ returnPage }>{ 1 }</span> : null }
