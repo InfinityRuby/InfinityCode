@@ -66,21 +66,22 @@ document.addEventListener('turbolinks:load', () => {
     highlight: (code) => hljs.highlightAuto(code).value,
   })
 
-  fetch('/api/v1/quests') 
-    .then(request => request.json())
-    .then(posts => {
-      const firstPost = posts[0]
-      editor.setValue(firstPost.problem)   
-      document.querySelector('.css-title').textContent = firstPost.title
-      document.querySelector('.css-level').textContent = firstPost.level
-      document.querySelector('.css-description').innerHTML = marked(firstPost.description)
-      document.querySelector('.css-picture').innerHTML = marked(firstPost.picture)
+  const url = window.location.href; 
+  const loc = url.substring(url.lastIndexOf('/') + 1 ); 
+  fetch(`/api/v1/quests/${loc}`)
+  .then(request => request.json())
+  .then(questPosts => {
+      editor.setValue(questPosts.problem)   
+      document.querySelector('.css-title').textContent = questPosts.title
+      document.querySelector('.css-level').textContent = questPosts.level
+      document.querySelector('.css-description').innerHTML = marked(questPosts.description)
+      document.querySelector('.css-picture').innerHTML = marked(questPosts.picture)
     })
   
   const resetbtn = document.querySelector(".quest-footer-button:nth-child(1)")
   if (resetbtn) {
     resetbtn.addEventListener("click", (el)=> {
-      editor.setValue(firstPost.problem)
+      editor.setValue(questPosts.problem)
     })
   }
   }
