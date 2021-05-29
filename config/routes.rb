@@ -1,15 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
-  resources :users
-  resources :tests
-
   resources :posts do
     resources :comments
   end
 
   resources :quests 
-  resource :profile
+  resource :profile, only: [:show, :edit]
   
   get "/jsons/data", to: "jsons#data"
   get "/jsons/posts_comments/:id", to: "jsons#posts_comments"
@@ -29,7 +26,6 @@ Rails.application.routes.draw do
     end
   end
 
-
-  root to: "users#index" #devise 用，之後有必要再換名稱
+  root to: "homes#index"
 
 end
