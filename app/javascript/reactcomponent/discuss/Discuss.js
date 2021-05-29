@@ -41,7 +41,7 @@ export default function Discuss() {
         <button onClick={ previousPage }>上一頁</button>
         { initPage > 2 ? <button onClick={ jumpPage.bind(this, 2) }>{ initPage - 2 }</button> : null }
         { initPage > 1 ? <button onClick={ jumpPage.bind(this, 1) }>{ initPage - 1 } </button> : null }
-        <button>{ initPage}</button>
+        <button>{ initPage }</button>
         { initPage * 10 < list.length ? <button onClick={ nextPage.bind(this, 1) }>{ initPage + 1 }</button> : null }
         { initPage * 10 + 10 < list.length ? <button onClick={ nextPage.bind(this, 2) }>{ initPage + 2 }</button> : null }
         <button onClick={ nextPage.bind(this, 1) }>下一頁</button>
@@ -61,12 +61,10 @@ export default function Discuss() {
           list.splice(0, list.length)
           post.map(el => list.push(el))
       })
-
       setTimeout(() => {
         searchValue.push(event.target.value) 
         searchInput.value = ''
       }, 0)
-
       setTimeout(() => { setList([]) }, 300) 
       setTimeout(() => {       
         const currentSearch = list.filter(hash => hash.title.includes(searchValue.join())) 
@@ -87,27 +85,27 @@ export default function Discuss() {
   
   return(
   <div>
-      <div className="discuss">
-        <a href="#">All Interview Quesions</a>
-        <a href="#">System Design</a>
-        <a href="#">Operating System</a>
-        <a href="#">Object-Oriented Design</a>
+    <div className="discuss">
+      <a href="#">All Interview Quesions</a>
+      <a href="#">System Design</a>
+      <a href="#">Operating System</a>
+      <a href="#">Object-Oriented Design</a>
+    </div>
+    <div className="discuss">
+      <div>
+        <a href="#">Hot</a>
+        <a href="#">Newest to Oidest</a>
+        <a href="#">Most Votes</a>
+        <a href="#">文章數量 { list.length }</a>
+        <a href="/posts/new">新增文章</a>
       </div>
-      <div className="discuss">
-          <div>
-            <a href="#">Hot</a>
-            <a href="#">Newest to Oidest</a>
-            <a href="#">Most Votes</a>
-            <a href="#">文章數量 { list.length }</a>
-            <a href="/posts/new">新增文章</a>
-          </div>
-          <div>
-            <input type="text" placeholder="Search topics or comments" id="searchListInput" onKeyPress={ searchList } />
-            <button onClick={ resetDiscuss }>Reset</button>
-          </div>
+      <div>
+        <input type="text" placeholder="Search topics or comments" id="searchListInput" onKeyPress={ searchList } />
+        <button onClick={ resetDiscuss }>Reset</button>
       </div>
-      <CurrentList listAmount={ currentListAmount } />
-      <CurrentPageNumber />
+    </div>
+    <CurrentList listAmount={ currentListAmount } />
+    <CurrentPageNumber />
   </div>
   )
 }
@@ -117,9 +115,9 @@ function SearchDisplayList({ title, content, id }) {
     <div className="discuss">
       <img src="https://picsum.photos/50/50?grayscale" alt="jpg" />
       <div>      
-          <h2><a href={ `posts/${id}` }>{ title }</a></h2>
-          <h3 dangerouslySetInnerHTML={ {__html: marked(`${content.slice(0, 10)}...`)} }>
-          </h3>
+        <h2><a href={ `posts/${id}` }>{ title }</a></h2>
+        <h3 dangerouslySetInnerHTML={ {__html: marked(`${content.slice(0, 10).replace('```', '')}...`)} }>
+        </h3>
       </div>
     </div>
   )

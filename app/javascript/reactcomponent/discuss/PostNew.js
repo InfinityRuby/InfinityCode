@@ -1,19 +1,23 @@
-import React from "react";
+import React, { useRef } from "react";
 import ReactDOM from "react-dom"
-import MDEditor, { commands, ICommand, TextState, TextApi } from '@uiw/react-md-editor'
-import api from "./lib/api";
+import MDEditor from '@uiw/react-md-editor'
+import API from "./lib/API";
 
 function PostNew() {
+  const editRef = useRef()
   const postNew = () => {
     const titleValue = document.querySelector('.post-new-input')
     const contentValue = document.querySelector('.w-md-editor-text-input')
-    api('POST', 'postNew', titleValue.value, contentValue.value)
+    API('POST', 'postNew', titleValue.value, contentValue.value)
+    editRef.current.style = 'background: #ffa100; color: #000'
     location.href = '/posts'
   }
 
   return (
     <div className="post-new-wrap">
-      <div className="post-new-title"><input type="text" row="30" col="30" className="post-new-input"/></div>
+      <div className="post-new-title">
+        <input type="text" row="30" col="30" className="post-new-input"/>
+      </div>
       <MDEditor
         textareaProps={ {
           placeholder: '可以輸入markdown語法',
@@ -21,7 +25,9 @@ function PostNew() {
         } }
         height={ 550 }
       />
-      <div className="post-new-button-wrap"><button className="post-new-button" onClick={ postNew }>送出</button></div>
+      <div className="post-new-button-wrap">
+        <button className="post-new-button" onClick={ postNew } ref={ editRef }>送出</button>
+      </div>
     </div>
   )
 }

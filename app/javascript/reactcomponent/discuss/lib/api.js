@@ -1,15 +1,15 @@
-import { url2 } from '../lib/url'
+import allID from './ID'
 
 const token = document.querySelector('meta[name=csrf-token]').content
 
-export default function api(action, status, inputValue, postURL) {  // 為什麼會有第四參數，因為不知道為什麼Comments.js直接import postID卻吃不到
+export default function API(action, status, inputValue, postURL) {  
   const commentData = { content: inputValue }
-  const postData = { title: inputValue, content: postURL} // 這邊的postURL之後要換掉
+  const postData = { title: inputValue, content: postURL } 
   
   if(status == 'postNew') {
     fetch(`/api/v1/posts`, actionCommentAPI(action, postData))  
   }else if(status == 'postEdit' || status == 'postDelete') {
-    fetch(`/api/v1/posts/${url2()}`, actionCommentAPI(action, postData))
+    fetch(`/api/v1/posts/${allID('edit')}`, actionCommentAPI(action, postData))
   }else {
     status ? 
             fetch(`/api/v1/posts/${postURL}/comments/${status}`, actionCommentAPI(action, commentData)) 

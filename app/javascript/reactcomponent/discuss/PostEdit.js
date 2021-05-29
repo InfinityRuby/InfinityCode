@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import ReactDOM from "react-dom"
 import MDEditor from '@uiw/react-md-editor'
-import api from "./lib/api";
-import { url2 } from "./lib/url"
+import API from "./lib/API";
+import allID from "./lib/ID"
 
 function PostEdit() {
-  const [editValueAPI, setEditValueAPI] = useState([]) 
+  const [editValueAPI, setEditValueAPI] = useState([])
+  const editRef = useRef()
   
   useEffect(() => {
     fetch(`/jsons/data`)
@@ -13,7 +14,7 @@ function PostEdit() {
     .then(post => {
       const titleValue = document.querySelector('.post-edit-input')
       const contentValue = document.querySelector('.w-md-editor-text-input')
-      const currentPostID = post.filter(item => item.id == url2())[0]  
+      const currentPostID = post.filter(item => item.id == allID('edit'))[0]  
       titleValue.value = currentPostID.title
       contentValue.value = currentPostID.content
       setEditValueAPI(currentPostID)
@@ -23,8 +24,9 @@ function PostEdit() {
   const postEdit = () => {
     const titleValue = document.querySelector('.post-edit-input')
     const contentValue = document.querySelector('.w-md-editor-text-input') 
-    api('PUT', 'postEdit', titleValue.value, contentValue.value)
-    location.href = `/posts/${url2()}`
+    API('PUT', 'postEdit', titleValue.value, contentValue.value)
+    editRef.current.style = 'background: #ffa100; color: #000'
+    location.href = `/posts/${allID('edit')}`
   }
 
   return (
@@ -40,7 +42,7 @@ function PostEdit() {
         height={ 550 }
       />
       <div className="post-edit-button-wrap">
-          <button className="post-edit-button" onClick={ postEdit }>送出</button>
+          <button className="post-edit-button" ref={ editRef } onClick={ postEdit }>送出</button>
       </div>
     </div>
   )
