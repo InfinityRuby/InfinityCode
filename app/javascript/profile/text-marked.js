@@ -25,5 +25,7 @@ marked.setOptions({
 
 document.addEventListener("turbolinks:load", function() {
   const text = document.querySelector('.profile-text');
-  text.innerHTML = marked(text.innerHTML);
+  if(text){
+    text.innerHTML = marked(text.innerHTML);
+  }
 });
