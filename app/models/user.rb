@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_one :profile
 
   after_create do
-    self.create_profile
+    create_profile
   end
 
   def self.create_from_provider_data(provider_data) 

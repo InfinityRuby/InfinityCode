@@ -32,7 +32,6 @@ Devise.setup do |config|
 
   # Configure the class responsible to send e-mails.
   config.mailer = 'Devise::Mailer'
-  # 將註解拿掉後，就會由 devise 預設的 Mailer 寄信 (從 Devise::Mailer 作 deliver 調用 ActionMailer)
 
   # Configure the parent class responsible to send e-mails.
   # config.parent_mailer = 'ActionMailer::Base'

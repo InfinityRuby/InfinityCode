@@ -1,16 +1,16 @@
 @import "tailwindcss/base";
+ol li {
+  @apply list-decimal;
+}
+ul li {
+  @apply list-disc;
+}
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
 @layer base {
   button {
     outline: none !important;
-  }
-  ol li {
-    @apply list-decimal;
-  }
-  ul li {
-    @apply list-disc;
   }
 }
 

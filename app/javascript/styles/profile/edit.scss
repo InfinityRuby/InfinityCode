@@ -7,7 +7,7 @@
       .edit-input {
         @apply shadow rounded-md p-2;
         .avatar-btn {
-          @apply hidden;
+          @apply hidden outline-none;
         }
       }
       .edit-text-input {
