@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_23_133337) do
+ActiveRecord::Schema.define(version: 2021_05_29_142122) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
-    t.text "comment"
+    t.text "content"
     t.bigint "post_id"
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2021_05_23_133337) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.datetime "deleted_at"
+    t.boolean "unknown", default: false
     t.index ["deleted_at"], name: "index_posts_on_deleted_at"
   end
 
@@ -48,7 +49,7 @@ ActiveRecord::Schema.define(version: 2021_05_23_133337) do
   end
 
   create_table "prompts", force: :cascade do |t|
-    t.integer "questId"
+    t.integer "quest_id"
     t.integer "aseq"
     t.text "hint"
     t.datetime "created_at", precision: 6, null: false
