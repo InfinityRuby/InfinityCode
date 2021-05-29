@@ -1,27 +1,6 @@
 .quest {
   width: 100%;
-}
-.quest-body-wrap{
-  max-width: 1400px;
-}
-.quest-header nav {
-  display:flex;
-  padding:30px 0px 30px 0px;
-}
-.quest-left-nav {
-  display:flex;
-  font-size: 20px;
-  padding: 0px 20px;
-}
-.quest-right-nav {
-  display:flex;
-  font-size: 20px;
-}
-.quest-nav ul li {
-  padding:0px 20px;
-}
-.quest-nav{
-  justify-content:space-between;
+  min-width: 1000px;
 }
 .quest-tablist {
   padding-top: 25px;
@@ -30,7 +9,8 @@
   height: 700px;
 }
 .quest-wrapper {
-  width: 590px;
+  width: 500px;
+  margin-top: 75px;
   margin-left:30px;
   background-color: white;
   border-radius: 10px;
@@ -72,7 +52,7 @@
 .quest-content {
   display: none;
   padding: 10px 20px;
-  max-height: 600px;
+  max-height: 450px;
   overflow: scroll;
 }
 .quest-content.active {
@@ -87,12 +67,13 @@
   background-color: #fb9827
 }
 .CodeMirror{
-  margin-top: 25px;
-  margin-left:30px;
-  margin-right: 20px;
-  font-family: Arial, monospace;
-  font-size: 18px;
+  margin-top: 100px;
+  margin-left: 30px;
+  font-family:'Courier New', Courier, monospace;
+  font-size: 14px;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, .1);
+  z-index: 0;
+  position: relative;
 }
 .CodeMirror-gutters{
   width: 50px;
@@ -100,16 +81,15 @@
 .quest-edit-container{
   display: flex;
   background-color: #f0f0f0;
+  height: 630px;
+  justify-content: center;
 }
 .quest-footer{
   display:flex;
-  margin-top: 10px ;
-  margin-left: 1220px;
+  margin-top: 10px
 }
 .quest-footer-button:nth-child(1){
-  position: absolute;
-  left : 650px;
-  top:800px;
+  margin-left: 650px;
 }
 .quest-footer-button {
   border-radius: 10px;

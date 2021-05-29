@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2021_05_23_133337) do
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
-    t.text "content"
+    t.text "comment"
     t.bigint "post_id"
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 2021_05_23_133337) do
   end
 
   create_table "prompts", force: :cascade do |t|
-    t.integer "quest_id"
+    t.integer "questId"
     t.integer "aseq"
     t.text "hint"
     t.datetime "created_at", precision: 6, null: false
