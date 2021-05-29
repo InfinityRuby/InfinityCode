@@ -17,6 +17,7 @@ function CurrentComments({ commentsAmount, userName }) {
 export default function Comments() {
   const [commentsAPI, setCommentsAPI] = useState([])
   const [currentPost, setCurrentPost] = useState([])
+  const [userValue, setUserValue] = useState([])
   const [postValue, setPostValue] = useState([])
   const [commentPages, setCommentPages] = useState(1)
   const commentsAmount = commentsAPI.slice(commentPages * 6 - 6, commentPages * 6)
