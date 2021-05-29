@@ -68,7 +68,7 @@ document.addEventListener('turbolinks:load', () => {
 
     const url = window.location.href; 
     const loc = url.substring(url.lastIndexOf('/') + 1 ); 
-    fetch(`/api/v1/quests/${loc}`)
+    fetch(`api/v1/quests/:quest_id/prompts/${loc}`)
     .then(request => request.json())
     .then(quest => {
       editor.setValue(quest.problem)   
