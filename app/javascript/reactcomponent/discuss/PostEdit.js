@@ -24,7 +24,7 @@ function PostEdit() {
   const postEdit = () => {
     const titleValue = document.querySelector('.post-edit-input')
     const contentValue = document.querySelector('.w-md-editor-text-input') 
-    API('PUT', 'postEdit', titleValue.value, contentValue.value)
+    API('PUT', {title: titleValue.value, content: contentValue.value}, 'editPost')
     editRef.current.style = 'background: #ffa100; color: #000'
     location.href = `/posts/${allID('edit')}`
   }

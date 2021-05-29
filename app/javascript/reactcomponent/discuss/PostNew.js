@@ -8,7 +8,7 @@ function PostNew() {
   const postNew = () => {
     const titleValue = document.querySelector('.post-new-input')
     const contentValue = document.querySelector('.w-md-editor-text-input')
-    API('POST', 'postNew', titleValue.value, contentValue.value)
+    API('POST', { title: titleValue.value, content: contentValue.value }, 'newPost')
     editRef.current.style = 'background: #ffa100; color: #000'
     location.href = '/posts'
   }

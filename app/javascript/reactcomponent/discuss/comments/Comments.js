@@ -8,7 +8,8 @@ function CurrentComments({ commentsAmount }) {
   return commentsAmount.map(comments => {
     return <UserComments key={ comments.id } 
                          id={ comments.id } 
-                         content={ comments.content } />
+                         content={ comments.content }
+                         create={ comments.created_at } />
   })
 }
 
@@ -39,10 +40,10 @@ export default function Comments() {
       newCommentsTotal.unshift(postNewComment)
       setCommentsAPI(newCommentsTotal)
       setCommentPages(1)
-      setTimeout(() => { commentTexarea.value = '' }, 0)    
-      API('POST', false, commentTexarea.value, allID('post'))  
+      setTimeout(() => { commentTexarea.value = '' }, 0)     
+      API('POST', { content: commentTexarea.value }, 'newComment')
     }else if(commentsAPI.length == 0){
-      API('POST', false, commentTexarea.value, allID('post'))
+      API('POST', { content: commentTexarea.value }, 'newComment')
       location.href = `/posts/${allID('post')}`
     }
   }
@@ -67,7 +68,7 @@ export default function Comments() {
 
   const destroyPost = () => {
     if(confirm('確認要刪除這篇文章嗎？')) {
-      API('DELETE', 'postDelete', '', allID('post'))
+      API('DELETE', '', 'destroyPost')
       location.href = '/posts'
     }
   }
@@ -93,7 +94,7 @@ export default function Comments() {
             <h3>王小明</h3>
             <i className="fa fa-star"></i>
             <span>11212</span>
-            <span>Last Edit: 3</span>
+            <span>上次編輯日期: { `${postValue.created_at}`.slice(0, 10) }</span>
           </div>
           <div className="single-article-content-body">
             <div className="markdown-body" dangerouslySetInnerHTML={ {__html: marked(postValue.content + '')} }>

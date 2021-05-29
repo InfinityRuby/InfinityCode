@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react'
 import API from '../lib/API'
-import allID from '../lib/ID'
 import marked from 'marked'
 
 export default function UserComments(props) {
@@ -12,7 +11,7 @@ export default function UserComments(props) {
   const editNewComment = (event) => {   
     const commentsID = commentRef.current.dataset.id
     if(event.key == 'Enter' && event.target.value != '') {
-      API('PUT', commentsID, event.target.value, allID('post'))
+      API('PUT', { content: event.target.value }, 'editComment', commentsID)
       setCurrentComment(0)
       setTimeout(() => {
         document.querySelector(`.single-article-comments-${commentsID} p`).textContent = event.target.value
@@ -31,7 +30,7 @@ export default function UserComments(props) {
       const commentsID = commentRef.current.dataset.id
         if(confirm('確認要刪除這則留言？')) {
           commentRef.current.style = 'display: none'
-          API('DELETE', commentsID, '', allID('post'))
+          API('DELETE', '', 'destroyComment', commentsID)
         } 
       }
     const cancelEditComment = () => {
@@ -58,7 +57,7 @@ export default function UserComments(props) {
         <img src="https://picsum.photos/50/50?grayscale" alt="comments-img" />
         <h4>王小明</h4>
         <span>0</span>
-        <span>a few seconds ago</span>
+        <span>{ comments.create.slice(0, 10) }</span>
       </div>
       <div className="single-article-user-content" >
         { currentComment == comments.id 
