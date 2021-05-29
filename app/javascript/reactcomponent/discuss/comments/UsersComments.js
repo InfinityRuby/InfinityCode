@@ -55,7 +55,7 @@ export default function UserComments(props) {
     <div data-id={ comments.id } ref={ commentRef } className="single-article-user-comments">
       <div className="single-article-user-title">
         <img src="https://picsum.photos/50/50?grayscale" alt="comments-img" />
-        <h4>王小明</h4>
+        <h4>{ comments.userName }</h4>
         <span>0</span>
         <span>{ `${comments.create}`.slice(0, 10) }</span>
       </div>

@@ -36,7 +36,7 @@ class Api::V1::PostsController < ApiController
 
   private
   def post_params
-    params.require(:post).permit(:title, :content)
+    params.require(:post).permit(:title, :content, :unknown)
   end
 
   def find_post
