@@ -1,4 +1,4 @@
-class Api::V1::PromptsController < ApiController
+class Api::V1::PromptsController < Api::V1::BaseController
   before_action :signed_in?
 
   # 【GET】 查詢指定題目的提示列表  /api/v1/quests/:quest_id/prompts
