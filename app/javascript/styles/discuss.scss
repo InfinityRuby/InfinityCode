@@ -1,73 +1,60 @@
 .container-discuss{
-  @apply w-full bg-gray-100 pt-14 flex mt-7 justify-center
-}
-
-.discuss-wrap{
-  @apply flex flex-col w-9/12
-}
-
-.discuss{
-  @apply flex bg-white border-b shadow-md
-}
-
-.discuss:nth-child(1) > a{
-  @apply m-3 text-xl
-}
-
-.discuss:nth-child(1) > a:nth-child(n+2){
-  @apply text-gray-400
-}
-
-.discuss:nth-child(2){
-  @apply justify-between p-2 bg-green-50
-}
-
-.discuss:nth-child(2) > div:nth-child(1){
-  @apply pt-1
-}
-
-.discuss:nth-child(2) > div:nth-child(1) > a{
-  @apply mx-1
-}
-
-.discuss:nth-child(2) > div:nth-child(1) > a:nth-child(n+2){
-  @apply mx-4 text-gray-500
-}
-
-.discuss:nth-child(2) button{
-  @apply bg-blue-600 w-16 h-8 rounded-sm text-white opacity-80 hover:bg-blue-900 rounded-sm ml-2
-}
-
-.discuss:nth-child(2) input{
-  @apply w-48 h-7 rounded-sm text-sm text-center border-2
-}
-
-.discuss:nth-child(n+3){
-  @apply p-2
-}
-
-.discuss:nth-child(n+3) div h2 > a {
-  @apply hover:text-gray-400
-}
-
-.discuss:nth-child(n+3) div{
-    @apply ml-5
-}
-
-.discuss img{
-  @apply rounded-full w-16 h-16
-}
-
-.discuss div h2{
-  @apply text-lg
-}
-
-.discuss div h3{
-  @apply text-sm text-gray-400
-}
-
-.discuss-right{
-  @apply w-1/5 ml-3
+  @apply w-full bg-gray-100 pt-14 flex mt-10 justify-center opacity-90;
+  .discuss-wrap{
+    @apply flex flex-col w-9/12;
+    .discuss{
+      @apply flex bg-white border-b border-l border-r shadow-md;
+      &:nth-child(1) > a{
+        @apply m-3 text-xl
+      }   
+      &:nth-child(1){
+        & > a:nth-child(n+2){
+          @apply text-gray-400
+        }   
+      }
+      &:nth-child(2){
+        @apply justify-between p-2 bg-gray-100;
+        & > div:nth-child(1){
+          @apply pt-1
+        }
+        & > div:nth-child(1){
+          & > a{
+            @apply mx-1
+          }   
+        }
+        & > div:nth-child(1) > a:nth-child(n+2){
+          @apply mx-4 text-gray-500
+        }
+        & > div:nth-child(1) > a:nth-child(5){
+          @apply text-lg text-black hover:text-gray-500
+        }  
+        button{
+          @apply bg-gray-500 border w-16 h-8 text-white opacity-80 hover:bg-gray-700 rounded-sm ml-2
+        } 
+        input{
+          @apply w-48 h-7 rounded-sm text-sm text-center border-2
+        }    
+      }      
+      &:nth-child(n+3){
+        @apply p-2;
+        div{
+          @apply ml-5
+        }  
+      }     
+      img{
+        @apply rounded-full w-16 h-16
+      }   
+      div h2{
+        @apply text-lg
+      }  
+      div h3{
+        @apply text-sm text-gray-400
+      }    
+    }     
+    .discuss-right{
+      @apply w-1/5 ml-3
+    }
+  }
 }
 
 .adver{
@@ -75,37 +62,27 @@
 }
 
 .search{
-  @apply bg-white w-full mt-6 rounded-sm shadow
-}
-
-.search div:nth-child(1){
-  @apply w-full p-3 border-b border-gray-200
-}
-
-.search div:nth-child(2){
-  @apply w-full p-3
-}
-
-.search input{
-  @apply border-2 border-gray-200 rounded-sm w-11/12 text-center
-}
-
-.search button{
-  @apply border-2 rounded-sm text-black bg-gray-200 block mt-2 mb-2 text-sm
+  @apply bg-white w-full mt-6 rounded-sm shadow;
+  div:nth-child(1){
+    @apply w-full p-3 border-b border-gray-200
+  }
+  div:nth-child(2){
+    @apply w-full p-3
+  }
+  input{
+    @apply border-2 border-gray-200 rounded-sm w-11/12 text-center
+  }
+  button{
+    @apply border-2 rounded-sm text-black bg-gray-200 block mt-2 mb-2 text-sm
+  }
 }
 
 .pagination{
-  @apply flex justify-center my-3
-}
-
-.pagination > button{
-  @apply mx-1  rounded-lg border-gray-300 border-2 p-1 bg-white font-black text-sm w-16 hover:bg-gray-200 hover:text-white text-gray-400
-}
-
-.pagination > input{
-  @apply border-gray-300 border rounded-sm mx-2 text-center
-}
-
-body{
-  background-color: rgba(243, 244, 246);
+  @apply flex justify-center my-3;
+  & > button{
+    @apply mx-1  rounded-lg border-gray-300 border-2 p-1 bg-white font-black text-sm w-16 hover:bg-gray-200 hover:text-white text-gray-400
+  }
+  & > input{
+    @apply border-gray-300 border rounded-sm mx-2 text-center
+  }
 }

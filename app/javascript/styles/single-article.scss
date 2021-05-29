@@ -1,137 +1,113 @@
 .single-article-container{
-  @apply w-full flex justify-center pt-20
-}
-
-.single-article-wrap{
-  @apply w-7/12 bg-white shadow-md h-full
-}
-
-.single-article-title{
-  @apply w-full px-2 py-4 flex justify-center items-center border-b border-gray-200
-}
-
-.single-article-title-goback{
-  @apply w-2/12 flex justify-center border-r border-gray-300
-}
-
-.single-article-title-goback > a{
-  @apply text-xl text-gray-400 hover:text-gray-700
-}
-
-.single-article-title-word{
-  @apply w-8/12 flex justify-center items-center text-2xl text-gray-900 opacity-70
-}
-
-.single-article-title-word > svg{
-  @apply text-2xl mx-2
-}
-
-.single-article-title-icon{
-  @apply w-2/12 flex justify-center border-l border-gray-300 text-2xl text-red-500
-}
-
-.single-article-content{
-  @apply w-full flex justify-center
-}
-
-.single-article-content-wrap{
-  @apply w-10/12 border-b border-gray-200 pt-6 pb-4 flex flex-col items-center
-}
-
-.single-article-content-author{
-  @apply w-full text-base flex items-center text-gray-400
-}
-
-.single-article-content-author > img{
-  @apply rounded-full mr-4 
-}
-
-.single-article-content-author > svg{
-  @apply ml-3 text-gray-200
-}
-
-.single-article-content-author > span{
-  @apply mx-2
+  @apply w-full flex justify-center pt-24;
+  .single-article-wrap{
+    @apply w-7/12 bg-white shadow-md h-full;
+    .single-article-title{
+      @apply w-full px-2 py-4 flex justify-center items-center border-b border-gray-200;
+      .single-article-title-goback{
+        @apply w-2/12 flex justify-center border-r border-gray-300;
+        & > a{
+          @apply text-xl text-gray-400 hover:text-gray-700
+        } 
+      }   
+      .single-article-title-word{
+        @apply w-8/12 flex justify-center items-center text-2xl text-gray-900 opacity-70;
+        & > svg{
+          @apply text-2xl mx-2
+        }
+      }      
+      .single-article-title-icon{
+        @apply w-2/12 flex justify-center border-l border-gray-300 text-2xl text-red-500
+      }
+    }
+    .single-article-content{
+      @apply w-full flex justify-center;
+      .single-article-content-wrap{
+        @apply w-10/12 border-b border-gray-200 pt-6 pb-4 flex flex-col items-center;
+        .single-article-content-author{
+          @apply w-full text-base flex items-center text-gray-400;
+          & > img{
+            @apply rounded-full mr-4
+          }
+          & > svg{
+            @apply ml-3 text-gray-200
+          }
+          & > span{
+            @apply mx-2
+          }
+          & > div{
+            @apply mx-2
+          }
+        }        
+      }
+    }
+    .single-article-content-comments{
+      @apply w-full;
+      .single-article-user-comments{
+        @apply flex flex-col text-base w-10/12 my-7 m-auto;
+        img{
+          @apply rounded-full              
+        }
+      }      
+    } 
+  }
 }
 
 .single-article-content-body{
-  @apply w-full mt-8 h-full flex flex-col 
-} 
-
-.single-article-content-body > div:nth-child(1){
-  @apply w-10/12
-}
-
-.single-article-content-body p{
-  @apply flex flex-col py-2 text-gray-600 leading-9 
-}
-
-.single-article-content-span{
-  @apply mt-28
-}
-
-.single-article-content-span > span{
-  @apply border-gray-700 bg-gray-100 p-2 rounded-md text-gray-500
+  @apply w-full mt-8 h-full flex flex-col;
+  & > div:nth-child(1){
+    @apply w-10/12;
+  }
+  p{
+    @apply flex flex-col py-2 text-gray-600 leading-9 
+  }
+  .single-article-content-span{
+    @apply mt-28;
+    & > span{
+      @apply border-gray-700 bg-gray-100 p-2 rounded-md text-gray-500
+    }
+  }
 }
 
 .single-article-reverse-comments{
-  @apply flex justify-start w-10/12 pb-1
-}
-
-.single-article-reverse-comments > button{
-  @apply text-base text-white border p-1 bg-gray-500 mr-2 hover:bg-gray-300 hover:text-black
-}
-
-.single-article-content-comments{
-  @apply w-full
+  @apply flex justify-start w-10/12 pb-1;
+  & > button{
+    @apply text-base text-white border p-1 bg-gray-500 mr-2 hover:bg-gray-300 hover:text-black
+  }
 }
 
 .single-article-comments-count{
-  @apply flex justify-between border-b border-gray-300 p-2 bg-gray-300 opacity-40
-}
-
-.single-article-comments-count div > svg{
-  @apply ml-2
-}
-
-.single-article-comments-count div > span{
-  @apply text-base text-black mx-2
+  @apply flex justify-between border-b border-gray-300 p-2 bg-gray-300 opacity-40;
+  div > svg{
+    @apply ml-2
+  }
+  div > span{
+    @apply text-base text-black mx-2 cursor-pointer
+  }
 }
 
 .single-article-content-input{
-  @apply p-2 my-4 w-full flex flex-col items-center
-}
-
-.single-article-content-input > textarea{
-  @apply  w-10/12 h-24 border-l-2 border-r-2 border-t-2 border-gray-300 rounded-t-md p-3 text-lg resize-none outline-none
+  @apply p-2 my-4 w-full flex flex-col items-center;
+  & > textarea{
+    @apply  w-10/12 h-24 border-l-2 border-r-2 border-t-2 border-gray-300 rounded-t-md p-3 text-lg resize-none outline-none
+  }
 }
 
 .single-article-textarea-border{
-  @apply w-10/12 border-2 rounded-b-md border-gray-300 flex justify-end
-}
-
-.single-article-textarea-border > button{
-  @apply border-l-2 border-gray-300 rounded-b-sm p-2 bg-gray-400 opacity-70 text-white hover:bg-gray-800
-}
-
-.single-article-user-comments{
-  @apply flex flex-col text-base w-10/12 my-7 m-auto
-}
-
-.single-article-user-comments img{
-  @apply rounded-full 
+  @apply w-10/12 border-2 rounded-b-md border-gray-300 flex justify-end;
+  & > button{
+    @apply border-l-2 border-gray-300 rounded-b-sm p-2 bg-gray-400 opacity-70 text-white hover:bg-gray-800
+  }
 }
 
 .single-article-user-title{
-  @apply flex items-center my-5 text-gray-600
-}
-
-.single-article-user-title > h4{
-  @apply mx-4
-}
-
-.single-article-user-title > span:nth-of-type(2){
-  @apply ml-4
+  @apply flex items-center my-5 text-gray-600;
+  & > h4{
+    @apply mx-4
+  }
+  & > span:nth-of-type(2){
+    @apply ml-4
+  }
 }
 
 .single-article-user-content{
@@ -147,25 +123,21 @@
 }
 
 .single-article-page{
-  @apply w-full flex justify-center my-4 opacity-90
-}
-
-.single-article-page span{
-  @apply text-lg mx-2 px-3 border border-gray-300 bg-gray-100 rounded-md text-black cursor-pointer hover:bg-red-800 hover:text-white
-}
-
-.single-article-page h5:nth-child(7){
-  @apply text-lg
-}
-
-.single-article-page .first-button-color{
-  @apply bg-red-800 text-white
+  @apply w-full flex justify-center my-4 opacity-90;
+  span{
+    @apply text-lg mx-2 px-3 border border-gray-300 bg-gray-100 rounded-md text-black cursor-pointer hover:bg-red-800 hover:text-white
+  }
+  h5:nth-child(7){
+    @apply text-lg
+  } 
+  .first-button-color{
+    @apply bg-red-800 text-white
+  }
 }
 
 .user-comments-action {
-  @apply w-4/12 flex justify-end pt-12 pb-2
-}
-
-.user-comments-action button{
-  @apply mx-2 text-base hover:text-red-300
+  @apply w-4/12 flex justify-end pt-12 pb-2;
+  button{
+    @apply mx-2 text-base hover:text-red-300
+  }
 }

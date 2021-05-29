@@ -1,3 +1,4 @@
 import "./comments"
-import "./AddDiscuss"
+import "./PostNew"
+import "./PostEdit"
 import "./DiscussRender"
