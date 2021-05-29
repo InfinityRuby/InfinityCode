@@ -70,18 +70,18 @@ document.addEventListener('turbolinks:load', () => {
   const loc = url.substring(url.lastIndexOf('/') + 1 ); 
   fetch(`/api/v1/quests/${loc}`)
   .then(request => request.json())
-  .then(questPosts => {
-      editor.setValue(questPosts.problem)   
-      document.querySelector('.css-title').textContent = questPosts.title
-      document.querySelector('.css-level').textContent = questPosts.level
-      document.querySelector('.css-description').innerHTML = marked(questPosts.description)
-      document.querySelector('.css-picture').innerHTML = marked(questPosts.picture)
+  .then(quest => {
+      editor.setValue(quest.problem)   
+      document.querySelector('.css-title').textContent = quest.title
+      document.querySelector('.css-level').textContent = quest.level
+      document.querySelector('.css-description').innerHTML = marked(quest.description)
+      document.querySelector('.css-picture').innerHTML = marked(quest.picture)
     })
   
   const resetbtn = document.querySelector(".quest-footer-button:nth-child(1)")
   if (resetbtn) {
     resetbtn.addEventListener("click", (el)=> {
-      editor.setValue(questPosts.problem)
+      editor.setValue(quest.problem)
     })
   }
   }
