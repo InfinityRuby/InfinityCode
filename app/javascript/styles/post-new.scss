@@ -1,19 +1,16 @@
-.post-new-container {
+.post-new-container{
   @apply w-full flex justify-center;  
-  .post-new-wrap {
+  .post-new-wrap{
     @apply w-9/12 pt-20;
-    .post-new-title {
+    .post-new-title{
       @apply w-full pb-5
     }
-    .post-new-title {
-      @apply w-full pb-5
-    }
-    .post-new-input {
+    .post-new-input{
       @apply w-full h-10 p-2 border border-gray-200
     }
-    .post-new-button-wrap {
+    .post-new-button-wrap{
       @apply w-full flex justify-end;
-      .post-new-button {
+      .post-new-button{
         @apply w-20 h-12 border border-gray-900 bg-yellow-500 rounded-md mt-2 text-lg hover:bg-yellow-600
         hover:text-white
       }

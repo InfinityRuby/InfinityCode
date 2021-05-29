@@ -18,7 +18,7 @@ export default function Comments() {
   const [postValue, setPostValue] = useState([])
   const [commentPages, setCommentPages] = useState(1)
   const commentsAmount = commentsAPI.slice(commentPages * 6 - 6, commentPages * 6)
-  const commentTexarea = document.getElementById('comment-texarea')
+  const commentTextarea = document.getElementById('comment-textarea')
 
   useEffect(() => {
     fetch(`/jsons/posts_comments/${allID('post')}`)
@@ -33,17 +33,17 @@ export default function Comments() {
   }, [])
 
   const postComment = event => {
-    if(commentsAPI.length && commentTexarea.value) {
-      const postNewComment = { id: commentsAPI[0].id + 1, content: commentTexarea.value }
+    if(commentsAPI.length && commentTextarea.value) {
+      const postNewComment = { id: commentsAPI[0].id + 1, content: commentTextarea.value, created_at: commentsAPI[0].created_at }
       const newCommentsTotal = commentsAPI.concat(postNewComment)
       newCommentsTotal.pop()
       newCommentsTotal.unshift(postNewComment)
       setCommentsAPI(newCommentsTotal)
       setCommentPages(1)
-      setTimeout(() => { commentTexarea.value = '' }, 0)     
-      API('POST', { content: commentTexarea.value }, 'newComment')
+      setTimeout(() => { commentTextarea.value = '' }, 0)     
+      API('POST', { content: commentTextarea.value }, 'newComment')
     }else if(commentsAPI.length == 0){
-      API('POST', { content: commentTexarea.value }, 'newComment')
+      API('POST', { content: commentTextarea.value }, 'newComment')
       location.href = `/posts/${allID('post')}`
     }
   }
@@ -122,7 +122,7 @@ export default function Comments() {
           <button onClick={ sortComments.bind(this, true) }>最新留言</button>
           <button onClick={ sortComments }>最舊留言</button>
         </div>
-        <textarea name="singeArticle" id="comment-texarea" cols="10" rows="10" placeholder="此處留言...請注意用詞">
+        <textarea name="singeArticle" id="comment-textarea" cols="10" rows="10" placeholder="此處留言...請注意用詞">
         </textarea>
         <div className="single-article-textarea-border">        
           <button id="comment-button" onClick={ postComment }>送出</button>
@@ -130,17 +130,17 @@ export default function Comments() {
     </div>
       <CurrentComments commentsAmount={ commentsAmount } />
     <div className="single-article-page">
-      <span onClick={ previousPage }>◀</span>
+      <span onClick={ previousPage }><i className="fas fa-chevron-left"></i></span>
       { commentPages >= 5 ?  <span onClick={ returnPage }>{ 1 }</span> : null }
       { commentPages >= 5 ? <h5>...</h5> : null }
-      { commentPages * 6 < commentsAPI.length + 6 ? <span className="first-button-color" onClick={ changePage }>{commentPages}</span> : null }
+      { commentPages * 6 < commentsAPI.length + 6 ? <span className="first-button-color" onClick={ changePage }>{ commentPages }</span> : null }
       { commentPages * 6 < commentsAPI.length - 6 ?  <span id="2" onClick={ changePage }>{ commentPages + 1 }</span> : null }
       { commentPages * 6 < commentsAPI.length -12 ? <span id="3" onClick={ changePage }>{ commentPages + 2 }</span> : null }
       { commentPages * 6 < commentsAPI.length - 18 ? <span id="4" onClick={ changePage }>{ commentPages + 3 }</span> : null }
       { commentPages * 6 < commentsAPI.length - 24 ? <span id="5" onClick={ changePage }>{ commentPages + 4 }</span> : null }
-      { commentPages < Math.ceil(commentsAPI.length / 6) ? <h5>...</h5> : null}
+      { commentPages < Math.ceil(commentsAPI.length / 6) ? <h5>...</h5> : null }
       { commentPages < Math.ceil(commentsAPI.length / 6) ? <span onClick={ lastPage }>{ Math.ceil(commentsAPI.length / 6) }</span> : null }
-      <span onClick={ nextPage }>▶</span>
+      <span onClick={ nextPage }><i className="fas fa-chevron-right"></i></span>
     </div>
   </div>
   )

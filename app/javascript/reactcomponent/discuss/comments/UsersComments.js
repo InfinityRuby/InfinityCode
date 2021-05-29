@@ -57,12 +57,12 @@ export default function UserComments(props) {
         <img src="https://picsum.photos/50/50?grayscale" alt="comments-img" />
         <h4>王小明</h4>
         <span>0</span>
-        <span>{ comments.create.slice(0, 10) }</span>
+        <span>{ `${comments.create}`.slice(0, 10) }</span>
       </div>
       <div className="single-article-user-content" >
         { currentComment == comments.id 
           ? 
-          <input className="single-article-single-input" type="text" defaultValue={ editInput ? editInput.textContent : null } id={  comments.id } onKeyPress={ editNewComment } /> 
+          <input className="single-article-single-input" type="text" defaultValue={ editInput ? editInput.textContent : null } id={ comments.id } onKeyPress={ editNewComment } /> 
           :
           <div className={ `single-article-comments-${comments.id} single-article-content-markdown  markdown-body` } dangerouslySetInnerHTML={ {__html: marked(comments.content)} }></div>
         }

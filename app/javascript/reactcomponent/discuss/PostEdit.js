@@ -32,7 +32,7 @@ function PostEdit() {
   return (
     <div className="post-edit-wrap">
       <div className="post-edit-title">
-          <input type="text" row="30" col="30" className="post-edit-input" />
+        <input type="text" row="30" col="30" className="post-edit-input" />
       </div>
       <MDEditor
         textareaProps={ {
@@ -42,7 +42,7 @@ function PostEdit() {
         height={ 550 }
       />
       <div className="post-edit-button-wrap">
-          <button className="post-edit-button" ref={ editRef } onClick={ postEdit }>送出</button>
+        <button className="post-edit-button" ref={ editRef } onClick={ postEdit }>送出</button>
       </div>
     </div>
   )
