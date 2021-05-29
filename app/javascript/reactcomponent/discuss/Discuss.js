@@ -20,7 +20,7 @@ export default function Discuss() {
     fetch('/jsons/data')
     .then(res => res.json())
     .then(post => {
-      setTimeout(() => {setList(post)}, 300)
+      setTimeout(() => { setList(post)}, 300 )
     })    
   }, [])
 
