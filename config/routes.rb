@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
 
   resources :quests 
-  resource :profile, only: [:show, :edit]
+  resource :profile, only: [:show, :edit, :update]
   
   get "/jsons/data", to: "jsons#data"
   get "/jsons/posts_comments/:id", to: "jsons#posts_comments"

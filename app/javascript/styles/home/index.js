@@ -1,2 +1,2 @@
-import './home-nav-footer.scss'
-import './home-without-login.scss'
+import './nav-footer.scss'
+import './without-login.scss'

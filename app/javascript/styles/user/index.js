@@ -1,1 +1,1 @@
-import './loginpage.scss'
+import './login.scss'
