@@ -1,0 +1,9 @@
+ol li {
+  @apply list-decimal;
+}
+ul li {
+  @apply list-disc;
+}
+button {
+  // 未解決，開 issue 另外處理
+}
