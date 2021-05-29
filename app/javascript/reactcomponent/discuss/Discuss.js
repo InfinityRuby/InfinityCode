@@ -20,7 +20,7 @@ export default function Discuss() {
     fetch('/jsons/data')
     .then(res => res.json())
     .then(post => {
-      setTimeout(() => { setList(post)}, 300 )
+      setTimeout(() => { setList(post) }, 300 )
     })    
   }, [])
 
@@ -82,14 +82,25 @@ export default function Discuss() {
       .then(post => setList(post)) 
     }, 400)       
   }
+
+  const unknownDisplay = () => {
+    fetch('/jsons/data')
+    .then(res => res.json())
+    .then(post => {
+      const unknownUser = post.filter(item => item.unknown == true)
+      setInitPage(1)
+      setTimeout(() => { setList([]) }, 300)
+      setTimeout(() => { setList(unknownUser) }, 700)   
+    })
+  }
   
   return(
   <div>
     <div className="discuss">
-      <a href="#">All Interview Quesions</a>
-      <a href="#">System Design</a>
-      <a href="#">Operating System</a>
-      <a href="#">Object-Oriented Design</a>
+      <a href="#">全部的文章</a>
+      <a onClick={ unknownDisplay }>匿名的文章</a>
+      <a href="#">待開發</a>
+      <a href="#">待開發</a>
     </div>
     <div className="discuss">
       <div>

@@ -34,6 +34,11 @@ class Api::V1::PostsController < ApiController
     head :no_content
   end
 
+  def user
+    @post = Post.find(params[:id])
+    render json: @post.user
+  end
+
   private
   def post_params
     params.require(:post).permit(:title, :content, :unknown)
