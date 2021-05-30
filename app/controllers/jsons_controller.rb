@@ -1,6 +1,6 @@
 class JsonsController < ApplicationController
   def data
-    render json: Post.all.order("created_at DESC")
+    render json: Post.order("created_at DESC")
   end
 
   def posts_comments
