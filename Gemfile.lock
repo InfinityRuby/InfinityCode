@@ -313,7 +313,6 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   listen (~> 3.3)
   mini_magick (~> 4.11)
-  nokogiri (~> 1.6, >= 1.6.8)
   omniauth (~> 2.0, >= 2.0.4)
   omniauth-facebook (~> 8.0)
   omniauth-github (~> 2.0)
