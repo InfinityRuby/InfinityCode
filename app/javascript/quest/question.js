@@ -68,7 +68,7 @@ document.addEventListener('turbolinks:load', () => {
 
     const url = window.location.href; 
     const loc = url.substring(url.lastIndexOf('/') + 1 ); 
-    fetch(`api/v1/quests/:quest_id/prompts/${loc}`)
+    fetch(`/api/v1/quests/${loc}`)
     .then(request => request.json())
     .then(quest => {
       editor.setValue(quest.problem)   
@@ -77,6 +77,7 @@ document.addEventListener('turbolinks:load', () => {
       document.querySelector('.css-description').innerHTML = marked(quest.description)
       document.querySelector('.css-picture').innerHTML = marked(quest.picture)
     })
+    
     
     const resetbtn = document.querySelector(".quest-footer-button:nth-child(1)")
     if (resetbtn) {
