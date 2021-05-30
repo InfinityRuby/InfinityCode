@@ -28,6 +28,9 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
+# 分頁套件
+gem 'kaminari', '~> 0.17.0'
+
 # 會員模組
 gem 'devise', '~> 4.8'
 gem 'omniauth', '~> 2.0', '>= 2.0.4'

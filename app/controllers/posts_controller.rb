@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def  index
-    @post = Post.all.order("created_at DESC")
+    @post = Post.order("created_at DESC")
   end
 
   def show 
@@ -38,13 +38,15 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
   
-  def find_post
-    @post = Post.find(params[:id])
-  end
+
 
   private
 
   def post_params
     params.require(:post).permit(:title, :content)
+  end
+
+  def find_post
+    @post = Post.find(params[:id])
   end
 end

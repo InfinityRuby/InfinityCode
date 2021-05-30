@@ -1,15 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
-  resources :posts do
+  resources :posts,shallow: true do
     resources :comments
   end
 
   resources :quests 
   resource :profile, only: [:show, :edit, :update]
   
-  get "/jsons/data", to: "jsons#data"
-  get "/jsons/posts_comments/:id", to: "jsons#posts_comments"
+  get "/postapi/data", to: "post_api#data"
+  get "/postapi/posts_comments/:id", to: "post_api#posts_comments"
   get "/quests/questdata", to: "quests#questdata"
 
   # API 路徑設定
