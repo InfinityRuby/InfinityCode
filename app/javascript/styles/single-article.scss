@@ -69,13 +69,6 @@
   }
 }
 
-.single-article-reverse-comments{
-  @apply flex justify-start w-10/12 pb-1;
-  & > button{
-    @apply text-base text-white border p-1 bg-gray-500 mr-2 hover:bg-gray-300 hover:text-black
-  }
-}
-
 .single-article-comments-count{
   @apply flex justify-between border-b border-gray-300 p-2 bg-gray-300 opacity-40;
   div > svg{

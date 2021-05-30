@@ -1,10 +1,10 @@
 class Api::V1::PostsController < ApiController
-  before_action :find_post, only: [:show, :update, :destroy]
-  before_action :signed_in?, except: [:index, :show]
+  before_action :find_post, only: [:update, :destroy]
+  before_action :signed_in?, except: [:index, :show, :user]
 
   # 【GET】 查詢文章列表  /api/v1/posts
   def index
-    @posts = Post.all.order("created_at DESC")
+    @posts = Post.order("created_at DESC")
 
     json_response(@posts)
   end
@@ -18,6 +18,7 @@ class Api::V1::PostsController < ApiController
 
   # 【GET】 查詢指定文章  /api/v1/posts/:id
   def show
+    @post = Post.find(params[:id])
     json_response(@post)
   end
 

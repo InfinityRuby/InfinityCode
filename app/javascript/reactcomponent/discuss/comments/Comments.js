@@ -1,16 +1,17 @@
-import React, { useEffect, useState }  from 'react'
+import React, { useEffect, useState, useRef }  from 'react'
 import UserComments from './UsersComments'
 import API from '../lib/API'
 import allID from '../lib/ID'
 import marked from 'marked'
+import Loading from '../lib/Loading'
 
-function CurrentComments({ commentsAmount, userName }) {
+function CurrentComments({ commentsAmount }) {
   return commentsAmount.map(comments => {
     return <UserComments key={ comments.id } 
-                         id={ comments.id } 
+                         id={ comments.id }
+                         email={ comments.email } 
                          content={ comments.content }
-                         create={ comments.created_at }
-                         userName={ userName } />
+                         create={ comments.created_at } />                       
   })
 }
 
@@ -18,15 +19,20 @@ export default function Comments() {
   const [commentsAPI, setCommentsAPI] = useState([])
   const [currentPost, setCurrentPost] = useState([])
   const [userValue, setUserValue] = useState([])
+  const [postUserValue, setPostUserValue] = useState([])
   const [postValue, setPostValue] = useState([])
+  const sortCommentsRef = useRef()
+  const [loading, setLoading] = useState(undefined)
   const [commentPages, setCommentPages] = useState(1)
   const commentsAmount = commentsAPI.slice(commentPages * 6 - 6, commentPages * 6)
-  const commentTextarea = document.getElementById('comment-textarea')
 
   useEffect(() => {
-    fetch(`/jsons/posts_comments/${allID('post')}`)
+    fetch(`/api/v1/posts/${allID('post')}/comments`)
     .then(res => res.json())
-    .then(post => setCommentsAPI(post))
+    .then(post => { 
+      setUserValue(post.user)
+      setCommentsAPI(post.comments)
+    }) 
     fetch(`/jsons/data`)
     .then(res => res.json())
     .then(post => {
@@ -38,25 +44,31 @@ export default function Comments() {
     .then(post => { 
       const currentUser = `${post.email}`
       const currentUserName = currentUser.substring(0, currentUser.indexOf('@'))
-      setUserValue(currentUserName)
+      setPostUserValue(currentUserName)
      })
     fetch(`/api/v1/posts/${allID('post')}`)
     .then(res => res.json())
-    .then(post => setCurrentPost(post))
+    .then(post => {
+      setTimeout(() => {
+        setLoading(true)   
+        setCurrentPost(post)   
+      }, 700);    
+    })
   }, [])
 
   const postComment = event => {
+    const commentTextarea = document.getElementById('comment-textarea')
     if(commentsAPI.length && commentTextarea.value) {
-      const postNewComment = { id: commentsAPI[0].id + 1, content: commentTextarea.value, created_at: commentsAPI[0].created_at }
+      const postNewComment = { id: commentsAPI[0].id + 1, content: commentTextarea.value, created_at: commentsAPI[0].created_at, email: commentsAPI[0].email }
       const newCommentsTotal = commentsAPI.concat(postNewComment)
       newCommentsTotal.pop()
       newCommentsTotal.unshift(postNewComment)
       setCommentsAPI(newCommentsTotal)
-      setCommentPages(1)
-      setTimeout(() => { commentTextarea.value = '' }, 0)     
-      API('POST', { content: commentTextarea.value }, 'newComment')
+      setCommentPages(1)  
+      API('POST', { content: commentTextarea.value, email: userValue.email }, 'newComment')
+      commentTextarea.value = ''
     }else if(commentsAPI.length == 0){
-      API('POST', { content: commentTextarea.value }, 'newComment')
+      API('POST', { content: commentTextarea.value, email: userValue.email }, 'newComment')
       location.href = `/posts/${allID('post')}`
     }
   }
@@ -79,6 +91,15 @@ export default function Comments() {
     }) 
   }
 
+  const selectedOption = (event) => {
+    const selected = event.target.selectedIndex
+    if(sortCommentsRef.current.options[selected].value == 'sort') {
+      sortComments(true)
+    }else {
+      sortComments()
+    }
+  }
+
   const destroyPost = () => {
     if(confirm('確認要刪除這篇文章嗎？')) {
       API('DELETE', '', 'destroyPost')
@@ -88,73 +109,72 @@ export default function Comments() {
 
   return( 
     <div>
-      <div className="single-article-title">
-        <div className="single-article-title-goback">
-          <a href="/posts">《 Back</a>
-        </div>
-        <div className="single-article-title-word">
-          <i className="fas fa-paperclip"></i>
-          <h2>{ postValue.title }</h2>
-        </div>
-        <div className="single-article-title-icon">
-          <i className="fas fa-exclamation-triangle"></i>
-        </div>
-      </div>
-      <div className="single-article-content">
-        <div className="single-article-content-wrap">
-          <div className="single-article-content-author">
-            <img src="https://picsum.photos/50/50?grayscale" alt="jpg" />
-            <h3>{ currentPost.unknown == true ? '匿名' : userValue }</h3>
-            <i className="fa fa-star"></i>
-            <span>11212</span>
-            <span>上次編輯日期: { `${postValue.created_at}`.slice(0, 10) }</span>
+      { loading ?
+      <div>
+        <div className="single-article-title">
+          <div className="single-article-title-goback">
+            <a href="/posts">《 Back</a>
           </div>
-          <div className="single-article-content-body">
-            <div className="markdown-body" dangerouslySetInnerHTML={ {__html: marked(postValue.content + '')} }>
+          <div className="single-article-title-word">
+            <i className="fas fa-paperclip"></i>
+            <h2>{ postValue.title }</h2>
+          </div>
+          <div className="single-article-title-icon">
+            <i className="fas fa-exclamation-triangle"></i>
+          </div>
+        </div>
+        <div className="single-article-content">
+          <div className="single-article-content-wrap">
+            <div className="single-article-content-author">
+              <img src="https://picsum.photos/50/50?grayscale" alt="jpg" />
+              <h3>{ currentPost.unknown == true ? '匿名' : postUserValue }</h3>
+              <i className="fa fa-star"></i>
+              <span>11212</span>
+              <span>上次編輯日期: { `${postValue.created_at}`.slice(0, 10) }</span>
             </div>
-            <div className="single-article-content-span">
-              <span>online assessment</span>
-              <span>microsoft</span>
-              <span>Create Time: 1</span>     
+            <div className="single-article-content-body">
+              <div className="markdown-body" dangerouslySetInnerHTML={ {__html: marked(postValue.content + '')} }>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className="single-article-comments-count">
-      <div>
-        <i className="fa fa-comment-alt"></i>
-        <span>{ `留言總數: ${commentsAPI.length}` }</span>
-      </div>
-      <div>
-        <span><a href={ `/posts/${allID('post')}/edit` }>文章編輯</a></span>
-        <span onClick={ destroyPost }>文章刪除</span> 
-      </div>
-    </div> 
-      <div className="single-article-content-input">
-        <div className="single-article-reverse-comments">
-          <button onClick={ sortComments.bind(this, true) }>最新留言</button>
-          <button onClick={ sortComments }>最舊留言</button>
+        <div className="single-article-comments-count">
+        <div>
+          <i className="fa fa-comment-alt"></i>
+          <span>{ `留言總數: ${commentsAPI.length}` }</span>
+          <select ref={ sortCommentsRef } onChange={ selectedOption }>
+            <option value="sort">最新留言</option>
+            <option value="reverse">最舊留言</option>
+          </select>
         </div>
-        <textarea name="singeArticle" id="comment-textarea" cols="10" rows="10" placeholder="此處留言...請注意用詞">
-        </textarea>
-        <div className="single-article-textarea-border">        
-          <button id="comment-button" onClick={ postComment }>送出</button>
+        <div>
+          <span><a href={ `/posts/${allID('post')}/edit` }>文章編輯</a></span>
+          <span onClick={ destroyPost }>文章刪除</span>
         </div>
-    </div>
-      <CurrentComments commentsAmount={ commentsAmount } userName={ userValue } />
-    <div className="single-article-page">
-      <span onClick={ previousPage }><i className="fas fa-chevron-left"></i></span>
-      { commentPages >= 5 ?  <span onClick={ returnPage }>{ 1 }</span> : null }
-      { commentPages >= 5 ? <h5>...</h5> : null }
-      { commentPages * 6 < commentsAPI.length + 6 ? <span className="first-button-color" onClick={ changePage }>{ commentPages }</span> : null }
-      { commentPages * 6 < commentsAPI.length - 6 ?  <span id="2" onClick={ changePage }>{ commentPages + 1 }</span> : null }
-      { commentPages * 6 < commentsAPI.length -12 ? <span id="3" onClick={ changePage }>{ commentPages + 2 }</span> : null }
-      { commentPages * 6 < commentsAPI.length - 18 ? <span id="4" onClick={ changePage }>{ commentPages + 3 }</span> : null }
-      { commentPages * 6 < commentsAPI.length - 24 ? <span id="5" onClick={ changePage }>{ commentPages + 4 }</span> : null }
-      { commentPages < Math.ceil(commentsAPI.length / 6) ? <h5>...</h5> : null }
-      { commentPages < Math.ceil(commentsAPI.length / 6) ? <span onClick={ lastPage }>{ Math.ceil(commentsAPI.length / 6) }</span> : null }
-      <span onClick={ nextPage }><i className="fas fa-chevron-right"></i></span>
-    </div>
+            </div>
+        <div className="single-article-content-input">
+          <textarea name="singeArticle" id="comment-textarea" cols="10" rows="10" placeholder="此處留言...請注意用詞">
+          </textarea>
+          <div className="single-article-textarea-border">
+            <button id="comment-button" onClick={ postComment }>送出</button>
+          </div>
+            </div>
+        <CurrentComments commentsAmount={ commentsAmount } />
+            <div className="single-article-page">
+        <span onClick={ previousPage }><i className="fas fa-chevron-left"></i></span>
+        { commentPages >= 5 ?  <span onClick={ returnPage }>{ 1 }</span> : null }
+        { commentPages >= 5 ? <h5>...</h5> : null }
+        { commentPages * 6 < commentsAPI.length + 6 ? <span className="first-button-color" onClick={ changePage }>{ commentPages }</span> : null }
+        { commentPages * 6 < commentsAPI.length - 6 ?  <span id="2" onClick={ changePage }>{ commentPages + 1 }</span> : null }
+        { commentPages * 6 < commentsAPI.length -12 ? <span id="3" onClick={ changePage }>{ commentPages + 2 }</span> : null }
+        { commentPages * 6 < commentsAPI.length - 18 ? <span id="4" onClick={ changePage }>{ commentPages + 3 }</span> : null }
+        { commentPages * 6 < commentsAPI.length - 24 ? <span id="5" onClick={ changePage }>{ commentPages + 4 }</span> : null }
+        { commentPages < Math.ceil(commentsAPI.length / 6) ? <h5>...</h5> : null }
+        { commentPages < Math.ceil(commentsAPI.length / 6) ? <span onClick={ lastPage }>{ Math.ceil(commentsAPI.length / 6) }</span> : null }
+        <span onClick={ nextPage }><i className="fas fa-chevron-right"></i></span>
+          </div>
+      </div>
+      : <Loading /> }
   </div>
   )
 }

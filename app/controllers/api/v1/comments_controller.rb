@@ -4,8 +4,8 @@ class Api::V1::CommentsController < ApiController
 
   # 【GET】 查詢特定文章的留言列表  /api/v1/posts/:post_id/comments
   def index
-    @comments = Comment.where(post_id: params[:post_id])
-    json_response(@comments)
+    @comments = Comment.where(post_id: params[:post_id]).order("created_at DESC")
+    json_response(comments: @comments, user: current_user.as_json(only: [:id, :email]), avatar: current_user.profile.avatar)
   end
 
   # 【POST】 新增特定文章的留言  /api/v1/posts/:post_id/comments
@@ -36,7 +36,7 @@ class Api::V1::CommentsController < ApiController
   private
   def comment_params
     params[:comment][:post_id] = params[:post_id]
-    params.require(:comment).permit(:content, :post_id)
+    params.require(:comment).permit(:content, :post_id, :email, :picture)
   end
 
   def find_post

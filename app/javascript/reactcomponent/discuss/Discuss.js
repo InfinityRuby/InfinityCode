@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Loading from './lib/Loading'
 import marked from 'marked'
 
 function CurrentList({ listAmount }) {
@@ -15,15 +16,19 @@ export default function Discuss() {
   const [initPage, setInitPage] = useState(1)
   const listAmount = initPage * 10
   const currentListAmount = list.slice(listAmount - 10, listAmount)
-
+  const [loading, setLoading] = useState(undefined)
+  
   useEffect(() => {
     fetch('/jsons/data')
     .then(res => res.json())
     .then(post => {
-      setTimeout(() => { setList(post) }, 300 )
+      setList(post)
+      setTimeout(() => {
+        setLoading(true)
+      }, 700); 
     })    
   }, [])
-
+  
   function CurrentPageNumber() {
     const nextPage = number => listAmount < list.length && setInitPage(initPage + number)
     const previousPage = () => initPage > 1 && setInitPage(initPage - 1)
@@ -65,7 +70,6 @@ export default function Discuss() {
         searchValue.push(event.target.value) 
         searchInput.value = ''
       }, 0)
-      setTimeout(() => { setList([]) }, 300) 
       setTimeout(() => {       
         const currentSearch = list.filter(hash => hash.title.includes(searchValue.join())) 
         setList(currentSearch)
@@ -76,11 +80,9 @@ export default function Discuss() {
 
   const resetDiscuss = () => {  
     setInitPage(1)
-    setTimeout(() => {
-      fetch('/jsons/data')
-      .then(res => res.json())
-      .then(post => setList(post)) 
-    }, 400)       
+    fetch('/jsons/data')
+    .then(res => res.json())
+    .then(post => setList(post))       
   }
 
   const unknownDisplay = () => {
@@ -89,34 +91,48 @@ export default function Discuss() {
     .then(post => {
       const unknownUser = post.filter(item => item.unknown == true)
       setInitPage(1)
-      setTimeout(() => { setList([]) }, 300)
-      setTimeout(() => { setList(unknownUser) }, 700)   
+      setList(unknownUser)
     })
   }
-  
+
+  const switchDisplay = (event) => {
+    document.querySelectorAll('.discuss:nth-child(1) > a').forEach(a => {
+      a.style.color = "#9ca3af"
+      event.target.style.color = "black"
+    })
+    event.target.textContent == "匿名的文章" && unknownDisplay()
+    event.target.textContent == "全部的文章" && resetDiscuss()
+  }
+
   return(
   <div>
-    <div className="discuss">
-      <a href="#">全部的文章</a>
-      <a onClick={ unknownDisplay }>匿名的文章</a>
-      <a href="#">待開發</a>
-      <a href="#">待開發</a>
-    </div>
-    <div className="discuss">
-      <div>
-        <a href="#">Hot</a>
-        <a href="#">Newest to Oidest</a>
-        <a href="#">Most Votes</a>
-        <a href="#">文章數量 { list.length }</a>
-        <a href="/posts/new">新增文章</a>
+  { loading ?
+    <div>
+      <div className="discuss">
+        <a onClick={ switchDisplay }>全部的文章</a>
+        <a onClick={ switchDisplay }>匿名的文章</a>
+        <a onClick={ switchDisplay }>待開發</a>
+        <a onClick={ switchDisplay }>待開發</a>
       </div>
-      <div>
-        <input type="text" placeholder="Search topics or comments" id="searchListInput" onKeyPress={ searchList } />
-        <button onClick={ resetDiscuss }>Reset</button>
+      <div className="discuss">
+        <div>
+          <a href="#">Hot</a>
+          <a href="#">Newest to Oidest</a>
+          <a href="#">Most Votes</a>
+          <a href="#">文章數量 { list.length }</a>
+          <a href="/posts/new">新增文章</a>
+        </div>
+        <div>
+          <div className="discuss-search">
+            <input type="text" placeholder="Search topics or comments" id="searchListInput" onKeyPress={ searchList } />
+            <button onClick={ resetDiscuss }>Reset</button>
+          </div>
+        </div>
       </div>
+      <CurrentList listAmount={ currentListAmount } />
+      <CurrentPageNumber />
     </div>
-    <CurrentList listAmount={ currentListAmount } />
-    <CurrentPageNumber />
+      : <Loading /> }
   </div>
   )
 }
