@@ -21,10 +21,10 @@ export default function Comments() {
   const commentTextarea = document.getElementById('comment-textarea')
 
   useEffect(() => {
-    fetch(`/jsons/posts_comments/${allID('post')}`)
+    fetch(`/postapi/comments/${allID('post')}`)
     .then(res => res.json())
     .then(post => setCommentsAPI(post))
-    fetch(`/jsons/data`)
+    fetch(`/postapi/comments/`)
     .then(res => res.json())
     .then(post => {
       const currentPostID = post.filter(item => item.id == allID('post'))[0]

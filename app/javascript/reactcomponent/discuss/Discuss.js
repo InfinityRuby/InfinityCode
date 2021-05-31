@@ -17,7 +17,7 @@ export default function Discuss() {
   const currentListAmount = list.slice(listAmount - 10, listAmount)
 
   useEffect(() => {
-    fetch('/jsons/data')
+    fetch('/postapi/data')
     .then(res => res.json())
     .then(post => {
       setTimeout(() => { setList(post)}, 300 )
