@@ -150,7 +150,7 @@ export default function Comments() {
         <div>
           <i className="fa fa-comment-alt"></i>
           <span>{ `留言總數: ${commentsAPI.length}` }</span>
-          <select ref={ sortCommentsRef } onChange={ selectedOption }>
+          <select className="single-article-select" ref={ sortCommentsRef } onChange={ selectedOption }>
             <option value="sort">最新留言</option>
             <option value="reverse">最舊留言</option>
           </select>

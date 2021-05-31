@@ -14,10 +14,10 @@ export default function Discuss() {
     .then(res => res.json())
     .then(post => {
       setList(post)
-      setTimeout(() => {
-        setLoading(true)
-      }, 700); 
-    })    
+    })
+    setTimeout(() => {
+      setLoading(true)
+    }, 700) 
   }, [])
   
   function CurrentPageNumber() {

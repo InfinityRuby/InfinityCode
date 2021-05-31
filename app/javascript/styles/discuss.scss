@@ -32,7 +32,7 @@
           @apply w-full flex justify-end
         }    
         button{
-          @apply bg-gray-500 border w-16 h-8 text-white opacity-80 hover:bg-gray-700 rounded-sm ml-2
+          @apply bg-gray-500 border w-16 h-8 text-white opacity-80 hover:bg-gray-700 rounded-sm ml-2 outline-none
         } 
         input{
           @apply w-48 h-7 rounded-sm text-sm text-center border-2
@@ -79,14 +79,14 @@
     @apply border-2 border-gray-200 rounded-sm w-11/12 text-center
   }
   button{
-    @apply border-2 rounded-sm text-black bg-gray-200 block mt-2 mb-2 text-sm
+    @apply border-2 rounded-sm text-black bg-gray-200 block mt-2 mb-2 text-sm outline-none
   }
 }
 
 .pagination{
   @apply flex justify-center my-3;
   & > button{
-    @apply mx-1  rounded-lg border-gray-300 border-2 p-1 bg-white font-black text-sm w-16 hover:bg-gray-200 hover:text-white text-gray-400
+    @apply mx-1  rounded-lg border-gray-300 border-2 p-1 bg-white font-black text-sm w-16 hover:bg-gray-200 hover:text-white text-gray-400 outline-none
   }
   & > input{
     @apply border-gray-300 border rounded-sm mx-2 text-center
