@@ -75,15 +75,14 @@ document.addEventListener('turbolinks:load', () => {
       document.querySelector('.css-title').textContent = quest.title
       document.querySelector('.css-level').textContent = quest.level
       document.querySelector('.css-description').innerHTML = marked(quest.description)
-      document.querySelector('.css-picture').innerHTML = marked(quest.picture)
+      document.querySelector('.css-questImg').innerHTML = marked(quest.picture)
+
+      const resetBtn = document.querySelector(".quest-footer-button:nth-child(1)")
+      if (resetBtn) {
+        resetBtn.addEventListener("click", (el)=> {
+          editor.setValue(quest.problem)
+        })
+      }
     })
-    
-    
-    const resetbtn = document.querySelector(".quest-footer-button:nth-child(1)")
-    if (resetbtn) {
-      resetbtn.addEventListener("click", (el)=> {
-        editor.setValue(quest.problem)
-      })
-    }
   }
 })
