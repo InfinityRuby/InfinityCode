@@ -12,7 +12,6 @@ document.addEventListener('turbolinks:load', () => {
   const tabs = document.querySelector(".quest-buttonWrapper");
   const tabButton = document.querySelectorAll(".quest-tab-button");
   const contents = document.querySelectorAll(".quest-content");
-  const submit = document.querySelector('.quest-footer-button:nth-child(2)')
 
   if (tabs) {
     tabs.addEventListener("click", (event) => {
@@ -47,7 +46,6 @@ document.addEventListener('turbolinks:load', () => {
     })
     editor.setSize("500","500")
 
-    const html = marked('# Marked in Node.js\n\nRendered by **marked**.');
     hljs.configure({
       tabReplace: '  ',
       classPrefix: 'hljs-',
