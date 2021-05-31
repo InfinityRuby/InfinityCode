@@ -70,12 +70,15 @@
 }
 
 .single-article-comments-count{
-  @apply flex justify-between border-b border-gray-300 p-2 bg-gray-300 opacity-40;
+  @apply flex justify-between items-center border-b border-gray-300 p-2 bg-gray-300 opacity-40;
   div > svg{
     @apply ml-2
   }
-  div > span{
-    @apply text-base text-black mx-2 cursor-pointer
+  div:nth-child(2) > span{
+    @apply text-base text-black mx-2 cursor-pointer hover:text-gray-500
+  }
+  .single-article-select{
+    @apply mx-2 bg-gray-100 border border-black rounded-sm outline-none
   }
 }
 
@@ -89,7 +92,7 @@
 .single-article-textarea-border{
   @apply w-10/12 border-2 rounded-b-md border-gray-300 flex justify-end;
   & > button{
-    @apply border-l-2 border-gray-300 rounded-b-sm p-2 bg-gray-400 opacity-70 text-white hover:bg-gray-800
+    @apply border-l-2 border-gray-300 rounded-b-sm p-2 bg-gray-400 opacity-70 text-white hover:bg-gray-800 outline-none
   }
 }
 
@@ -131,6 +134,6 @@
 .user-comments-action{
   @apply w-4/12 flex justify-end pt-12 pb-2;
   button{
-    @apply mx-2 text-base hover:text-red-300
+    @apply mx-2 text-base hover:text-red-300 outline-none
   }
 }

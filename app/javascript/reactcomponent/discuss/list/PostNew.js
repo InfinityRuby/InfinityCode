@@ -7,14 +7,21 @@ function PostNew() {
   const editRef = useRef()
   const titleInputRef = useRef()
   const [unknown, setUnknown] = useState(false)
+  const [errorWarn, setErrorWarn] = useState(false)
 
   const unknownStatus = () => { setUnknown(!unknown) }
   const postNew = () => {
-    const titleValue = document.querySelector('.post-new-input')
-    const contentValue = document.querySelector('.w-md-editor-text-input')
-    API('POST', { title: titleValue.value, content: contentValue.value, unknown: unknown }, 'newPost')
-    editRef.current.style = 'background: #ffa100; color: #000'
-    location.href = "/posts"
+    const titleInput = document.querySelector('.post-new-input')
+    const contentTextarea = document.querySelector('.w-md-editor-text-input')
+    if(titleInput.value.length >= 6 && contentTextarea.value.length >= 6){
+      API('POST', { title: titleInput.value, content: contentTextarea.value, unknown: unknown }, 'newPost')
+      editRef.current.style = 'background: #ffa100; color: #000'
+      location.href = "/posts"
+    }else {
+      titleInput.style = 'border: 2px solid #f00'
+      contentTextarea.style = 'border: 2px solid #f00'
+      setErrorWarn(true)
+    }
   }
   useEffect(() => {
     titleInputRef.current.focus()
@@ -23,6 +30,7 @@ function PostNew() {
   return (
     <div className="post-new-wrap">
       <div className="post-new-title">
+        { errorWarn ? <div style={{ color: "#f00" }}>欄位必須填，至少6個字</div> : null }
         <input type="text" row="30" col="30" className="post-new-input" ref={ titleInputRef } />
       </div>
       <div className="unknown">

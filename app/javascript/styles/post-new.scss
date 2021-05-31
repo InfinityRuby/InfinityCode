@@ -12,7 +12,7 @@
       @apply w-full flex justify-end;
       .post-new-button{
         @apply w-20 h-12 border border-gray-900 bg-yellow-500 rounded-md mt-2 text-lg hover:bg-yellow-600
-        hover:text-white
+        hover:text-white outline-none
       }
     }
     .unknown{
