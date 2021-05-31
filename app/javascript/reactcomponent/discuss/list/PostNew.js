@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom"
 import MDEditor from '@uiw/react-md-editor'
-import API from "./lib/API";
+import API from "../lib/API";
 
 function PostNew() {
   const editRef = useRef()
