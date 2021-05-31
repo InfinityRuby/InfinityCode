@@ -6,9 +6,7 @@ document.addEventListener('turbolinks:load', () => {
   fetch(`/api/v1/quests/${loc}/prompts`)
   .then(request => request.json())
   .then(quest => {
-    let classCounter = 0
     quest.forEach(element => {
-      classCounter += 1
       const createBtn = document.createElement('button');
       const createDiv = document.createElement('div');
       const createEl = document.createElement('p');
