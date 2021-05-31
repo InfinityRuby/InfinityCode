@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import ReactDOM from "react-dom"
 import MDEditor from '@uiw/react-md-editor'
-import API from "./lib/API";
-import allID from "./lib/ID"
+import API from "../lib/API";
+import allID from "../lib/ID"
 
 function PostEdit() {
   const [editValueAPI, setEditValueAPI] = useState([])
