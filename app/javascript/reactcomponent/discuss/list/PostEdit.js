@@ -6,32 +6,40 @@ import allID from "../lib/ID"
 
 function PostEdit() {
   const [editValueAPI, setEditValueAPI] = useState([])
+  const [errorWarn, setErrorWarn] = useState(false)
   const editRef = useRef()
   
   useEffect(() => {
     fetch(`/jsons/data`)
     .then(res => res.json())
     .then(post => {
-      const titleValue = document.querySelector('.post-edit-input')
-      const contentValue = document.querySelector('.w-md-editor-text-input')
+      const titleInput = document.querySelector('.post-edit-input')
+      const contentTextarea = document.querySelector('.w-md-editor-text-input')
       const currentPostID = post.filter(item => item.id == allID('edit'))[0]  
-      titleValue.value = currentPostID.title
-      contentValue.value = currentPostID.content
+      titleInput.value = currentPostID.title
+      contentTextarea.value = currentPostID.content
       setEditValueAPI(currentPostID)
     })            
   }, [])
   
   const postEdit = () => {
-    const titleValue = document.querySelector('.post-edit-input')
-    const contentValue = document.querySelector('.w-md-editor-text-input') 
-    API('PUT', {title: titleValue.value, content: contentValue.value}, 'editPost')
-    editRef.current.style = 'background: #ffa100; color: #000'
-    location.href = `/posts/${allID('edit')}`
+    const titleInput = document.querySelector('.post-edit-input')
+    const contentTextarea = document.querySelector('.w-md-editor-text-input')
+    if(titleInput.value.length >= 6 && contentTextarea >= 6){
+      API('PUT', { title: titleInput.value, content: contentTextarea.value }, 'editPost')
+      editRef.current.style = 'background: #ffa100; color: #000'
+      location.href = `/posts/${allID('edit')}`
+    }else {
+      titleInput.style = 'border: 2px solid #f00'
+      contentTextarea.style = 'border: 2px solid #f00'
+      setErrorWarn(true)  
+    }
   }
 
   return (
     <div className="post-edit-wrap">
       <div className="post-edit-title">
+        { errorWarn ? <div style={{ color: "#f00" }}>欄位必須填，至少6個字</div> : null }
         <input type="text" row="30" col="30" className="post-edit-input" />
       </div>
       <MDEditor
