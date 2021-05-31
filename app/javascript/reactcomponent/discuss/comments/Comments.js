@@ -5,14 +5,19 @@ import allID from '../lib/ID'
 import marked from 'marked'
 import Loading from '../lib/Loading'
 
-function CurrentComments({ commentsAmount }) {
+function CurrentComments({ commentsAmount, loginUser }) {
   return commentsAmount.map(comments => {
     return <UserComments key={ comments.id } 
                          id={ comments.id }
-                         email={ comments.email } 
+                         email={ userOutput(comments.email) } 
                          content={ comments.content }
-                         create={ comments.created_at } />                       
+                         createTime={ comments.created_at }
+                         loginUser={ userOutput(loginUser) } />                       
   })
+}
+
+function userOutput(email) {
+  return `${email}`.substring(0, `${email}`.lastIndexOf('@'))
 }
 
 export default function Comments() {
@@ -25,6 +30,7 @@ export default function Comments() {
   const [loading, setLoading] = useState(undefined)
   const [commentPages, setCommentPages] = useState(1)
   const commentsAmount = commentsAPI.slice(commentPages * 6 - 6, commentPages * 6)
+  const loginUser = document.querySelector('.user-account > a').textContent
 
   useEffect(() => {
     fetch(`/api/v1/posts/${allID('post')}/comments`)
@@ -58,8 +64,10 @@ export default function Comments() {
 
   const postComment = event => {
     const commentTextarea = document.getElementById('comment-textarea')
+    const loginUser = document.querySelector('.user-account > a').textContent
+
     if(commentsAPI.length && commentTextarea.value) {
-      const postNewComment = { id: commentsAPI[0].id + 1, content: commentTextarea.value, created_at: commentsAPI[0].created_at, email: commentsAPI[0].email }
+      const postNewComment = { id: commentsAPI[0].id + 1, content: commentTextarea.value, created_at: commentsAPI[0].created_at, email: loginUser }
       const newCommentsTotal = commentsAPI.concat(postNewComment)
       newCommentsTotal.pop()
       newCommentsTotal.unshift(postNewComment)
@@ -127,13 +135,13 @@ export default function Comments() {
           <div className="single-article-content-wrap">
             <div className="single-article-content-author">
               <img src="https://picsum.photos/50/50?grayscale" alt="jpg" />
-              <h3>{ currentPost.unknown == true ? '匿名' : postUserValue }</h3>
+              { currentPost.unknown == true ? <h3 style={{ color: 'blue' }}>匿名</h3> : <h3 style={{ color: 'green' }}>{ postUserValue }</h3> }
               <i className="fa fa-star"></i>
               <span>11212</span>
               <span>上次編輯日期: { `${postValue.created_at}`.slice(0, 10) }</span>
             </div>
             <div className="single-article-content-body">
-              <div className="markdown-body" dangerouslySetInnerHTML={ {__html: marked(postValue.content + '')} }>
+              <div className="markdown-body" dangerouslySetInnerHTML={ {__html: marked(`${postValue.content}`)} }>
               </div>
             </div>
           </div>
@@ -148,8 +156,8 @@ export default function Comments() {
           </select>
         </div>
         <div>
-          <span><a href={ `/posts/${allID('post')}/edit` }>文章編輯</a></span>
-          <span onClick={ destroyPost }>文章刪除</span>
+          { postUserValue == userOutput(loginUser) ? <span><a href={ `/posts/${allID('post')}/edit` }>文章編輯</a></span> : null }
+          { postUserValue == userOutput(loginUser) ? <span onClick={ destroyPost }>文章刪除</span> : null } 
         </div>
             </div>
         <div className="single-article-content-input">
@@ -159,7 +167,7 @@ export default function Comments() {
             <button id="comment-button" onClick={ postComment }>送出</button>
           </div>
             </div>
-        <CurrentComments commentsAmount={ commentsAmount } />
+        <CurrentComments commentsAmount={ commentsAmount } loginUser={ loginUser } />
             <div className="single-article-page">
         <span onClick={ previousPage }><i className="fas fa-chevron-left"></i></span>
         { commentPages >= 5 ?  <span onClick={ returnPage }>{ 1 }</span> : null }
