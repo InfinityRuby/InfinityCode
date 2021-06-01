@@ -27,11 +27,11 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
 
-  config.mailer_sender = 'info<info@infinitycode.com>'
+  # config.mailer_sender = 'info<info@infinitycode.com>'
   # 設定顯示寄件人
 
   # Configure the class responsible to send e-mails.
-  config.mailer = 'Devise::Mailer'
+  # config.mailer = 'Devise::Mailer'
   # 將註解拿掉後，就會由 devise 預設的 Mailer 寄信 (從 Devise::Mailer 作 deliver 調用 ActionMailer)
 
   # Configure the parent class responsible to send e-mails.
