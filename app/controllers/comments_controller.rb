@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
-  before_action :find_comment, only: [:show, :edit, :update]
+  before_action :find_post, only: [:show, :edit, :update]
+  before_action :find_comment_id, only: [:edit, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
 
   def create
@@ -9,12 +10,9 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    # 從使用者角度去看，評論文章
-    @comment = current_user.comments.find(params[:id])
   end
 
   def update
-    # 判斷討論區文章內容，是否有更新，更新成功，轉址回討論區的文章表
     if @comment.update(comment_params)
       redirect_to post_path(@comment.post)
     else
@@ -23,8 +21,6 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    # 軟刪除，comment，不用實體變數。
-    comment = current_user.comments.find(params[:id])
     comment.destroy
     redirect_to post_path(@comment.post)
   end
@@ -35,8 +31,12 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:content)
   end
 
-  def find_comment
+  def find_post
     @post = Post.find(params[:post_id])
+  end
+
+  def find_comment_id
+    @comment = current_user.comments.find(params[:id])
   end
 
 end

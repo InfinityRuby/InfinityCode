@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :quests 
   resource :profile, only: [:show, :edit, :update]
   
-  get "/postapi/data", to: "postapi#post"
+  get "/postapi/post", to: "postapi#post"
   get "/postapi/comments/:id", to: "postapi#comments"
   get "/quests/questdata", to: "quests#questdata"
 
