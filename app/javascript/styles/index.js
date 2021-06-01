@@ -1,5 +1,5 @@
 import "./marked.scss"
-import './profile'
+import "./profile"
 import "./tailwind.scss"
 import "tailwindcss/tailwind.css"
 import "./discuss.scss"
@@ -8,4 +8,5 @@ import "./user"
 import "./marked.scss"
 import "./post-new.scss"
 import "./post-edit.scss"
-import './home'
+import "./home"
+import "./quest"

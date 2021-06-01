@@ -66,18 +66,18 @@ export default function Comments() {
     const commentTextarea = document.getElementById('comment-textarea')
     const loginUser = document.querySelector('.user-account > a').textContent
 
-    if(commentsAPI.length && commentTextarea.value) {
-      const postNewComment = { id: commentsAPI[0].id + 1, content: commentTextarea.value, created_at: commentsAPI[0].created_at, email: loginUser }
-      const newCommentsTotal = commentsAPI.concat(postNewComment)
-      newCommentsTotal.pop()
-      newCommentsTotal.unshift(postNewComment)
-      setCommentsAPI(newCommentsTotal)
-      setCommentPages(1)  
+    if(commentTextarea.value) {
       API('POST', { content: commentTextarea.value, email: userValue.email }, 'newComment')
-      commentTextarea.value = ''
-    }else if(commentsAPI.length == 0){
-      API('POST', { content: commentTextarea.value, email: userValue.email }, 'newComment')
-      location.href = `/posts/${allID('post')}`
+      .then(res => res.json())
+      .then(post => {
+        const postNewComment = { id: post.id, content: post.content, created_at: post.created_at, email: loginUser }
+        const newCommentsTotal = commentsAPI.concat(postNewComment)
+        newCommentsTotal.pop()
+        newCommentsTotal.unshift(postNewComment)
+        setCommentsAPI(newCommentsTotal)
+        setCommentPages(1)    
+        commentTextarea.value = ''
+      })
     }
   }
 
