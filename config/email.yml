@@ -1,0 +1,8 @@
+development:
+  address: "smtp.mailgun.org"
+  port: "587"
+  domain: ENV['domain']
+  authentication: "plain"
+  user_name: ENV['user_name']
+  password: ENV['password']
+  enable_starttls_auto: true

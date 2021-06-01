@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :trackable, :omniauthable, omniauth_providers: [:facebook, :google_oauth2, :github]
   has_many :posts
   has_many :comments
-  has_one :profile
+  has_one :profile, dependent: :destroy
 
   after_create do
     create_profile
@@ -15,7 +15,6 @@ class User < ApplicationRecord
     where(provider: provider_data.provider, uid: provider_data.uid).first_or_create do |user|
     user.email = provider_data.info.email
     user.password = Devise.friendly_token[0, 20]
-    user.skip_confirmation! 
     end
   end 
 end
