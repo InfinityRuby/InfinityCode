@@ -9,7 +9,7 @@ import 'highlight/styles/atelier-dune-dark.css'
 
 
 document.addEventListener('turbolinks:load', () => {
-  const tabs = document.querySelector(".quest-buttonWrapper");
+  const tabs = document.querySelector(".quest-button-wrapper");
   const tabButton = document.querySelectorAll(".quest-tab-button");
   const contents = document.querySelectorAll(".quest-content");
 
