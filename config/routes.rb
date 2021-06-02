@@ -17,14 +17,19 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :quests, except: [:new, :edit] do
         resources :prompts, only: [:index, :show]
+        
+        member do
+          post :answer
+        end
       end
 
       resources :posts, except: [:new, :edit] do
-        resources :comments, except: [:new, :edit]
+        resources :comments, shallow: true, except: [:new, :edit]
         member do
           get :user
         end
       end 
+
     end
   end
 
