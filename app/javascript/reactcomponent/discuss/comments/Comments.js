@@ -62,12 +62,13 @@ export default function Comments() {
     })
   }, [])
 
-  const postComment = event => {
+  const postComment = () => {
     const commentTextarea = document.getElementById('comment-textarea')
     const loginUser = document.querySelector('.user-account > a').textContent
 
     if(commentTextarea.value) {
-      API('POST', { content: commentTextarea.value, email: userValue.email }, `posts/${allID('post')}/comments`)
+      API('POST', { content: commentTextarea.value, email: userValue.email }, 
+      `posts/${allID('post')}/comments`)
       .then(res => res.json())
       .then(post => {
         const postNewComment = { id: post.id, content: post.content, created_at: post.created_at, email: loginUser }
