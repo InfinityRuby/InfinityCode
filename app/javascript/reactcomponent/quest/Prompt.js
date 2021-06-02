@@ -12,6 +12,10 @@ function Prompt() {
     fetch(`/api/v1/quests/${loc}/prompts`)
     .then(res => res.json())
     .then(post => setPrompts(post))
+
+    fetch(`/api/v1/coins`)
+    .then(res => res.json())
+    .then(post => console.log(post))
   }, [])
 
   return(
