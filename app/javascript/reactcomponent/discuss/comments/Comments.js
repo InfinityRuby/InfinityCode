@@ -67,7 +67,7 @@ export default function Comments() {
     const loginUser = document.querySelector('.user-account > a').textContent
 
     if(commentTextarea.value) {
-      API('POST', { content: commentTextarea.value, email: userValue.email }, 'newComment')
+      API('POST', { content: commentTextarea.value, email: userValue.email }, `posts/${allID('post')}/comments`)
       .then(res => res.json())
       .then(post => {
         const postNewComment = { id: post.id, content: post.content, created_at: post.created_at, email: loginUser }
@@ -110,7 +110,7 @@ export default function Comments() {
 
   const destroyPost = () => {
     if(confirm('確認要刪除這篇文章嗎？')) {
-      API('DELETE', '', 'destroyPost')
+      API('DELETE', '', `posts/${allID('edit')}`)
       location.href = '/posts'
     }
   }
