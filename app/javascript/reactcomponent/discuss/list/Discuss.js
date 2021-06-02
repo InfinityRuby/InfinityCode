@@ -34,7 +34,6 @@ export default function Discuss() {
 
     return(
       <div className="pagination">
-        { console.log(list) }
         <button onClick={ previousPage }>上一頁</button>
         { initPage > 2 ? <button onClick={ jumpPage.bind(this, 2) }>{ initPage - 2 }</button> : null }
         { initPage > 1 ? <button onClick={ jumpPage.bind(this, 1) }>{ initPage - 1 } </button> : null }

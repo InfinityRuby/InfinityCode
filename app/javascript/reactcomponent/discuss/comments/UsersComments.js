@@ -15,7 +15,8 @@ export default function UserComments({ id, email, content, createTime, loginUser
       `posts/${allID('post')}/comments/${commentsID(commentRef)}`)
       setCurrentComment(0)
       setTimeout(() => {
-        document.querySelector(`.single-article-comments-${commentsID(commentRef)} p`).textContent = event.target.value
+        document.querySelector(`.single-article-comments-${commentsID(commentRef)} p`)
+        .textContent = event.target.value
       }, 0) 
     }
   }

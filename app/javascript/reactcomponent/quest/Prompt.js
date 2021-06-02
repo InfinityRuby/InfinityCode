@@ -4,6 +4,7 @@ import PromptSelect from './PromptSelect'
 
 function Prompt() {
   const [prompts, setPrompts] = useState([])
+  const [coins, setCoins] = useState([])
   const promptsCount = prompts.length
   const url = window.location.href
   const loc = url.substring(url.lastIndexOf('/') + 1 )
@@ -12,10 +13,6 @@ function Prompt() {
     fetch(`/api/v1/quests/${loc}/prompts`)
     .then(res => res.json())
     .then(post => setPrompts(post))
-
-    fetch(`/api/v1/coins`)
-    .then(res => res.json())
-    .then(post => console.log(post))
   }, [])
 
   return(
