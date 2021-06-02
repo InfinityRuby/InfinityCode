@@ -12,7 +12,7 @@ export default function UserComments({ id, email, content, createTime, loginUser
   const editNewComment = (event) => {   
     if(event.key == 'Enter' && event.target.value != '') {
       API('PUT', { content: event.target.value },
-      `posts/${allID('post')}/comments/${commentsID(commentRef)}`)
+      `/api/v1/posts/${allID('post')}/comments/${commentsID(commentRef)}`)
       setCurrentComment(0)
       setTimeout(() => {
         document.querySelector(`.single-article-comments-${commentsID(commentRef)} p`)

@@ -1,24 +1,34 @@
 import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import API from '../discuss/lib/API'
+import allID from '../discuss/lib/ID'
 
 function Coin() {
   const [success, setSuccess] = useState(false)
   const [userCoins, setUserCoins] = useState([])
-  const url = window.location.href
-  const loc = url.substring(url.lastIndexOf('/') + 1 )
+  const userDisplayCoins = document.querySelector('.home-nav-item-link span')
   const reward = (status = true) => { 
     setSuccess(status)
-    API('POST', { coin_amount: userCoins.coin_amount + 5, 
-    coin_change: +5, description: "答題正確" }, 'coins')
+    getUserCoins()
+    .then(post => {  
+      API('POST', { coin_amount: post.coin_amount + 5, 
+      coin_change: +5, description: "答題正確" }, '/api/v1/coins')
+      .then(res => res.json())
+      .then(post => userDisplayCoins.textContent = post.coin_amount)
+    })
   }
-  
-  useEffect(() => {
-    fetch('/api/v1/coins')
+
+  const getUserCoins = () => {
+    return fetch('/api/v1/coins')
     .then(res => res.json())
     .then(post => {
       setUserCoins(post[post.length - 1])
+      return post[post.length - 1]
     })
+  }
+  
+  useEffect(() => {
+    getUserCoins()
   }, [])
   
   return(
@@ -36,7 +46,7 @@ function Coin() {
             onClick={ () => { location.href = `/quests` } } 
             className="quest-footer-button questbtn">題目列表</button>
             <button 
-            onClick={ () => { location.href = `/quests/${Number(loc) + 1}` } }
+            onClick={ () => { location.href = `/quests/${Number(allID('quest')) + 1}` } }
             className="quest-footer-button questbtn">
               下一題
             </button>

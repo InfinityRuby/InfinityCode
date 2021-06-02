@@ -1,22 +1,30 @@
 import React, { useState } from 'react'
+import API from '../discuss/lib/API'
 
-export default function PromptSelect({ prompts, promptsCount }) {
+export default function PromptSelect({ prompts, promptsCount, userCoins }) {
     return prompts.map((prompt, index) => {
       return <PromptButton key={ prompt.id }
                            hint={ prompt.hint }
                            index={ index }
-                           count={ promptsCount }/>
+                           count={ promptsCount }
+                           userCoins={ userCoins } />
     })
   }
   
-  function PromptButton({ hint, index, count }) {
+  function PromptButton({ hint, index, count, userCoins }) {
     const [switchContent, setSwitchContent] = useState(false) 
     const [displayUseCoin, setDisplayUseCoin] = useState(false)
+    const userDisplayCoins = document.querySelector('.home-nav-item-link span')
+
+    const useCoins = (status = true) => { setDisplayUseCoin(status) }
     const openContent = () => {
       useCoins(false) 
       setSwitchContent(true)
+      API('POST', { coin_amount: userCoins.coin_amount - 5, 
+      coin_change: -5,  description: '使用金幣提示' }, '/api/v1/coins')
+      .then(res => res.json())
+      .then(post => userDisplayCoins.textContent = post.coin_amount)
     }
-    const useCoins = (status = true) => { setDisplayUseCoin(status) }
   
     return(
       <div>
