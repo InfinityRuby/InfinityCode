@@ -12,7 +12,7 @@ function ListQuest() {
   
   function Quest(props) {
     const question = props
-    console.log(question)
+    
     return (
       <a className = "quest-name" href={`/quests/${ question.id }`}>
         <h3>{ question.title }</h3>
@@ -34,6 +34,3 @@ function ListQuest() {
       document.getElementById('list-quest')
     )}
   })
-
-  
-

@@ -34,20 +34,20 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = true
+  # config.action_mailer.raise_delivery_errors = false
+  # rails_delivery_errors 設定為 false 可讓寄信時的錯誤被忽略，如果要 debug 就設 true
 
-  config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    port: 587,
-    address: 'smtp.mailgun.org',
-    domain: 'sandbox82b886db66f443219d6599046ba0707c.mailgun.org',
-    user_name: ENV['smtp_user'],
-    password: ENV['smtp_password'],
-    authentication: :plain,
-    enable_starttls_auto: true
-  } 
+  # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  # config.action_mailer.delivery_method = :smtp
+  # delivery_method 有三種寄信方式 :test、:sendmail 和 :smtp
+  # sendmail 須搭配 server 的 /user/bin/sendmail application
+  # 而這邊是透過 mailgun(and gmail) 的 smtp 協定作寄信
+  # config.action_mailer.smtp_settings = config_for(:email).symbolize_keys
+  # config_for 會讀取 config 目錄下的 YAML 設定檔，由於 smtp_settings 需帶入 Symbol key
+  # 所以透過 .symbolize_keys 將 Hash 中的 String key 轉成 Symbol key
+  
+  # config.action_mailer.perform_caching = false
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

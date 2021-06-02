@@ -1,17 +1,7 @@
-import allID from './ID'
-
 const token = document.querySelector('meta[name=csrf-token]').content
 
-export default function API2(action, data, route, id) {  
-  if(route == 'editPost' || route == 'destroyPost') {
-    fetch(`/api/v1/posts/${allID('edit')}`, OutputAPI(action, data))
-  }else if(route == 'newPost') {
-    fetch(`/api/v1/posts`, OutputAPI(action, data))
-  }else if(route == 'editComment' || route == 'destroyComment') {
-    fetch(`/api/v1/posts/${allID('post')}/comments/${id}`, OutputAPI(action, data))
-  }else if(route == 'newComment') {
-    fetch(`/api/v1/posts/${allID('post')}/comments`, OutputAPI(action, data))
-  }
+export default function API(action, data, url) {  
+  return fetch(`/api/v1/${url}`, OutputAPI(action, data))
 }
 
 const OutputAPI = (action, apiData) => {

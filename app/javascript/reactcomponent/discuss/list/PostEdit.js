@@ -25,8 +25,8 @@ function PostEdit() {
   const postEdit = () => {
     const titleInput = document.querySelector('.post-edit-input')
     const contentTextarea = document.querySelector('.w-md-editor-text-input')
-    if(titleInput.value.length >= 6 && contentTextarea >= 6){
-      API('PUT', { title: titleInput.value, content: contentTextarea.value }, 'editPost')
+    if(titleInput.value.length >= 6 && contentTextarea.value.length >= 6){
+      API('PUT', { title: titleInput.value, content: contentTextarea.value }, `posts/${allID('edit')}`)
       editRef.current.style = 'background: #ffa100; color: #000'
       location.href = `/posts/${allID('edit')}`
     }else {
