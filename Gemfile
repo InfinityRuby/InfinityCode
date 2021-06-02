@@ -47,17 +47,18 @@ gem 'carrierwave', '~> 2.2', '>= 2.2.1'
 gem 'mini_magick', '~> 4.11'
 gem 'fog-aws', '~> 3.10'
 
+
+group :development, :test do
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'foreman', '~> 0.87.2'
+  
 # 自動化部屬
 gem 'capistrano', '~> 3.11'
 gem 'capistrano-rails', '~> 1.4'
 gem 'capistrano-passenger', '~> 0.2.0'
 gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
 gem 'capistrano-upload-config'
-
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'foreman', '~> 0.87.2'
 end
 
 group :development do
