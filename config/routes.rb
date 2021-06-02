@@ -24,7 +24,13 @@ Rails.application.routes.draw do
         member do
           get :user
         end
-      end 
+      end
+      
+      resources :coins, only: [:index, :create] do
+      end
+
+      resources :users, only: [:index] do
+      end
     end
   end
 

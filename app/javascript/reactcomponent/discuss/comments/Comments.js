@@ -30,7 +30,7 @@ export default function Comments() {
   const [loading, setLoading] = useState(undefined)
   const [commentPages, setCommentPages] = useState(1)
   const commentsAmount = commentsAPI.slice(commentPages * 6 - 6, commentPages * 6)
-  const loginUser = document.querySelector('.user-account > a').textContent
+  const loginUser = document.querySelector('.user-account span')
 
   useEffect(() => {
     fetch(`/api/v1/posts/${allID('post')}/comments`)
@@ -64,14 +64,14 @@ export default function Comments() {
 
   const postComment = () => {
     const commentTextarea = document.getElementById('comment-textarea')
-    const loginUser = document.querySelector('.user-account > a').textContent
+    const loginUser = document.querySelector('.user-account span')
 
     if(commentTextarea.value) {
       API('POST', { content: commentTextarea.value, email: userValue.email }, 
-      `posts/${allID('post')}/comments`)
+      `/api/v1/posts/${allID('post')}/comments`)
       .then(res => res.json())
       .then(post => {
-        const postNewComment = { id: post.id, content: post.content, created_at: post.created_at, email: loginUser }
+        const postNewComment = { id: post.id, content: post.content, created_at: post.created_at, email: loginUser.textContent }
         const newCommentsTotal = commentsAPI.concat(postNewComment)
         newCommentsTotal.pop()
         newCommentsTotal.unshift(postNewComment)
@@ -111,7 +111,7 @@ export default function Comments() {
 
   const destroyPost = () => {
     if(confirm('確認要刪除這篇文章嗎？')) {
-      API('DELETE', '', `posts/${allID('edit')}`)
+      API('DELETE', '', `/api/v1/posts/${allID('edit')}`)
       location.href = '/posts'
     }
   }
@@ -157,8 +157,8 @@ export default function Comments() {
           </select>
         </div>
         <div>
-          { postUserValue == userOutput(loginUser) ? <span><a href={ `/posts/${allID('post')}/edit` }>文章編輯</a></span> : null }
-          { postUserValue == userOutput(loginUser) ? <span onClick={ destroyPost }>文章刪除</span> : null } 
+          { postUserValue == userOutput(loginUser.textContent) ? <span><a href={ `/posts/${allID('post')}/edit` }>文章編輯</a></span> : null }
+          { postUserValue == userOutput(loginUser.textContent) ? <span onClick={ destroyPost }>文章刪除</span> : null } 
         </div>
             </div>
         <div className="single-article-content-input">
@@ -168,7 +168,7 @@ export default function Comments() {
             <button id="comment-button" onClick={ postComment }>送出</button>
           </div>
             </div>
-        <CurrentComments commentsAmount={ commentsAmount } loginUser={ loginUser } />
+        <CurrentComments commentsAmount={ commentsAmount } loginUser={ loginUser.textContent } />
             <div className="single-article-page">
         <span onClick={ previousPage }><i className="fas fa-chevron-left"></i></span>
         { commentPages >= 5 ?  <span onClick={ returnPage }>{ 1 }</span> : null }

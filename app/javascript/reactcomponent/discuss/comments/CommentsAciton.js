@@ -11,7 +11,7 @@ function CommentsAction({ commentRef, setCurrentComment, currentComment, email, 
   const destroyComment = () => {    
     if(confirm('確認要刪除這則留言？')) {
     commentRef.current.style = 'display: none'
-    API('DELETE', '', `posts/${allID('post')}/comments/${commentsID(commentRef)}`)
+    API('DELETE', '', `/api/v1/posts/${allID('post')}/comments/${commentsID(commentRef)}`)
     } 
   }
   

@@ -5,10 +5,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :trackable, :omniauthable, omniauth_providers: [:facebook, :google_oauth2, :github]
   has_many :posts
   has_many :comments
-  has_one :profile, dependent: :destroy
+  has_many :coins
+  has_one :profile
 
   after_create do
     create_profile
+    create_coins
   end
 
   def self.create_from_provider_data(provider_data) 
@@ -16,5 +18,10 @@ class User < ApplicationRecord
     user.email = provider_data.info.email
     user.password = Devise.friendly_token[0, 20]
     end
-  end 
+  end
+
+  private
+  def create_coins
+    self.coins.create(coin_amount: 20, coin_change: 0, description: '無')
+  end
 end
