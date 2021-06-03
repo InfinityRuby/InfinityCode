@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import CurrentList from './CurrentList'
+import API from '../lib/API'
 import Loading from '../lib/Loading'
 
 export default function Discuss() {
@@ -10,8 +11,7 @@ export default function Discuss() {
   const [loading, setLoading] = useState(undefined)
   
   useEffect(() => {
-    fetch('/jsons/data')
-    .then(res => res.json())
+    API('/jsons/data')
     .then(post => {
       setList(post)
     })
@@ -51,8 +51,7 @@ export default function Discuss() {
     const searchValue = []
     const searchInput = document.getElementById('searchListInput')
     if(event.key == 'Enter'){
-      fetch('/jsons/data')
-      .then(res => res.json())
+      API('/jsons/data')
       .then((post) => {
           list.splice(0, list.length)
           post.map(el => list.push(el))
@@ -71,14 +70,12 @@ export default function Discuss() {
 
   const resetDiscuss = () => {  
     setInitPage(1)
-    fetch('/jsons/data')
-    .then(res => res.json())
+    API('/jsons/data')
     .then(post => setList(post))       
   }
 
   const unknownDisplay = () => {
-    fetch('/jsons/data')
-    .then(res => res.json())
+    API('/jsons/data')
     .then(post => {
       const unknownUser = post.filter(item => item.unknown == true)
       setInitPage(1)

@@ -24,9 +24,8 @@ export default function PromptSelect({ prompts, promptsCount, userCoins, useReco
       if(event.target.textContent == '免費提示') {
         setSwitchContent(true)
       }else if(event.target.textContent == '確定' && userCoins.coin_amount >= 5) {
-        API('POST', { coin_amount: userCoins.coin_amount - 5, 
-        coin_change: -5,  description: `使用第${allID('post')}題的金幣提示` }, '/api/v1/coins')
-        .then(res => res.json())
+        API( '/api/v1/coins', 'POST', { coin_amount: userCoins.coin_amount - 5, 
+        coin_change: -5,  description: `使用第${allID()}題的金幣提示` })
         .then(post => userDisplayCoins.textContent = post.coin_amount)
         setSwitchContent(true)
       }else {

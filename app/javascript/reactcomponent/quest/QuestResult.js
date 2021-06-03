@@ -11,16 +11,14 @@ function Coin() {
     setCorrectDisplay(true)
     getUserCoins()
     .then(post => {  
-      API('POST', { coin_amount: post.coin_amount + 5, 
-      coin_change: +5, description: `答題正確${displayCoins}` }, '/api/v1/coins')
-      .then(res => res.json())
+      API( '/api/v1/coins', 'POST', { coin_amount: post.coin_amount + 5, 
+      coin_change: +5, description: `答題正確${displayCoins}` })
       .then(post => userDisplayCoins.textContent = post.coin_amount)
     })
   }
 
   const getUserCoins = () => {
-    return fetch('/api/v1/coins')
-    .then(res => res.json())
+    return API('/api/v1/coins')
     .then(post => {
       setDisplayCoins(allID())
       return post[post.length - 1]
@@ -46,7 +44,7 @@ function Coin() {
             onClick={ () => { location.href = `/quests` } } 
             className="quest-footer-button questbtn">題目列表</button>
             <button 
-            onClick={ () => { location.href = `/quests/${Number(allID('quest')) + 1}` } }
+            onClick={ () => { location.href = `/quests/${Number(allID()) + 1}` } }
             className="quest-footer-button questbtn">
               下一題
             </button>

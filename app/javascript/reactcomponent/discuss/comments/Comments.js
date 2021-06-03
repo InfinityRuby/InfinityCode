@@ -30,27 +30,23 @@ export default function Comments() {
   const loginUser = document.querySelector('.user-account span')
 
   useEffect(() => {
-    fetch(`/api/v1/posts/${allID('post')}/comments`)
-    .then(res => res.json())
+    API(`/api/v1/posts/${allID('post')}/comments`)
     .then(post => { 
       setUserValue(post.user)
       setCommentsAPI(post.comments)
     }) 
-    fetch(`/jsons/data`)
-    .then(res => res.json())
+    API(`/jsons/data`)  
     .then(post => {
       const currentPostID = post.filter(item => item.id == allID('post'))[0]
       setPostValue(currentPostID)
     })
-    fetch(`/api/v1/posts/${allID('post')}/user`)
-    .then(res => res.json())
+    API(`/api/v1/posts/${allID('post')}/user`) 
     .then(post => { 
       const currentUser = `${post.email}`
       const currentUserName = currentUser.substring(0, currentUser.indexOf('@'))
       setPostUserValue(currentUserName)
      })
-    fetch(`/api/v1/posts/${allID('post')}`)
-    .then(res => res.json())
+    API(`/api/v1/posts/${allID('post')}`) 
     .then(post => {
       setTimeout(() => {
         setLoading(true)   
@@ -63,9 +59,8 @@ export default function Comments() {
     const commentTextarea = document.getElementById('comment-textarea')
 
     if(commentTextarea.value) {
-      API('POST', { content: commentTextarea.value, email: userValue.email }, 
-      `/api/v1/posts/${allID('post')}/comments`)
-      .then(res => res.json())
+      API(`/api/v1/posts/${allID('post')}/comments`, 
+      'POST', { content: commentTextarea.value, email: userValue.email })
       .then(post => {
         const postNewComment = { id: post.id, content: post.content, created_at: post.created_at, email: post.email }
         const newCommentsTotal = commentsAPI.concat(postNewComment)
@@ -86,8 +81,8 @@ export default function Comments() {
 
   const sortComments = (status = false) => {
     commentsAPI.splice(0, commentsAPI.length)
-    fetch(`/jsons/posts_comments/${allID('post')}`)
-    .then(res => res.json())
+    API(`/jsons/posts_comments/${allID('post')}`)
+    
     .then(posts => {
       const storageCache = []
       const sortComments = storageCache.concat(posts)
@@ -107,7 +102,7 @@ export default function Comments() {
 
   const destroyPost = () => {
     if(confirm('確認要刪除這篇文章嗎？')) {
-      API('DELETE', '', `/api/v1/posts/${allID('edit')}`)
+      API(`/api/v1/posts/${allID('edit')}`, 'DELETE', '', )
       location.href = '/posts'
     }
   }
