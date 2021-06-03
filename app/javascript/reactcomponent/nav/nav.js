@@ -7,7 +7,7 @@ function Nav() {
   const [userCoins, setUserCoins] = useState([])
   const signOut = () => {
     API('DELETE', '', '/users/sign_out')
-    .then(res => location.href = '/')
+    .then(() => location.href = '/')
   }
 
   useEffect(() => {
@@ -34,9 +34,6 @@ function Nav() {
               <a href="/quests">解題區</a>
             </li>
             <li>
-              <a href="/profile">個人檔案</a>
-            </li>
-            <li>
               <a href="/posts">討論區</a>
             </li>
             <li>
@@ -56,7 +53,7 @@ function Nav() {
                 <i className="fas fa-chevron-down"></i>
               </a>
               <ul className="sub1">
-                <li onClick={ () => { location.href = '/profile' } }>Practice</li>
+                <li onClick={ () => { location.href = '/profile' } }>個人檔案</li>
                 <li><a href="#Bookmarks-path"></a></li>
                 <li onClick={ signOut } className="navbar-link">登出</li>
               </ul>

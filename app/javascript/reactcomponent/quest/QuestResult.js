@@ -4,15 +4,15 @@ import API from '../discuss/lib/API'
 import allID from '../discuss/lib/ID'
 
 function Coin() {
-  const [success, setSuccess] = useState(false)
-  const [userCoins, setUserCoins] = useState([])
+  const [correctDisplay, setCorrectDisplay] = useState(false)
+  const [displayCoins, setDisplayCoins] = useState(0)
   const userDisplayCoins = document.querySelector('.home-nav-item-link span')
-  const reward = (status = true) => { 
-    setSuccess(status)
+  const reward = () => { 
+    setCorrectDisplay(true)
     getUserCoins()
     .then(post => {  
       API('POST', { coin_amount: post.coin_amount + 5, 
-      coin_change: +5, description: "答題正確" }, '/api/v1/coins')
+      coin_change: +5, description: `答題正確${displayCoins}` }, '/api/v1/coins')
       .then(res => res.json())
       .then(post => userDisplayCoins.textContent = post.coin_amount)
     })
@@ -22,7 +22,7 @@ function Coin() {
     return fetch('/api/v1/coins')
     .then(res => res.json())
     .then(post => {
-      setUserCoins(post[post.length - 1])
+      setDisplayCoins(allID())
       return post[post.length - 1]
     })
   }
@@ -33,13 +33,13 @@ function Coin() {
   
   return(
     <div>
-      { success ? 
+      { correctDisplay ? 
       <div className="quest-awser-wrap">
         <div className="quest-awser-content">
           <div className="quest-awser-button">
             <div><img src="/quest/star.png" /><span>+ 5</span></div>
             <h2>Good job !</h2>
-            <button onClick={ reward.bind(this, false) } className="quest-footer-button questbtn">
+            <button className="quest-footer-button questbtn">
               解題討埨區
             </button>
             <button

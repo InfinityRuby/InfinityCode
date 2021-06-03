@@ -5,8 +5,8 @@ import allID from '../lib/ID'
 import marked from 'marked'
 
 export default function UserComments({ id, email, content, createTime, loginUser }) {
-  const commentRef = useRef()
   const [currentComment, setCurrentComment] = useState(0)
+  const commentRef = useRef()
   const editInput = document.querySelector(`.single-article-comments-${currentComment} p`)
 
   const editNewComment = (event) => {   
