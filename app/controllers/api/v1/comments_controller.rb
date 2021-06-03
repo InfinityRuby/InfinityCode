@@ -33,6 +33,20 @@ class Api::V1::CommentsController < ApiController
     head :no_content
   end
 
+  def upvote
+    @comment = Post.find(params[:id])
+    @result = current_user.liked? @comment
+    @comment.like_by current_user
+
+    if @result
+      @comment.unliked_by current_user
+    else
+      @comment.liked_by current_user
+    end
+    redirect_to posts_path
+
+  end
+
   private
   def comment_params
     params[:comment][:post_id] = params[:post_id]

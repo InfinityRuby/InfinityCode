@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :comments
   has_one :profile, dependent: :destroy
 
+  acts_as_voter
+
   after_create do
     create_profile
   end

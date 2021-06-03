@@ -4,8 +4,7 @@ class Api::V1::PostsController < ApiController
 
   # 【GET】 查詢文章列表  /api/v1/posts
   def index
-    @posts = Post.order("created_at DESC")
-
+    @posts = Post.order(created_at: :desc)
     json_response(@posts)
   end
 
@@ -39,6 +38,27 @@ class Api::V1::PostsController < ApiController
     @post = Post.find(params[:id])
     render json: @post.user
   end
+
+  def upvote
+    @post = Post.find(params[:id])
+    @result = current_user.liked? @post
+    @post.like_by current_user
+
+    if @result
+      @post.unliked_by current_user
+    else
+      @post.liked_by current_user
+    end
+    # redirect_to posts_path
+    render json: @result 
+  end
+  # 開一個布靈值 欄位
+
+  def total_votes
+    @total_like = @post.get_likes.size
+    render json: @total_like
+  end
+
 
   private
   def post_params
