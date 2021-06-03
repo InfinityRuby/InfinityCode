@@ -11,7 +11,7 @@ export default function Discuss() {
   const [loading, setLoading] = useState(undefined)
   
   useEffect(() => {
-    API('/jsons/data')
+    API('/api/v1/posts')
     .then(post => {
       setList(post)
     })
@@ -51,7 +51,7 @@ export default function Discuss() {
     const searchValue = []
     const searchInput = document.getElementById('searchListInput')
     if(event.key == 'Enter'){
-      API('/jsons/data')
+      API('/api/v1/posts')
       .then((post) => {
           list.splice(0, list.length)
           post.map(el => list.push(el))
@@ -70,12 +70,12 @@ export default function Discuss() {
 
   const resetDiscuss = () => {  
     setInitPage(1)
-    API('/jsons/data')
+    API('/api/v1/posts')
     .then(post => setList(post))       
   }
 
   const unknownDisplay = () => {
-    API('/jsons/data')
+    API('/api/v1/posts')
     .then(post => {
       const unknownUser = post.filter(item => item.unknown == true)
       setInitPage(1)

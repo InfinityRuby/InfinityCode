@@ -35,7 +35,7 @@ export default function Comments() {
       setUserValue(post.user)
       setCommentsAPI(post.comments)
     }) 
-    API(`/jsons/data`)  
+    API(`/api/v1/posts`)  
     .then(post => {
       const currentPostID = post.filter(item => item.id == allID('post'))[0]
       setPostValue(currentPostID)
@@ -81,7 +81,7 @@ export default function Comments() {
 
   const sortComments = (status = false) => {
     commentsAPI.splice(0, commentsAPI.length)
-    API(`/jsons/posts_comments/${allID('post')}`)
+    API(`/api/v1/posts/${allID('post')}/comments`)
     
     .then(posts => {
       const storageCache = []
