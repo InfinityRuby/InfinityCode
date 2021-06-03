@@ -21,7 +21,8 @@ ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 # set :pty, true
 
 # Default value for :linked_files is []
-append :linked_files, "config/application.yml", "config/secrets.yml", "config/database.yml"
+append :linked_files, "config/application.yml", "config/secrets.yml", "config/database.yml", "config/storage.yml"
+# 做 push 要確認本地端有沒有以上檔案 + .production 的檔案
 
 # Default value for linked_dirs is []
 # append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
