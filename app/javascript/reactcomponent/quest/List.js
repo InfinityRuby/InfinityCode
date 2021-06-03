@@ -1,12 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { useEffect, useState } from 'react'
+import API from '../discuss/lib/API'
 
 function ListQuest() {
   const [listQuest, setListQuest] = useState([])
   useEffect(() => {
-    fetch('/api/v1/quests')
-    .then(res => res.json())
+    API('/api/v1/quests')
     .then(posts => setListQuest(posts))
   }, [])
   

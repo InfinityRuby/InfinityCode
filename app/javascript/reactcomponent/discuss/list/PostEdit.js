@@ -10,8 +10,7 @@ function PostEdit() {
   const editRef = useRef()
   
   useEffect(() => {
-    fetch(`/jsons/data`)
-    .then(res => res.json())
+    API(`/jsons/data`)
     .then(post => {
       const titleInput = document.querySelector('.post-edit-input')
       const contentTextarea = document.querySelector('.w-md-editor-text-input')
@@ -26,8 +25,8 @@ function PostEdit() {
     const titleInput = document.querySelector('.post-edit-input')
     const contentTextarea = document.querySelector('.w-md-editor-text-input')
     if(titleInput.value.length >= 6 && contentTextarea.value.length >= 6){
-      API('PUT', { title: titleInput.value, content: contentTextarea.value },
-       `/api/v1/posts/${allID('edit')}`)
+      API(`/api/v1/posts/${allID('edit')}`,
+       'PUT', { title: titleInput.value, content: contentTextarea.value })
       editRef.current.style = 'background: #ffa100; color: #000'
       location.href = `/posts/${allID('edit')}`
     }else {

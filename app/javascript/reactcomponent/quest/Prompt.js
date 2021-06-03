@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import PromptSelect from './PromptSelect'
+import API from '../discuss/lib/API'
 import allID from '../discuss/lib/ID'
 
 function Prompt() {
@@ -10,12 +11,10 @@ function Prompt() {
   const promptsCount = prompts.length
 
   useEffect(() => {
-    fetch(`/api/v1/quests/${allID()}/prompts`)
-    .then(res => res.json())
+    API(`/api/v1/quests/${allID()}/prompts`)
     .then(post => setPrompts(post))
 
-    fetch(`/api/v1/coins`)
-    .then(res => res.json())
+    API(`/api/v1/coins`)
     .then(post => {
       setUseRecord(post.find(el => el.description == `使用第${allID()}題的金幣提示`))
       setUserCoins(post[post.length - 1])
