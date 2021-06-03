@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
       resources :posts, except: [:new, :edit] do
         member do
-          get "like", to: "posts#upvote"
+          get "like", to: "posts#user_like"
           get "totallike", to: "posts#total_votes"
         end
         resources :comments, shallow: true, except: [:new, :edit]

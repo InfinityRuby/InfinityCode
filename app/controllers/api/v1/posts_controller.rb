@@ -39,7 +39,7 @@ class Api::V1::PostsController < Api::V1::BaseController
     render json: @post.user
   end
 
-  def upvote
+  def user_like
     @post = Post.find(params[:id])
     @result = current_user.liked? @post
 
