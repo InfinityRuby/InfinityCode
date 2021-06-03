@@ -9,15 +9,12 @@ function CurrentComments({ commentsAmount, loginUser }) {
   return commentsAmount.map(comments => {
     return <UserComments key={ comments.id } 
                          id={ comments.id }
-                         email={ userOutput(comments.email) } 
+                         email={ `${comments.email}`
+                         .substring(0, `${comments.email}`.lastIndexOf('@')) } 
                          content={ comments.content }
                          createTime={ comments.created_at }
-                         loginUser={ userOutput(loginUser) } />                       
+                         loginUser={ loginUser } />                       
   })
-}
-
-function userOutput(email) {
-  return `${email}`.substring(0, `${email}`.lastIndexOf('@'))
 }
 
 export default function Comments() {
@@ -64,14 +61,13 @@ export default function Comments() {
 
   const postComment = () => {
     const commentTextarea = document.getElementById('comment-textarea')
-    const loginUser = document.querySelector('.user-account span')
 
     if(commentTextarea.value) {
       API('POST', { content: commentTextarea.value, email: userValue.email }, 
       `/api/v1/posts/${allID('post')}/comments`)
       .then(res => res.json())
       .then(post => {
-        const postNewComment = { id: post.id, content: post.content, created_at: post.created_at, email: loginUser.textContent }
+        const postNewComment = { id: post.id, content: post.content, created_at: post.created_at, email: post.email }
         const newCommentsTotal = commentsAPI.concat(postNewComment)
         newCommentsTotal.pop()
         newCommentsTotal.unshift(postNewComment)
@@ -156,10 +152,13 @@ export default function Comments() {
             <option value="reverse">最舊留言</option>
           </select>
         </div>
+
+        { postUserValue == loginUser.textContent ?
         <div>
-          { postUserValue == userOutput(loginUser.textContent) ? <span><a href={ `/posts/${allID('post')}/edit` }>文章編輯</a></span> : null }
-          { postUserValue == userOutput(loginUser.textContent) ? <span onClick={ destroyPost }>文章刪除</span> : null } 
+          <span><a href={ `/posts/${allID('post')}/edit` }>文章編輯</a></span> 
+          <span onClick={ destroyPost }>文章刪除</span> 
         </div>
+        : null }
             </div>
         <div className="single-article-content-input">
           <textarea name="singeArticle" id="comment-textarea" cols="10" rows="10" placeholder="此處留言...請注意用詞">

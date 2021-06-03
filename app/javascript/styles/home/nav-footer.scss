@@ -22,7 +22,7 @@
       @apply flex text-base lg:flex-grow pl-7 justify-end;
 
       ul {
-        @apply flex;
+        @apply flex cursor-pointer;
 
         li:hover ul {
           @apply block;
@@ -55,6 +55,11 @@
         a{
           .user-email{
             @apply text-green-600 mr-2 tracking-wider;
+          }
+        } 
+        ul{
+          li{
+            @apply hover:text-yellow-500
           }
         }
       }

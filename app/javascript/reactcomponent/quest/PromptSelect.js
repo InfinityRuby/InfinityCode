@@ -1,29 +1,37 @@
 import React, { useState } from 'react'
 import API from '../discuss/lib/API'
+import allID from '../discuss/lib/ID'
 
-export default function PromptSelect({ prompts, promptsCount, userCoins }) {
+export default function PromptSelect({ prompts, promptsCount, userCoins, useRecord }) {
     return prompts.map((prompt, index) => {
       return <PromptButton key={ prompt.id }
                            hint={ prompt.hint }
                            index={ index }
                            count={ promptsCount }
-                           userCoins={ userCoins } />
+                           userCoins={ userCoins }
+                           useRecord={ useRecord } />
     })
   }
   
-  function PromptButton({ hint, index, count, userCoins }) {
+  function PromptButton({ hint, index, count, userCoins, useRecord }) {
     const [switchContent, setSwitchContent] = useState(false) 
     const [displayUseCoin, setDisplayUseCoin] = useState(false)
     const userDisplayCoins = document.querySelector('.home-nav-item-link span')
 
     const useCoins = (status = true) => { setDisplayUseCoin(status) }
-    const openContent = () => {
-      useCoins(false) 
-      setSwitchContent(true)
-      API('POST', { coin_amount: userCoins.coin_amount - 5, 
-      coin_change: -5,  description: '使用金幣提示' }, '/api/v1/coins')
-      .then(res => res.json())
-      .then(post => userDisplayCoins.textContent = post.coin_amount)
+    const openContent = (event) => {
+      useCoins(false)
+      if(event.target.textContent == '免費提示') {
+        setSwitchContent(true)
+      }else if(event.target.textContent == '確定' && userCoins.coin_amount >= 5) {
+        API('POST', { coin_amount: userCoins.coin_amount - 5, 
+        coin_change: -5,  description: `使用第${allID('post')}題的金幣提示` }, '/api/v1/coins')
+        .then(res => res.json())
+        .then(post => userDisplayCoins.textContent = post.coin_amount)
+        setSwitchContent(true)
+      }else {
+        alert('金錢不夠')
+      }      
     }
   
     return(
@@ -44,10 +52,10 @@ export default function PromptSelect({ prompts, promptsCount, userCoins }) {
         : null }
         <button className="quest-prompt-button questbtn"
         style={ index == count - 1 ? { background: '#fb9827' } : null} 
-        onClick={ index == count - 1 ? (switchContent ? null : useCoins) : openContent }>
+        onClick={ index == count - 1 ? (switchContent || useRecord ? null : useCoins) : openContent }>
           { index == count - 1 ? '金幣提示' : '免費提示' }
         </button>
-        <p>{ switchContent ? hint : null }</p>
+        <p>{ switchContent || useRecord ? hint : null }</p>
       </div>
     )
   }
