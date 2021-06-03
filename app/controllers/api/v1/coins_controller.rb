@@ -1,4 +1,4 @@
-class Api::V1::CoinsController < ApiController
+class Api::V1::CoinsController < Api::V1::BaseController
   before_action :signed_in?
 
   def index
