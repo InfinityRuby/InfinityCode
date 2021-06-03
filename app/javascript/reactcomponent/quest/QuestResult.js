@@ -3,19 +3,21 @@ import ReactDOM from 'react-dom'
 import API from '../lib/API'
 import allID from '../lib/ID'
 import getCode from '../../quest/question'
+import Loading from '../lib/Loading'
 
 function Coin() {
   const [correctDisplay, setCorrectDisplay] = useState(false)
   const [displayCoins, setDisplayCoins] = useState(0)
+  const [errorMessge, setErrorMessge] = useState(undefined)
+  const [loading, setLoading] = useState(false)
   const userDisplayCoins = document.querySelector('.home-nav-item-link span')
-  const [animation, setAnimation] = useState(true)
-  const reward = () => { 
-    setAnimation(false)
-    setTimeout(() => {setAnimation(true)}, 700)
+  const reward = () => {
+    setLoading(true) 
     API(`/api/v1/quests/${allID()}/answer`, 'POST', { quest: { type: 'ruby', code: getCode() } })
     .then(res => res.json())
     .then(post => {
       if(post.status == 'Success') {
+        setLoading(false)
         setCorrectDisplay(true)
         getUserCoins()
         .then(post => {  
@@ -24,6 +26,9 @@ function Coin() {
           .then(res => res.json())
           .then(post => userDisplayCoins.textContent = post.coin_amount)
         })
+      }else {
+        setLoading(false)
+        setErrorMessge(post.output)
       }
     })
   }
@@ -64,6 +69,19 @@ function Coin() {
       </div>
       : null }
 
+      { errorMessge != undefined ?
+      <div className="quest-error-window">
+        <div>
+          <div><span class="tracking-wider">Runtime Error</span></div>
+          <div onClick={ () => { setErrorMessge(undefined) } }><i className="fas fa-times"></i></div>
+        </div>
+        <div>
+          { errorMessge.map((error, index) => 
+          <div className="error-messge" key={ index }>{ error }</div>) }
+        </div>
+      </div>
+      : null }
+      { loading ? <div class="answer-loading"><Loading /></div> : null }
       <div>
         <button className="quest-footer-button questbtn">重置</button>
         <button onClick={ reward } className="quest-footer-button questbtn">送出</button>
