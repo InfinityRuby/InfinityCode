@@ -1,4 +1,4 @@
-class Api::V1::CommentsController < ApiController
+class Api::V1::CommentsController < Api::V1::BaseController
   before_action :find_comment, only: [:show, :update, :destroy]
   before_action :signed_in?, except: [:index, :show]
 
@@ -58,7 +58,7 @@ class Api::V1::CommentsController < ApiController
   end
 
   def find_comment
-    @comment = current_user.comments.find_by(post_id: params[:post_id], id: params[:id])
+    @comment = current_user.comments.find(params[:id])
   end
 
 end
