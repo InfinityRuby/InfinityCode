@@ -3,10 +3,12 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable, :omniauthable, omniauth_providers: [:facebook, :google_oauth2, :github]
+         
   has_many :posts
   has_many :comments
   has_many :coins
-  has_one :profile
+  has_one :profile, dependent: :destroy
+  has_many :answers
 
   after_create do
     create_profile
