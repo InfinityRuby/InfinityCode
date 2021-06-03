@@ -4,7 +4,7 @@ class Api::V1::PostsController < Api::V1::BaseController
 
   # 【GET】 查詢文章列表  /api/v1/posts
   def index
-    @posts = Post.order("created_at DESC")
+    @posts = Post.order(created_at: :desc)
     json_response(@posts)
   end
 
@@ -51,7 +51,7 @@ class Api::V1::PostsController < Api::V1::BaseController
     render json: {user_id: current_user.id, post_id: @post.id, liked: !@result}
   end
 
-  def total_votes
+  def total_likes
     @total_like = @post.get_likes.size
     render json: {total_like: @total_like}
   end
