@@ -1,6 +1,6 @@
 import React from 'react'
-import API from '../lib/API'
-import allID from '../lib/ID'
+import API from '../../lib/API'
+import allID from '../../lib/ID'
 
 function CommentsAction({ commentRef, setCurrentComment, currentComment, email, loginUser }) { 
   const editComment = () => {  

@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { useEffect, useState } from 'react'
-import API from '../discuss/lib/API'
+import API from '../lib/API'
 
 function ListQuest() {
   const [listQuest, setListQuest] = useState([])

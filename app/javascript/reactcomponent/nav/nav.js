@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
-import API from '../discuss/lib/API'
+import API from '../lib/API'
 
 function Nav() {
   const [user, setUser] = useState([])
   const [userCoins, setUserCoins] = useState([])
   const signOut = () => {
     API('/users/sign_out', 'DELETE', '')
-    .then(() => location.href = '/')
+    .then(() => location.href = "/")
   }
 
   useEffect(() => {

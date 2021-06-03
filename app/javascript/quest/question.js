@@ -7,6 +7,7 @@ import marked from 'marked'
 import hljs from 'highlight.js'
 import 'highlight/styles/atelier-dune-dark.css'
 
+let editor
 
 document.addEventListener('turbolinks:load', () => {
   const tabs = document.querySelector(".quest-button-wrapper");
@@ -34,7 +35,7 @@ document.addEventListener('turbolinks:load', () => {
     }) 
   }
   if (document.querySelector("#editor")) {  
-    const editor = CodeMirror.fromTextArea(document.querySelector("#editor"),{
+    editor = CodeMirror.fromTextArea(document.querySelector("#editor"),{
       mode: "ruby",
       theme: "default",
       lineNumbers: true,
@@ -78,9 +79,13 @@ document.addEventListener('turbolinks:load', () => {
       const resetBtn = document.querySelector(".quest-footer-button:nth-child(1)")
       if (resetBtn) {
         resetBtn.addEventListener("click", (el)=> {
-          editor.setValue(quest.problem)
+          editor.setValue(quest.problem)       
         })
       }
     })
   }
 })
+
+export default function getCode() {
+  return editor.getValue()
+}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import CurrentList from './CurrentList'
-import API from '../lib/API'
-import Loading from '../lib/Loading'
+import API from '../../lib/API'
+import Loading from '../../lib/Loading'
 
 export default function Discuss() {
   const [list, setList] = useState([])

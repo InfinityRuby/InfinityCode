@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import ReactDOM from "react-dom"
 import MDEditor from '@uiw/react-md-editor'
-import API from "../lib/API";
-import allID from "../lib/ID"
+import API from "../../lib/API";
+import allID from "../../lib/ID"
 
 function PostEdit() {
   const [errorWarn, setErrorWarn] = useState(false)
@@ -22,7 +22,8 @@ function PostEdit() {
     const titleInput = document.querySelector('.post-edit-input')
     const contentTextarea = document.querySelector('.w-md-editor-text-input')
     if(titleInput.value.length >= 6 && contentTextarea.value.length >= 6){
-      API(`/api/v1/posts/${allID('edit')}`, 'PUT', { title: titleInput.value, content: contentTextarea.value })
+      API(`/api/v1/posts/${allID('edit')}`, 'PUT', 
+      { title: titleInput.value, content: contentTextarea.value })
       editRef.current.style = 'background: #ffa100; color: #000'
       location.href = `/posts/${allID('edit')}`
     }else {

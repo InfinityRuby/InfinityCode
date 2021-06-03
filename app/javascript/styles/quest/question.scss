@@ -117,7 +117,7 @@
   display:none;
 }
 
-.quest-awser-wrap{
+.quest-answer-wrap{
   width: 100%;
   height: 100%;
   position: fixed;
@@ -128,14 +128,14 @@
   font-size: 0;
   z-index: 100;
 }
-.quest-awser-wrap:before{
+.quest-answer-wrap:before{
   content:'';
   display: inline-block;
   width: 0px;
   height: 100%;
   vertical-align: middle;
 }
-.quest-awser-wrap:after{
+.quest-answer-wrap:after{
   content:'';
   position: absolute;
   width: 100%;
@@ -146,7 +146,7 @@
   background-color: #000;
   opacity:.5
 }
-.quest-awser-content{
+.quest-answer-content{
   width: 500px;
   height: 320px;
   padding: 10px;
@@ -160,13 +160,13 @@
   border-radius: 10px;
 }
 
-.quest-awser-button{
+.quest-answer-button{
   font-size: 26px;
   letter-spacing: 1px;
   margin-top: 20px;
 }
 
-.quest-awser-button > button{
+.quest-answer-button > button{
   width: 28%;
   height: 30%;
   margin: 20px 10px 0 10px;
@@ -174,27 +174,27 @@
   outline: none;
 }
 
-.quest-awser-button > button:nth-of-type(2n+1){
+.quest-answer-button > button:nth-of-type(2n+1){
   background-color: #fb9827;
 }
 
-.quest-awser-button div{
+.quest-answer-button div{
   margin-right: 20px;
 }
 
-.quest-awser-button div > span{
+.quest-answer-button div > span{
   font-size: 50px;
   color: #fb9827;
 }
 
-.quest-awser-button div > img{
+.quest-answer-button div > img{
   width: 40%;
   margin: auto;
   margin-bottom: 20px;
   display: inline-block;
 }
 
-.quest-awser-button h2{
+.quest-answer-button h2{
   color: #424242cc;
   font-size: 40px;
   margin-top: -20px;
@@ -279,4 +279,34 @@
 .prompt-window > img{
   width: 50%;
   margin: auto;
+}
+
+.quest-error-window{
+  width: 500px;
+  height: 200px;
+  position: absolute;
+  left: 560px;
+  right: 0;
+  margin: auto;
+  margin-top: -220px;
+  box-shadow: 2px 2px 10px 0 rgb(206, 203, 203);
+  border-radius: 4px;
+  background: rgb(255, 255, 255);
+  z-index: 100;
+}
+
+.quest-error-window > div:nth-child(1){
+  display: flex;
+  justify-content: center;
+  font-size: 20px;
+  border-bottom: 1px solid rgb(233, 233, 233);
+  padding: 3px;
+  color:rgb(141, 141, 141);
+}
+
+.quest-error-window > div:nth-child(2){
+  display: flex;
+  padding: 10px;
+  font-size: 18px;
+  color: rgb(238, 98, 98);
 }
