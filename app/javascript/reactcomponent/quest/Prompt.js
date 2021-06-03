@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import PromptSelect from './PromptSelect'
-import API from '../discuss/lib/API'
-import allID from '../discuss/lib/ID'
+import API from '../lib/API'
+import allID from '../lib/ID'
 
 function Prompt() {
   const [prompts, setPrompts] = useState([])
@@ -23,10 +23,10 @@ function Prompt() {
 
   return(
     <div>
-      < PromptSelect prompts={ prompts } 
-                     promptsCount={ promptsCount } 
-                     userCoins={ userCoins }
-                     useRecord={ useRecord } />
+      <PromptSelect prompts={ prompts } 
+                    promptsCount={ promptsCount } 
+                    userCoins={ userCoins }
+                    useRecord={ useRecord } />
     </div>
   )
 }

@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useRef }  from 'react'
 import UserComments from './UsersComments'
-import API from '../lib/API'
-import allID from '../lib/ID'
+import API from '../../lib/API'
+import allID from '../../lib/ID'
 import marked from 'marked'
-import Loading from '../lib/Loading'
+import Loading from '../../lib/Loading'
 
 function CurrentComments({ commentsAmount, loginUser }) {
   return commentsAmount.map(comments => {
@@ -61,6 +61,7 @@ export default function Comments() {
     if(commentTextarea.value) {
       API(`/api/v1/posts/${allID('post')}/comments`, 
       'POST', { content: commentTextarea.value, email: userValue.email })
+      .then(res => res.json())
       .then(post => {
         const postNewComment = { id: post.id, content: post.content, created_at: post.created_at, email: post.email }
         const newCommentsTotal = commentsAPI.concat(postNewComment)
@@ -82,7 +83,7 @@ export default function Comments() {
   const sortComments = (status = false) => {
     commentsAPI.splice(0, commentsAPI.length)
     API(`/api/v1/posts/${allID('post')}/comments`)
-    
+    .then(res => res.json())
     .then(posts => {
       const storageCache = []
       const sortComments = storageCache.concat(posts)

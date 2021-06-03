@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
 import { CommentsAction, commentsID } from './CommentsAciton'
-import API from '../lib/API'
-import allID from '../lib/ID'
+import API from '../../lib/API'
+import allID from '../../lib/ID'
 import marked from 'marked'
 
 export default function UserComments({ id, email, content, createTime, loginUser }) {

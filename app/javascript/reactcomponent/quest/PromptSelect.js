@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import API from '../discuss/lib/API'
-import allID from '../discuss/lib/ID'
+import API from '../lib/API'
+import allID from '../lib/ID'
 
 export default function PromptSelect({ prompts, promptsCount, userCoins, useRecord }) {
     return prompts.map((prompt, index) => {
@@ -26,6 +26,7 @@ export default function PromptSelect({ prompts, promptsCount, userCoins, useReco
       }else if(event.target.textContent == '確定' && userCoins.coin_amount >= 5) {
         API( '/api/v1/coins', 'POST', { coin_amount: userCoins.coin_amount - 5, 
         coin_change: -5,  description: `使用第${allID()}題的金幣提示` })
+        .then(res => res.json())
         .then(post => userDisplayCoins.textContent = post.coin_amount)
         setSwitchContent(true)
       }else {
