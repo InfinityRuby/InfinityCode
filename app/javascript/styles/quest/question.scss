@@ -44,6 +44,11 @@
 .quest-tab-button.active {
   background-color: #fb9827;
 }
+
+.quest-tab-button.questbtn{
+  outline: none;
+}
+
 .quest-contentWrapper div {
   padding-top: 10px;
 }
@@ -60,10 +65,11 @@
 .quest-content.active {
   display: block;
 }
-.quest-prompt-button{
+.quest-prompt-button.questbtn{
   display: block;
   margin-top: 20px;
   border-radius: 10px;
+  outline: none;
 }
 .quest-prompt-button:hover {
   background-color: #fb9827
@@ -94,10 +100,12 @@
 .quest-footer-button:nth-child(1){
   margin-left: 650px;
 }
-.quest-footer-button {
+.quest-footer-button.questbtn{
   border-radius: 10px;
   margin-right: 10px;
+  outline: none;
 }
+
 .quest-footer-button:hover {
   background-color: #fb9827
 }
@@ -291,22 +299,62 @@
   margin-top: -220px;
   box-shadow: 2px 2px 10px 0 rgb(206, 203, 203);
   border-radius: 4px;
+  padding: 3px 5px;
   background: rgb(255, 255, 255);
   z-index: 100;
+  overflow: scroll;
 }
 
 .quest-error-window > div:nth-child(1){
   display: flex;
-  justify-content: center;
   font-size: 20px;
   border-bottom: 1px solid rgb(233, 233, 233);
   padding: 3px;
-  color:rgb(141, 141, 141);
+  color:rgb(194, 41, 41);
+}
+
+.quest-error-window > div:nth-child(1) > div{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 3px;
+  width: 62%;
+}
+
+.quest-error-window > div:nth-child(1) > div:nth-child(2){
+  width: 38%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 20px;
+  color:rgb(206, 203, 203);
+}
+
+.quest-error-window > div:nth-child(1) > div:nth-child(2) svg:hover{
+  color:rgb(156, 152, 152);
 }
 
 .quest-error-window > div:nth-child(2){
   display: flex;
-  padding: 10px;
-  font-size: 18px;
+  flex-direction: column;
+  font-size: 15px;
+  padding: 8px;
   color: rgb(238, 98, 98);
+}
+
+.error-messge{
+  padding: 8px;
+  color: rgb(238, 98, 98);
+  line-height: 24px;
+  word-wrap: break-word;
+  word-break: keep-all;
+}
+
+.answer-loading{
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 100;
 }
