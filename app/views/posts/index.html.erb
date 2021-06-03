@@ -21,11 +21,11 @@ Sunt, nobis. Expedita ex eius reprehenderit nobis repellendus praesentium, odio 
 
 
 <% @post.each do |post| %>
+<div>
   <%= post.title %>
   <%= link_to like_api_v1_post_path(post) do %>
     點讚
   <% end %>
   <%= post.get_likes.size %>
-<% end %>
-
 </div>
+<% end %>
