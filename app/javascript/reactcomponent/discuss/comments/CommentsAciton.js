@@ -1,6 +1,5 @@
 import React from 'react'
 import API from '../../lib/API'
-import allID from '../../lib/ID'
 
 function CommentsAction({ commentRef, setCurrentComment, currentComment, email, loginUser }) { 
   const editComment = () => {  
@@ -11,7 +10,7 @@ function CommentsAction({ commentRef, setCurrentComment, currentComment, email, 
   const destroyComment = () => {    
     if(confirm('確認要刪除這則留言？')) {
     commentRef.current.style = 'display: none'
-    API(`/api/v1/posts/${allID('post')}/comments/${commentsID(commentRef)}`, 'DELETE', '')
+    API(`/api/v1/comments/${commentsID(commentRef)}`, 'DELETE', '')
     } 
   }
   
