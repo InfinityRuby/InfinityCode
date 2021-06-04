@@ -53,8 +53,8 @@ export default function Discuss() {
     if(event.key == 'Enter'){
       API('/api/v1/posts')
       .then((post) => {
-          list.splice(0, list.length)
-          post.map(el => list.push(el))
+        list.splice(0, list.length)
+        post.map(el => list.push(el))
       })
       setTimeout(() => {
         searchValue.push(event.target.value) 
