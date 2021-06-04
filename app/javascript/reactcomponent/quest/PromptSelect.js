@@ -26,8 +26,8 @@ export default function PromptSelect({ prompts, promptsCount, userCoins, useReco
       }else if(event.target.textContent == '確定' && userCoins.coin_amount >= 5) {
         API( '/api/v1/coins', 'POST', { coin_amount: userCoins.coin_amount - 5, 
         coin_change: -5,  description: `使用第${allID()}題的金幣提示` })
-        .then(res => res.json())
-        .then(post => userDisplayCoins.textContent = post.coin_amount)
+          .then(res => res.json())
+            .then(post => userDisplayCoins.textContent = post.coin_amount)
         setSwitchContent(true)
       }else {
         alert('金錢不夠')

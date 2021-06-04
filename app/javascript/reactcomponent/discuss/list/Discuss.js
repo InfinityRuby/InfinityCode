@@ -12,9 +12,9 @@ export default function Discuss() {
   
   useEffect(() => {
     API('/api/v1/posts')
-    .then(post => {
-      setList(post)
-    })
+      .then(post => {
+        setList(post)
+      })
     setTimeout(() => {
       setLoading(true)
     }, 700) 
@@ -52,10 +52,10 @@ export default function Discuss() {
     const searchInput = document.getElementById('searchListInput')
     if(event.key == 'Enter'){
       API('/api/v1/posts')
-      .then((post) => {
-        list.splice(0, list.length)
-        post.map(el => list.push(el))
-      })
+        .then((post) => {
+          list.splice(0, list.length)
+          post.map(el => list.push(el))
+        })
       setTimeout(() => {
         searchValue.push(event.target.value) 
         searchInput.value = ''
@@ -71,16 +71,16 @@ export default function Discuss() {
   const resetDiscuss = () => {  
     setInitPage(1)
     API('/api/v1/posts')
-    .then(post => setList(post))       
+      .then(post => setList(post))       
   }
 
   const unknownDisplay = () => {
     API('/api/v1/posts')
-    .then(post => {
-      const unknownUser = post.filter(item => item.unknown == true)
-      setInitPage(1)
-      setList(unknownUser)
-    })
+      .then(post => {
+        const unknownUser = post.filter(item => item.unknown == true)
+        setInitPage(1)
+        setList(unknownUser)
+      })
   }
 
   const switchDisplay = (event) => {

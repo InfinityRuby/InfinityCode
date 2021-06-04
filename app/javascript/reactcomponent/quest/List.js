@@ -7,7 +7,7 @@ function ListQuest() {
   const [listQuest, setListQuest] = useState([])
   useEffect(() => {
     API('/api/v1/quests')
-    .then(posts => setListQuest(posts))
+      .then(posts => setListQuest(posts))
   }, [])
   
   function Quest({ id, title, level }) {
