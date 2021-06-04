@@ -3,6 +3,9 @@
 
   .home-logo {
     @apply flex items-center flex-shrink-0 text-black mr-6;
+    img{
+      @apply w-12 h-8
+    }
     
     .home-logo-text {
       @apply font-semibold text-xl tracking-tight;
@@ -19,13 +22,16 @@
       @apply flex text-base lg:flex-grow pl-7 justify-end;
 
       ul {
-        @apply flex;
+        @apply flex items-end cursor-pointer;
 
         li:hover ul {
           @apply block;
         }
         li {
           @apply list-none;
+        }
+        span {
+          @apply text-yellow-500 text-lg font-semibold
         }
 
         ul {
@@ -46,16 +52,30 @@
 
       .user-account {
         @apply mr-0;
+        a{
+          .user-email{
+            @apply text-green-600 mr-2 tracking-wider;
+          }
+        } 
+        ul{
+          li{
+            @apply hover:text-yellow-500
+          }
+        }
+      }
+
+      img {
+        @apply w-7 h-5 mb-1;
       }
 
       .user-btn {
         @apply mr-0;
 
         .user-btn-signup {
-          @apply border-gray-500 rounded border py-2 px-3 hover:text-yellow-500 hover:border-yellow-500 ;
+          @apply border-gray-500 rounded border py-2 px-3 hover:text-yellow-500 hover:border-yellow-500 text-xl outline-none;
         }
         .user-btn-login {
-          @apply py-2 px-3;
+          @apply py-2 px-3 hover:text-yellow-500 text-xl outline-none;
         }
       }
     }

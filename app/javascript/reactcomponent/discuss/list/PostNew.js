@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom"
 import MDEditor from '@uiw/react-md-editor'
-import API from "../lib/API";
+import API from "../../lib/API";
 
 function PostNew() {
   const editRef = useRef()
@@ -14,9 +14,10 @@ function PostNew() {
     const titleInput = document.querySelector('.post-new-input')
     const contentTextarea = document.querySelector('.w-md-editor-text-input')
     if(titleInput.value.length >= 6 && contentTextarea.value.length >= 6){
-      API('POST', { title: titleInput.value, content: contentTextarea.value, unknown: unknown }, 'posts')
-      .then(res => res.json())
-      .then(post => location.href = `/posts/${post.id}`)
+      API('/api/v1/posts', 'POST', 
+      { title: titleInput.value, content: contentTextarea.value, unknown: unknown })
+        .then(res => res.json())
+          .then(post => location.href = `/posts/${post.id}`)
       editRef.current.style = 'background: #ffa100; color: #000'
     }else {
       titleInput.style = 'border: 2px solid #f00'

@@ -1,7 +1,11 @@
 const token = document.querySelector('meta[name=csrf-token]').content
 
-export default function API(action, data, url) {  
-  return fetch(`/api/v1/${url}`, OutputAPI(action, data))
+export default function API(url, action, data) {
+  if(data != undefined) {
+    return fetch(url, OutputAPI(action, data))
+  }else {
+    return fetch(url).then(res => res.json())
+  }
 }
 
 const OutputAPI = (action, apiData) => {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import CurrentList from './CurrentList'
-import Loading from '../lib/Loading'
+import API from '../../lib/API'
+import Loading from '../../lib/Loading'
 
 export default function Discuss() {
   const [list, setList] = useState([])
@@ -10,11 +11,10 @@ export default function Discuss() {
   const [loading, setLoading] = useState(undefined)
   
   useEffect(() => {
-    fetch('/jsons/data')
-    .then(res => res.json())
-    .then(post => {
-      setList(post)
-    })
+    API('/api/v1/posts')
+      .then(post => {
+        setList(post)
+      })
     setTimeout(() => {
       setLoading(true)
     }, 700) 
@@ -51,12 +51,11 @@ export default function Discuss() {
     const searchValue = []
     const searchInput = document.getElementById('searchListInput')
     if(event.key == 'Enter'){
-      fetch('/jsons/data')
-      .then(res => res.json())
-      .then((post) => {
+      API('/api/v1/posts')
+        .then((post) => {
           list.splice(0, list.length)
           post.map(el => list.push(el))
-      })
+        })
       setTimeout(() => {
         searchValue.push(event.target.value) 
         searchInput.value = ''
@@ -71,19 +70,17 @@ export default function Discuss() {
 
   const resetDiscuss = () => {  
     setInitPage(1)
-    fetch('/jsons/data')
-    .then(res => res.json())
-    .then(post => setList(post))       
+    API('/api/v1/posts')
+      .then(post => setList(post))       
   }
 
   const unknownDisplay = () => {
-    fetch('/jsons/data')
-    .then(res => res.json())
-    .then(post => {
-      const unknownUser = post.filter(item => item.unknown == true)
-      setInitPage(1)
-      setList(unknownUser)
-    })
+    API('/api/v1/posts')
+      .then(post => {
+        const unknownUser = post.filter(item => item.unknown == true)
+        setInitPage(1)
+        setList(unknownUser)
+      })
   }
 
   const switchDisplay = (event) => {

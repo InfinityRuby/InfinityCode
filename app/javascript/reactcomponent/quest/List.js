@@ -1,23 +1,22 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { useEffect, useState } from 'react'
+import API from '../lib/API'
 
 function ListQuest() {
   const [listQuest, setListQuest] = useState([])
   useEffect(() => {
-    fetch('/api/v1/quests')
-    .then(res => res.json())
-    .then(posts => setListQuest(posts))
+    API('/api/v1/quests')
+      .then(posts => setListQuest(posts))
   }, [])
   
-  function Quest(props) {
-    const question = props
+  function Quest({ id, title, level }) {
     
     return (
-      <a className = "quest-name" href={`/quests/${ question.id }`}>
-        <h3>{ question.title }</h3>
+      <a className = "quest-name" href={`/quests/${id}`}>
+        <h3>{ title }</h3>
         <div className = "listWrapper">
-          <div className="questionLevel"><p>{ question.level }</p></div>
+          <div className="questionLevel"><p>{ level }</p></div>
           <button className="questionBtn">已解決</button></div>
       </a>
     )

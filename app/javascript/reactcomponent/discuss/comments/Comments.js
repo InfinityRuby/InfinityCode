@@ -1,23 +1,20 @@
 import React, { useEffect, useState, useRef }  from 'react'
 import UserComments from './UsersComments'
-import API from '../lib/API'
-import allID from '../lib/ID'
+import API from '../../lib/API'
+import allID from '../../lib/ID'
 import marked from 'marked'
-import Loading from '../lib/Loading'
+import Loading from '../../lib/Loading'
 
 function CurrentComments({ commentsAmount, loginUser }) {
   return commentsAmount.map(comments => {
     return <UserComments key={ comments.id } 
                          id={ comments.id }
-                         email={ userOutput(comments.email) } 
+                         email={ `${comments.email}`
+                         .substring(0, `${comments.email}`.lastIndexOf('@')) } 
                          content={ comments.content }
                          createTime={ comments.created_at }
-                         loginUser={ userOutput(loginUser) } />                       
+                         loginUser={ loginUser } />                       
   })
-}
-
-function userOutput(email) {
-  return `${email}`.substring(0, `${email}`.lastIndexOf('@'))
 }
 
 export default function Comments() {
@@ -30,54 +27,49 @@ export default function Comments() {
   const [loading, setLoading] = useState(undefined)
   const [commentPages, setCommentPages] = useState(1)
   const commentsAmount = commentsAPI.slice(commentPages * 6 - 6, commentPages * 6)
-  const loginUser = document.querySelector('.user-account > a').textContent
+  const loginUser = document.querySelector('.user-account span')
 
   useEffect(() => {
-    fetch(`/api/v1/posts/${allID('post')}/comments`)
-    .then(res => res.json())
-    .then(post => { 
-      setUserValue(post.user)
-      setCommentsAPI(post.comments)
+    API(`/api/v1/posts/${allID('post')}/comments`)
+      .then(post => { 
+        setUserValue(post.user)
+        setCommentsAPI(post.comments)
     }) 
-    fetch(`/jsons/data`)
-    .then(res => res.json())
-    .then(post => {
-      const currentPostID = post.filter(item => item.id == allID('post'))[0]
-      setPostValue(currentPostID)
+    API(`/api/v1/posts`)  
+      .then(post => {
+        const currentPostID = post.filter(item => item.id == allID('post'))[0]
+        setPostValue(currentPostID)
     })
-    fetch(`/api/v1/posts/${allID('post')}/user`)
-    .then(res => res.json())
-    .then(post => { 
-      const currentUser = `${post.email}`
-      const currentUserName = currentUser.substring(0, currentUser.indexOf('@'))
-      setPostUserValue(currentUserName)
+    API(`/api/v1/posts/${allID('post')}/user`) 
+      .then(post => { 
+        const currentUser = `${post.email}`
+        const currentUserName = currentUser.substring(0, currentUser.indexOf('@'))
+        setPostUserValue(currentUserName)
      })
-    fetch(`/api/v1/posts/${allID('post')}`)
-    .then(res => res.json())
-    .then(post => {
-      setTimeout(() => {
-        setLoading(true)   
-        setCurrentPost(post)   
-      }, 700);    
+    API(`/api/v1/posts/${allID('post')}`) 
+      .then(post => {
+        setTimeout(() => {
+          setLoading(true)   
+          setCurrentPost(post)   
+        }, 700);    
     })
   }, [])
 
   const postComment = () => {
     const commentTextarea = document.getElementById('comment-textarea')
-    const loginUser = document.querySelector('.user-account > a').textContent
 
     if(commentTextarea.value) {
-      API('POST', { content: commentTextarea.value, email: userValue.email }, 
-      `posts/${allID('post')}/comments`)
-      .then(res => res.json())
-      .then(post => {
-        const postNewComment = { id: post.id, content: post.content, created_at: post.created_at, email: loginUser }
-        const newCommentsTotal = commentsAPI.concat(postNewComment)
-        newCommentsTotal.pop()
-        newCommentsTotal.unshift(postNewComment)
-        setCommentsAPI(newCommentsTotal)
-        setCommentPages(1)    
-        commentTextarea.value = ''
+      API(`/api/v1/posts/${allID('post')}/comments`, 
+      'POST', { content: commentTextarea.value, email: userValue.email })
+        .then(res => res.json())
+        .then(post => {
+          const postNewComment = { id: post.id, content: post.content, created_at: post.created_at, email: post.email }
+          const newCommentsTotal = commentsAPI.concat(postNewComment)
+          newCommentsTotal.pop()
+          newCommentsTotal.unshift(postNewComment)
+          setCommentsAPI(newCommentsTotal)
+          setCommentPages(1)    
+          commentTextarea.value = ''
       })
     }
   }
@@ -90,13 +82,13 @@ export default function Comments() {
 
   const sortComments = (status = false) => {
     commentsAPI.splice(0, commentsAPI.length)
-    fetch(`/jsons/posts_comments/${allID('post')}`)
-    .then(res => res.json())
-    .then(posts => {
-      const storageCache = []
-      const sortComments = storageCache.concat(posts)
-      const reverseComments = storageCache.concat(posts.reverse())
-      status == true ? setCommentsAPI(sortComments) : setCommentsAPI(reverseComments)
+    API(`/api/v1/posts/${allID('post')}/comments`)
+      .then(res => res.json())
+      .then(posts => {
+        const storageCache = []
+        const sortComments = storageCache.concat(posts)
+        const reverseComments = storageCache.concat(posts.reverse())
+        status == true ? setCommentsAPI(sortComments) : setCommentsAPI(reverseComments)
     }) 
   }
 
@@ -111,7 +103,7 @@ export default function Comments() {
 
   const destroyPost = () => {
     if(confirm('確認要刪除這篇文章嗎？')) {
-      API('DELETE', '', `posts/${allID('edit')}`)
+      API(`/api/v1/posts/${allID('edit')}`, 'DELETE', '', )
       location.href = '/posts'
     }
   }
@@ -156,10 +148,13 @@ export default function Comments() {
             <option value="reverse">最舊留言</option>
           </select>
         </div>
+
+        { postUserValue == loginUser.textContent ?
         <div>
-          { postUserValue == userOutput(loginUser) ? <span><a href={ `/posts/${allID('post')}/edit` }>文章編輯</a></span> : null }
-          { postUserValue == userOutput(loginUser) ? <span onClick={ destroyPost }>文章刪除</span> : null } 
+          <span><a href={ `/posts/${allID('post')}/edit` }>文章編輯</a></span> 
+          <span onClick={ destroyPost }>文章刪除</span> 
         </div>
+        : null }
             </div>
         <div className="single-article-content-input">
           <textarea name="singeArticle" id="comment-textarea" cols="10" rows="10" placeholder="此處留言...請注意用詞">
@@ -168,7 +163,7 @@ export default function Comments() {
             <button id="comment-button" onClick={ postComment }>送出</button>
           </div>
             </div>
-        <CurrentComments commentsAmount={ commentsAmount } loginUser={ loginUser } />
+        <CurrentComments commentsAmount={ commentsAmount } loginUser={ loginUser.textContent } />
             <div className="single-article-page">
         <span onClick={ previousPage }><i className="fas fa-chevron-left"></i></span>
         { commentPages >= 5 ?  <span onClick={ returnPage }>{ 1 }</span> : null }
