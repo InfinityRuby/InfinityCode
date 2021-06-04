@@ -22,7 +22,7 @@
       @apply flex text-base lg:flex-grow pl-7 justify-end;
 
       ul {
-        @apply flex cursor-pointer;
+        @apply flex items-end cursor-pointer;
 
         li:hover ul {
           @apply block;
@@ -65,7 +65,7 @@
       }
 
       img {
-        @apply w-7 h-5 mt-1;
+        @apply w-7 h-5 mb-1;
       }
 
       .user-btn {
