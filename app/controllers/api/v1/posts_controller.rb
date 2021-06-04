@@ -1,5 +1,6 @@
 class Api::V1::PostsController < Api::V1::BaseController
-  before_action :find_post, only: [:total_votes, :update, :destroy]
+  before_action :find_user_post, only: [ :update, :destroy]
+  before_action :find_post,  only: [:show, :user, :user_like, :total_likes,]
   before_action :signed_in?, except: [:index, :show, :user]
 
   # 【GET】 查詢文章列表  /api/v1/posts
@@ -17,7 +18,6 @@ class Api::V1::PostsController < Api::V1::BaseController
 
   # 【GET】 查詢指定文章  /api/v1/posts/:id
   def show
-    @post = Post.find(params[:id])
     json_response(@post)
   end
 
@@ -35,12 +35,10 @@ class Api::V1::PostsController < Api::V1::BaseController
   end
 
   def user
-    @post = Post.find(params[:id])
     render json: @post.user
   end
 
   def user_like
-    @post = Post.find(params[:id])
     @result = current_user.liked? @post
 
     if @result
@@ -63,6 +61,10 @@ class Api::V1::PostsController < Api::V1::BaseController
   end
 
   def find_post
+    @post = Post.find(params[:id])
+  end
+
+  def find_user_post
     @post = current_user.posts.find(params[:id])
   end
 end
