@@ -31,27 +31,27 @@ export default function Comments() {
 
   useEffect(() => {
     API(`/api/v1/posts/${allID('post')}/comments`)
-    .then(post => { 
-      setUserValue(post.user)
-      setCommentsAPI(post.comments)
+      .then(post => { 
+        setUserValue(post.user)
+        setCommentsAPI(post.comments)
     }) 
     API(`/api/v1/posts`)  
-    .then(post => {
-      const currentPostID = post.filter(item => item.id == allID('post'))[0]
-      setPostValue(currentPostID)
+      .then(post => {
+        const currentPostID = post.filter(item => item.id == allID('post'))[0]
+        setPostValue(currentPostID)
     })
     API(`/api/v1/posts/${allID('post')}/user`) 
-    .then(post => { 
-      const currentUser = `${post.email}`
-      const currentUserName = currentUser.substring(0, currentUser.indexOf('@'))
-      setPostUserValue(currentUserName)
+      .then(post => { 
+        const currentUser = `${post.email}`
+        const currentUserName = currentUser.substring(0, currentUser.indexOf('@'))
+        setPostUserValue(currentUserName)
      })
     API(`/api/v1/posts/${allID('post')}`) 
-    .then(post => {
-      setTimeout(() => {
-        setLoading(true)   
-        setCurrentPost(post)   
-      }, 700);    
+      .then(post => {
+        setTimeout(() => {
+          setLoading(true)   
+          setCurrentPost(post)   
+        }, 700);    
     })
   }, [])
 
@@ -61,15 +61,15 @@ export default function Comments() {
     if(commentTextarea.value) {
       API(`/api/v1/posts/${allID('post')}/comments`, 
       'POST', { content: commentTextarea.value, email: userValue.email })
-      .then(res => res.json())
-      .then(post => {
-        const postNewComment = { id: post.id, content: post.content, created_at: post.created_at, email: post.email }
-        const newCommentsTotal = commentsAPI.concat(postNewComment)
-        newCommentsTotal.pop()
-        newCommentsTotal.unshift(postNewComment)
-        setCommentsAPI(newCommentsTotal)
-        setCommentPages(1)    
-        commentTextarea.value = ''
+        .then(res => res.json())
+        .then(post => {
+          const postNewComment = { id: post.id, content: post.content, created_at: post.created_at, email: post.email }
+          const newCommentsTotal = commentsAPI.concat(postNewComment)
+          newCommentsTotal.pop()
+          newCommentsTotal.unshift(postNewComment)
+          setCommentsAPI(newCommentsTotal)
+          setCommentPages(1)    
+          commentTextarea.value = ''
       })
     }
   }
@@ -83,12 +83,12 @@ export default function Comments() {
   const sortComments = (status = false) => {
     commentsAPI.splice(0, commentsAPI.length)
     API(`/api/v1/posts/${allID('post')}/comments`)
-    .then(res => res.json())
-    .then(posts => {
-      const storageCache = []
-      const sortComments = storageCache.concat(posts)
-      const reverseComments = storageCache.concat(posts.reverse())
-      status == true ? setCommentsAPI(sortComments) : setCommentsAPI(reverseComments)
+      .then(res => res.json())
+      .then(posts => {
+        const storageCache = []
+        const sortComments = storageCache.concat(posts)
+        const reverseComments = storageCache.concat(posts.reverse())
+        status == true ? setCommentsAPI(sortComments) : setCommentsAPI(reverseComments)
     }) 
   }
 

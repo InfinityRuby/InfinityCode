@@ -7,15 +7,15 @@ function Nav() {
   const [userCoins, setUserCoins] = useState([])
   const signOut = () => {
     API('/users/sign_out', 'DELETE', '')
-    .then(() => location.href = "/")
+      .then(() => location.href = "/")
   }
 
   useEffect(() => {
     API('/api/v1/users')
-    .then(post => setUser(post))
+      .then(post => setUser(post))
 
     API('/api/v1/coins')
-    .then(post => setUserCoins(post[post.length - 1]))
+      .then(post => setUserCoins(post[post.length - 1]))
   }, [])
 
   return(

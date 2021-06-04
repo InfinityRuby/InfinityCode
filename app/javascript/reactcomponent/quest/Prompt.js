@@ -12,13 +12,13 @@ function Prompt() {
 
   useEffect(() => {
     API(`/api/v1/quests/${allID()}/prompts`)
-    .then(post => setPrompts(post))
+      .then(post => setPrompts(post))
 
     API(`/api/v1/coins`)
-    .then(post => {
-      setUseRecord(post.find(el => el.description == `使用第${allID()}題的金幣提示`))
-      setUserCoins(post[post.length - 1])
-    })
+      .then(post => {
+        setUseRecord(post.find(el => el.description == `使用第${allID()}題的金幣提示`))
+        setUserCoins(post[post.length - 1])
+      })
   }, [])
 
   return(

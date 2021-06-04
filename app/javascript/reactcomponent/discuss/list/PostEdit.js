@@ -12,10 +12,10 @@ function PostEdit() {
     const titleInput = document.querySelector('.post-edit-input')
     const contentTextarea = document.querySelector('.w-md-editor-text-input')
     API(`/api/v1/posts/${allID('edit')}`)
-    .then(post => {  
-      titleInput.value = post.title
-      contentTextarea.value = post.content
-    })            
+      .then(post => {  
+        titleInput.value = post.title
+        contentTextarea.value = post.content
+      })            
   }, [])
   
   const postEdit = () => {
