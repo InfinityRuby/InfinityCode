@@ -1,7 +1,7 @@
 class CreatePrompts < ActiveRecord::Migration[6.1]
   def change
     create_table :prompts do |t|
-      t.integer :quest_id
+      t.references :quest
       t.integer :aseq
       t.text :hint
 

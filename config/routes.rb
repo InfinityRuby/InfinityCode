@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :quests, except: [:new, :edit] do
-        resources :prompts, only: [:index, :show]
+        resources :prompts, shallow: true, only: [:index, :show]
         
         member do
           post :answer
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
         end
       end
       
-      resources :coins, only: [:index, :create] 
+      resources :coins, only: [:index, :create]
       resources :users, only: [:index]
     end
   end
