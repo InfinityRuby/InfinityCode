@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom'
 import Comments from './Comments'
 
 document.addEventListener('turbolinks:load', () => {
-  if(document.getElementById('single-article-user-comments')){
+  const userComments = document.getElementById('single-article-user-comments')
+  if(userComments){
     ReactDOM.render(
       <Comments />,
-      document.getElementById('single-article-user-comments')
+      userComments
     )
   }
 })

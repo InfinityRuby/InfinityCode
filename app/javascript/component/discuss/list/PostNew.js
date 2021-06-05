@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
-import ReactDOM from "react-dom"
+import React, { useEffect, useRef, useState } from 'react'
+import ReactDOM from 'react-dom'
 import MDEditor from '@uiw/react-md-editor'
-import API from "../../lib/API";
+import API from 'component/lib/API'
 
 function PostNew() {
   const editRef = useRef()
@@ -13,11 +13,15 @@ function PostNew() {
   const postNew = () => {
     const titleInput = document.querySelector('.post-new-input')
     const contentTextarea = document.querySelector('.w-md-editor-text-input')
+    const apiData = {
+      title: titleInput.value,
+      content: contentTextarea.value, 
+      unknown: unknown
+    }
+
     if(titleInput.value.length >= 6 && contentTextarea.value.length >= 6){
-      API('/api/v1/posts', 'POST', 
-      { title: titleInput.value, content: contentTextarea.value, unknown: unknown })
-        .then(res => res.json())
-          .then(post => location.href = `/posts/${post.id}`)
+      API.create('posts', apiData)
+        .then(res => location.href = `/posts/${res.id}`)
       editRef.current.style = 'background: #ffa100; color: #000'
     }else {
       titleInput.style = 'border: 2px solid #f00'
@@ -56,7 +60,8 @@ function PostNew() {
 }
 
 document.addEventListener('turbolinks:load', () => {
-  if(document.getElementById("post-new-container")) {
-    ReactDOM.render(<PostNew />, document.getElementById("post-new-container"))
+  const postNew = document.getElementById("post-new-container")
+  if(postNew) {
+    ReactDOM.render(<PostNew />, postNew)
   }
 })

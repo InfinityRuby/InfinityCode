@@ -3,10 +3,11 @@ import marked from 'marked'
 
 export default function CurrentList({ listAmount }) {
   return listAmount.map(list => {
-    return <SearchDisplayList key={ list.id } 
-                              id={ list.id } 
-                              title={ list.title } 
-                              content={ list.content } /> 
+    const { id, title ,content } = list
+    return <SearchDisplayList key={ id } 
+                              id={ id } 
+                              title={ title } 
+                              content={ content } /> 
   })
 }
   

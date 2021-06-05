@@ -28,11 +28,8 @@ Rails.application.routes.draw do
         end
       end
       
-      resources :coins, only: [:index, :create] do
-      end
-
-      resources :users, only: [:index] do
-      end
+      resources :coins, only: [:index, :create] 
+      resources :users, only: [:index]
     end
   end
 

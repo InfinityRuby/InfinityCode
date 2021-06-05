@@ -1,16 +1,22 @@
-import React from 'react'
-import API from '../../lib/API'
+import React, { useEffect } from 'react'
+import API from 'component/lib/API'
 
 function CommentsAction({ commentRef, setCurrentComment, currentComment, email, loginUser }) { 
+  useEffect(() => {
+    const targetComment = document.getElementById(commentsID(commentRef))
+    if(targetComment) {
+      targetComment.focus()
+    }
+  }, [currentComment])
+  
   const editComment = () => {  
     setCurrentComment(commentsID(commentRef))
-    setTimeout(() => { document.getElementById(`${commentsID(commentRef)}`).focus() }, 0)
   }
 
   const destroyComment = () => {    
     if(confirm('確認要刪除這則留言？')) {
     commentRef.current.style = 'display: none'
-    API(`/api/v1/comments/${commentsID(commentRef)}`, 'DELETE', '')
+    API.delete(`/api/v1/comments/${commentsID(commentRef)}`)
     } 
   }
   
