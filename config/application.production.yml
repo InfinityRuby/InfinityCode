@@ -1,0 +1,28 @@
+# Add configuration values here, as shown below.
+#
+# pusher_app_id: "2954"
+# pusher_key: 7381a978f7dd7f9a1117
+# pusher_secret: abdc3b896a0ffb85d373
+# stripe_api_key: sk_test_2J0l093xOyW72XUYJHE4Dv2r
+# stripe_publishable_key: pk_test_ro9jV5SNwGb1yYlQfzG17LHK
+#
+# production:
+#   stripe_api_key: sk_live_EeHnL644i6zo4Iyq4v1KdV9H
+#   stripe_publishable_key: pk_live_9lcthxpSIHbGwmdO941O1XVU
+
+production:
+  google_client_id: "43938707204-l08ge63i8fevgsdnlu7n2b9gs93on4c0.apps.googleusercontent.com"
+  google_client_secret: "wduv3pPtfSPIy9K3rbsTR6j0"
+  fb_client_id: "168461361870000"
+  fb_client_secret: "3df0de4d6ce05ab006c3cc1c9bade41b"
+  github_client_id: "c92fc8a7f8b71b257d4b"
+  github_client_secret: "9846cf32d3f958ef76c384f9045626c8bda79980"
+
+  smtp_user: "postmaster@sandbox82b886db66f443219d6599046ba0707c.mailgun.org"
+  smtp_password: "f9f9cac723973bb111bc40d1c9d413b7-fa6e84b7-aa01982a"
+
+  aws_access_key_id: "AKIAYYDXCLBXAVCAQCES"
+  aws_secret_access_key: "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"
+  name_of_bucket: "infinitycodebucker1"
+  region: "ap-northeast-1"
+  host: "s3-ap-northeast-1.amazonaws.com"
