@@ -4,8 +4,6 @@ class Api::V1::PostsController < Api::V1::BaseController
 
   # 【GET】 查詢文章列表  /api/v1/posts
   def index
-    @posts = Post.order("created_at DESC")
-    json_response(@posts)
   end
 
   # 【POST】 新增文章  /api/v1/posts
@@ -17,8 +15,6 @@ class Api::V1::PostsController < Api::V1::BaseController
 
   # 【GET】 查詢指定文章  /api/v1/posts/:id
   def show
-    @post = Post.find(params[:id])
-    json_response(@post)
   end
 
   # 【PUT】 編輯指定文章  /api/v1/posts/:id
@@ -32,11 +28,6 @@ class Api::V1::PostsController < Api::V1::BaseController
   def destroy
     @post.destroy
     head :no_content
-  end
-
-  def user
-    @post = Post.find(params[:id])
-    render json: @post.user
   end
 
   private
