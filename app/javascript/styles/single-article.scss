@@ -71,14 +71,16 @@
 
 .single-article-comments-count{
   @apply flex justify-between items-center border-b border-gray-300 p-2 bg-gray-300 opacity-40;
-  div > svg{
-    @apply ml-2;
-    & > span{
+  div{
+    svg{
       @apply ml-2
     }
-  }
+    span {
+      @apply ml-2
+    }
+  } 
   div:nth-child(2) > span{
-    @apply text-base text-black mx-2 cursor-pointer hover:text-gray-500
+    @apply text-base text-black mx-2 cursor-pointer hover:text-gray-500 ml-2
   }
   .single-article-select{
     @apply mx-2 bg-gray-100 border border-black rounded-sm outline-none

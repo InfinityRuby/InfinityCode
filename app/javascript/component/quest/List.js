@@ -1,12 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { useEffect, useState } from 'react'
-import API from '../lib/API'
+import API from 'component/lib/API'
 
 function ListQuest() {
   const [listQuest, setListQuest] = useState([])
   useEffect(() => {
-    API('/api/v1/quests')
+    API.get('quests')
       .then(posts => setListQuest(posts))
   }, [])
   
@@ -27,9 +27,11 @@ function ListQuest() {
     })
     )
 }
-  document.addEventListener('turbolinks:load', () => {
-    if (document.getElementById('list-quest')) {ReactDOM.render(
-      <ListQuest />,
-      document.getElementById('list-quest')
-    )}
-  })
+document.addEventListener('turbolinks:load', () => {
+  const listQuest = document.getElementById('list-quest')
+  if (listQuest) {
+    ReactDOM.render(
+    <ListQuest />,
+    listQuest
+  )}
+})
