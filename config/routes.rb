@@ -15,10 +15,14 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :quests, except: [:new, :edit] do
         resources :prompts, shallow: true, only: [:index, :show]
-        
-        member do
-          post :answer
-        end
+          collection do 
+            get :easy
+            get :medium
+            get :hard
+          end
+          member do
+            post :answer
+          end
       end
 
       resources :posts, except: [:new, :edit] do
