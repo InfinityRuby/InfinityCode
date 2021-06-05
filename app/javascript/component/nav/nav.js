@@ -38,7 +38,7 @@ function Nav() {
               <a href="/posts">討論區</a>
             </li>
             <li>
-              <a href="#Rank-path">排行榜</a>
+              <a href="/pages">排行榜</a>
             </li>
             <li>
               <img src="/quest/star.png" alt="star" />
