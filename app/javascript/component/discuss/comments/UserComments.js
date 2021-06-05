@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { CommentsAction, commentsID } from './CommentsAciton'
-import API from '../../lib/API'
+import API from 'component/lib/API'
 import marked from 'marked'
 
 export default function UserComments({ id, email, content, createTime, loginUser }) {
@@ -8,15 +8,16 @@ export default function UserComments({ id, email, content, createTime, loginUser
   const commentRef = useRef()
   const editInput = document.querySelector(`.single-article-comments-${currentComment} p`)
 
-  const editNewComment = (event) => {   
+  const editNewComment = (event) => {  
     if(event.key == 'Enter' && event.target.value != '') {
-      API(`/api/v1/comments/${commentsID(commentRef)}`,
-       'PUT', { content: event.target.value })
-      setCurrentComment(0)
-      setTimeout(() => {
-        document.querySelector(`.single-article-comments-${commentsID(commentRef)} p`)
-        .textContent = event.target.value
-      }, 0) 
+      const apiData =  { content: event.target.value }
+
+      API.put(`comments/${commentsID(commentRef)}`, apiData)
+        .then(() => {
+          setCurrentComment(0)
+          document.querySelector(`.single-article-comments-${commentsID(commentRef)} p`)
+          .textContent = event.target.value
+        })
     }
   }
 
