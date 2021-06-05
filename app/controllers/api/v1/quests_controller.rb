@@ -13,6 +13,21 @@ class Api::V1::QuestsController < Api::V1::BaseController
     json_response(@quest)
   end
 
+  def easy
+    @quests = Quest.where(level: 'Easy')
+    json_response(@quests)
+  end
+
+  def medium
+    @quests = Quest.where(level: 'Medium')
+    json_response(@quests)
+  end
+
+  def hard
+    @quests = Quest.where(level: 'Hard')
+    json_response(@quests)
+  end
+
   # 【POST】新增答題記錄  /api/v1/quests/:id/answer
   # body: { type: 'ruby', answer: '答題內容' }
   def answer
