@@ -15,23 +15,24 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :quests, except: [:new, :edit] do
         resources :prompts, only: [:index, :show]
+        
+        member do
+          post :answer
+        end
       end
 
       resources :posts, except: [:new, :edit] do
-        resources :comments, except: [:new, :edit]
+        resources :comments, shallow: true, except: [:new, :edit]
+
         member do
           get :user
         end
       end
       
-      resources :coins, only: [:index, :create] do
-      end
-
-      resources :users, only: [:index] do
-      end
+      resources :coins, only: [:index, :create]
+      resources :users, only: [:index]
     end
   end
 
   root to: "homes#index"
-
 end
