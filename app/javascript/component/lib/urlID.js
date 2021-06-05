@@ -1,4 +1,4 @@
-export default function allID(type) {
+export default function urlID(type) {
   let url = window.location.href
   let currentID
   if(type == 'edit') {

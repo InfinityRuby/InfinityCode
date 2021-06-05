@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
-import PromptSelect from './PromptSelect'
-import API from '../lib/API'
-import allID from '../lib/ID'
+import PromptSelect from './PromptButton'
+import { API, urlID } from 'component/lib'
 
 function Prompt() {
   const [prompts, setPrompts] = useState([])
@@ -11,13 +10,13 @@ function Prompt() {
   const promptsCount = prompts.length
 
   useEffect(() => {
-    API(`/api/v1/quests/${allID()}/prompts`)
-      .then(post => setPrompts(post))
+    API.get(`quests/${urlID()}/prompts`)
+      .then(res => setPrompts(res))
 
-    API(`/api/v1/coins`)
-      .then(post => {
-        setUseRecord(post.find(el => el.description == `使用第${allID()}題的金幣提示`))
-        setUserCoins(post[post.length - 1])
+    API.get(`coins`)
+      .then(res => {
+        setUseRecord(res.find(el => el.description == `使用第${urlID()}題的金幣提示`))
+        setUserCoins(res[res.length - 1])
       })
   }, [])
 
@@ -32,10 +31,11 @@ function Prompt() {
 }
 
 document.addEventListener('turbolinks:load', () => {
-  if(document.getElementById('prompt')) {
+  const prompt = document.getElementById('prompt')
+  if(prompt) {
     ReactDOM.render(
       <Prompt />,
-      document.getElementById('prompt')
+      prompt
     )
   }
 })
