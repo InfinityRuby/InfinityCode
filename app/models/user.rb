@@ -6,7 +6,8 @@ class User < ApplicationRecord
   has_many :posts
   has_many :comments
   has_many :coins
-  has_one :profile
+  has_one :profile, dependent: :destroy
+  has_many :answers
 
   after_create do
     create_profile

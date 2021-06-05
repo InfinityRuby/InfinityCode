@@ -24,6 +24,26 @@ ActiveRecord::Schema.define(version: 2021_06_01_174856) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_coins_on_user_id"
   end
+  
+  create_table "answers", force: :cascade do |t|
+    t.bigint "quest_id"
+    t.bigint "user_id"
+    t.text "code"
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["quest_id"], name: "index_answers_on_quest_id"
+    t.index ["user_id"], name: "index_answers_on_user_id"
+  end
+
+  create_table "cases", force: :cascade do |t|
+    t.bigint "quest_id"
+    t.string "input"
+    t.string "output"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["quest_id"], name: "index_cases_on_quest_id"
+  end
 
   create_table "comments", force: :cascade do |t|
     t.text "content"

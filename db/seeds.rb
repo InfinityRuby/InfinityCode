@@ -271,3 +271,45 @@ end
     description: 'test'
   )
 end
+
+Case.create!(
+  quest_id: 1,
+  input: "",
+  output: "Hello InfinityCode!!"
+)
+
+Case.create!(
+  quest_id: 2,
+  input: "p two_sum([2, 7, 11, 15], 9)",
+  output: "[0, 1]"
+)
+
+Case.create!(
+  quest_id: 2,
+  input: "p two_sum([3, 2, 4], 6)",
+  output: "[1, 2]"
+)
+
+Case.create!(
+  quest_id: 2,
+  input: "p two_sum([3, 3], 6)",
+  output: "[0, 1]"
+)
+
+Case.create!(
+  quest_id: 3,
+  input: "p shuffle([2, 5, 1, 3, 4, 7], 3)",
+  output: "[2, 3, 5, 4, 1, 7]"
+)
+
+Case.create!(
+  quest_id: 4,
+  input: "p three_sum([-1, 0, 1, 2, -1, -4])",
+  output: "[[-1, -1, 2], [-1, 0, 1]]"
+)
+
+Case.create!(
+  quest_id: 5,
+  input: "p first_missing_positive([1, 2, 0])",
+  output: "3"
+)
