@@ -81,11 +81,12 @@ ActiveRecord::Schema.define(version: 2021_06_01_174856) do
   end
 
   create_table "prompts", force: :cascade do |t|
-    t.integer "quest_id"
+    t.bigint "quest_id"
     t.integer "aseq"
     t.text "hint"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["quest_id"], name: "index_prompts_on_quest_id"
   end
 
   create_table "quests", force: :cascade do |t|

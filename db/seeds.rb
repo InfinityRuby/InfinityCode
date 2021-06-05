@@ -263,6 +263,15 @@ end
   )
 end
 
+10.times do
+  Coin.create(
+    user_id: 17,
+    coin_change: Faker::Number.between(from: -10, to: 10),
+    coin_amount: Faker::Number.between(from: 10, to: 50),
+    description: 'test'
+  )
+end
+
 Case.create!(
   quest_id: 1,
   input: "",
