@@ -8,35 +8,35 @@ Rails.application.routes.draw do
   resources :quests 
   resource :profile, only: [:show, :edit, :update]
   
-  get "/jsons/data", to: "jsons#data"
-  get "/jsons/posts_comments/:id", to: "jsons#posts_comments"
   get "/quests/questdata", to: "quests#questdata"
 
   # API 路徑設定
-  namespace :api do
+  namespace :api, defaults: {format: :json} do
     namespace :v1 do
       resources :quests, except: [:new, :edit] do
-        resources :prompts, only: [:index, :show]
-        
-        member do
-          post :answer
-        end
+        resources :prompts, shallow: true, only: [:index, :show]
+          collection do 
+            get :easy
+            get :medium
+            get :hard
+          end
+          member do
+            post :answer
+          end
       end
 
       resources :posts, except: [:new, :edit] do
-        member do
-          get "like", to: "posts#user_like"
-          get "totallike", to: "posts#total_likes"
-        end
         resources :comments, shallow: true, except: [:new, :edit]
+
         member do
           get :user
         end
-      end 
-
+      end
+      
+      resources :coins, only: [:index, :create] 
+      resources :users, only: [:index]
     end
   end
 
   root to: "homes#index"
-
 end

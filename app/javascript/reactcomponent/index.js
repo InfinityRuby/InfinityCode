@@ -1,2 +1,0 @@
-import "./discuss" 
-import "./quest" 

@@ -1,6 +1,6 @@
 class Api::V1::PostsController < Api::V1::BaseController
   before_action :find_user_post, only: [ :update, :destroy]
-  before_action :find_post,  only: [:show, :edit, :update, :user, :user_like, :total_likes]
+  before_action :find_post,  only: [:show, :edit, :destroy, :update, :user, :user_like, :total_likes]
   before_action :signed_in?, except: [:index, :show, :user]
 
   # 【GET】 查詢文章列表  /api/v1/posts
@@ -18,7 +18,6 @@ class Api::V1::PostsController < Api::V1::BaseController
 
   # 【GET】 查詢指定文章  /api/v1/posts/:id
   def show
-    json_response(@post)
   end
 
   def new
