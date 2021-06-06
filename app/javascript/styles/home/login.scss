@@ -1,0 +1,81 @@
+.home-box {
+  @apply w-3/4 m-auto;
+  .skill-box {
+    @apply flex mb-8 justify-center;
+    .skill-ruby {
+      @apply w-full bg-white shadow-xl border border-opacity-30 border-gray-200;
+      h2 {
+        @apply inline-block text-3xl text-white bg-yellow-500 pl-5 pt-2 pr-40 pb-6 mt-4 -ml-6;
+      }
+      .progress-bar {
+        @apply w-3/4 h-2 bg-gray-100 ml-10 mt-8 mb-5;
+      }
+      span {
+        @apply ml-10 mb-5 text-2xl text-gray-400;
+      }
+      .start-button {
+        @apply inline-block text-white text-lg bg-yellow-500 py-4 px-10 float-right mr-12;
+      }
+    }
+  }
+  .social-box {
+    @apply flex mb-4 justify-between;
+    .discuss-box {
+      @apply w-1/2 bg-white shadow-md mr-10 border border-opacity-30 border-gray-200;
+      .tag {
+        @apply text-white bg-yellow-500 px-4 py-2 inline-block mt-2 -ml-6;
+      }
+      .discuss-list-box {
+        @apply p-2;
+        .discuss-list {
+          @apply flex p-3;
+          img {
+            @apply rounded-full;
+          }
+          div {
+            @apply ml-3;
+            h3 {
+              @apply text-gray-400 text-sm;
+            }
+          }
+        }
+      }
+    }
+    .rank-box {
+      @apply w-1/2 bg-white shadow-md ml-6 border border-opacity-30 border-gray-200;
+      .tag {
+        @apply text-white bg-yellow-500 px-4 py-2 inline-block mt-2 -ml-6;
+      }
+      .rank-content {
+        @apply w-5/6 m-auto pt-2;
+        .rank-title {
+          @apply text-center;
+          span {
+            @apply px-6 py-2;
+          }
+          span:hover {
+            color: #fb9827;
+          }
+        }
+        .rank-title {
+          @apply flex justify-between;
+        }
+        .rank-list-box {
+          @apply text-center mt-6;
+          .rank-list {
+            @apply flex justify-between px-6 p-4;
+            .gold {
+              @apply text-yellow-400 text-3xl;
+            }
+            .sliver {
+              @apply text-gray-500 text-3xl;
+            }
+            .copper {
+              @apply text-yellow-800 text-3xl;
+            }
+          }
+        }
+      }
+    }
+  }
+}
