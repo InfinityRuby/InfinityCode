@@ -1,3 +1,25 @@
-<div class="container-discuss">
-  <div class="discuss-wrap" id="discuss-wrap"></div>      
-</div>  
+
+
+<div>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit labore tempora, laborum adipisci assumenda veritatis minima nulla unde voluptatem corporis quisquam deleniti doloribus voluptatibus dolores culpa quod ad laboriosam est.
+Officia adipisci architecto blanditiis reiciendis! Ipsam a sit in fuga ducimus necessitatibus, molestiae aspernatur itaque omnis dolores. Inventore, et voluptatem asperiores labore, a quo totam, repellat est eius tempora iste!
+Perferendis ratione nihil nulla facilis architecto laboriosam enim asperiores vitae eius! Deserunt esse corrupti ducimus reprehenderit quis, aut mollitia qui, libero eligendi, laudantium itaque corporis beatae optio eveniet. Repudiandae, exercitationem.
+Rerum dolores sapiente a eos, reprehenderit beatae ea itaque soluta porro cumque nemo, fugiat magnam, tempore ducimus esse! Nam dolorem quos similique reiciendis molestiae placeat cupiditate. Omnis provident nisi reiciendis?
+Natus error, sunt aut expedita alias in dolorum praesentium ad laudantium nisi voluptatibus incidunt eos vitae repellat odio officiis. Aperiam eaque labore atque dolores necessitatibus nisi exercitationem laudantium rem consectetur?
+Hic iure consequatur voluptate provident sequi, quae eligendi rem voluptas excepturi expedita nostrum voluptatem odit nam quidem, eum tempore laboriosam temporibus modi numquam illum magni suscipit voluptates, ex accusantium. Illum.
+Beatae cum saepe nostrum voluptatem ratione illo, ad facere aspernatur impedit rem debitis odit laudantium aliquid incidunt nisi reiciendis nam ullam dignissimos expedita, nesciunt, delectus magnam eveniet. At, sint delectus?
+Ab libero dolores natus dicta optio molestias assumenda ad id, aut obcaecati a delectus laudantium consequuntur saepe ipsam accusamus, mollitia similique molestiae veniam. Alias natus, nobis illum expedita non accusantium?
+Repudiandae, dignissimos quo consequuntur tempora molestias praesentium labore suscipit nisi harum! Molestiae recusandae atque et quam magnam esse veniam ab aperiam quas expedita, facere libero voluptate repellendus ad nostrum aut.
+Corrupti atque autem, ipsam soluta libero commodi doloremque ut aliquid beatae distinctio quod saepe nobis, voluptatum iusto earum eaque ipsum animi repellat magni dolore quae inventore? Reiciendis soluta fugiat quisquam!
+Fugit pariatur aut eos blanditiis placeat, sit quibusdam cumque quidem sapiente officiis. Labore odit quas eius quod expedita impedit aliquid sunt nihil voluptates, veritatis tenetur ut voluptate nulla delectus necessitatibus.
+Dignissimos deserunt fugiat ipsam veniam enim molestiae mollitia omnis nisi rem itaque eius veritatis labore, officiis et quaerat quos tenetur quod nemo repellendus aliquid ab facere reprehenderit? Expedita, magnam alias.
+Eveniet dicta omnis perspiciatis cum repellat necessitatibus saepe iure cupiditate facilis, veritatis eos dolore autem amet voluptas pariatur modi culpa quasi aliquam maxime exercitationem. Facere labore esse nemo vitae nam!
+In, provident? Minus aliquam perspiciatis totam aut facilis, accusamus placeat ex qui in eaque maiores temporibus architecto laudantium, rem accusantium tenetur! Ea iste commodi cum, officiis vel expedita vitae aliquam.
+Molestiae amet beatae voluptatum sapiente eligendi! Accusantium alias sit quod placeat id itaque necessitatibus veniam quo. Ipsam, facere nesciunt distinctio quaerat a, culpa dolores repellat ex molestias fugit libero iste.</div>
+
+<% @posts.each do |post| %>
+  <%= post.title %>
+  <%= link_to like_api_v1_post_path(post) do %>
+    點讚
+  <% end %>
+  <%= post.get_likes.size %>
+<% end %>

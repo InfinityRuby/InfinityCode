@@ -68,6 +68,7 @@ class Api::V1::PostsController < Api::V1::BaseController
       @post.liked_by current_user
     end
     render json: {user_id: current_user.id, post_id: @post.id, liked: !@result}
+    # redirect_to posts_path
   end
 
   def total_likes
