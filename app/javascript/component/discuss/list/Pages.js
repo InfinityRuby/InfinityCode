@@ -1,9 +1,8 @@
 import React from 'react'
 
-export default function Pages({ list, listAmount, initPage, setInitPage }) {
+export default function Pages({ list, initPage, setInitPage }) {
   const nextPage = number => listAmount < list.length && setInitPage(initPage + number)
   const previousPage = () => initPage > 1 && setInitPage(initPage - 1)
-  const jumpPage = number => initPage > 0 && setInitPage(initPage - number)
   const searchPage = event => {
     if(event.key == 'Enter'){
       if(Number(event.target.value) && Number(event.target.value) * 10 <= list.length + 10){
@@ -12,14 +11,16 @@ export default function Pages({ list, listAmount, initPage, setInitPage }) {
     }
   }
 
+  const changePage = event => setInitPage(Number(event.target.textContent))
+
   return(
     <div className="pagination">
       <button onClick={ previousPage }>上一頁</button>
-      { initPage > 2 ? <button onClick={ () => jumpPage(2) }>{ initPage - 2 }</button> : null }
-      { initPage > 1 ? <button onClick={ () => jumpPage(1) }>{ initPage - 1 } </button> : null }
-      <button>{ initPage }</button>
-      { initPage * 10 < list.length ? <button onClick={ () => nextPage(1) }>{ initPage + 1 }</button> : null }
-      { initPage * 10 + 10 < list.length ? <button onClick={ () => nextPage(2) }>{ initPage + 2 }</button> : null }
+      <button onClick={ changePage }>{ initPage }</button>
+      <button onClick={ changePage }>{ initPage + 1}</button>
+      <button>{ initPage + 2 }</button>
+      <button onClick={ changePage }>{ initPage + 3 }</button>
+      <button onClick={ changePage }>{ initPage + 4 }</button>
       <button onClick={ () => nextPage(1) }>下一頁</button>
       <input type="text" onKeyDown={ searchPage } placeholder={ "目前在第"+initPage+"頁" } />
       <button onClick={ () => setInitPage(1) }>回首頁</button>
