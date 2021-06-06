@@ -19,6 +19,8 @@ Rails.application.routes.draw do
             get :easy
             get :medium
             get :hard
+            get :solved
+            get :unsolved
           end
           member do
             post :answer
