@@ -12,6 +12,6 @@ Turbolinks.start()
 import "styles"
 import "icon/fontawesome"
 import "quest"
-import "reactcomponent"
+import "component"
 import 'profile'
 import "highlight"

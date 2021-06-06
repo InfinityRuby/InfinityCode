@@ -1,21 +1,24 @@
 import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
-import API from '../lib/API'
+import API from 'component/lib/API'
 
 function Nav() {
-  const [user, setUser] = useState([])
+  const [user, setUser] = useState(true)
   const [userCoins, setUserCoins] = useState([])
   const signOut = () => {
-    API('/users/sign_out', 'DELETE', '')
-      .then(() => location.href = "/")
+    API.delete('/users/sign_out')
+      .catch(() => location.href = '/')
   }
 
   useEffect(() => {
-    API('/api/v1/users')
-      .then(post => setUser(post))
-
-    API('/api/v1/coins')
-      .then(post => setUserCoins(post[post.length - 1]))
+    API.get('users')
+      .then(user => {
+        setUser(user)
+        if(user) {
+          API.get('coins')
+            .then(coins => setUserCoins(coins[coins.length - 1]))
+        }
+      })
   }, [])
 
   return(
@@ -58,8 +61,8 @@ function Nav() {
             </li>
           </ul>
           : null }
+        { user ? null :
           <div className="user-btn">
-            { user ? null :
             <div>
               <button onClick={ () => { location.href = '/users/sign_in' } } className="user-btn-login">
                 登入
@@ -67,8 +70,9 @@ function Nav() {
               <button onClick={ () => { location.href = '/users/sign_up' } } className="user-btn-signup">
                 註冊
               </button>
-            </div> } 
-          </div>
+            </div>
+          </div> 
+        }
         </div>
       </div>
     </div> 
