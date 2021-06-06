@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :coins
   has_one :profile, dependent: :destroy
   has_many :answers
+  has_many :quests, through: :answers
 
   after_create do
     create_profile
