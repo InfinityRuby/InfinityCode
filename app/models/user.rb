@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :coins
   has_one :profile, dependent: :destroy
   has_many :answers
+  
+  acts_as_voter
 
   after_create do
     create_profile
