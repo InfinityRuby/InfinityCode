@@ -2,16 +2,16 @@ import React, { useState } from 'react'
 import { API, urlID } from 'component/lib'
 
 export default function PromptSelect({ prompts, promptsCount, userCoins, useRecord }) {
-    return prompts.map((prompt, index) => {
-      const { id, hint } = prompt
-      return <PromptButton key={ id }
-                           hint={ hint }
-                           index={ index }
-                           count={ promptsCount }
-                           userCoins={ userCoins }
-                           useRecord={ useRecord } />
-    })
-  }
+  return prompts.map((prompt, index) => {
+    const { id, hint } = prompt
+    return <PromptButton key={ id }
+                          hint={ hint }
+                          index={ index }
+                          count={ promptsCount }
+                          userCoins={ userCoins }
+                          useRecord={ useRecord } />
+  })
+}
   
   function PromptButton({ hint, index, count, userCoins, useRecord }) {
     const [switchContent, setSwitchContent] = useState(false) 

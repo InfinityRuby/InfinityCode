@@ -1,8 +1,8 @@
 .listquest-wrapper {
-  @apply pt-24  m-auto  max-w-screen-xl bg-gray-100
+  @apply pt-24 m-auto max-w-screen-xl bg-gray-100
 }
 #list-quest {
-  @apply grid grid-cols-2
+  @apply grid grid-cols-2 min-h-screen
 }
 .quest-checkbox {
   @apply font-mono flex px-2

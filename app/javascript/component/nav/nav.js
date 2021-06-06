@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useLayoutEffect } from 'react'
 import ReactDOM from 'react-dom'
 import API from 'component/lib/API'
 
 function Nav() {
   const [user, setUser] = useState(true)
-  const [userCoins, setUserCoins] = useState([])
+  const [userCoins, setUserCoins] = useState(false)
+
   const signOut = () => {
     API.delete('/users/sign_out')
       .catch(() => location.href = '/')
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     API.get('users')
       .then(user => {
         setUser(user)
@@ -44,12 +45,12 @@ function Nav() {
               <img src="/quest/star.png" alt="star" />
             </li>
             <li>
-              <span>{ userCoins.coin_amount }</span>
+              <span>{ userCoins ? userCoins.coin_amount : <div>00</div> }</span>
             </li>
             <li className="user-account">
               <a href="#">
                 <span className="user-email">
-                  { user ? `${user.email}`.substring(0, `${user.email}`.lastIndexOf('@')) : null }
+                  { userCoins ? `${user.email}`.substring(0, `${user.email}`.lastIndexOf('@')) : 'aaa' }
                 </span>
                 <i className="fas fa-chevron-down"></i>
               </a>
