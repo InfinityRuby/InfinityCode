@@ -5,15 +5,13 @@ import API from 'component/lib/API'
 export default function Discuss() {
   const [list, setList] = useState([])
   const [initPage, setInitPage] = useState(1)
-  const listAmount = initPage * 10
-  const currentListAmount = list.slice(listAmount - 10, listAmount)
   
   useEffect(() => {
-    API.get('posts')
+    API.get(`posts?page=${initPage}`)
       .then(res => {
         setList(res)
       })
-  }, [])
+  }, [initPage])
   
   const searchList = event => {
     const searchValue = []
@@ -21,9 +19,9 @@ export default function Discuss() {
     let currentSearch
     if(event.key == 'Enter'){
       API.get('posts')
-        .then((post) => {
+        .then((res) => {
           list.splice(0, list.length)
-          post.map(el => list.push(el))
+          res.map(el => list.push(el))
           searchValue.push(event.target.value)
           searchInput.value = '' 
           currentSearch = list.filter(hash => hash.title.includes(searchValue.join()))
@@ -81,9 +79,8 @@ export default function Discuss() {
           </div>
         </div>
       </div>
-      <CurrentList listAmount={ currentListAmount } />
+      <CurrentList list={ list } />
       <Pages list={ list }
-             listAmount={ listAmount }  
              initPage={ initPage } 
              setInitPage={ setInitPage } />
     </div>
