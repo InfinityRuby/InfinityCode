@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_one :profile, dependent: :destroy
   has_many :answers
   has_many :quests, through: :answers
+  
+  acts_as_voter
 
   after_create do
     create_profile
