@@ -3,67 +3,114 @@ import { UserComments, Pages } from './'
 import { API, urlID } from 'component/lib'
 import marked from 'marked'
 
+<<<<<<< HEAD
 function CurrentComments({ commentsAmount, loginUser }) {
   return commentsAmount.map(comments => {
     const { id, email, content, created_at } = comments
     return <UserComments key={ id } 
                          id={ id }
                          email={ accountOutput(email) } 
+=======
+function CurrentComments({ comments, loginUser }) {
+  return comments.map(comment => {
+    const { id, email, content, created_at } = comment
+    return <UserComments key={ id } 
+                         id={ id }
+                         email={ getUserName(email) } 
+>>>>>>> development
                          content={ content }
                          createTime={ created_at }
                          loginUser={ loginUser } />                       
   })
 }
 
+<<<<<<< HEAD
 function accountOutput(email) {
+=======
+function getUserName(email) {
+>>>>>>> development
   return email.substring(0, email.lastIndexOf('@'))
 }
 
 export default function Comments() {
   const [commentsAPI, setCommentsAPI] = useState([])
   const [currentPost, setCurrentPost] = useState([])
+<<<<<<< HEAD
   const [userValue, setUserValue] = useState([])
   const [postUserValue, setPostUserValue] = useState([])
   const [currentUser, setCurrentUser] = useState([])
   const [commentPages, setCommentPages] = useState(1)
   const sortCommentsRef = useRef()
   const commentsAmount = commentsAPI.slice(commentPages * 6 - 6, commentPages * 6)
+=======
+  const [user, setUser] = useState([])
+  const [postAuthor, setPostAuthor] = useState([])
+  const [loginUser, setLoginUser] = useState([])
+  const [commentPages, setCommentPages] = useState(1)
+  const sortCommentsRef = useRef()
+  const comments = commentsAPI.slice(commentPages * 6 - 6, commentPages * 6)
+>>>>>>> development
 
   useEffect(() => {
     API.get(`posts/${urlID()}/comments`)
       .then(res => { 
+<<<<<<< HEAD
         setUserValue(res.user)
+=======
+        setUser(res.user)
+>>>>>>> development
         setCommentsAPI(res.comments)
     }) 
     API.get(`posts/${urlID()}/user`) 
       .then(res => { 
+<<<<<<< HEAD
         setPostUserValue(accountOutput(res.email))
+=======
+        setPostAuthor(getUserName(res.email))
+>>>>>>> development
      })
     API.get(`posts/${urlID()}`) 
       .then(res => { 
         setCurrentPost(res)    
     })
     API.get(`users`)
+<<<<<<< HEAD
       .then(res => setCurrentUser(accountOutput(res.email)))
+=======
+      .then(res => setLoginUser(getUserName(res.email)))
+>>>>>>> development
   }, [])
 
   const postComment = () => {
     const commentTextarea = document.getElementById('comment-textarea')
+<<<<<<< HEAD
     const apiData = { content: commentTextarea.value, email: userValue.email }
     let postNewComment
     let newCommentsTotal
+=======
+    const apiData = { content: commentTextarea.value, email: user.email }
+>>>>>>> development
 
     if(commentTextarea.value) {
       API.create(`posts/${urlID()}/comments`, apiData)
         .then(res => {
+<<<<<<< HEAD
           postNewComment = { 
+=======
+          const postNewComment = { 
+>>>>>>> development
             id: res.id,
             content: res.content, 
             created_at: res.created_at, 
             email: res.email 
           }
+<<<<<<< HEAD
           
           newCommentsTotal = commentsAPI.concat(postNewComment)
+=======
+          const newCommentsTotal = commentsAPI.concat(postNewComment)
+          
+>>>>>>> development
           newCommentsTotal.pop()
           newCommentsTotal.unshift(postNewComment)
           setCommentsAPI(newCommentsTotal)
@@ -121,7 +168,11 @@ export default function Comments() {
           <div className="single-article-content-wrap">
             <div className="single-article-content-author">
               <img src="https://picsum.photos/50/50?grayscale" alt="jpg" />
+<<<<<<< HEAD
               { currentPost.unknown == true ? <h3 style={{ color: 'blue' }}>匿名</h3> : <h3 style={{ color: 'green' }}>{ postUserValue }</h3> }
+=======
+              { currentPost.unknown == true ? <h3 style={{ color: 'blue' }}>匿名</h3> : <h3 style={{ color: 'green' }}>{ postAuthor }</h3> }
+>>>>>>> development
               <i className="fa fa-star"></i>
               <span>11212</span>
               <span>上次編輯日期: { `${currentPost.created_at}`.slice(0, 10) }</span>
@@ -142,7 +193,11 @@ export default function Comments() {
           </select>
         </div>
 
+<<<<<<< HEAD
         { postUserValue == currentUser ?
+=======
+        { postAuthor == loginUser ?
+>>>>>>> development
         <div>
           <span><a href={ `/posts/${urlID()}/edit` }>文章編輯</a></span> 
           <span onClick={ destroyPost }>文章刪除</span> 
@@ -156,7 +211,11 @@ export default function Comments() {
             <button id="comment-button" onClick={ postComment }>送出</button>
           </div>
             </div>
+<<<<<<< HEAD
         <CurrentComments commentsAmount={ commentsAmount } loginUser={ currentUser } />
+=======
+        <CurrentComments comments={ comments } loginUser={ loginUser } />
+>>>>>>> development
         <Pages commentsAPI={ commentsAPI } 
                commentPages={ commentPages }  
                setCommentPages={ setCommentPages } />

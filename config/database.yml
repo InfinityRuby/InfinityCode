@@ -82,5 +82,5 @@ test:
 production:
   <<: *default
   database: infinityCode_production
-  username: infinityCode
+  username: ubuntu
   password: <%= ENV['INFINITYCODE_DATABASE_PASSWORD'] %>

@@ -18,8 +18,8 @@ export default function PromptSelect({ prompts, promptsCount, userCoins, useReco
     const [displayUseCoin, setDisplayUseCoin] = useState(false)
 
     const useCoins = (status = true) => { setDisplayUseCoin(status) }
-    const openContent = (event) => {
-      const userDisplayCoins = document.querySelector('.home-nav-item-link span')
+    const clickPrompt = (event) => {
+      const currentCoins = document.querySelector('.home-nav-item-link span')
       const apiData = {
         coin_amount: userCoins.coin_amount - 5, 
         coin_change: -5,  
@@ -31,7 +31,7 @@ export default function PromptSelect({ prompts, promptsCount, userCoins, useReco
         setSwitchContent(true)
       }else if(event.target.textContent == '確定' && userCoins.coin_amount >= 5) {
         API.create( 'coins', apiData)
-          .then(res => userDisplayCoins.textContent = res.coin_amount)
+          .then(res => currentCoins.textContent = res.coin_amount)
         setSwitchContent(true)
       }else {
         alert('金錢不夠')
@@ -49,7 +49,7 @@ export default function PromptSelect({ prompts, promptsCount, userCoins, useReco
               <button onClick={ () => { useCoins(false) } } className="quest-footer-button questbtn">
                 取消
               </button>   
-              <button onClick={ openContent } className="quest-footer-button questbtn">
+              <button onClick={ clickPrompt } className="quest-footer-button questbtn">
                 確定
               </button>
             </div>
@@ -58,7 +58,7 @@ export default function PromptSelect({ prompts, promptsCount, userCoins, useReco
         : null }
         <button className="quest-prompt-button questbtn"
         style={ index == count - 1 ? { background: '#fb9827' } : null} 
-        onClick={ index == count - 1 ? (switchContent || useRecord ? null : useCoins) : openContent }>
+        onClick={ index == count - 1 ? (switchContent || useRecord ? null : useCoins) : clickPrompt }>
           { index == count - 1 ? '金幣提示' : '免費提示' }
         </button>
         <p>{ switchContent || useRecord ? hint : null }</p>

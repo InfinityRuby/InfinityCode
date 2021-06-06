@@ -1,17 +1,16 @@
-import React, { useState, useLayoutEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import API from 'component/lib/API'
 
 function Nav() {
   const [user, setUser] = useState(true)
-  const [userCoins, setUserCoins] = useState(false)
-
+  const [userCoins, setUserCoins] = useState([])
   const signOut = () => {
     API.delete('/users/sign_out')
       .catch(() => location.href = '/')
   }
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     API.get('users')
       .then(user => {
         setUser(user)
