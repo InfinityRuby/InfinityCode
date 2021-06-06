@@ -1,6 +1,6 @@
 class Api::V1::PostsController < Api::V1::BaseController
   before_action :find_user_post, only: [ :update, :destroy]
-  before_action :find_post,  only: [:show, :user, :user_like, :total_likes,]
+  before_action :find_post,  only: [:show, :edit, :update, :user, :user_like, :total_likes]
   before_action :signed_in?, except: [:index, :show, :user]
 
   # 【GET】 查詢文章列表  /api/v1/posts
@@ -21,11 +21,32 @@ class Api::V1::PostsController < Api::V1::BaseController
     json_response(@post)
   end
 
+  def new
+    @post = current_user.posts.build
+  end
+
   # 【PUT】 編輯指定文章  /api/v1/posts/:id
   # body: { title: '標題', content: '內容' }
   def update
     @post.update(post_params)
     head :no_content
+  end
+
+  def create
+    @post = current_user.posts.build(post_params)
+    if @post.save
+      redirect_to posts_path(@post),notice: "新增留言成功!"
+    else
+      render 'new'
+    end
+  end
+
+  def update
+    if @post.update(post_params)
+      redirect_to post_path(@post)
+    else
+      render 'edit'
+    end
   end
 
   # 【DELETE】 刪除指定文章  /api/v1/posts/:id
@@ -66,5 +87,9 @@ class Api::V1::PostsController < Api::V1::BaseController
 
   def find_user_post
     @post = current_user.posts.find(params[:id])
+  end
+
+  def post_params
+    params.require(:post).permit(:title, :content)
   end
 end
