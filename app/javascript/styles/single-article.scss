@@ -59,7 +59,10 @@
     @apply w-10/12;
   }
   p{
-    @apply flex flex-col py-2 text-gray-600 leading-9 
+    @apply flex flex-col py-2 text-gray-600 leading-9;
+    img {
+      @apply w-1/2;
+    }
   }
   .single-article-content-span{
     @apply mt-28;
