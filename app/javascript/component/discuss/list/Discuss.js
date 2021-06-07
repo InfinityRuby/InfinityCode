@@ -3,13 +3,13 @@ import { CurrentList, Pages } from './'
 import API from 'component/lib/API'
 
 export default function Discuss() {
-  const [list, setList] = useState([])
+  const [lists, setLists] = useState([])
   const [initPage, setInitPage] = useState(1)
   
   useEffect(() => {
     API.get(`posts?page=${initPage}`)
       .then(res => {
-        setList(res)
+        setLists(res)
       })
   }, [initPage])
   
@@ -20,12 +20,12 @@ export default function Discuss() {
     if(event.key == 'Enter'){
       API.get('posts')
         .then((res) => {
-          list.splice(0, list.length)
-          res.map(el => list.push(el))
+          lists.splice(0, lists.length)
+          res.map(el => lists.push(el))
           searchValue.push(event.target.value)
           searchInput.value = '' 
-          currentSearch = list.filter(hash => hash.title.includes(searchValue.join()))
-          setList(currentSearch)
+          currentSearch = lists.filter(hash => hash.title.includes(searchValue.join()))
+          setLists(currentSearch)
           setInitPage(1)
         })
     }      
@@ -34,7 +34,7 @@ export default function Discuss() {
   const resetDiscuss = () => {  
     setInitPage(1)
     API.get('posts')
-      .then(res => setList(res))       
+      .then(res => setLists(res))       
   }
 
   const unknownDisplay = () => {
@@ -42,7 +42,7 @@ export default function Discuss() {
       .then(res => {
         const unknownUser = res.filter(item => item.unknown)
         setInitPage(1)
-        setList(unknownUser)
+        setLists(unknownUser)
       })
   }
 
@@ -69,7 +69,7 @@ export default function Discuss() {
           <a href="#">Hot</a>
           <a href="#">Newest to Oidest</a>
           <a href="#">Most Votes</a>
-          <a href="#">文章數量 { list.length }</a>
+          <a href="#">文章數量 { lists.length }</a>
           <a href="/posts/new">新增文章</a>
         </div>
         <div>
@@ -79,8 +79,8 @@ export default function Discuss() {
           </div>
         </div>
       </div>
-      <CurrentList list={ list } />
-      <Pages list={ list }
+      <CurrentList lists={ lists } />
+      <Pages lists={ lists }
              initPage={ initPage } 
              setInitPage={ setInitPage } />
     </div>
