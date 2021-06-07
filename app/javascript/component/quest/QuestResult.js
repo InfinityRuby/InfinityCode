@@ -90,7 +90,7 @@ function QuestResult() {
 
 function MessageWindow({ output, input, expected }) {
   return (
-    <div>
+    <div className="display-message-wrap">
       <div className="display-message">
         <div>Your input :</div>
         <div>{ input.map((intput, index) => <p key={ index }>{ intput }</p>) }</div>
