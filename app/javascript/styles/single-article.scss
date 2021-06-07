@@ -109,6 +109,9 @@
   & > span:nth-of-type(2){
     @apply ml-4
   }
+  img{
+    @apply w-16 h-16
+  }
 }
 
 .single-article-user-content{
