@@ -5,12 +5,11 @@ import marked from 'marked'
 
 function CurrentComments({ comments, loginUser }) {
   return comments.map(comment => {
-    const { id, email, content, created_at } = comment
+    const { id, author, content } = comment
     return <UserComments key={ id } 
                          id={ id }
-                         email={ getUserName(email) } 
+                         author={ author } 
                          content={ content }
-                         createTime={ created_at }
                          loginUser={ loginUser } />                       
   })
 }
@@ -21,35 +20,31 @@ function getUserName(email) {
 
 export default function Comments() {
   const [commentsAPI, setCommentsAPI] = useState([])
-  const [currentPost, setCurrentPost] = useState([])
-  const [user, setUser] = useState([])
-  const [postAuthor, setPostAuthor] = useState([])
+  const [comments, setComments] = useState([])
+  const [author, setAuthor] = useState([])
   const [loginUser, setLoginUser] = useState([])
   const [commentPages, setCommentPages] = useState(1)
   const sortCommentsRef = useRef()
-  const comments = commentsAPI.slice(commentPages * 6 - 6, commentPages * 6)
 
   useEffect(() => {
-    API.get(`posts/${urlID()}/comments`)
-      .then(res => { 
-        setUser(res.user)
-        setCommentsAPI(res.comments)
-    }) 
-    API.get(`posts/${urlID()}/user`) 
-      .then(res => { 
-        setPostAuthor(getUserName(res.email))
-     })
-    API.get(`posts/${urlID()}`) 
-      .then(res => { 
-        setCurrentPost(res)    
-    })
+    API.get(`posts/${urlID()}?page=${commentPages}`)
+      .then(res => {
+        setCommentsAPI(res)
+        setComments(res.comments)
+        setAuthor(res.author)
+      })
+    
     API.get(`users`)
       .then(res => setLoginUser(getUserName(res.email)))
-  }, [])
+  }, [commentPages])
 
   const postComment = () => {
     const commentTextarea = document.getElementById('comment-textarea')
-    const apiData = { content: commentTextarea.value, email: user.email }
+    const apiData = { 
+      content: commentTextarea.value, 
+      picture: author.avatar,
+      email: author.name
+    }
 
     if(commentTextarea.value) {
       API.create(`posts/${urlID()}/comments`, apiData)
@@ -57,14 +52,17 @@ export default function Comments() {
           const postNewComment = { 
             id: res.id,
             content: res.content, 
-            created_at: res.created_at, 
-            email: res.email 
+            created_at: res.created_at,
+            author: {
+              avatar: res.picture,
+              name: res.email
+            }
           }
-          const newCommentsTotal = commentsAPI.concat(postNewComment)
+          const newCommentsTotal = comments.concat(postNewComment)
           
           newCommentsTotal.pop()
           newCommentsTotal.unshift(postNewComment)
-          setCommentsAPI(newCommentsTotal)
+          setComments(newCommentsTotal)
           setCommentPages(1)    
           commentTextarea.value = ''
       })
@@ -74,13 +72,13 @@ export default function Comments() {
   
 
   const sortComments = (status = false) => {
-    commentsAPI.splice(0, commentsAPI.length)
-    API.get(`posts/${urlID()}/comments`)
+    comments.splice(0, comments.length)
+    API.get(`posts/${urlID()}`)
       .then(res => {
         const storageCache = []
         const sortComments = storageCache.concat(res.comments)
         const reverseComments = storageCache.concat(res.comments.reverse())
-        status == true ? setCommentsAPI(sortComments) : setCommentsAPI(reverseComments)
+        status == true ? setComments(sortComments) : setComments(reverseComments)
       }) 
   }
 
@@ -109,7 +107,7 @@ export default function Comments() {
           </div>
           <div className="single-article-title-word">
             <i className="fas fa-paperclip"></i>
-            <h2>{ currentPost.title }</h2>
+            <h2>{ commentsAPI.title }</h2>
           </div>
           <div className="single-article-title-icon">
             <i className="fas fa-exclamation-triangle"></i>
@@ -119,13 +117,17 @@ export default function Comments() {
           <div className="single-article-content-wrap">
             <div className="single-article-content-author">
               <img src="https://picsum.photos/50/50?grayscale" alt="jpg" />
-              { currentPost.unknown == true ? <h3 style={{ color: 'blue' }}>匿名</h3> : <h3 style={{ color: 'green' }}>{ postAuthor }</h3> }
+              { commentsAPI.unknown == true ? 
+              <h3 style={{ color: 'blue' }}>匿名</h3> : 
+              <h3 style={{ color: 'green' }}>{ author.name }</h3> 
+              }
               <i className="fa fa-star"></i>
               <span>11212</span>
-              <span>上次編輯日期: { `${currentPost.created_at}`.slice(0, 10) }</span>
+              <span>上次編輯日期: { `${comments.created_at}`.slice(0, 10) }</span>
             </div>
             <div className="single-article-content-body">
-              <div className="markdown-body" dangerouslySetInnerHTML={ {__html: marked(`${currentPost.content}`)} }>
+              <div className="markdown-body" 
+                   dangerouslySetInnerHTML={ {__html: marked(`${commentsAPI.content}`)} }>
               </div>
             </div>
           </div>
@@ -133,14 +135,16 @@ export default function Comments() {
         <div className="single-article-comments-count">
         <div>
           <i className="fa fa-comment-alt"></i>
-          <span>{ `留言總數: ${commentsAPI.length}` }</span>
-          <select className="single-article-select" ref={ sortCommentsRef } onChange={ selectedOption }>
+          <span>{ `留言總數: ${comments.length}` }</span>
+          <select className="single-article-select" 
+                  ref={ sortCommentsRef } 
+                  onChange={ selectedOption }>
             <option value="sort">最新留言</option>
             <option value="reverse">最舊留言</option>
           </select>
         </div>
 
-        { postAuthor == loginUser ?
+        { author.name == loginUser ?
         <div>
           <span><a href={ `/posts/${urlID()}/edit` }>文章編輯</a></span> 
           <span onClick={ destroyPost }>文章刪除</span> 
@@ -155,7 +159,7 @@ export default function Comments() {
           </div>
             </div>
         <CurrentComments comments={ comments } loginUser={ loginUser } />
-        <Pages commentsAPI={ commentsAPI } 
+        <Pages comments={ comments } 
                commentPages={ commentPages }  
                setCommentPages={ setCommentPages } />
       </div>

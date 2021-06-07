@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import API from 'component/lib/API'
 
-function CommentsAction({ commentRef, setCurrentComment, currentComment, email, loginUser }) { 
+function CommentsAction({ commentRef, setCurrentComment, currentComment, name, loginUser }) { 
   useEffect(() => {
     const targetComment = document.getElementById(commentsID(commentRef))
     if(targetComment) {
@@ -29,7 +29,7 @@ function CommentsAction({ commentRef, setCurrentComment, currentComment, email, 
         <button onClick={ cancelEditComment }>取消</button> 
         : 
       <div>
-        { `${email}` == `${loginUser}` ? 
+        { name == loginUser ? 
         <div>
           <button onClick={ editComment }>編輯</button>
           <button onClick={ destroyComment }>刪除</button>

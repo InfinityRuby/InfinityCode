@@ -36,7 +36,7 @@ class Api::V1::CommentsController < Api::V1::BaseController
   private
   def comment_params
     params[:comment][:post_id] = params[:post_id]
-    params.require(:comment).permit(:content, :post_id, :email, :picture)
+    params.require(:comment).permit(:content, :post_id, :picture, :email)
   end
 
   def find_post
