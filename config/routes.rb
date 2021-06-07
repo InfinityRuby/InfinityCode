@@ -36,7 +36,7 @@ Rails.application.routes.draw do
       resources :coins, only: [:index, :create]
       resources :users, only: [:index] do
         member do
-          get:answer_index
+          get:completed_ratio
         end
       end
     end
