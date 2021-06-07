@@ -33,10 +33,12 @@ export default function Comments() {
         setComments(res.comments)
         setAuthor(res.author)
       })
-    
+  }, [commentPages])
+
+  useEffect(() => {
     API.get(`users`)
       .then(res => setLoginUser(getUserName(res.email)))
-  }, [commentPages])
+  }, [])
 
   const postComment = () => {
     const commentTextarea = document.getElementById('comment-textarea')
@@ -55,7 +57,7 @@ export default function Comments() {
             created_at: res.created_at,
             author: {
               avatar: res.picture,
-              name: res.email
+              name: loginUser
             }
           }
           const newCommentsTotal = comments.concat(postNewComment)
