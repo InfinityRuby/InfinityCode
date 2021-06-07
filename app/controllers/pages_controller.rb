@@ -2,6 +2,6 @@ class PagesController < ApplicationController
   def index
   end
 
-  def show
+  def ranking
   end
 end

@@ -39,5 +39,5 @@ Rails.application.routes.draw do
   end
 
   root to: "pages#index"
-  get '/pages', to: "pages#show"
+  get '/ranking', to: "pages#ranking"
 end
