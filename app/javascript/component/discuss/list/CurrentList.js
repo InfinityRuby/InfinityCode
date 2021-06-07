@@ -1,8 +1,8 @@
 import React from 'react'
 import marked from 'marked'
 
-export default function CurrentList({ list }) {
-  return list.map(list => {
+export default function CurrentList({ lists }) {
+  return lists.map(list => {
     const { id, title , content, newest_comment_author, author } = list
     return <SearchDisplayList key={ id } 
                               id={ id } 
@@ -25,7 +25,7 @@ function SearchDisplayList({ title, content, id, newComment, author }) {
       <div>
         <div>文章作者: <span>{ author.name }</span></div>
         <div>
-          最新回覆: { newComment.name == undefined ? <span>無</span> : <span>{ newComment.name }</span> }
+          最新回覆: <span>{ newComment.name }</span>
         </div>
       </div>
     </div>
