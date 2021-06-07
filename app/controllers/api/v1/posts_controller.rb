@@ -38,10 +38,7 @@ class Api::V1::PostsController < Api::V1::BaseController
     head :no_content
   end
 
-  def user
-    render json: @post.user
-  end
-
+  #【GET】 查詢指定文章，使用者是否點過讚 /api/v1/posts/:id/like  
   def user_like
     @result = current_user.liked? @post
 
@@ -53,6 +50,7 @@ class Api::V1::PostsController < Api::V1::BaseController
     render json: {user_id: current_user.id, post_id: @post.id, liked: !@result}
   end
 
+  #【GET】 查詢指定文章點讚總數  /api/v1/posts/:id/totallike
   def total_like
     @total_like = @post.get_likes.size
     render json: {total_like: @total_like}

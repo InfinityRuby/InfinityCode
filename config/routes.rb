@@ -27,7 +27,6 @@ Rails.application.routes.draw do
           get "totallike", to: "posts#total_like"
         end
         resources :comments, shallow: true, except: [:new, :edit]
-
         member do
           get :user
         end
