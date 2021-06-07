@@ -15,13 +15,6 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :quests, except: [:new, :edit] do
         resources :prompts, shallow: true, only: [:index, :show]
-          collection do 
-            get :easy
-            get :medium
-            get :hard
-            get :solved
-            get :unsolved
-          end
           member do
             post :answer
           end

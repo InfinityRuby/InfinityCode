@@ -1,26 +1,14 @@
 class Api::V1::QuestsController < Api::V1::BaseController
   before_action :signed_in?, except: [:index, :show]
 
-  # 【GET】查詢題目列表  /api/v1/quests
+  # /api/v1/quests?status=Success
+  # /api/v1/quests?level[]=Easy&status=Failure
+  # /api/v1/quests?level[]=Easy&level[]=Hard
   def index
-    # @quests = Quest.all 
-    # byebug
-
-    # if params[:level] && params[:title]
-    #   @quests = Quest.where(level: params[:level]).where(level: params[:level])
-    # elsif params[:level]
-    #   @quests = Quest.where(level: params[:level])
-    # elsif params[:title]
-    #   @quests = Quest.where(level: params[:level])
-    # else
-    #   @quests = Quest.all
-    # end
-
-
     if params[:status] == "Success"
       @quests = current_user.quests.distinct.where("answers.status = ?", "Success").with_level(params[:level])
     elsif params[:status] == "Failure"
-      @quests = current_user.quests.distinct.where("answers.status = ?", "Failure").with_level(params[:level])
+      @quests = current_user.quests.distinct.with_level(params[:level])-current_user.quests.distinct.where("answers.status = ?", "Success").with_level(params[:level])
     else
       @quests = Quest.with_level(params[:level])
     end
@@ -33,37 +21,6 @@ class Api::V1::QuestsController < Api::V1::BaseController
     @quest = Quest.find(params[:id]) 
     json_response(@quest)
   end
-
-  # /api/v1/quests/easy
-  # /api/v1/quests?level=easy&status=Success
-  # /api/v1/quests?status=Success
-  # /api/v1/quests?level=easy
-
-
-  # def easy
-  #   @quests = Quest.where(level: 'Easy')
-  #   json_response(@quests)
-  # end
-
-  # def medium
-  #   @quests = Quest.where(level: 'Medium')
-  #   json_response(@quests)
-  # end
-
-  # def hard
-  #   @quests = Quest.where(level: 'Hard')
-  #   json_response(@quests)
-  # end
-
-  def solved
-    @quests = current_user.answers.where(status: 'Success')
-    json_response(@quests)
-  end
-
-  # def unsolved
-  #   @quests = current_user.answers.where(status: 'Failure')
-  #   json_response(@quests)
-  # end
 
   # 【POST】新增答題記錄  /api/v1/quests/:id/answer
   # body: { type: 'ruby', answer: '答題內容' }
