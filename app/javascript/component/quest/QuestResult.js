@@ -52,7 +52,7 @@ function QuestResult() {
           <div className="quest-answer-button">
             <div><img src="/quest/star.png" /><span>+ 5</span></div>
             <h2>Good job !</h2>
-            <button className="quest-footer-button questbtn">解題討埨區</button>
+            <button className="quest-footer-button questbtn">解題討論區</button>
             <button
             onClick={ () => { location.href = `/quests` } } 
             className="quest-footer-button questbtn">題目列表</button>
