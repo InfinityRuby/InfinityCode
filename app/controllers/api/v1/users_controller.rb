@@ -3,11 +3,10 @@ class Api::V1::UsersController < Api::V1::BaseController
     json_response(current_user, :created)
   end
 
-  #api/v1/users/1/answer_index
-  def answer_index
+  #api/v1/users/1/completed_ratio
+  def completed_ratio
     total_quest = Quest.count
-    total_solved = current_user.answers.where(status: 'Success').count
-    
+
     quest_solved = current_user.quests.distinct.where('answers.status = ?', "Success").count
     level_solved= current_user.quests.distinct.where('answers.status = ?', "Success").group(:level).count
     level_total = Quest.group(:level).count
@@ -24,10 +23,4 @@ class Api::V1::UsersController < Api::V1::BaseController
       hard_percentage: hard_percentage 
     })
   end
-  
-  private
-  def answer_params
-    params.require(:answer).permit(:quest_id, :user_id, :status)
-  end
-  
 end
