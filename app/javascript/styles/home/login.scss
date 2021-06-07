@@ -51,10 +51,7 @@
         .rank-title {
           @apply text-center;
           span {
-            @apply px-6 py-2;
-          }
-          span:hover {
-            color: #fb9827;
+            @apply px-6 py-2 hover:text-yellow-500;
           }
         }
         .rank-title {
