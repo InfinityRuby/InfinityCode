@@ -1,12 +1,10 @@
 class Api::V1::PostsController < Api::V1::BaseController
-  before_action :find_user_post, only: [ :update, :destroy, :user_like]
   before_action :find_post,  only: [:show, :edit, :destroy, :update, :user, :user_like, :total_like]
   before_action :signed_in?, except: [:index, :show, :user]
 
   # 查詢文章列表  
   # GET: /api/v1/posts
   def index
-    json_response(@posts)
   end
 
   # 新增文章  
@@ -63,13 +61,5 @@ class Api::V1::PostsController < Api::V1::BaseController
 
   def find_post
     @post = Post.find(params[:id])
-  end
-
-  def find_user_post
-    @post = current_user.posts.find(params[:id])
-  end
-
-  def post_params
-    params.require(:post).permit(:title, :content)
   end
 end
