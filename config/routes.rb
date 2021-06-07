@@ -33,8 +33,12 @@ Rails.application.routes.draw do
         end
       end
       
-      resources :coins, only: [:index, :create] 
-      resources :users, only: [:index]
+      resources :coins, only: [:index, :create]
+      resources :users, only: [:index] do
+        member do
+          get:answer_index
+        end
+      end
     end
   end
 
