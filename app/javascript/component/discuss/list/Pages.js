@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function Pages({ list, initPage, setInitPage }) {
-  const nextPage = number => listAmount < list.length && setInitPage(initPage + number)
+  const nextPage = number => setInitPage(initPage + number)
   const previousPage = () => initPage > 1 && setInitPage(initPage - 1)
   const searchPage = event => {
     if(event.key == 'Enter'){
