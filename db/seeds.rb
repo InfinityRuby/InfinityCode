@@ -1,19 +1,19 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-Quest.create!(
-  title: 'Hello InfinityCode!',
-  level: 'Easy',
-  description: 'Let\'s get started with Ruby!<br />Go ahead and type the following code in the code-editor:<br />`print "Hello InfinityCode!!`"',
-  picture: '',
-  problem: '',
-  created_at: Time.now,
-  updated_at: Time.now
-)
+# # This file should contain all the record creation needed to seed the database with its default values.
+# # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
+# #
+# # Examples:
+# #
+# #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
+# #   Character.create(name: 'Luke', movie: movies.first)
+# Quest.create!(
+#   title: 'Hello InfinityCode!',
+#   level: 'Easy',
+#   description: 'Let\'s get started with Ruby!<br />Go ahead and type the following code in the code-editor:<br />`print "Hello InfinityCode!!`"',
+#   picture: '',
+#   problem: '',
+#   created_at: Time.now,
+#   updated_at: Time.now
+# )
 Quest.create!(
   title: 'Two Sum',
   level: 'Easy',
@@ -313,53 +313,21 @@ Case.create!(
   input: "p first_missing_positive([1, 2, 0])",
   output: "3"
 )
-Answer.create!(
-  quest_id: 1,
-  user_id: 1,
-  status: "成功"
-)
-Answer.create!(
-  quest_id: 2,
-  user_id: 1,
-  status: "失敗"
-)
-Answer.create!(
-  quest_id: 3,
-  user_id: 1,
-  status: "失敗"
-)
-Answer.create!(
-  quest_id: 4,
-  user_id: 1,
-  status: "成功"
-)
-Answer.create!(
-  quest_id: 5,
-  user_id: 1,
-  status: "成功"
-)
-Answer.create!(
-  quest_id: 6,
-  user_id: 1,
-  status: "成功"
-)
-Answer.create!(
-  quest_id: 7,
-  user_id: 1,
-  status: "成功"
-)
-Answer.create!(
-  quest_id: 8,
-  user_id: 1,
-  status: "成功"
-)
-Answer.create!(
-  quest_id: 9,
-  user_id: 1,
-  status: "失敗"
-)
-Answer.create!(
-  quest_id: 10,
-  user_id: 1,
-  status: "成功"
-)
+
+5.times do 
+  Answer.create!(
+    quest_id: Faker::Number.between(from: 1, to: 5),
+    user_id: 1,
+    code:'',
+    status: 'Success'
+  )
+end
+
+5.times do 
+  Answer.create!(
+    quest_id: Faker::Number.between(from: 1, to: 5),
+    user_id: 1,
+    code:'',
+    status: 'Failure'
+  )
+end
