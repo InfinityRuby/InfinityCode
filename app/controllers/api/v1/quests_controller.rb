@@ -42,9 +42,7 @@ class Api::V1::QuestsController < Api::V1::BaseController
 
     # 操作 Docker 服務
     container = DockerService.new(image: type[:image], file: file_path)
-    container.create
-    log = container.start
-    container.delete
+    log = container.run
 
     # 測試案例比對
     status = (output.join("\r\n").eql?(log.chomp) ? 'Success' : 'Failure')
@@ -53,10 +51,18 @@ class Api::V1::QuestsController < Api::V1::BaseController
     # 刪除暫存檔
     File.delete(file_path)
     
-    # JSON
+    # JSON 內容整理
+    input = input.map{ |element| element.match(/\(([^()]*)\)/) }
+
+    if input.any?
+      input = input.map{ |element| element[1] }
+    else
+      input = []
+    end
+
     json_data = {
       status: answer.status,
-      input: input.map{ |element| element.match(/\(([^()]*)\)/)[1] },
+      input: input,
       output: log.chomp.split("\r\n"),
       expected: output
     }

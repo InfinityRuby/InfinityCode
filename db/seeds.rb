@@ -244,7 +244,7 @@ Prompt.create!(
   Post.create(
     title: Faker::Lorem.paragraph,
     content: Faker::Lorem.paragraph(sentence_count: 2),
-    user_id: Faker::Number.between(from: 1, to: 2)
+    user_id: 1
   )
 end
 
@@ -252,13 +252,13 @@ end
   Comment.create(
     content: Faker::Lorem.paragraph,
     user_id: 1,
-    post_id: 1
+    post_id: Faker::Number.between(from: 1, to: 10)
   )
 end
 
 10.times do
   Coin.create(
-    user_id: 17,
+    user_id: 1,
     coin_change: Faker::Number.between(from: -10, to: 10),
     coin_amount: Faker::Number.between(from: 10, to: 50),
     description: 'test'
@@ -268,42 +268,42 @@ end
 Case.create!(
   quest_id: 1,
   input: "",
-  output: "Hello InfinityCode!!"
+  output: "\"Hello InfinityCode!!\""
 )
 
 Case.create!(
   quest_id: 2,
-  input: "p two_sum([2, 7, 11, 15], 9)",
+  input: "two_sum([2, 7, 11, 15], 9)",
   output: "[0, 1]"
 )
 
 Case.create!(
   quest_id: 2,
-  input: "p two_sum([3, 2, 4], 6)",
+  input: "two_sum([3, 2, 4], 6)",
   output: "[1, 2]"
 )
 
 Case.create!(
   quest_id: 2,
-  input: "p two_sum([3, 3], 6)",
+  input: "two_sum([3, 3], 6)",
   output: "[0, 1]"
 )
 
 Case.create!(
   quest_id: 3,
-  input: "p shuffle([2, 5, 1, 3, 4, 7], 3)",
+  input: "shuffle([2, 5, 1, 3, 4, 7], 3)",
   output: "[2, 3, 5, 4, 1, 7]"
 )
 
 Case.create!(
   quest_id: 4,
-  input: "p three_sum([-1, 0, 1, 2, -1, -4])",
+  input: "three_sum([-1, 0, 1, 2, -1, -4])",
   output: "[[-1, -1, 2], [-1, 0, 1]]"
 )
 
 Case.create!(
   quest_id: 5,
-  input: "p first_missing_positive([1, 2, 0])",
+  input: "first_missing_positive([1, 2, 0])",
   output: "3"
 )
 
