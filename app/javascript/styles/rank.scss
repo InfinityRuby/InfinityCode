@@ -1,0 +1,30 @@
+#ranking{
+  @apply w-full pt-20 flex justify-center;
+  .wrap{
+    @apply w-8/12 flex flex-col items-center shadow-md py-2;
+    .pages{
+      @apply flex justify-center items-center w-full;
+      div{
+        @apply text-xl py-7 border-r border-gray-200 w-3/12 text-center bg-gray-100 opacity-30 hover:opacity-80 hover:bg-white cursor-pointer;
+        &:nth-child(1) {
+          @apply opacity-80 bg-white;
+        }
+      }
+    }
+    .body{
+      @apply flex flex-col justify-center items-center w-full px-4;
+      .title{
+        @apply flex justify-center items-center w-full border-b border-gray-200;
+        div{
+          @apply text-lg w-4/12 py-6 pl-10 mx-2;
+        }
+      }
+      .content{
+        @apply w-full flex flex-col justify-center;
+        div{
+          @apply w-full border-b border-gray-300 pl-10 py-5;
+        }
+      }
+    }
+  }
+}

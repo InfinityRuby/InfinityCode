@@ -38,5 +38,6 @@ Rails.application.routes.draw do
     end
   end
 
-  root to: "homes#index"
+  root to: "pages#index"
+  get '/ranking', to: "pages#ranking"
 end
