@@ -9,7 +9,7 @@ class Api::V1::QuestsController < Api::V1::BaseController
     if params[:status] == "Success"
       @quests = current_user.quests.distinct.where("answers.status = ?", "Success").with_level(params[:level])
     elsif params[:status] == "Failure"
-      @quests = current_user.quests.distinct.with_level(params[:level])-current_user.quests.distinct.where("answers.status = ?", "Success").with_level(params[:level])
+      @quests = Quest.distinct.with_level(params[:level])-current_user.quests.distinct.where("answers.status = ?", "Success").with_level(params[:level])
     else
       @quests = Quest.with_level(params[:level])
     end
