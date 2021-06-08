@@ -16,6 +16,15 @@ class DockerService
 
   end
 
+  def run
+    create
+    log = start
+    delete
+
+    return log
+  end
+
+  private
   def create
     @container_id = `docker create -it -v #{ @file }:/mnt/data #{ @image } ruby /mnt/data`
   end
