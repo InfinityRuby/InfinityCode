@@ -3,8 +3,9 @@ class Api::V1::UsersController < Api::V1::BaseController
     json_response(current_user, :created)
   end
 
-  #api/v1/users/1/completed_ratio
-  def completed_ratio
+  # 查詢特定使用者的解題完成率
+  # GET: api/v1/users/1/completed_rate
+  def completed_rate
     total_quest = Quest.count
 
     quest_solved = current_user.quests.distinct.where('answers.status = ?', "Success").count
