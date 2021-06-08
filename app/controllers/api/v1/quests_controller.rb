@@ -1,6 +1,7 @@
 class Api::V1::QuestsController < Api::V1::BaseController
   before_action :signed_in?, except: [:index, :show]
 
+  # 【GET】查詢符合篩選資料的題目
   # /api/v1/quests?status=Success
   # /api/v1/quests?level[]=Easy&status=Failure
   # /api/v1/quests?level[]=Easy&level[]=Hard
