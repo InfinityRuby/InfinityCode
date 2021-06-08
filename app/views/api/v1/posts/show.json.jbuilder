@@ -7,8 +7,11 @@ json.author do
   json.avatar url_for(post.user.profile.avatar_url)
 end
 
-comments = post.comments.page(params[:page]).per(10)
+page_size = 10
+comments_total_page = (post.comments.count / page_size.to_f).ceil
+comments = post.comments.page(params[:page]).per(page_size)
 
+json.comments_total_page comments_total_page
 json.comments comments do |comment|
   json.(comment, :id, :content)
 

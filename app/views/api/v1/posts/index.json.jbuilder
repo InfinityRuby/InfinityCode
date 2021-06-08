@@ -3,9 +3,13 @@ if params[:search].nil?
 else
   posts = Post.where("title LIKE '%?%'", params[:search])
 end
-posts = posts.page(params[:page]).per(10)
 
-json.array! posts do |post|
+page_size = 10
+total_page = (posts.count / page_size.to_f).ceil
+posts = posts.page(params[:page]).per(page_size)
+
+json.total_page total_page
+json.posts posts do |post|
   json.(post, :id, :title, :content)
 
   json.author do
@@ -25,4 +29,3 @@ json.array! posts do |post|
 
   
 end
-
