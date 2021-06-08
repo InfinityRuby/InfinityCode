@@ -8,7 +8,7 @@ class Api::V1::UsersController < Api::V1::BaseController
     total_quest = Quest.count
 
     quest_solved = current_user.quests.distinct.where('answers.status = ?', "Success").count
-    level_solved= current_user.quests.distinct.where('answers.status = ?', "Success").group(:level).count
+    level_solved = current_user.quests.distinct.where('answers.status = ?', "Success").group(:level).count
     level_total = Quest.group(:level).count
     
     total_percentage = (quest_solved / total_quest.to_f).round(2)
