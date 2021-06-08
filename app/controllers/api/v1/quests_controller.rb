@@ -1,30 +1,23 @@
 class Api::V1::QuestsController < Api::V1::BaseController
   before_action :signed_in?, except: [:index, :show]
 
-  # 【GET】查詢符合篩選資料的題目
-  # /api/v1/quests?status=Success
-  # /api/v1/quests?level[]=Easy&status=Failure
-  # /api/v1/quests?level[]=Easy&level[]=Hard
+  # 查詢符合篩選資料的題目
+  # GET: /api/v1/quests?status=Success
+  # GET: /api/v1/quests?level[]=Easy&status=Failure
+  # GET: /api/v1/quests?level[]=Easy&level[]=Hard
   def index
-    solved = current_user.quests.distinct.where("answers.status = ?", "Success").with_level(params[:level])
-    if params[:status] == "Success"
-      @quests = solved
-    elsif params[:status] == "Failure"
-      @quests = Quest.distinct.with_level(params[:level]) - solved
-    else
-      @quests = Quest.with_level(params[:level])
-    end
-    json_response(@quests)
   end
 
-  # 【GET】查詢指定題目  /api/v1/quests/:id
+  # 查詢指定題目  
+  # GET: /api/v1/quests/:id
   def show
     @quest = Quest.find(params[:id]) 
     json_response(@quest)
   end
 
-  # 【POST】新增答題記錄  /api/v1/quests/:id/answer
-  # body: { type: 'ruby', answer: '答題內容' }
+  # 新增答題記錄  
+  # POST: /api/v1/quests/:id/answer
+  # params: { type: 'ruby', answer: '答題內容' }
   def answer
     # 測試案例
     test_case = Case.where(quest_id: params[:id])
