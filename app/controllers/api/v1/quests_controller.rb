@@ -6,14 +6,14 @@ class Api::V1::QuestsController < Api::V1::BaseController
   # /api/v1/quests?level[]=Easy&status=Failure
   # /api/v1/quests?level[]=Easy&level[]=Hard
   def index
+    solved = current_user.quests.distinct.where("answers.status = ?", "Success").with_level(params[:level])
     if params[:status] == "Success"
-      @quests = current_user.quests.distinct.where("answers.status = ?", "Success").with_level(params[:level])
+      @quests = solved
     elsif params[:status] == "Failure"
-      @quests = Quest.distinct.with_level(params[:level])-current_user.quests.distinct.where("answers.status = ?", "Success").with_level(params[:level])
+      @quests = Quest.distinct.with_level(params[:level]) - solved
     else
       @quests = Quest.with_level(params[:level])
     end
-
     json_response(@quests)
   end
 
