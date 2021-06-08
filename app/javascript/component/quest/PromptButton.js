@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { API, urlID } from 'component/lib'
+import marked from 'marked'
 
 export default function PromptSelect({ prompts, promptsCount, userCoins, useRecord }) {
   return prompts.map((prompt, index) => {
@@ -37,7 +38,11 @@ export default function PromptSelect({ prompts, promptsCount, userCoins, useReco
         alert('金錢不夠')
       }      
     }
-  
+
+    let ans = switchContent || useRecord ? hint : null
+    function setMarked() {
+      return ans && marked(ans)
+    }
     return(
       <div>
         { displayUseCoin ? 
@@ -61,7 +66,7 @@ export default function PromptSelect({ prompts, promptsCount, userCoins, useReco
         onClick={ index == count - 1 ? (switchContent || useRecord ? null : useCoins) : clickPrompt }>
           { index == count - 1 ? '金幣提示' : '免費提示' }
         </button>
-        <p>{ switchContent || useRecord ? hint : null }</p>
+        <div className="markdown-body" dangerouslySetInnerHTML={{ __html: setMarked() }}></div>
       </div>
     )
   }
