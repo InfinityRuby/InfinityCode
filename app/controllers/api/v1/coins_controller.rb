@@ -13,6 +13,6 @@ class Api::V1::CoinsController < Api::V1::BaseController
 
   private
   def coin_params
-    params.require(:coin).permit(:coin_amount, :coin_change, :description)
+    params.require(:coin).permit(:coin_change, :description)
   end
 end
