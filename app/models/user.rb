@@ -24,6 +24,6 @@ class User < ApplicationRecord
 
   private
   def create_coins
-    self.coins.create(coin_amount: 20, coin_change: 0, description: '無')
+    self.coins.create(coin_change: 20, description: '註冊回饋金')
   end
 end
