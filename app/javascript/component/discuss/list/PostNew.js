@@ -37,7 +37,7 @@ function PostNew() {
     <div className="post-new-wrap">
       <div className="post-new-title">
         { errorWarn ? <div style={{ color: "#f00" }}>欄位必須填，至少6個字</div> : null }
-        <input type="text" row="30" col="30" className="post-new-input" ref={ titleInputRef } />
+        <input type="text" row="30" col="30" className="post-new-input" ref={ titleInputRef } placeholder="文章標題，至少輸入六個字"/>
       </div>
       <div className="unknown">
         <input type="checkbox" name="unknown" id="unknown" value="匿名發送貼文" onClick={ unknownStatus } />
@@ -47,7 +47,7 @@ function PostNew() {
       </div>
       <MDEditor
         textareaProps={ {
-          placeholder: '可以輸入markdown語法',
+          placeholder: '可以輸入markdown語法，內容至少六個字',
           icon: <span style={{ padding: '0 5px' }}>Custom Toolbar</span>
         } }
         height={ 550 }

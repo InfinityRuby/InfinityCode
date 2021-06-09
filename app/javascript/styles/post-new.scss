@@ -1,7 +1,7 @@
 .post-new-container{
-  @apply w-full flex justify-center;  
+  @apply w-full flex justify-center min-h-screen;  
   .post-new-wrap{
-    @apply w-9/12 pt-20;
+    @apply w-9/12 pt-28;
     .post-new-title{
       @apply w-full pb-2 
     }
