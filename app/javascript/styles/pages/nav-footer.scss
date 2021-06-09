@@ -46,7 +46,7 @@
       .user-btn {
         @apply mr-0;
         .user-btn-signup {
-          @apply border-yellow-500 rounded border py-1 px-3 text-lg outline-none text-white bg-yellow-500 mr-2;
+          @apply border-yellow-500 border py-1 px-3 text-lg outline-none text-white bg-yellow-500 mr-2;
         }
         .user-btn-login {
           @apply py-2 px-4 hover:text-yellow-500 text-lg outline-none;
