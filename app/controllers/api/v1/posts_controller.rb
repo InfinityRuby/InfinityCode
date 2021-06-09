@@ -1,6 +1,6 @@
 class Api::V1::PostsController < Api::V1::BaseController
   before_action :find_user_post, only: [:user_like, :total_like]
-  before_action :find_post, only: [:show, :destroy, :update, :user_like, :total_like]
+  before_action :find_post, only: [:show,:destroy, :update, :user]
   before_action :signed_in?, except: [:index, :show, :user]
 
   # 查詢文章列表  
@@ -62,5 +62,9 @@ class Api::V1::PostsController < Api::V1::BaseController
 
   def find_post
     @post = Post.find(params[:id])
+  end
+
+  def find_user_post
+    @post = current_user.posts.find(params[:id])
   end
 end
