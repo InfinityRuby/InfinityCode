@@ -30,11 +30,6 @@ class Api::V1::PostsController < Api::V1::BaseController
     head :no_content
   end
 
-  # def publish_author
-  #   @posh.update(post_params).merge(author.name)
-  #   render :json {author: author.name}
-  # end
-
   private
   def post_params
     params.require(:post).permit(:title, :content, :publish_author)
