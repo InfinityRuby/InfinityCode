@@ -6,10 +6,13 @@ import API from 'component/lib/API'
 function List() {
   const [lists, setLists] = useState([])
   const [solved, setSolved] = useState([])
+  const [url, setURL] = useState('quests?')
   useEffect(() => {
-    API.get(`quests`)
+    API.get(url)
       .then(res => setLists(res))
+  }, [url])
 
+  useEffect(() => {
     API.get(`quests?status=Success`)
       .then(res => {
         const solvedID = res.map(el => el.id)
@@ -25,69 +28,57 @@ function List() {
     if(event.target.checked) {
       setLists(solveList)
     }else {
-      levelChange().then(res => setLists(res))
+      API.get(url).then(res => setLists(res))
     }
   }
 
-  const levelChange = () => {
-    const url = `quests/?level[]=`
-    const levelCheckbox = document.querySelectorAll('.level-checkbox')
-    const level = []
-    let count = 0
-    levelCheckbox.forEach(el => {
-      level.push(el.checked)
-      if(count == 3 || count == 4) {
-        el.checked = false
+  const levelChange = (i) => {
+    const level = [`level[]=Easy&`, `level[]=Medium&`, `level[]=Hard&`]
+    const levelCheckbox = document.querySelectorAll('.level-select')
+    const solveCheckbox = document.querySelectorAll('.completion-select')
+    if(levelCheckbox[i].checked) {
+      if(solveCheckbox[0].checked || solveCheckbox[1].checked) {
+        solveAPI(i, level, solveCheckbox)
+      }else {
+        setURL(url + level[i])
       }
-      count++
-    })
-    if(level[0] && !level[1] && !level[2]) {
-      return levelSelect(`${url}Easy`)
-    }else if(level[0] && level[1] && !level[2]) {
-      return levelSelect(`${url}Easy&level[]=Medium`)
-    }else if(level[0] && !level[1] && level[2]) {
-      return levelSelect(`${url}Easy&level[]=Hard`)
-    }else if(level[0] && level[1] && level[2]) {
-      return levelSelect(`${url}Easy&level[]=Medium&level[]=Hard`)
-    }else if(!level[0] && level[1] && !level[2]) {
-      return levelSelect(`${url}Medium`)
-    }else if(!level[0] && level[1] && level[2]) {
-      return levelSelect(`${url}Medium&level[]=Hard`)
-    }else if(level[2]) {
-      return levelSelect(`${url}Hard`)   
     }else {
-      return levelSelect(`quests`)
+      setURL(url.replace(`${level[i]}`, ''))
     }
   }
 
-  const levelSelect = (url) => {
-    return API.get(url)
-             .then(res => {
-               setLists(res)
-               return res
-             })
+  const solveAPI = (i, level, solveCheckbox) => {
+    let levelSolved
+    API.get(url + level[i]).then(res => {
+      if(solveCheckbox[0].checked) {
+        levelSolved = res.filter(el => solved.includes(el.id))
+      }else if(solveCheckbox[1].checked) {
+        levelSolved = res.filter(el => !solved.includes(el.id))
+      }
+      setLists(levelSolved)
+    })
   }
   
   return(
     <div>
       <div className="quest-checkbox">
-        <input type="checkbox" className="level-select level-checkbox" id="s1" onClick={ levelChange }/>
-        <label htmlFor="s1" className="level-label">簡單</label>
+        <input type="checkbox" className="level-select" id="level-easy" onClick={ () => levelChange(0) }/>
+        <label htmlFor="level-easy" className="level-label">簡單</label>
     
-        <input type="checkbox" className="level-select level-checkbox" id="s2" onClick={ levelChange }/>
-        <label htmlFor="s2" className="level-label">中等</label>
+        <input type="checkbox" className="level-select" id="level-medium" onClick={ () => levelChange(1) }/>
+        <label htmlFor="level-medium" className="level-label">中等</label>
     
-        <input type="checkbox" className="level-select level-checkbox" id="s3" onClick={ levelChange }/>
-        <label htmlFor="s3" className="level-label">困難</label>
+        <input type="checkbox" className="level-select" id="level-hard" onClick={ () => levelChange(2) }/>
+        <label htmlFor="level-hard" className="level-label">困難</label>
     
         <div className="split">|</div>
-        <input type="checkbox" className="completion-select level-checkbox" 
-        id="s4" onClick={ solveChange.bind(this, true) } />
-        <label htmlFor="s4">已解決</label>
+        <input type="checkbox" className="completion-select" 
+        id="level-solved" onClick={ solveChange.bind(this, true) }/>
+        <label htmlFor="level-solved">已解決</label>
     
-        <input type="checkbox" className="completion-select level-checkbox" 
-        id="s5" onClick={ solveChange.bind(this, false) }/>
-        <label htmlFor="s5">未解決</label>
+        <input type="checkbox" className="completion-select" 
+        id="level-unsolved" onClick={ solveChange.bind(this, false) }/>
+        <label htmlFor="level-unsolved">未解決</label>
       </div>
       <div id="list-quest">
         <Quests lists={ lists } solved={ solved }/>
