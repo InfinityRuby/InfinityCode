@@ -21,7 +21,7 @@ class Api::V1::QuestsController < Api::V1::BaseController
   def answer
     # 測試案例
     test_case = Case.where(quest_id: params[:id])
-    input = test_case.map { |element| element.input }
+    input = test_case.map { |element| "p #{ element.input }" }
     output = test_case.map { |element| element.output }
 
     # 產生解題紀錄檔
