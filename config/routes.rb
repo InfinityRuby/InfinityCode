@@ -22,7 +22,6 @@ Rails.application.routes.draw do
       end
 
       resources :posts, except: [:new, :edit] do
-          # get "/posts/author_name", to: "posts#publish_author"
         resources :comments, shallow: true, except: [:new, :edit]
 
         member do
