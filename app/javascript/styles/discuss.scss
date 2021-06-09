@@ -1,5 +1,5 @@
 .container-discuss{
-  @apply w-full h-screen pt-14 flex mt-10 justify-center opacity-90;
+  @apply w-full min-h-screen pt-14 flex mt-10 justify-center opacity-90;
   .discuss-wrap{
     @apply flex flex-col w-8/12;
     .discuss{

@@ -3,7 +3,7 @@ import { CommentsAction, commentsID } from './CommentsAciton'
 import API from 'component/lib/API'
 import marked from 'marked'
 
-export default function UserComments({ id, author, content, loginUser }) {
+export default function UserComments({ id, author, content, created, loginUser }) {
   const { name, avatar } = author
   const [currentComment, setCurrentComment] = useState(0)
   const commentRef = useRef()
@@ -25,8 +25,9 @@ export default function UserComments({ id, author, content, loginUser }) {
   return(
     <div data-id={ id } ref={ commentRef } className="single-article-user-comments">
       <div className="single-article-user-title">
-        <img src={ avatar } alt="comments-img" />
+      <img src={ avatar == 'default.png' ? '/default.png' : avatar } alt="comments-img" />
         <h4 style={{ color: 'green' }}>{ name }</h4>
+        <span>{ created.slice(0, 10) }</span>
       </div>
       <div className="single-article-user-content" >
         { currentComment == id 
