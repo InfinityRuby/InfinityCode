@@ -1,7 +1,7 @@
 .single-article-container{
   @apply w-full flex justify-center pt-24;
   .single-article-wrap{
-    @apply w-7/12 bg-white shadow-md h-full;
+    @apply w-7/12 bg-white shadow-md min-h-screen;
     .single-article-title{
       @apply w-full px-2 py-4 flex justify-center items-center border-b border-gray-200;
       .single-article-title-goback{
