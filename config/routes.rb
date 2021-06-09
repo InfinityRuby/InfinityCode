@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   
   get "/quests/questdata", to: "quests#questdata"
 
+
   # API 路徑設定
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
@@ -21,6 +22,7 @@ Rails.application.routes.draw do
       end
 
       resources :posts, except: [:new, :edit] do
+          # get "/posts/author_name", to: "posts#publish_author"
         resources :comments, shallow: true, except: [:new, :edit]
 
         member do
