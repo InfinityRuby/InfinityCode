@@ -40,10 +40,10 @@ function Nav() {
             <li>
               <a href="/ranking">排行榜</a>
             </li>
-            <li>
+            <li className="coin">
               <img src="/quest/star.png" alt="star" />
             </li>
-            <li>
+            <li className="amount">
               <span>{ userCoins.coin_amount }</span>
             </li>
             <li className="user-account">
@@ -55,7 +55,6 @@ function Nav() {
               </a>
               <ul className="sub1">
                 <li onClick={ () => { location.href = '/profile' } }>個人檔案</li>
-                <li><a href="#Bookmarks-path"></a></li>
                 <li onClick={ signOut } className="navbar-link">登出</li>
               </ul>
             </li>
