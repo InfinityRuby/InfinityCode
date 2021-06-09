@@ -53,8 +53,9 @@ ActiveRecord::Schema.define(version: 2021_06_11_073033) do
 
   create_table "coins", force: :cascade do |t|
     t.bigint "user_id"
+    t.integer "coin_amount", default: 20
     t.integer "coin_change", default: 0
-    t.string "description"
+    t.string "description", default: "新用戶註冊禮"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_coins_on_user_id"
