@@ -7,6 +7,7 @@ class Api::V1::CommentsController < Api::V1::BaseController
   # GET: /api/v1/posts/:post_id/comments?order=asc 建立時間，正向排序 
   def index
 <<<<<<< HEAD
+<<<<<<< HEAD
     order_by = params[:order] == 'asc' ? :asc : :desc
     @comments = Comment.where(post_id: params[:post_id]).order(created_at: order_by).page(params[:page]).per(10)
 =======
@@ -16,6 +17,10 @@ class Api::V1::CommentsController < Api::V1::BaseController
       @comments = Comment.where(post_id: params[:post_id]).order(created_at: :desc).page(params[:page]).per(10)
     end
 >>>>>>> 完成：討論區文章留言 排序功能
+=======
+    order_by = params[:order] == 'asc' ? :asc : :desc
+    @comments = Comment.where(post_id: params[:post_id]).order(created_at: order_by).page(params[:page]).per(10)
+>>>>>>> 修改：討論區文章 code refactor
     json_response(comments: @comments, user: current_user.as_json(only: [:id, :email]), avatar: current_user.profile.avatar)
   end
 
