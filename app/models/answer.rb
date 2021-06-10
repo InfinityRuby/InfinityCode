@@ -5,7 +5,11 @@ class Answer < ApplicationRecord
   before_create :change_coin
 
   def change_coin
+<<<<<<< HEAD
     return if user.quests.where('answers.status = ?', "Success").include? (quest)
+=======
+    return if user.quests.where('answers.status = ?', "Success").include? quest   
+>>>>>>> 修改: 金幣欄位變動
 
     if quest.level == "Easy"
       user.update(coin_amount: user.coin_amount + 5)
