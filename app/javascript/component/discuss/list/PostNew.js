@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react'
-import ReactDOM from 'react-dom'
-import MDEditor from '@uiw/react-md-editor'
-import API from 'component/lib/API'
+import React, { useEffect, useRef, useState } from "react"
+import ReactDOM from "react-dom"
+import MDEditor from "@uiw/react-md-editor"
+import API from "component/lib/API"
 
 function PostNew() {
   const editRef = useRef()
@@ -11,8 +11,8 @@ function PostNew() {
 
   const unknownStatus = () => { setUnknown(!unknown) }
   const postNew = () => {
-    const titleInput = document.querySelector('.post-new-input')
-    const contentTextarea = document.querySelector('.w-md-editor-text-input')
+    const titleInput = document.querySelector(".post-new-input")
+    const contentTextarea = document.querySelector(".w-md-editor-text-input")
     const apiData = {
       title: titleInput.value,
       content: contentTextarea.value, 
@@ -20,12 +20,12 @@ function PostNew() {
     }
 
     if(titleInput.value.length >= 6 && contentTextarea.value.length >= 6){
-      API.create('posts', apiData)
+      API.create("posts", apiData)
         .then(res => location.href = `/posts/${res.id}`)
-      editRef.current.style = 'background: #ffa100; color: #000'
+      editRef.current.style = "background: #ffa100; color: #000"
     }else {
-      titleInput.style = 'border: 2px solid #f00'
-      contentTextarea.style = 'border: 2px solid #f00'
+      titleInput.style = "border: 2px solid #f00"
+      contentTextarea.style = "border: 2px solid #f00"
       setErrorWarn(true)
     }
   }
@@ -47,8 +47,8 @@ function PostNew() {
       </div>
       <MDEditor
         textareaProps={ {
-          placeholder: '可以輸入markdown語法，內容至少六個字',
-          icon: <span style={{ padding: '0 5px' }}>Custom Toolbar</span>
+          placeholder: "可以輸入markdown語法，內容至少六個字",
+          icon: <span style={{ padding: "0 5px" }}>Custom Toolbar</span>
         } }
         height={ 550 }
       />
@@ -59,7 +59,7 @@ function PostNew() {
   )
 }
 
-document.addEventListener('turbolinks:load', () => {
+document.addEventListener("turbolinks:load", () => {
   const postNew = document.getElementById("post-new-container")
   if(postNew) {
     ReactDOM.render(<PostNew />, postNew)
