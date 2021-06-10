@@ -37,10 +37,9 @@ export default function Discuss() {
     }      
   }
 
-  const resetDiscuss = () => {  
-    setInitPage(1)
-    API.get('posts')
-      .then(res => setLists(res.posts))       
+  const resetDiscuss = () => {
+    API.get(`posts`)
+      .then(res => setLists(res.posts))
   }
 
   const unknownDisplay = () => {
@@ -67,21 +66,15 @@ export default function Discuss() {
       <div className="discuss">
         <a onClick={ switchDisplay }>全部的文章</a>
         <a onClick={ switchDisplay }>匿名的文章</a>
-        <a onClick={ switchDisplay }>待開發</a>
-        <a onClick={ switchDisplay }>待開發</a>
       </div>
       <div className="discuss">
         <div>
-          <a href="#">Hot</a>
-          <a href="#">Newest to Oidest</a>
-          <a href="#">Most Votes</a>
-          <a href="#">文章數量 { maxPage != 0 ? (maxPage - 1) * 10 + quantity : 0 }</a>
           <a href="/posts/new">新增文章</a>
+          <span>文章數量 { maxPage != 0 ? (maxPage - 1) * 10 + quantity : 0 }</span>
         </div>
         <div>
           <div className="discuss-search">
-            <input type="text" placeholder="Search topics or comments" id="searchListInput" onKeyPress={ searchList } />
-            <button onClick={ resetDiscuss }>Reset</button>
+            <input type="text" placeholder="搜尋文章" id="searchListInput" onKeyPress={ searchList } />    
           </div>
         </div>
       </div>
