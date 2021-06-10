@@ -38,6 +38,7 @@ export default function Discuss() {
   }
 
 <<<<<<< HEAD:app/javascript/component/discuss/list/Discuss.jsx
+<<<<<<< HEAD:app/javascript/component/discuss/list/Discuss.jsx
   const resetDiscuss = () => {
     API.get(`posts`)
       .then(res => setLists(res.posts))
@@ -47,6 +48,11 @@ export default function Discuss() {
     API.get('posts')
       .then(res => setLists(res.posts))       
 >>>>>>> 修改: 討論區的頁籤功能，API串接:app/javascript/component/discuss/list/Discuss.js
+=======
+  const resetDiscuss = () => {
+    API.get(`posts`)
+      .then(res => setLists(res.posts))
+>>>>>>> 修改:  刪除不必要的頁籤和修改樣式:app/javascript/component/discuss/list/Discuss.js
   }
 
   const unknownDisplay = () => {
@@ -77,12 +83,15 @@ export default function Discuss() {
       <div className="discuss">
         <div>
 <<<<<<< HEAD:app/javascript/component/discuss/list/Discuss.jsx
+<<<<<<< HEAD:app/javascript/component/discuss/list/Discuss.jsx
 =======
           <a href="#">Hot</a>
           <a href="#">Newest to Oidest</a>
           <a href="#">Most Votes</a>
           <a href="#">文章數量 { maxPage != 0 ? (maxPage - 1) * 10 + quantity : 0 }</a>
 >>>>>>> 修改: 討論區的頁籤功能，API串接:app/javascript/component/discuss/list/Discuss.js
+=======
+>>>>>>> 修改:  刪除不必要的頁籤和修改樣式:app/javascript/component/discuss/list/Discuss.js
           <a href="/posts/new">新增文章</a>
           <span>文章數量 { maxPage != 0 ? (maxPage - 1) * 10 + quantity : 0 }</span>
         </div>

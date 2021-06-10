@@ -2,10 +2,14 @@
   @apply w-full flex justify-center pt-24 min-h-screen;
   .single-article-wrap{
 <<<<<<< HEAD
+<<<<<<< HEAD
     @apply w-7/12 bg-white shadow-md h-1/2;
 =======
     @apply w-7/12 bg-white shadow-md min-h-screen;
 >>>>>>> 修改: 討論區的頁籤功能，API串接
+=======
+    @apply w-7/12 bg-white shadow-md h-1/2;
+>>>>>>> 修改:  刪除不必要的頁籤和修改樣式
     .single-article-title{
       @apply w-full px-2 py-4 flex justify-center items-center border-b border-gray-200;
       .single-article-title-goback{
