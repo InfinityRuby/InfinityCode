@@ -36,7 +36,7 @@ class Api::V1::PostsController < Api::V1::BaseController
     head :no_content
   end
 
-  #【GET】 查詢指定文章，使用者是否點過讚 /api/v1/posts/:id/like  
+  #【GET】 查詢指定文章，使用者是否點過讚 /api/v1/posts/:id/like
   def user_like
     @result = current_user.liked? @post
 
