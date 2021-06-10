@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { API, urlID } from 'component/lib'
 import marked from 'marked'
 
-export default function PromptSelect({ prompts, promptsCount, userCoins, useRecord }) {
+export default function PromptSelect({ prompts, promptsCount, userCoins, useRecord, setUseRecord }) {
   return prompts.map((prompt, index) => {
     const { id, hint } = prompt
     return <PromptButton key={ id }
@@ -10,48 +10,46 @@ export default function PromptSelect({ prompts, promptsCount, userCoins, useReco
                           index={ index }
                           count={ promptsCount }
                           userCoins={ userCoins }
-                          useRecord={ useRecord } />
+                          useRecord={ useRecord }
+                          setUseRecord={ setUseRecord } />
   })
 }
   
-  function PromptButton({ hint, index, count, userCoins, useRecord }) {
+  function PromptButton({ hint, index, count, userCoins, useRecord, setUseRecord }) {
     const [switchContent, setSwitchContent] = useState(false) 
-    const [displayUseCoin, setDisplayUseCoin] = useState(false)
+    const [displayWindow, setDisplayWindow] = useState(false)
 
-    const useCoins = (status = true) => { setDisplayUseCoin(status) }
-    const clickPrompt = (event) => {
+    const clickPrompt = () => {
       const currentCoins = document.querySelector('.home-nav-item-link span')
       const apiData = {
         coin_amount: userCoins.coin_amount - 5, 
         coin_change: -5,  
         description: `使用第${urlID()}題的金幣提示`
       }
-
-      useCoins(false)
-      if(event.target.textContent == '免費提示') {
-        setSwitchContent(true)
-      }else if(event.target.textContent == '確定' && userCoins.coin_amount >= 5) {
-        API.create( 'coins', apiData)
-          .then(res => currentCoins.textContent = res.coin_amount)
-        setSwitchContent(true)
+      setDisplayWindow(false)
+      
+      if(index != count - 1) {
+        setSwitchContent(!switchContent)
+      }else if(index == count - 1) {
+        API.create('coins', apiData)
+          .then(res => {
+            currentCoins.textContent = res.coin_amount
+            setUseRecord(res)
+            setSwitchContent(!switchContent)
+          })
       }else {
         alert('金錢不夠')
       }      
     }
-
-    let ans = switchContent || useRecord ? hint : null
-    function setMarked() {
-      return ans && marked(ans)
-    }
     return(
       <div>
-        { displayUseCoin ? 
+        { displayWindow ? 
         <div className="prompt-wrap">
           <div className="prompt-content">
             <div className="prompt-window">
               <img src="/quest/star.png" />
               <h2>換取提示 : <span>- 5</span> 金幣</h2>
-              <button onClick={ () => { useCoins(false) } } className="quest-footer-button questbtn">
+              <button onClick={ () => {setDisplayWindow(false)} } className="quest-footer-button questbtn">
                 取消
               </button>   
               <button onClick={ clickPrompt } className="quest-footer-button questbtn">
@@ -62,11 +60,13 @@ export default function PromptSelect({ prompts, promptsCount, userCoins, useReco
         </div>
         : null }
         <button className="quest-prompt-button questbtn"
-        style={ index == count - 1 ? { background: '#fb9827' } : null} 
-        onClick={ index == count - 1 ? (switchContent || useRecord ? null : useCoins) : clickPrompt }>
+                style={ index == count - 1 ? { background: '#fb9827' } : null} 
+                onClick={ index == count - 1 ? 
+                (useRecord ? clickPrompt : setDisplayWindow.bind(false)) : clickPrompt }>
           { index == count - 1 ? '金幣提示' : '免費提示' }
         </button>
-        <div className="markdown-body" dangerouslySetInnerHTML={{ __html: setMarked() }}></div>
+        <div className="markdown-body" 
+             dangerouslySetInnerHTML={{ __html: switchContent ? marked(hint) : null }}></div>
       </div>
     )
   }
