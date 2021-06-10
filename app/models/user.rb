@@ -12,8 +12,12 @@ class User < ApplicationRecord
 
   after_create do
     create_profile
-    create_coins
   end
+
+  before_create do
+    set_default_value
+  end
+
 
   def self.create_from_provider_data(provider_data) 
     where(provider: provider_data.provider, uid: provider_data.uid).first_or_create do |user|
@@ -23,7 +27,7 @@ class User < ApplicationRecord
   end
 
   private
-  def create_coins
-    self.coins.create(coin_change: 20, description: '註冊回饋金')
+  def set_default_value
+    self.coin_amount = 20
   end
 end
