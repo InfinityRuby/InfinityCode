@@ -4,7 +4,7 @@ quests = Quest.with_level(params[:level])
 # 篩選條件 - 是否解題過
 solved_quests = current_user.quests.distinct.where("answers.status = ?", "Success").with_level(params[:level])
 
-if params[:is_solved].size == 1
+if params[:is_solved] != nil and params[:is_solved].size == 1
   if params[:is_solved].include?("true")
     quests = solved_quests
   elsif params[:is_solved].include?("false")
