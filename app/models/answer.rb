@@ -5,7 +5,7 @@ class Answer < ApplicationRecord
   before_create :change_coin
 
   def change_coin
-    return if user.quests.where('answers.status = ?', "Success").include? quest   
+    return if user.quests.where('answers.status = ?', "Success").include? (quest)
 
     if quest.level == "Easy"
       user.update(coin_amount: user.coin_amount + 5)
