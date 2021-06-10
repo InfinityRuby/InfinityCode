@@ -46,7 +46,7 @@ gem "paranoia", "~> 2.2"
 gem 'carrierwave', '~> 2.2', '>= 2.2.1'
 gem 'mini_magick', '~> 4.11'
 gem 'fog-aws', '~> 3.10'
-
+# 分頁功能
 gem 'kaminari', '~> 1.2', '>= 1.2.1'
 
 group :development, :test do

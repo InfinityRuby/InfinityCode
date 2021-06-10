@@ -3,9 +3,14 @@ class Api::V1::CommentsController < Api::V1::BaseController
   before_action :signed_in?, except: [:index, :show]
 
   # 查詢特定文章的留言列表  
-  # GET: /api/v1/posts/:post_id/comments
+  # GET: /api/v1/posts/:post_id/comments           建立時間，逆向排序
+  # GET: /api/v1/posts/:post_id/comments?order=asc 建立時間，正向排序 
   def index
-    @comments = Comment.where(post_id: params[:post_id]).order("created_at DESC")
+    if params[:order] == "asc"
+      @comments = Comment.where(post_id: params[:post_id]).order(created_at: :asc).page(params[:page]).per(10)
+    else
+      @comments = Comment.where(post_id: params[:post_id]).order(created_at: :desc).page(params[:page]).per(10)
+    end
     json_response(comments: @comments, user: current_user.as_json(only: [:id, :email]), avatar: current_user.profile.avatar)
   end
 
