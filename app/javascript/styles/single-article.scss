@@ -1,7 +1,7 @@
 .single-article-container{
-  @apply w-full flex justify-center pt-24;
+  @apply w-full flex justify-center pt-24 min-h-screen;
   .single-article-wrap{
-    @apply w-7/12 bg-white shadow-md min-h-screen;
+    @apply w-7/12 bg-white shadow-md h-1/2;
     .single-article-title{
       @apply w-full px-2 py-4 flex justify-center items-center border-b border-gray-200;
       .single-article-title-goback{
@@ -27,7 +27,7 @@
         .single-article-content-author{
           @apply w-full text-base flex items-center text-gray-400;
           & > img{
-            @apply rounded-full mr-4
+            @apply rounded-full w-16 h-16 mr-4
           }
           & > svg{
             @apply ml-3 text-gray-200

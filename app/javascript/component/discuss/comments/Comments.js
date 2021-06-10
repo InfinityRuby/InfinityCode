@@ -127,7 +127,7 @@ export default function Comments() {
         <div className="single-article-content">
           <div className="single-article-content-wrap">
             <div className="single-article-content-author">
-              <img src="https://picsum.photos/50/50?grayscale" alt="jpg" />
+              <img src={ author.avatar == 'default.png' ? '/default.png' : author.avatar } alt="jpg" />
               { commentsAPI.unknown == true ? 
               <h3 style={{ color: 'blue' }}>匿名</h3> : 
               <h3 style={{ color: 'green' }}>{ author.name }</h3> 
