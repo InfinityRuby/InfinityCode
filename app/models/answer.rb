@@ -11,10 +11,14 @@ class Answer < ApplicationRecord
   private
   def change_coin
 <<<<<<< HEAD
+<<<<<<< HEAD
     return if user.quests.where('answers.status = ?', "Success").include? (quest)
 =======
     return if user.quests.where('answers.status = ?', "Success").include? quest   
 >>>>>>> 修改: 金幣欄位變動
+=======
+    return if user.quests.where('answers.status = ?', "Success").include? (quest)
+>>>>>>> 修改: 加上括號
 
     if quest.level == "Easy"
       user.update(coin_amount: user.coin_amount + 5)
