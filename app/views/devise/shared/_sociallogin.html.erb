@@ -1,0 +1,17 @@
+<div class="user-sociallogin">
+  <%= link_to omniauth_authorize_path(resource_name, :github), method: :post do %>
+    <i class="fab fa-github user-icon"></i>
+  <% end %><span>|</span>
+  
+  <%= link_to omniauth_authorize_path(resource_name, :google_oauth2), method: :post do %>
+    <i class="fab fa-google user-icon"></i>
+  <% end %><span>|</span>
+
+  <%= link_to omniauth_authorize_path(resource_name, :facebook), method: :post do %>
+    <i class="fab fa-facebook user-icon"></i>
+  <% end %>
+</div>
+
+
+
+

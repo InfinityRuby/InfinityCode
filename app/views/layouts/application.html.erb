@@ -3,14 +3,17 @@
   <head>
     <title>InfinityCode</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbolinks-cache-control" content="no-preview">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>  
   </head>
 
   <body>
+    <%= render "shared/nav" if not devise_controller?%>    
+    <%= render "shared/flash" if notice || alert %>    
     <%= yield %>
+    <%= render "shared/footer" if not devise_controller? %>
   </body>
 </html>

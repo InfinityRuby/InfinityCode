@@ -1,0 +1,33 @@
+.post-new-container{
+  @apply w-full flex justify-center;  
+  .post-new-wrap{
+    @apply w-9/12 pt-20;
+    .post-new-title{
+      @apply w-full pb-2 
+    }
+    .post-new-input{
+      @apply w-full h-10 p-2 border border-gray-200 outline-none
+    }
+    .post-new-button-wrap{
+      @apply w-full flex justify-end;
+      .post-new-button{
+        @apply w-20 h-12 border border-gray-900 bg-yellow-500 rounded-md mt-2 text-lg hover:bg-yellow-600
+        hover:text-white outline-none
+      }
+    }
+    .unknown{
+      @apply flex items-center mb-1;
+      .checkbox-value-unknown{
+        @apply text-sm text-gray-600 ml-0.5
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+

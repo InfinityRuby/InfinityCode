@@ -1,0 +1,114 @@
+.container-discuss{
+  @apply w-full h-screen pt-14 flex mt-10 justify-center opacity-90;
+  .discuss-wrap{
+    @apply flex flex-col w-8/12;
+    .discuss{
+      @apply flex bg-white border-b border-l border-r shadow-md bg-gradient-to-r;
+      &:nth-child(1) > a{
+        @apply m-3 text-xl cursor-pointer
+      }   
+      &:nth-child(1){
+        & > a:nth-child(n+2){
+          @apply text-gray-400 hover:text-black
+        }   
+      }
+      &:nth-child(2){
+        @apply flex justify-between items-center p-2 bg-gray-100;
+        & > div:nth-child(1){
+          @apply pt-1 w-8/12 flex items-center
+        }
+        & > div:nth-child(1){
+          & > a{
+            @apply mx-1
+          }
+          & > a:nth-child(4){
+            @apply w-24
+          }      
+        }
+        & > div:nth-child(1) > a:nth-child(n+2){
+          @apply mx-4 text-gray-500
+        }
+        & > div:nth-child(1) > a:nth-child(5){
+          @apply text-lg text-black hover:text-gray-500
+        }
+        & > div:nth-child(2){
+          @apply w-4/12 flex justify-end
+        }    
+        button{
+          @apply bg-gray-500 border w-16 h-8 text-white opacity-80 hover:bg-gray-700 rounded-sm ml-2 outline-none
+        } 
+        input{
+          @apply w-48 h-7 rounded-sm text-sm text-center border-2
+        }    
+      }      
+      &:nth-child(n+3){
+        @apply p-2;
+        div{
+          @apply w-9/12 ml-3;
+          &:nth-child(3){
+            @apply flex flex-col pr-3 w-3/12;
+            div{
+              @apply flex text-sm mt-1;
+            }
+          }
+          h2{
+            @apply text-lg;
+            a{
+              @apply hover:text-gray-400;
+            }
+          }
+          h3{
+            @apply text-sm text-gray-400;
+          }
+          span{
+            @apply text-green-600 pl-1;
+          }  
+        }  
+      }     
+      img{
+        @apply rounded-full w-16 h-16
+      }      
+    }     
+    .discuss-right{
+      @apply w-1/5 ml-3
+    }
+  }
+}
+
+.adver{
+  @apply bg-blue-300 w-full h-36 rounded-xl shadow
+}
+
+.search{
+  @apply bg-white w-full mt-6 rounded-sm shadow;
+  div:nth-child(1){
+    @apply w-full p-3 border-b border-gray-200
+  }
+  div:nth-child(2){
+    @apply w-full p-3
+  }
+  input{
+    @apply border-2 border-gray-200 rounded-sm w-11/12 text-center
+  }
+  button{
+    @apply border-2 rounded-sm text-black bg-gray-200 block mt-2 mb-2 text-sm outline-none
+  }
+}
+
+.pagination{
+  @apply flex justify-center my-3;
+  & > button{
+    @apply mx-1  rounded-lg border-gray-300 border-2 p-1 bg-white font-black text-sm w-16 hover:bg-gray-200 hover:text-white text-gray-400 outline-none
+  }
+  & > input{
+    @apply border-gray-300 border rounded-sm mx-2 text-center
+  }
+}
+
+.loading{
+  @apply flex justify-center items-center h-screen
+}
+
+.gray{
+  @apply text-gray-400
+}

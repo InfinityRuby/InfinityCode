@@ -2,6 +2,8 @@ require_relative "boot"
 
 require "rails/all"
 
+# action_text/engine, rails/test_unit/railtie, sprockets/railtie 是否有使用待確認
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)

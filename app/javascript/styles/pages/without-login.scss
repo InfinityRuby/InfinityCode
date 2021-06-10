@@ -1,0 +1,28 @@
+.user-index-container {
+  @apply mt-24 mb-10;
+  .page-container {
+    @apply flex w-4/5 m-auto;
+    .img {
+      @apply w-7/12 mt-6 relative;
+      .slogan {
+        @apply absolute left-20 top-12 text-gray-600;
+      }
+      img {
+        @apply w-10/12 ;
+      }
+    }
+    .title {
+      @apply mt-24 w-full;
+      span {
+        @apply p-4;
+        h1 {
+          @apply text-8xl text-center text-gray-700 tracking-widest py-2;
+        }
+      }  
+      .btn {
+        @apply border border-yellow-500 bg-yellow-500 block m-auto text-white text-2xl 
+        py-3 px-8 tracking-widest shadow-lg;
+      }
+    } 
+  }
+}

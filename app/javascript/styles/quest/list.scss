@@ -1,0 +1,30 @@
+.listquest-wrapper {
+  @apply pt-24  m-auto  max-w-screen-xl bg-gray-100
+}
+#list-quest {
+  @apply grid grid-cols-2
+}
+.quest-checkbox {
+  @apply font-mono flex px-2
+}
+.quest-name {
+  @apply rounded-md shadow-2xl bg-white m-4 hover:bg-gray-300 
+}
+.quest-name > h3{
+  @apply font-mono text-xl pt-4 px-4
+}
+#level-select, #completion-select {
+  @apply mx-2 my-1 mt-1.5
+}
+.split {
+  @apply mr-1 ml-3 text-gray-300
+}
+.listWrapper {
+  @apply flex justify-between  px-4 mb-4
+}
+.questionLevel {
+  @apply mt-7 text-lg 
+}
+.questionBtn {
+  @apply bg-yellow-400 border-solid rounded-xl text-center border-opacity-10 py-2 w-5/12 mt-5 tracking-widest
+}
