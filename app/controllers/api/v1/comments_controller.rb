@@ -6,8 +6,16 @@ class Api::V1::CommentsController < Api::V1::BaseController
   # GET: /api/v1/posts/:post_id/comments           建立時間，逆向排序
   # GET: /api/v1/posts/:post_id/comments?order=asc 建立時間，正向排序 
   def index
+<<<<<<< HEAD
     order_by = params[:order] == 'asc' ? :asc : :desc
     @comments = Comment.where(post_id: params[:post_id]).order(created_at: order_by).page(params[:page]).per(10)
+=======
+    if params[:order] == "asc"
+      @comments = Comment.where(post_id: params[:post_id]).order(created_at: :asc).page(params[:page]).per(10)
+    else
+      @comments = Comment.where(post_id: params[:post_id]).order(created_at: :desc).page(params[:page]).per(10)
+    end
+>>>>>>> 完成：討論區文章留言 排序功能
     json_response(comments: @comments, user: current_user.as_json(only: [:id, :email]), avatar: current_user.profile.avatar)
   end
 
