@@ -34,7 +34,7 @@ class Answer < ApplicationRecord
     medium_solved = @user.quests.where(level: 'Medium').distinct.count
     hard_solved = @user.quests.where(level: 'Hard').distinct.count
 
-    case 
+    case
     when easy_quests == easy_solved
       badge_id = 21
     when medium_quests == medium_solved
@@ -42,10 +42,10 @@ class Answer < ApplicationRecord
     when hard_quests == hard_solved
       badge_id = 23
     end
-    
+
     create_achievement(badge_id)
   end
-  
+
   # 檢查成就 - 解題數量
   def check_solved_quests
     find_user
@@ -59,7 +59,7 @@ class Answer < ApplicationRecord
     when 500
       badge_id = 26
     end
-    
+
     create_achievement(badge_id)
   end
 end

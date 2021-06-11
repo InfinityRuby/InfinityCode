@@ -40,7 +40,7 @@ class User < ApplicationRecord
 
     if (last_sign_in != nil and created_at != nil)
       diff_day = (last_sign_in - created_at).to_i
-      
+
       case diff_day
       when 10
         badge_id = 13
@@ -52,7 +52,7 @@ class User < ApplicationRecord
         badge_id = 16
       end
     end
-    
+
     @user = User.find(self.id)
 
     create_achievement(badge_id)
