@@ -25,4 +25,13 @@ class Api::V1::UsersController < Api::V1::BaseController
       hard_percentage: hard_percentage 
     })
   end
+
+  def update
+    current_user.update(user_params)
+  end
+
+  private
+  def user_params
+    params.require(:user).permit(:coin_amount)
+  end
 end

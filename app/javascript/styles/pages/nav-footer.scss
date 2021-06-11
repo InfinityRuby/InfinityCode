@@ -17,6 +17,9 @@
         @apply flex cursor-pointer text-lg;
         li {
           @apply list-none py-5 px-4 hover:text-yellow-500 tracking-wider;
+          &:nth-child(4) {
+            @apply flex
+          }
           .user-email{
             @apply text-green-600 mr-2 tracking-wider;
           }
@@ -27,20 +30,14 @@
             }
           }
           img {
-            @apply w-9 h-7 align-bottom -mb-1 pr-0;
-          }
-          .coin {
-            @apply p-0
+            @apply w-9 h-7 align-bottom;
           }
         }
         li:hover ul {
           @apply block;
         }
         .coin {
-          @apply pr-0;
-        }
-        .amount {
-          @apply pl-1 text-yellow-500;
+          @apply text-yellow-500;
         }
       }
       .user-btn {

@@ -30,7 +30,7 @@ Rails.application.routes.draw do
       end
       
       resources :coins, only: [:index, :create]
-      resources :users, only: [:index] do
+      resources :users, only: [:index, :update] do
         member do
           get :completed_rate
         end
