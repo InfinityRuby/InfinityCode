@@ -1,15 +1,13 @@
-import './github-markdown.css'
-import hljs from 'highlight.js'
-import marked from 'marked'
-import 'styles/highlight/atelier-dune-dark.css'
+import './github-markdown.css';
+import hljs from 'highlight.js';
+import marked from 'marked';
+import 'styles/highlight/atelier-dune-dark.css';
 
-
-const html = marked('# Marked in Node.js\n\nRendered by **marked**.');
 hljs.configure({
   tabReplace: '  ',
   classPrefix: 'hljs-',
-  languages: ['CSS', 'HTML', 'JavaScript', 'Ruby', 'PHP', 'Python', 'Markdown']
-})
+  languages: ['CSS', 'HTML', 'JavaScript', 'Ruby', 'PHP', 'Python', 'Markdown'],
+});
 
 marked.setOptions({
   renderer: new marked.Renderer(),
@@ -21,11 +19,11 @@ marked.setOptions({
   smartypants: false,
   xhtml: false,
   highlight: (code) => hljs.highlightAuto(code).value,
-})
+});
 
-document.addEventListener("turbolinks:load", function() {
+document.addEventListener('turbolinks:load', () => {
   const text = document.querySelector('.profile-text');
-  if(text){
+  if (text) {
     text.innerHTML = marked(text.innerHTML);
   }
 });
