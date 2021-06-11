@@ -10,7 +10,6 @@ class Api::V1::CommentsController < Api::V1::BaseController
     @comments = Comment.where(post_id: params[:post_id]).order(created_at: order_by).page(params[:page]).per(10)
     json_response(comments: @comments, user: current_user.as_json(only: [:id, :email]), avatar: current_user.profile.avatar)
   end
-
   # 新增特定文章的留言  
   # POST: /api/v1/posts/:post_id/comments
   # params: { content: '測試訊息' }
