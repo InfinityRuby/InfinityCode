@@ -35,11 +35,11 @@ class User < ApplicationRecord
 
   # 檢查成就 - 註冊天數
   def check_user_achievement
-    last_sign_in = self.last_sign_in_at.to_date
-    created_at = self.created_at.to_date
+    last_sign_in = self.last_sign_in_at
+    created_at = self.created_at
 
     if (last_sign_in != nil and created_at != nil)
-      diff_day = (last_sign_in - created_at).to_i
+      diff_day = (last_sign_in.to_date - created_at.to_date).to_i
 
       case diff_day
       when 10
