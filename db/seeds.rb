@@ -233,7 +233,115 @@ test_cases = [
   }
 ]
 
+badges = [
+  {
+    description: '發表超過 10 篇文章',
+    image: '/badges/1-post-10.png'
+  },
+  {
+    description: '發表超過 50 篇文章',
+    image: '/badges/1-post-50.png'
+  },
+  {
+    description: '發表超過 100 篇文章',
+    image: '/badges/1-post-100.png'
+  },
+  {
+    description: '發表超過 500 篇文章',
+    image: '/badges/1-post-500.png'
+  },
+  {
+    description: '留言超過 10 次',
+    image: '/badges/2-comment-10.png'
+  },
+  {
+    description: '留言超過 50 次',
+    image: '/badges/2-comment-50.png'
+  },
+  {
+    description: '留言超過 100 次',
+    image: '/badges/2-comment-100.png'
+  },
+  {
+    description: '留言超過 500 次',
+    image: '/badges/2-comment-500.png'
+  },
+  {
+    description: '金幣收集超過 10 個',
+    image: '/badges/3-coin-10.png'
+  },
+  {
+    description: '金幣收集超過 50 個',
+    image: '/badges/3-coin-50.png'
+  },
+  {
+    description: '金幣收集超過 100 個',
+    image: '/badges/3-coin-100.png'
+  },
+  {
+    description: '金幣收集超過 500 個',
+    image: '/badges/3-coin-500.png'
+  },
+  {
+    description: '註冊超過 10 天',
+    image: '/badges/4-signup-10.png'
+  },
+  {
+    description: '註冊超過 50 天',
+    image: '/badges/4-signup-50.png'
+  },
+  {
+    description: '註冊超過 100 天',
+    image: '/badges/4-signup-100.png'
+  },
+  {
+    description: '註冊超過 500 天',
+    image: '/badges/4-signup-500.png'
+  },
+  {
+    description: '匿名發文',
+    image: '/badges/5-anonymous-post.png'
+  },
+  {
+    description: '更改使用者姓名',
+    image: '/badges/5-change-username.png'
+  },
+  {
+    description: '排行榜第一',
+    image: '/badges/5-rank-1.png'
+  },
+  {
+    description: '上傳大頭貼',
+    image: '/badges/5-upload-img.png'
+  },
+  {
+    description: '完成簡單所有題目',
+    image: '/badges/6-finish-easy.png'
+  },
+  {
+    description: '完成中等所有題目',
+    image: '/badges/6-finish-medium.png'
+  },
+  {
+    description: '完成困難所有題目',
+    image: '/badges/6-finish-hard.png'
+  },
+  {
+    description: '解題超過 10 題',
+    image: '/badges/7-quest-10.png'
+  },
+  {
+    description: '解題超過 100 題',
+    image: '/badges/7-quest-100.png'
+  },
+  {
+    description: '解題超過 500 題',
+    image: '/badges/7-quest-500.png'
+  }
+]
+
 answer_status = ["Success", "Failure"]
+
 
 
 quests.each do |quest|
@@ -259,6 +367,13 @@ test_cases.each do |test_case|
     quest_id: test_case[:quest_id],
     input: test_case[:input],
     output: test_case[:output]
+  )
+end
+
+badges.each do |badge|
+  Badge.create!(
+    description: badge[:description],
+    image: badge[:image]
   )
 end
 
