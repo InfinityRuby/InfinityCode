@@ -37,7 +37,7 @@
   font-size: 18px;
   cursor: pointer;
   transition: 0.5s;
-  margin-bottom: 30px;
+  margin: 0 0 0 0;
 }
 .quest-tab-button:hover {
   background-color: #fb9827;
@@ -46,30 +46,39 @@
   background-color: #fb9827;
 }
 
-.quest-tab-button.questbtn{
+.quest-tab-button.questbtn {
   outline: none;
 }
 
-.quest-contentWrapper div {
-  padding-top: 10px;
+.quest-content-wrapper div {
   text-align: left;
 }
 .quest-content {
   display: none;
-  padding: 10px 20px;
+  padding: 20px;
   max-height: 450px;
   overflow: scroll;
+  div {
+    padding: 5px 0;
+  }
+  p {
+    word-break: normal;
+  }
+  .prompt-words {
+    background: rgb(247, 246, 246);
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 4px;
+  }
 }
-.quest-content.active {
+.active {
   display: block;
 }
-.quest-content p {
-  word-break: normal;
-}
+
 .quest-prompt-button.questbtn{
   display: block;
-  margin-top: 20px;
   border-radius: 10px;
+  margin-top: 15px;
   outline: none;
 }
 .quest-prompt-button:hover {
@@ -96,20 +105,27 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 10px
-}
-.quest-footer-button:nth-child(1){
-  margin-left: 650px;
-}
-.quest-footer-button.questbtn{
-  border-radius: 10px;
-  margin-right: 10px;
-  outline: none;
+  margin-top: 10px;
+  .quest-footer-button:nth-child(1){
+    margin-left: 650px;
+    &:hover {
+      background-color: #fb9827;
+    }
+  }
+  .quest-footer-button:nth-child(2){
+    background: #fb9827;
+    &:hover {
+      background: #e28d2b;
+      color: white;
+    }
+  }
+  .quest-footer-button.questbtn {
+    border-radius: 10px;
+    margin-right: 10px;
+    outline: none;
+  }
 }
 
-.quest-footer-button:hover {
-  background-color: #fb9827
-}
 .css-title{
   text-align: left;
   padding-left: 10px;
