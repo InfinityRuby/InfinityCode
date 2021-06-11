@@ -82,11 +82,7 @@ ActiveRecord::Schema.define(version: 2021_06_11_073033) do
     t.integer "user_id"
     t.datetime "deleted_at"
     t.boolean "anonymous", default: false
-<<<<<<< HEAD
-=======
-=======
-    t.boolean "unknown", default: false
-<<<<<<< HEAD
+
     t.integer "cached_votes_total", default: 0
     t.integer "cached_votes_score", default: 0
     t.integer "cached_votes_up", default: 0
@@ -95,10 +91,6 @@ ActiveRecord::Schema.define(version: 2021_06_11_073033) do
     t.integer "cached_weighted_total", default: 0
     t.float "cached_weighted_average", default: 0.0
     t.boolean "publish_author", default: false
->>>>>>> 完成: 新增討論區文章 匿名發文API
-=======
->>>>>>> 修改: 移除與匿名新增無用的migrate
->>>>>>> 修改: 移除與匿名新增無用的migrate
     t.index ["deleted_at"], name: "index_posts_on_deleted_at"
   end
 
@@ -158,10 +150,7 @@ ActiveRecord::Schema.define(version: 2021_06_11_073033) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-<<<<<<< HEAD
   add_foreign_key "achievements", "badges"
   add_foreign_key "achievements", "users"
-=======
->>>>>>> 修改: 移除與匿名新增無用的migrate
   add_foreign_key "profiles", "users"
 end
