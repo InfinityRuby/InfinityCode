@@ -15,7 +15,7 @@ class Post < ApplicationRecord
   # 檢查成就 - 貼文數
   def check_posts_achievement
     find_user
-    
+
     posts_count = @user.posts.count
 
     case posts_count
@@ -28,7 +28,7 @@ class Post < ApplicationRecord
     when 500
       badge_id = 4
     end
-    
+
     create_achievement(badge_id)
   end
 
@@ -37,12 +37,12 @@ class Post < ApplicationRecord
     find_user
 
     anonymous_post = @user.posts.where(unknown: true).distinct.count
-    
+
     case
     when anonymous_post > 0  # 匿名發文
       badge_id = 17
     end
-    
+
     create_achievement(badge_id)
   end
 end

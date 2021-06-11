@@ -12,7 +12,7 @@ class Comment < ApplicationRecord
   # 檢查成就 - 留言數
   def check_comments_achievement
     find_user
-    
+
     comments_count = @user.comments.count
 
     case comments_count
@@ -25,7 +25,7 @@ class Comment < ApplicationRecord
     when 500
       badge_id = 8
     end
-    
+
     create_achievement(badge_id)
   end
 end

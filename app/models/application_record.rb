@@ -9,7 +9,7 @@ class ApplicationRecord < ActiveRecord::Base
   def create_achievement(badge_id)
     if !badge_id.nil?
       achievement_existed = @user.achievements.where(badge_id: badge_id).count > 0
-      
+
       if (!achievement_existed)
         @user.achievements.create(badge_id: badge_id)
       end

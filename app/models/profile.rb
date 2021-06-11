@@ -25,8 +25,8 @@ class Profile < ApplicationRecord
     when avatar != 'default.png'
       badge_id = 20
     end
-    
+
     create_achievement(badge_id)
   end
-  
+
 end
