@@ -36,7 +36,7 @@ class Post < ApplicationRecord
   def check_posts_anonymous
     find_user
 
-    anonymous_post = @user.posts.where(unknown: true).distinct.count
+    anonymous_post = @user.posts.where(anonymous: true).distinct.count
 
     case
     when anonymous_post > 0  # 匿名發文
