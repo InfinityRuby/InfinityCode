@@ -6,12 +6,12 @@ export default function PromptSelect({ prompts, promptsCount, userCoins, useReco
   return prompts.map((prompt, index) => {
     const { id, hint } = prompt
     return <PromptButton key={ id }
-                          hint={ hint }
-                          index={ index }
-                          count={ promptsCount }
-                          userCoins={ userCoins }
-                          useRecord={ useRecord }
-                          setUseRecord={ setUseRecord } />
+                         hint={ hint }
+                         index={ index }
+                         count={ promptsCount }
+                         userCoins={ userCoins }
+                         useRecord={ useRecord }
+                         setUseRecord={ setUseRecord } />
   })
 }
   
