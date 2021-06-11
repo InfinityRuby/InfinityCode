@@ -65,8 +65,10 @@ export default function PromptSelect({ prompts, promptsCount, userCoins, useReco
                 (useRecord ? clickPrompt : setDisplayWindow.bind(false)) : clickPrompt }>
           { index == count - 1 ? '金幣提示' : '免費提示' }
         </button>
-        <div className="markdown-body" 
-             dangerouslySetInnerHTML={{ __html: switchContent ? marked(hint) : null }}></div>
+        { switchContent ? 
+        <div className="markdown-body prompt-words" 
+             dangerouslySetInnerHTML={{ __html:  marked(hint)}}></div>
+        : null }
       </div>
     )
   }
