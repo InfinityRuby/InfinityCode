@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef }  from 'react'
-import { UserComments, Pages } from './'
+import { UserComments, Pages } from '.'
 import { API, urlID } from 'component/lib'
 import marked from 'marked'
 
