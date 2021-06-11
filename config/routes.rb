@@ -28,7 +28,12 @@ Rails.application.routes.draw do
           get :user
         end
       end
-      
+      resources :ranks, only: [:index] do
+        collection do
+          get :post_rank
+          get :comment_rank
+        end
+      end
       resources :coins, only: [:index, :create]
       resources :users, only: [:index] do
         member do
