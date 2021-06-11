@@ -1,6 +1,6 @@
 post = Post.find(params[:id])
 
-json.(post, :id, :title, :content, :unkonwn, :created_at, :updated_at)
+json.(post, :id, :title, :content, :anonymous, :created_at, :updated_at)
 json.author do
   json.name post.user.profile.name
   json.email post.user.email

@@ -5,26 +5,18 @@ import API from 'component/lib/API'
 
 function List() {
   const [lists, setLists] = useState([])
-  const [solved, setSolved] = useState([])
   const [url, setURL] = useState('quests?')
+  
   useEffect(() => {
     API.get(url)
       .then(res => setLists(res))
   }, [url])
 
-  useEffect(() => {
-    API.get(`quests?status=Success`)
-      .then(res => {
-        const solvedID = res.map(el => el.id)
-        setSolved(solvedID)
-      })
-  }, [])
-
   const solveChange = (status, event) => {
     let solveList
-    status ? solveList = lists.filter(el => solved.includes(el.id)) 
+    status ? solveList = lists.filter(el => el.is_solved) 
             :
-             solveList = lists.filter(el => !solved.includes(el.id))
+             solveList = lists.filter(el => !el.is_solved)
     if(event.target.checked) {
       setLists(solveList)
     }else {
@@ -51,9 +43,9 @@ function List() {
     let levelSolved
     API.get(url + level[i]).then(res => {
       if(solveCheckbox[0].checked) {
-        levelSolved = res.filter(el => solved.includes(el.id))
+        levelSolved = res.filter(el => el.solved)
       }else if(solveCheckbox[1].checked) {
-        levelSolved = res.filter(el => !solved.includes(el.id))
+        levelSolved = res.filter(el => !el.solved)
       }
       setLists(levelSolved)
     })
@@ -73,28 +65,28 @@ function List() {
     
         <div className="split">|</div>
         <input type="checkbox" className="completion-select" 
-        id="level-solved" onClick={ solveChange.bind(this, true) }/>
-        <label htmlFor="level-solved">已解決</label>
+        id="level-isSolved" onClick={ solveChange.bind(this, true) }/>
+        <label htmlFor="level-isSolved">已解決</label>
     
         <input type="checkbox" className="completion-select" 
         id="level-unsolved" onClick={ solveChange.bind(this, false) }/>
         <label htmlFor="level-unsolved">未解決</label>
       </div>
       <div id="list-quest">
-        <Quests lists={ lists } solved={ solved }/>
+        <Quests lists={ lists } />
       </div>
     </div>
   )
 }
 
-function Quests({ lists, solved }) {
+function Quests({ lists }) {
   return lists.map(list => {
-    const { id, title, level } = list
+    const { id, title, level, is_solved } = list
     return <Quest key={ id }
                   id={ id }
                   title={ title }
                   level={ level }
-                  solved={ solved } />
+                  solved={ is_solved } />
   })
 }
 
@@ -104,8 +96,9 @@ function Quest({ id, title, level, solved }) {
       <h3>{ title }</h3>
       <div className = "listWrapper">
         <div className="questionLevel"><p>{ level }</p></div>
-        <button className={ solved.includes(id) ? 'questionBtn' : 'questionBtn question-unsolved' }>
-          { solved.includes(id) ? '已解決' : '未解決' }
+        <button className={ solved ? 
+          'questionBtn' : 'questionBtn question-unsolved' }>
+          { solved ? '已解決' : '未解決' }
         </button>
       </div>
     </a>

@@ -6,17 +6,17 @@ import API from "component/lib/API"
 function PostNew() {
   const editRef = useRef()
   const titleInputRef = useRef()
-  const [unknown, setUnknown] = useState(false)
+  const [anonymous, setAnonymous] = useState(false)
   const [errorWarn, setErrorWarn] = useState(false)
 
-  const unknownStatus = () => { setUnknown(!unknown) }
+  const anonymousStatus = () => { setAnonymous(!anonymous) }
   const postNew = () => {
     const titleInput = document.querySelector(".post-new-input")
     const contentTextarea = document.querySelector(".w-md-editor-text-input")
     const apiData = {
       title: titleInput.value,
       content: contentTextarea.value, 
-      unknown: unknown
+      anonymous: anonymous
     }
 
     if(titleInput.value.length >= 6 && contentTextarea.value.length >= 6){
@@ -39,10 +39,10 @@ function PostNew() {
         { errorWarn ? <div style={{ color: "#f00" }}>欄位必須填，至少6個字</div> : null }
         <input type="text" row="30" col="30" className="post-new-input" ref={ titleInputRef } placeholder="文章標題，至少輸入六個字"/>
       </div>
-      <div className="unknown">
-        <input type="checkbox" name="unknown" id="unknown" value="匿名發送貼文" onClick={ unknownStatus } />
-        <label htmlFor="unknown">
-          <span className="checkbox-value-unknown">匿名發送貼文</span>
+      <div className="anonymous">
+        <input type="checkbox" name="anonymous" id="anonymous" value="匿名發送貼文" onClick={ anonymousStatus } />
+        <label htmlFor="anonymous">
+          <span className="checkbox-value-anonymous">匿名發送貼文</span>
         </label>
       </div>
       <MDEditor
