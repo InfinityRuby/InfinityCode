@@ -25,18 +25,18 @@
       .single-article-content-wrap{
         @apply w-10/12 border-gray-200 pt-6 pb-4 flex flex-col items-center;
         .single-article-content-author{
-          @apply w-full text-base flex items-center text-gray-400;
+          @apply w-full text-lg flex items-center text-gray-200;
           & > img{
-            @apply rounded-full w-16 h-16 mr-4
+            @apply rounded-full w-12 h-12 mr-2
           }
-          & > svg{
-            @apply ml-3 text-gray-200
+          & svg{
+            @apply cursor-pointer
           }
-          & > span{
-            @apply mx-2
+          & span{
+            @apply mx-2 text-gray-400
           }
           & > div{
-            @apply mx-2
+            @apply mx-2 pl-2 flex
           }
         }        
       }
@@ -113,7 +113,7 @@
     @apply ml-4
   }
   img{
-    @apply w-16 h-16
+    @apply w-12 h-12
   }
 }
 

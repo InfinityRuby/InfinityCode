@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
       resources :posts, except: [:new, :edit] do
         member do
+          get "islike", to: "posts#is_like?"
           get "like", to: "posts#user_like"
           get "totallike", to: "posts#total_like"
         end
