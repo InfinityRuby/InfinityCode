@@ -1,7 +1,7 @@
 .user-index-container {
   @apply mt-24 mb-10;
   .page-container {
-    @apply flex w-4/5 m-auto;
+    @apply flex w-4/5 m-auto min-w-max h-screen;
     .img {
       @apply w-7/12 mt-6 relative;
       .slogan {
