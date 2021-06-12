@@ -7,6 +7,7 @@ export default function Discuss() {
   const [maxPage, setMaxPage] = useState([])
   const [initPage, setInitPage] = useState(1)
   const [quantity, setQuantity] = useState(0)
+  const [loading, setLoading] = useState(false)
   
   useEffect(() => {
     API.get(`posts?page=${initPage}`)
@@ -15,7 +16,10 @@ export default function Discuss() {
         setLists(posts)
         setMaxPage(total_pages)
         API.get(`posts?page=${total_pages}`)
-          .then(res => setQuantity(res.posts.length))
+          .then(res => {
+            setQuantity(res.posts.length)
+            setLoading(true)
+          })
       })
   }, [initPage])
 
@@ -62,6 +66,7 @@ export default function Discuss() {
 
   return(
   <div>
+    { loading ?
     <div>
       <div className="discuss">
         <a onClick={ switchDisplay }>全部的文章</a>
@@ -84,6 +89,7 @@ export default function Discuss() {
              setInitPage={ setInitPage }
              maxPage={ maxPage } />
     </div>
+    : null }
   </div>
   )
 }

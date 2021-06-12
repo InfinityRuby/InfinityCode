@@ -27,8 +27,9 @@ export default function Comments() {
   const [loginUser, setLoginUser] = useState([])
   const [commentPages, setCommentPages] = useState(1)
   const [maxPage, setMaxPage] = useState(1)
+  const [loading, setLoading] = useState(false)
   const sortCommentsRef = useRef()
-
+  
   useEffect(() => {
     API.get(`posts/${urlID()}?page=${commentPages}`)
       .then(res => {
@@ -38,7 +39,10 @@ export default function Comments() {
         setMaxPage(comments_total_pages)
         setAuthor(author)
         API.get(`posts/${urlID()}?page=${comments_total_pages}`)
-          .then(res => setQuantity(res.comments.length))
+          .then(res => {
+            setQuantity(res.comments.length)
+            setLoading(true)
+          })
       })
   }, [commentPages, quantity])
 
@@ -111,6 +115,7 @@ export default function Comments() {
 
   return( 
     <div>
+      { loading ? 
       <div>
         <div className="single-article-title">
           <div className="single-article-title-goback">
@@ -168,13 +173,14 @@ export default function Comments() {
           <div className="single-article-textarea-border">
             <button id="comment-button" onClick={ postComment }>送出</button>
           </div>
-            </div>
+        </div>
         <CurrentComments comments={ comments } loginUser={ loginUser } />
         <Pages comments={ comments } 
                commentPages={ commentPages }  
                setCommentPages={ setCommentPages }
                maxPage={ maxPage } />
       </div>
+      : null }
     </div>
   )
 }
