@@ -1,11 +1,11 @@
 class Api::V1::RanksController < Api::V1::BaseController
   #api/v1/ranks
-  def index
+  def coin
     @users = User.limit(10).order('coin_amount desc')
   end
 
   #api/v1/ranks/post_rank
-  def post_rank
+  def post
     @user_posts_count = Post.unscope(:order).group(:user_id).order('COUNT(id) DESC').limit(10).count(:id)
     user_ids = @user_posts_count.keys
 
@@ -13,7 +13,7 @@ class Api::V1::RanksController < Api::V1::BaseController
   end
 
   #api/v1/ranks/comment_rank
-  def comment_rank
+  def comment
     @user_comments_count = Comment.unscope(:order).group(:user_id).order('COUNT(id) DESC').limit(10).count(:id)
     user_ids = @user_comments_count.keys
 
