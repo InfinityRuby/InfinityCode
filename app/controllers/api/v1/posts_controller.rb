@@ -1,6 +1,9 @@
 class Api::V1::PostsController < Api::V1::BaseController
-  before_action :find_post, only: [:update, :destroy]
-  before_action :signed_in?, except: [:index, :show, :user]
+  before_action :find_user_post, only: [:destroy, :update, :user_like, :total_like]
+  before_action :find_post, only: [:show]
+  before_action :signed_in?, except: [:index, :show]
+
+
 
   # 查詢文章列表  
   # GET: /api/v1/posts
@@ -35,12 +38,35 @@ class Api::V1::PostsController < Api::V1::BaseController
     head :no_content
   end
 
+  #【GET】 查詢指定文章，使用者是否點過讚 /api/v1/posts/:id/like
+  def user_like
+    @result = current_user.liked? @post
+
+    if @result
+      @post.unliked_by current_user
+    else
+      @post.liked_by current_user
+    end
+    render json: {user_id: current_user.id, post_id: @post.id, liked: !@result}
+  end
+
+  #【GET】 查詢指定文章點讚總數  /api/v1/posts/:id/totallike
+  def total_like
+    @total_like = @post.get_likes.size
+    render json: {total_like: @total_like}
+  end
+
+
   private
   def post_params
     params.require(:post).permit(:title, :content, :anonymous)
   end
 
   def find_post
+    @post = Post.find(params[:id])
+  end
+
+  def find_user_post
     @post = current_user.posts.find(params[:id])
   end
 end
