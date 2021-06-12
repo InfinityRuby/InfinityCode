@@ -1,20 +1,34 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
+import { API } from 'component/lib'
+import RankInfo from './RankInfo'
 
 function Ranking() {
-  const switchPage = event => {
+  const [species, setSpecies] = useState(`coin`)
+  const [rankInfo, setRankInfo] = useState([])
+
+  useEffect(() => {
+    const usersInfo = async () => {
+      const rank = await API.get(`ranks/${species}`)
+      setRankInfo(rank)
+    }
+    usersInfo()
+  }, [species])
+
+  const switchPage = (type, event) => {
     document.querySelectorAll('#ranking .pages > div').forEach(page => {
-      page.style = 'opacity: 40%; background: #f3f4f6;'
-      event.target.style = 'opacity: 80%; background: #fff;'
+      page.classList.add('page-opacity')
+      event.target.classList.remove('page-opacity')
     })
+    setSpecies(type)
   }
   return(
     <div className="wrap">
       <div className="pages">
-        <div onClick={ switchPage }>解題數</div>
-        <div onClick={ switchPage }>金幣數</div>
-        <div onClick={ switchPage }>得讚數</div>
-        <div onClick={ switchPage }>發文數</div>
+        <div onClick={ switchPage.bind(this, `coin`) }>金幣數</div>
+        <div className="page-opacity" onClick={ switchPage.bind(this, `comment`) }>留言數</div>
+        <div className="page-opacity" onClick={ switchPage.bind(this, `post`) }>發文數</div>
+        <div className="page-opacity" onClick={ switchPage }>解題數</div>
       </div>
       <div className="body">
         <div className="title">
@@ -22,7 +36,9 @@ function Ranking() {
           <div>使用者</div>
           <div>得分</div>
         </div>
-        <div className="content"></div>
+        <div className="content">
+          <RankInfo rankInfo={ rankInfo } />
+        </div>
       </div>  
     </div>
   )
