@@ -5,7 +5,6 @@ class Api::V1::CommentsController < Api::V1::BaseController
   # 查詢特定文章的留言列表  
   def index
   end
-
   # 新增特定文章的留言  
   # POST: /api/v1/posts/:post_id/comments
   # params: { content: '測試訊息' }
