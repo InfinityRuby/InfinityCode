@@ -1,7 +1,7 @@
 class Api::V1::PostsController < Api::V1::BaseController
   before_action :find_user_post, only: [:destroy, :update, :user_like, :total_like]
-  before_action :find_post, only: [:show, :user]
-  before_action :signed_in?, except: [:index, :show, :user]
+  before_action :find_post, only: [:show]
+  before_action :signed_in?, except: [:index, :show]
 
 
 
