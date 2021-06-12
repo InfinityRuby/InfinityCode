@@ -28,10 +28,11 @@ Rails.application.routes.draw do
           get :user
         end
       end
-      resources :ranks, only: [:index] do
+      resources :ranks do
         collection do
-          get :post_rank
-          get :comment_rank
+          get :coin
+          get :post
+          get :comment
         end
       end
       resources :coins, only: [:index, :create]
