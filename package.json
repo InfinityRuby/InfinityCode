@@ -17,6 +17,7 @@
     "autoprefixer": "^9",
     "axios": "^0.21.1",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "chart.js": "^3.3.2",
     "codemirror": "^5.61.0",
     "github-markdown-css": "^4.0.0",
     "highlight.js": "^10.7.2",
