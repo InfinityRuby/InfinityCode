@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   
   get "/quests/questdata", to: "quests#questdata"
 
+
   # API 路徑設定
   namespace :api, defaults: {format: :json} do
     namespace :v1 do

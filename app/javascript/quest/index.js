@@ -1,1 +1,1 @@
-import "./question.js"
+import './question';
