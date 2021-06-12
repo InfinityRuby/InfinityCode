@@ -9,7 +9,7 @@ const API = {
   },
   
   put(url, apiData) {
-    return axios.put(`/api/v1/${url}`, apiData)
+    return axios.put(`/api/v1/${url}`, apiData).then(post => post.data)
   },
 
   delete(url) {

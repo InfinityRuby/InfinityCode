@@ -6,7 +6,38 @@
          <p class="profile-table">簡介：<br/><span class="profile-text markdown-body"><%= current_user.profile.bio %></span></p>
          <button><%= link_to "編輯", edit_profile_path %></button>
       </div>
-      <div class="profile-quest-wrap">題目完成度</div>
+      <div class="profile-quest-wrap">
+         <span class="percent">題目完成度</span>
+         <span class="amount"></span>
+         <div class="chart">
+            <canvas id="myChart" width="200" height="200"></canvas>
+         </div>
+         <div class="numerical">
+            <div class="easy">
+               <span class="title">簡單</span>
+               <p></p>
+            </div>
+            <div class="medium">
+               <span class="title">中等</span>
+               <p></p>
+            </div>
+            <div class="hard">
+               <span class="title">困難</span>
+               <p></p>
+            </div>
+         </div>
+         <div class="allchart">
+            <div class="chart">
+               <canvas id="easy" width="200" height="200"></canvas>
+            </div>
+            <div class="chart">
+               <canvas id="medium" width="200" height="200"></canvas>
+            </div>
+            <div class="chart">
+               <canvas id="hard" width="200" height="200"></canvas>
+            </div>
+         </div>
+      </div>
       <div class="profile-medal-wrap">獎牌區</div>
    </div>
 </div>

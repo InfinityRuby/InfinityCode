@@ -28,9 +28,15 @@ Rails.application.routes.draw do
           get :user
         end
       end
-      
+      resources :ranks do
+        collection do
+          get :coin
+          get :post
+          get :comment
+        end
+      end
       resources :coins, only: [:index, :create]
-      resources :users, only: [:index] do
+      resources :users, only: [:index, :update] do
         member do
           get :completed_rate
         end

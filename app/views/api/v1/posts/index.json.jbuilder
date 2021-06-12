@@ -1,7 +1,7 @@
 if params[:search].nil?
   posts = Post.all
 else
-  posts = Post.where("title LIKE '%?%'", params[:search])
+  posts = Post.where("title LIKE ?", "%#{ params[:search] }%")
 end
 
 page_size = 10

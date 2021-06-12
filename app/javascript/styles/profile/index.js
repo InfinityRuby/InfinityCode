@@ -1,2 +1,2 @@
-import './style.scss'
-import './edit.scss'
+import './style.scss';
+import './edit.scss';
