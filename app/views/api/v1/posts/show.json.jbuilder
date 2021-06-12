@@ -8,7 +8,8 @@ json.author do
 end
 
 page_size = 10
-comments = post.comments.page(params[:page]).per(page_size)
+order_by = params[:order] == 'asc' ? :asc : :desc
+comments = post.comments.page(params[:page]).per(page_size).order(created_at: order_by)
 comments_total_pages = comments.total_pages
 
 json.comments_total_pages comments_total_pages

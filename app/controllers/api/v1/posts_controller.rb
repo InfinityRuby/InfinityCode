@@ -20,6 +20,8 @@ class Api::V1::PostsController < Api::V1::BaseController
 
   # 查詢指定文章  
   # GET: /api/v1/posts/:id
+  # GET: /api/v1/posts/:id           建立時間，逆向排序
+  # GET: /api/v1/posts/:id?order=asc 建立時間，正向排序 
   def show
   end
 
