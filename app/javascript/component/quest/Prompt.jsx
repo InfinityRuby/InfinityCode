@@ -5,27 +5,32 @@ import { API, urlID } from 'component/lib'
 
 function Prompt() {
   const [prompts, setPrompts] = useState([])
-  const [userCoins, setUserCoins] = useState([])
   const [useRecord, setUseRecord] = useState([])
+  const [user, setUser] = useState(0)
   const promptsCount = prompts.length
 
   useEffect(() => {
     API.get(`quests/${urlID()}/prompts`)
       .then(res => setPrompts(res))
+  }, [useRecord])
 
+  useEffect(() => {
     API.get(`coins`)
       .then(res => {
         setUseRecord(res.find(el => el.description == `使用第${urlID()}題的金幣提示`))
-        setUserCoins(res[res.length - 1])
       })
+
+    API.get(`users`)
+      .then(res => setUser(res))
   }, [])
 
   return(
     <div>
       <PromptSelect prompts={ prompts } 
                     promptsCount={ promptsCount } 
-                    userCoins={ userCoins }
-                    useRecord={ useRecord } />
+                    useRecord={ useRecord }
+                    setUseRecord={ setUseRecord }
+                    user={ user } />
     </div>
   )
 }

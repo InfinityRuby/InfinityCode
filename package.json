@@ -17,6 +17,7 @@
     "autoprefixer": "^9",
     "axios": "^0.21.1",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "chart.js": "^3.3.2",
     "codemirror": "^5.61.0",
     "github-markdown-css": "^4.0.0",
     "highlight.js": "^10.7.2",
@@ -33,6 +34,12 @@
   },
   "version": "0.1.0",
   "devDependencies": {
+    "eslint": "^7.28.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "webpack-dev-server": "^3.11.2"
   }
 }

@@ -15,8 +15,7 @@ function Nav() {
       .then(user => {
         setUser(user)
         if(user) {
-          API.get('coins')
-            .then(coins => setUserCoins(coins[coins.length - 1]))
+          setUserCoins(user.coin_amount)
         }
       })
   }, [])
@@ -42,9 +41,7 @@ function Nav() {
             </li>
             <li className="coin">
               <img src="/quest/star.png" alt="star" />
-            </li>
-            <li className="amount">
-              <span>{ userCoins.coin_amount }</span>
+              <span className="amount">{ userCoins }</span>
             </li>
             <li className="user-account">
               <a href="#">

@@ -6,30 +6,33 @@ import getCode from 'quest/question'
 function QuestResult() {
   const [correctDisplay, setCorrectDisplay] = useState(false)
   const [message, setMessage] = useState(undefined)
+  const [isSolved, setIsSolved] = useState(false)
+  const [levelCoins, setLevelCoins] = useState([])
+  const [user, setUser] = useState([])
   const [loading, setLoading] = useState(false)
 
   const answer = () => {
     const dockerData = { quest: { type: 'ruby', code: getCode() } }
+    const userCoins = { coin_amount: user.coin_amount + levelCoins }
     setLoading(true) 
     API.create(`quests/${urlID()}/answer`, dockerData)
       .then(res => {
         if(res.status == 'Success') {
-          setLoading(false)
           setCorrectDisplay(true)
-          setMessage(res)
           getUserCoins()
-          .then(res => {  
-            const apiData = { 
-              coin_amount: res.coin_amount + 5, 
-              coin_change: +5, 
-              description: `答題正確${urlID()}` 
-            }
-            API.create( 'coins', apiData)
-          })
-        }else {
-          setLoading(false)
-          setMessage(res)
+            .then(() => {  
+              const apiData = { 
+                coin_change: `+${levelCoins}`, 
+                description: `答題正確${urlID()}` 
+              }
+              if(!isSolved) {
+                API.create('coins', apiData)
+                API.put(`users/${user.id}`, userCoins)
+              }
+            })
         }
+        setMessage(res)
+        setLoading(false)
       })
   }
 
@@ -42,6 +45,23 @@ function QuestResult() {
   
   useEffect(() => {
     getUserCoins()
+    API.get(`users`)
+      .then(res => setUser(res))
+    API.get(`quests/${urlID()}`)
+      .then(quest => {
+        if(quest.level == 'Easy') {
+          setLevelCoins(5)
+        }else if(quest.level == 'Medium') {
+          setLevelCoins(10)
+        }else {
+          setLevelCoins(15)
+        }
+        API.get(`quests?status=Success&level[]=${quest.level}`)
+          .then(quests => {
+            const currentQuest = quests.find(el => el.id == urlID())
+            setIsSolved(currentQuest.is_solved)
+          })
+      })
   }, [])
   
   return(
@@ -50,7 +70,7 @@ function QuestResult() {
       <div className="quest-answer-wrap">
         <div className="quest-answer-content">
           <div className="quest-answer-button">
-            <div><img src="/quest/star.png" /><span>+ 5</span></div>
+            <div><img src="/quest/star.png" /><span>{ isSolved ? null : `+${levelCoins}` }</span></div>
             <h2>Good job !</h2>
             <button className="quest-footer-button questbtn">解題討論區</button>
             <button
@@ -68,7 +88,7 @@ function QuestResult() {
       <div className={ correctDisplay ? "quest-success-window" : "quest-error-window" }>
         <div>
           <div>
-            <span className="tracking-wider">{ correctDisplay ? "Success" : "Runtime Error" }</span>
+            <span className="tracking-wider">{ correctDisplay ? "Success" : "Error" }</span>
           </div>
           <div onClick={ () => { setMessage(undefined) } }>
             <i className="fas fa-times"></i>

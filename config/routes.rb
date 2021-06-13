@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   
   get "/quests/questdata", to: "quests#questdata"
 
+
   # API 路徑設定
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
@@ -21,17 +22,26 @@ Rails.application.routes.draw do
       end
 
       resources :posts, except: [:new, :edit] do
+        member do
+          get "like", to: "posts#user_like"
+          get "totallike", to: "posts#total_like"
+        end
         resources :comments, shallow: true, except: [:new, :edit]
-
         member do
           get :user
         end
       end
-      
+      resources :ranks do
+        collection do
+          get :coin
+          get :post
+          get :comment
+        end
+      end
       resources :coins, only: [:index, :create]
-      resources :users, only: [:index] do
+      resources :users, only: [:index, :update] do
         member do
-          get :completed_ratio
+          get :completed_rate
         end
       end
     end
