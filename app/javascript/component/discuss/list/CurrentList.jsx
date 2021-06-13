@@ -16,7 +16,7 @@ export default function CurrentList({ lists }) {
 function SearchDisplayList({ title, content, id, newComment, author }) {
   return(
     <div className="discuss">
-      <img src={ author.avatar } alt="jpg" />
+      <div className="pic"><img src={ author.avatar } alt="jpg" /></div>
       <div>      
         <h2><a href={ `posts/${id}` }>{ title }</a></h2>
         <h3 dangerouslySetInnerHTML={ {__html: marked(`${content.slice(0, 10).replace('```', '')}...`)} }>
