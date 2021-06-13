@@ -8,9 +8,12 @@ document.addEventListener('turbolinks:load', () => {
   const postNameFirst = document.querySelector('.post-1');
   const postNameSecond = document.querySelector('.post-2');
   const postNameThird = document.querySelector('.post-3');
-  const commentNameFirst = document.querySelector('.comment-1');
-  const commentNameSecond = document.querySelector('.comment-2');
-  const commentNameThird = document.querySelector('.comment-3');
+  const likeNameFirst = document.querySelector('.like-1');
+  const likeNameSecond = document.querySelector('.like-2');
+  const likeNameThird = document.querySelector('.like-3');
+  const questNameFirst = document.querySelector('.quests-1');
+  const questNameSecond = document.querySelector('.quests-2');
+  const questNameThird = document.querySelector('.quests-3');
 
   if(ranks) {
     ranks.onclick = e => {
@@ -30,31 +33,40 @@ document.addEventListener('turbolinks:load', () => {
     }
   }  
   if (coinNameFirst && coinNameSecond && coinNameThird) {
-  fetch('./api/v1/ranks/coin_top_three')
+  fetch('./api/v1/ranks/coins')
     .then(request => request.json())
     .then(coins => {
-      coinNameFirst.innerHTML = `<i class="fas fa-trophy gold"></i><span class="name">${coins[0].profile.name}</span><span class="count">${coins[0].coin_amount}</span>`
-      coinNameSecond.innerHTML = `<i class="fas fa-trophy sliver"></i><span class="name">${coins[1].profile.name}</span><span class="count">${coins[1].coin_amount}</span>`
-      coinNameThird.innerHTML = `<i class="fas fa-trophy copper"></i><span class="name">${coins[2].profile.name}</span><span class="count">${coins[2].coin_amount}</span>`     
+      coinNameFirst.innerHTML = `<i class="fas fa-trophy gold"></i><span class="name">${coins[0].profile.name}</span><span class="count">${coins[0].score}</span>`
+      coinNameSecond.innerHTML = `<i class="fas fa-trophy sliver"></i><span class="name">${coins[1].profile.name}</span><span class="count">${coins[1].score}</span>`
+      coinNameThird.innerHTML = `<i class="fas fa-trophy copper"></i><span class="name">${coins[2].profile.name}</span><span class="count">${coins[2].score}</span>`     
     })
   }
   if (postNameFirst && postNameSecond && postNameThird) {
-  fetch('./api/v1/ranks/post_top_three')
+  fetch('./api/v1/ranks/posts')
     .then(request => request.json())
     .then(posts => {
-      postNameFirst.innerHTML = `<i class="fas fa-trophy gold"></i><span class="name">${posts[0].profile.name}</span><span class="count">${posts[0].posts_count}</span>`
-      postNameSecond.innerHTML = `<i class="fas fa-trophy sliver"></i><span class="name">${posts[1].profile.name}</span><span class="count">${posts[1].posts_count}</span>`
-      postNameThird.innerHTML = `<i class="fas fa-trophy copper"></i><span class="name">${posts[2].profile.name}</span><span class="count">${posts[2].posts_count}</span>`
+      postNameFirst.innerHTML = `<i class="fas fa-trophy gold"></i><span class="name">${posts[0].profile.name}</span><span class="count">${posts[0].score}</span>`
+      postNameSecond.innerHTML = `<i class="fas fa-trophy sliver"></i><span class="name">${posts[1].profile.name}</span><span class="count">${posts[1].score}</span>`
+      postNameThird.innerHTML = `<i class="fas fa-trophy copper"></i><span class="name">${posts[2].profile.name}</span><span class="count">${posts[2].score}</span>`
     })
   }
-  if (commentNameFirst && commentNameSecond && commentNameThird) {
-  fetch('./api/v1/ranks/comment_top_three')
+  if (likeNameFirst && likeNameSecond && likeNameThird) {
+  fetch('./api/v1/ranks/likes')
     .then(request => request.json())
-    .then(comments => {
-      commentNameFirst.innerHTML = `<i class="fas fa-trophy gold"></i><span class="name">${comments[0].profile.name}</span><span class="count">${comments[0].comments_count}</span>`
-      commentNameSecond.innerHTML = `<i class="fas fa-trophy sliver"></i><span class="name">${comments[1].profile.name}</span><span class="count">${comments[1].comments_count}</span>`
-      commentNameThird.innerHTML = `<i class="fas fa-trophy copper"></i><span class="name">${comments[2].profile.name}</span><span class="count">${comments[2].comments_count}</span>`
+    .then(likes => {
+      likeNameFirst.innerHTML = `<i class="fas fa-trophy gold"></i><span class="name">${likes[0].profile.name}</span><span class="count">${likes[0].score}</span>`
+      likeNameSecond.innerHTML = `<i class="fas fa-trophy sliver"></i><span class="name">${likes[1].profile.name}</span><span class="count">${likes[1].score}</span>`
+      likeNameThird.innerHTML = `<i class="fas fa-trophy copper"></i><span class="name">${likes[2].profile.name}</span><span class="count">${likes[2].score}</span>`
     })
   }
+  if (questNameFirst && questNameSecond && questNameThird) {
+    fetch('./api/v1/ranks/solved')
+      .then(request => request.json())
+      .then(solved => {
+        questNameFirst.innerHTML = `<i class="fas fa-trophy gold"></i><span class="name">${solved[0].profile.name}</span><span class="count">${solved[0].score}</span>`
+        questNameSecond.innerHTML = `<i class="fas fa-trophy sliver"></i><span class="name">${solved[1].profile.name}</span><span class="count">${solved[1].score}</span>`
+        questNameThird.innerHTML = `<i class="fas fa-trophy copper"></i><span class="name">${solved[2].profile.name}</span><span class="count">${solved[2].score}</span>`
+      })
+    }
 })
 
