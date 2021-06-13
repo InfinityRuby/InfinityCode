@@ -53,7 +53,7 @@ function PostNew() {
         height={ 550 }
       />
       <div className="post-new-button-wrap">
-        <button className="post-new-button" onClick={ postNew } ref={ editRef }>送出</button>
+        <button className="post-new-button solid-button" onClick={ postNew } ref={ editRef }>送出</button>
       </div>
     </div>
   )
