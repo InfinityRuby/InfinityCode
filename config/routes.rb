@@ -36,7 +36,8 @@ Rails.application.routes.draw do
         collection do
           get :coin
           get :post
-          get :comment
+          get :likes
+          get :solved
         end
       end
       resources :problems

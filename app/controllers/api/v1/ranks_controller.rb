@@ -1,22 +1,23 @@
 class Api::V1::RanksController < Api::V1::BaseController
-  #api/v1/ranks/coin
-  def coin
-    @users = User.limit(10).order('coin_amount desc')
+  before_action :signed_in?
+
+  # 查詢排行榜前十名 - 金幣數量
+  # GET: /api/v1/ranks/coins
+  def coins
   end
 
-  #api/v1/ranks/post
-  def post
-    @user_posts_count = Post.unscope(:order).group(:user_id).order('COUNT(id) DESC').limit(10).count(:id)
-    user_ids = @user_posts_count.keys
-
-    @users = User.includes(:profile).where(id: user_ids).sort { |a, b| user_ids.index(a.id) <=> user_ids.index(b.id) }
+  # 查詢排行榜前十名 - 發文數量
+  # GET: /api/v1/ranks/posts
+  def posts
   end
 
-  #api/v1/ranks/comment
-  def comment
-    @user_comments_count = Comment.unscope(:order).group(:user_id).order('COUNT(id) DESC').limit(10).count(:id)
-    user_ids = @user_comments_count.keys
+  # 查詢排行榜前十名 - 得讚數量
+  # GET: /api/v1/ranks/likes
+  def likes
+  end
 
-    @users = User.includes(:profile).where(id: user_ids).sort { |a, b| user_ids.index(a.id) <=> user_ids.index(b.id) }
+  # 查詢排行榜前十名 - 解題數量
+  # GET: /api/v1/ranks/solved
+  def solved
   end
 end
