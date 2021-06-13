@@ -6,12 +6,12 @@ module.exports = {
       colors: {
         yellow: {
           300: '#fbc688',
-          500: '#fb9827'
+          500: '#fb9827',
         },
         gray: {
           200: '#e2e0df',
-          500: '#929292'
-        }
+          500: '#929292',
+        },
       },
     },
   },
@@ -19,4 +19,4 @@ module.exports = {
     extend: {},
   },
   plugins: [],
-}
+};

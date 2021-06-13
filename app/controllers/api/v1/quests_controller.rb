@@ -8,12 +8,12 @@ class Api::V1::QuestsController < Api::V1::BaseController
   def index
   end
 
-  # 查詢指定題目  
+  # 查詢指定題目
   # GET: /api/v1/quests/:id
   def show
   end
 
-  # 新增答題記錄  
+  # 新增答題記錄
   # POST: /api/v1/quests/:id/answer
   # params: { type: 'ruby', answer: '答題內容' }
   def answer
@@ -33,10 +33,10 @@ class Api::V1::QuestsController < Api::V1::BaseController
     # 測試案例比對
     status = (output.join("\r\n").eql?(log.chomp) ? 'Success' : 'Failure')
     answer = current_user.answers.create!(answer_params.merge(quest_id: params[:id], status: status))
-    
+
     # 刪除暫存檔
     File.delete(file_path)
-    
+
     # JSON 內容整理
     input = input.map{ |element| element.match(/\(([^()]*)\)/) }
 
