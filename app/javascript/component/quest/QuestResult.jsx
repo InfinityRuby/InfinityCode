@@ -72,13 +72,13 @@ function QuestResult() {
           <div className="quest-answer-button">
             <div><img src="/quest/star.png" /><span>{ isSolved ? null : `+${levelCoins}` }</span></div>
             <h2>Good job !</h2>
-            <button className="quest-footer-button questbtn">解題討論區</button>
             <button
             onClick={ () => { location.href = `/quests` } } 
-            className="quest-footer-button questbtn">題目列表</button>
+            className="line-button quest-footer-button questbtn">題目列表</button>
             <button 
             onClick={ () => { location.href = `/quests/${Number(urlID()) + 1}` } }
-            className="quest-footer-button questbtn">下一題</button>
+            className="quest-footer-button questbtn solid-button next">下一題</button>
+            <button className="quest-footer-button questbtn line-button quest-discuss">解題討論區</button>
           </div>
         </div>
       </div>
@@ -101,8 +101,8 @@ function QuestResult() {
       : null }
 
       <div>
-        <button className="quest-footer-button questbtn">重置</button>
-        <button onClick={ answer } className="quest-footer-button questbtn">送出</button>
+        <button className="line-button quest-footer-button reset questbtn">重置</button>
+        <button onClick={ answer } className="solid-button quest-footer-button questbtn submit">送出</button>
       </div> 
     </div>
   )

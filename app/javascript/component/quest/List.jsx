@@ -97,7 +97,7 @@ function Quest({ id, title, level, solved }) {
       <div className = "listWrapper">
         <div className="questionLevel"><p>{ level }</p></div>
         <button className={ solved ? 
-          'questionBtn' : 'questionBtn question-unsolved' }>
+          'questionBtn solid-button' : 'questionBtn question-unsolved line-button' }>
           { solved ? '已解決' : '未解決' }
         </button>
       </div>
