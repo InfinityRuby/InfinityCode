@@ -13,7 +13,7 @@ class Post < ApplicationRecord
   end
 
   private
-  # 檢查成就 - 貼文數
+  # 檢查成就 - 貼文數 & 排行榜貼文數量第一
   def check_posts_achievement
     find_user
 
@@ -31,6 +31,40 @@ class Post < ApplicationRecord
     end
 
     create_achievement(badge_id)
+
+    # 發文數量是否第一
+    posts_count = Post.unscope(:order).group(:user_id).order(count_id: :desc).count(:id)
+
+    if(posts_count != nil)
+      first_user = posts_count.keys.first
+
+      if (first_user == @user.id)
+        badge_id = 19
+
+        create_achievement(badge_id)
+      end
+    end
+
+    # 發文得讚數量是否第一
+    users = []
+
+    User.find_each do |user|
+      likes = 0
+
+      user.posts.each do |post|
+        likes = likes + post.get_likes.count
+      end
+
+      users.push(user_id: user.id, user_likes: likes)
+    end
+
+    first_user = users.max{ |a, b| a[:user_likes] <=> b[:user_likes] }
+
+    if (first_user[:user_id] == @user.id)
+      badge_id = 19
+
+      create_achievement(badge_id)
+    end
   end
 
   # 檢查成就 - 單項成就 - 匿名發文

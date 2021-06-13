@@ -46,10 +46,10 @@ class Answer < ApplicationRecord
     create_achievement(badge_id)
   end
 
-  # 檢查成就 - 解題數量
+  # 檢查成就 - 解題數量 & 排行榜解題數第一
   def check_solved_quests
     find_user
-    total_solved = @user.answers.where(status: 'Success').distinct.count
+    total_solved = @user.quests.distinct.where("answers.status = ?", "Success").count
 
     case total_solved
     when 10
@@ -61,5 +61,22 @@ class Answer < ApplicationRecord
     end
 
     create_achievement(badge_id)
+
+    # 解題數量是否第一
+    users = []
+
+    User.find_each do |user|
+      solved_count = user.quests.distinct.where("answers.status = ?", "Success").count
+
+      users.push(user_id: user.id, solved_count: solved_count)
+    end
+
+    first_user = users.max{ |a, b| a[:solved_count] <=> b[:solved_count] }
+
+    if (first_user[:user_id] == @user.id)
+      badge_id = 19
+
+      create_achievement(badge_id)
+    end
   end
 end
