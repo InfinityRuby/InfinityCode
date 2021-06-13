@@ -13,8 +13,9 @@ export default function Comments() {
   const [totalLike, setTotalLike] = useState(0)
   const [like, setLike] = useState(false)
   const [maxPage, setMaxPage] = useState(1)
+  const [loading, setLoading] = useState(false)
   const sortCommentsRef = useRef()
-
+  
   useEffect(() => {
     API.get(`posts/${urlID()}?page=${commentPages}`)
       .then(res => {
@@ -24,7 +25,10 @@ export default function Comments() {
         setMaxPage(comments_total_pages)
         setAuthor(author)
         API.get(`posts/${urlID()}?page=${comments_total_pages}`)
-          .then(res => setQuantity(res.comments.length))
+          .then(res => {
+            setQuantity(res.comments.length)
+            setLoading(true)
+          })
       })
   }, [commentPages, quantity])
 
@@ -37,11 +41,11 @@ export default function Comments() {
     
     API.get(`posts/${urlID()}/islike`)
       .then(res => {
-          const star = document.querySelector('.single-article-content-author svg')
-          res && star.classList.add('text-yellow-300')
-          setLike(res)
-        })
-  }, [])
+        const star = document.querySelector('.single-article-content-author svg')
+        res && loading && star.classList.add('text-yellow-300')
+        setLike(res)
+      })
+  }, [loading])
 
   useEffect(() => {
     API.get(`posts/${urlID()}/totallike`)
@@ -121,6 +125,7 @@ export default function Comments() {
 
   return( 
     <div>
+      { loading ? 
       <div>
         <div className="single-article-title">
           <div className="single-article-title-goback">
@@ -137,7 +142,7 @@ export default function Comments() {
         <div className="single-article-content">
           <div className="single-article-content-wrap">
             <div className="single-article-content-author">
-              <img src={ author.avatar == 'default.png' ? '/default.png' : author.avatar } alt="jpg" />
+              <img src={ author.avatar } alt="jpg" />
               { commentsAPI.unknown == true ? 
               <h3 style={{ color: 'blue' }}>匿名</h3> : 
               <h3 style={{ color: 'green' }}>{ author.name }</h3> 
@@ -189,6 +194,7 @@ export default function Comments() {
                setCommentPages={ setCommentPages }
                maxPage={ maxPage } />
       </div>
+      : null }
     </div>
   )
 }

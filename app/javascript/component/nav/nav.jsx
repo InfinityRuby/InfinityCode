@@ -5,6 +5,7 @@ import API from 'component/lib/API'
 function Nav() {
   const [user, setUser] = useState(true)
   const [userCoins, setUserCoins] = useState([])
+  const [loading, setLoading] = useState(false)
   const signOut = () => {
     API.delete('/users/sign_out')
       .catch(() => location.href = '/')
@@ -16,6 +17,7 @@ function Nav() {
         setUser(user)
         if(user) {
           setUserCoins(user.coin_amount)
+          setLoading(true)
         }
       })
   }, [])
@@ -28,7 +30,7 @@ function Nav() {
       </div>
       <div className="home-nav-item">
         <div className="home-nav-item-link">
-          { user ?
+          { user && loading ?
           <ul>
             <li>
               <a href="/quests">解題區</a>

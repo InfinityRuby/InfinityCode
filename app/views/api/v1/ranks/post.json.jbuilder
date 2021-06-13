@@ -4,5 +4,5 @@ json.array! @users do |user|
     json.name user.profile.name
     json.avatar user.profile.avatar.url
   end
-  json.posts_count @user_posts_count[user.id]
+  json.score @user_posts_count[user.id]
 end
