@@ -401,7 +401,7 @@ if User.count > 0
     )
   end
 
-  10.times do 
+  10.times do
     Answer.create!(
       quest_id: Faker::Number.between(from: 1, to: 5),
       user_id: Faker::Number.between(from: 1, to: last_user_id),

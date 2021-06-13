@@ -9,7 +9,7 @@ class Api::V1::PromptsController < Api::V1::BaseController
     json_response(prompts)
   end
 
-  # 查詢指定題目的特定提示  
+  # 查詢指定題目的特定提示
   # GET: /api/v1/prompts/:id
   def show
     prompt = Prompt.find(params[:id])

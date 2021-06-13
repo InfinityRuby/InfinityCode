@@ -10,7 +10,7 @@ class Api::V1::PostsController < Api::V1::BaseController
   def index
   end
 
-  # 新增文章  
+  # 新增文章
   # POST: /api/v1/posts
   # params: { title: '標題', content: '內容' }
   def create
@@ -18,14 +18,14 @@ class Api::V1::PostsController < Api::V1::BaseController
     json_response(@post, :created)
   end
 
-  # 查詢指定文章  
+  # 查詢指定文章
   # GET: /api/v1/posts/:id
   # GET: /api/v1/posts/:id           建立時間，逆向排序
-  # GET: /api/v1/posts/:id?order=asc 建立時間，正向排序 
+  # GET: /api/v1/posts/:id?order=asc 建立時間，正向排序
   def show
   end
 
-  # 編輯指定文章  
+  # 編輯指定文章
   # PUT: /api/v1/posts/:id
   # params: { title: '標題', content: '內容' }
   def update
@@ -33,7 +33,7 @@ class Api::V1::PostsController < Api::V1::BaseController
     head :no_content
   end
 
-  # 刪除指定文章  
+  # 刪除指定文章
   # DELETE: /api/v1/posts/:id
   def destroy
     @post.destroy

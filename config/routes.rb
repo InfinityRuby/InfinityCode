@@ -4,10 +4,10 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments
   end
-  
-  resources :quests 
+
+  resources :quests
   resource :profile, only: [:show, :edit, :update]
-  
+
   get "/quests/questdata", to: "quests#questdata"
 
 

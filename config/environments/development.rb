@@ -46,7 +46,7 @@ Rails.application.configure do
   # config.action_mailer.smtp_settings = config_for(:email).symbolize_keys
   # config_for 會讀取 config 目錄下的 YAML 設定檔，由於 smtp_settings 需帶入 Symbol key
   # 所以透過 .symbolize_keys 將 Hash 中的 String key 轉成 Symbol key
-  
+
   # config.action_mailer.perform_caching = false
 
   # Print deprecation notices to the Rails logger.
