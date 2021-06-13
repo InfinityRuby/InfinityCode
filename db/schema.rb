@@ -81,7 +81,6 @@ ActiveRecord::Schema.define(version: 2021_06_11_073033) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.datetime "deleted_at"
-    t.boolean "anonymous", default: false
     t.integer "cached_votes_total", default: 0
     t.integer "cached_votes_score", default: 0
     t.integer "cached_votes_up", default: 0
@@ -89,6 +88,7 @@ ActiveRecord::Schema.define(version: 2021_06_11_073033) do
     t.integer "cached_weighted_score", default: 0
     t.integer "cached_weighted_total", default: 0
     t.float "cached_weighted_average", default: 0.0
+    t.boolean "anonymous", default: false
     t.index ["deleted_at"], name: "index_posts_on_deleted_at"
   end
 
