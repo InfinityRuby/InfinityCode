@@ -1,5 +1,5 @@
 import './CommentsRender'
 import Pages from './Pages'
-import UserComments from './UserComments'
+import CurrentComments from './CurrentComments'
 
-export { Pages, UserComments }
+export { Pages, CurrentComments }

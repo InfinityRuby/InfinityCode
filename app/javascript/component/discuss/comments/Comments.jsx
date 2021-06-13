@@ -1,23 +1,7 @@
 import React, { useEffect, useState, useRef }  from 'react'
-import { UserComments, Pages } from '.'
+import { CurrentComments, Pages } from './'
 import { API, urlID } from 'component/lib'
 import marked from 'marked'
-
-function CurrentComments({ comments, loginUser }) {
-  return comments.map(comment => {
-    const { id, author, content, created_at } = comment
-    return <UserComments key={ id } 
-                         id={ id }
-                         author={ author } 
-                         content={ content }
-                         loginUser={ loginUser }
-                         created={ created_at } />                       
-  })
-}
-
-function getUserName(email) {
-  return email.substring(0, email.lastIndexOf('@'))
-}
 
 export default function Comments() {
   const [commentsAPI, setCommentsAPI] = useState([])
@@ -26,6 +10,8 @@ export default function Comments() {
   const [author, setAuthor] = useState([])
   const [loginUser, setLoginUser] = useState([])
   const [commentPages, setCommentPages] = useState(1)
+  const [totalLike, setTotalLike] = useState(0)
+  const [like, setLike] = useState(false)
   const [maxPage, setMaxPage] = useState(1)
   const [loading, setLoading] = useState(false)
   const sortCommentsRef = useRef()
@@ -48,8 +34,23 @@ export default function Comments() {
 
   useEffect(() => {
     API.get(`users`)
-      .then(res => setLoginUser(getUserName(res.email)))
-  }, [])
+      .then(res => {
+        const userName = res.email.substring(0, res.email.lastIndexOf('@'))
+        setLoginUser(userName)
+      })
+    
+    API.get(`posts/${urlID()}/islike`)
+      .then(res => {
+        const star = document.querySelector('.single-article-content-author svg')
+        res && loading && star.classList.add('text-yellow-300')
+        setLike(res)
+      })
+  }, [loading])
+
+  useEffect(() => {
+    API.get(`posts/${urlID()}/totallike`)
+      .then(res => setTotalLike(res.total_like))
+  }, [like])
 
   const postComment = () => {
     const commentTextarea = document.getElementById('comment-textarea')
@@ -113,6 +114,15 @@ export default function Comments() {
     }
   }
 
+  const liked = () => {
+    const star = document.querySelector('.single-article-content-author svg')
+    star.classList.toggle('text-yellow-300')
+    API.get(`posts/${urlID()}/like`)
+    .then(res => {
+      res.liked ? setLike(like - 1) : setLike(like + 1)
+    })
+  }
+
   return( 
     <div>
       { loading ? 
@@ -137,8 +147,12 @@ export default function Comments() {
               <h3 style={{ color: 'blue' }}>匿名</h3> : 
               <h3 style={{ color: 'green' }}>{ author.name }</h3> 
               }
-              <i className="fa fa-star"></i>
-              <span>11212</span>
+              <div>
+                <div onClick={ liked }>
+                  <i className="fa fa-star"></i>
+                </div>
+                <span>{ totalLike }</span>
+              </div>
               <span>上次編輯日期: { `${commentsAPI.created_at}`.slice(0, 10) }</span>
             </div>
             <div className="single-article-content-body">

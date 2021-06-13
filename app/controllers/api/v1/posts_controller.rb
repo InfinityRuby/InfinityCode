@@ -1,6 +1,6 @@
 class Api::V1::PostsController < Api::V1::BaseController
-  before_action :find_user_post, only: [:destroy, :update, :user_like, :total_like]
-  before_action :find_post, only: [:show]
+  before_action :find_user_post, only: [:destroy, :update]
+  before_action :find_post, only: [:show, :user_like, :total_like, :is_like?]
   before_action :signed_in?, except: [:index, :show]
 
 
@@ -38,6 +38,11 @@ class Api::V1::PostsController < Api::V1::BaseController
   def destroy
     @post.destroy
     head :no_content
+  end
+
+  def is_like?
+    @result = current_user.liked? @post
+    json_response(@result)
   end
 
   #【GET】 查詢指定文章，使用者是否點過讚 /api/v1/posts/:id/like

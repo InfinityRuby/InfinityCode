@@ -3,7 +3,19 @@ import { CommentsAction, commentsID } from './CommentsAciton'
 import API from 'component/lib/API'
 import marked from 'marked'
 
-export default function UserComments({ id, author, content, created, loginUser }) {
+export default function CurrentComments({ comments, loginUser }) {
+  return comments.map(comment => {
+    const { id, author, content, created_at } = comment
+    return <UserComments key={ id } 
+                         id={ id }
+                         author={ author } 
+                         content={ content }
+                         loginUser={ loginUser }
+                         created={ created_at } />                       
+  })
+}
+
+function UserComments({ id, author, content, created, loginUser }) {
   const { name, avatar } = author
   const [currentComment, setCurrentComment] = useState(0)
   const commentRef = useRef()
