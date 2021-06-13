@@ -25,7 +25,7 @@ export default function UserComments({ id, author, content, created, loginUser }
   return(
     <div data-id={ id } ref={ commentRef } className="single-article-user-comments">
       <div className="single-article-user-title">
-      <img src={ avatar == 'default.png' ? '/default.png' : avatar } alt="comments-img" />
+      <img src={ avatar } alt="comments-img" />
         <h4 style={{ color: 'green' }}>{ name }</h4>
         <span>{ created.slice(0, 10) }</span>
       </div>
