@@ -1,5 +1,5 @@
 .home-nav {
-  @apply flex items-center justify-between px-10 bg-white shadow-md fixed w-full top-0 z-50;
+  @apply flex items-center justify-between px-10 bg-white shadow-md fixed w-full top-0 z-50 min-w-max;
   .home-logo {
     @apply flex items-center flex-shrink-0 text-black mr-6 py-5;
     .home-logo-text {
