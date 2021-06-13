@@ -38,7 +38,7 @@ Rails.application.routes.draw do
           get :comment
         end
       end
-      resources :problem_areas
+      resources :problems
       resources :coins, only: [:index, :create]
       resources :users, only: [:index, :update] do
         member do
