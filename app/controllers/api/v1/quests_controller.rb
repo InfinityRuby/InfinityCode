@@ -11,8 +11,6 @@ class Api::V1::QuestsController < Api::V1::BaseController
   # 查詢指定題目  
   # GET: /api/v1/quests/:id
   def show
-    @quest = Quest.find(params[:id]) 
-    json_response(@quest)
   end
 
   # 新增答題記錄  
