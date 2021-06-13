@@ -35,6 +35,10 @@ Rails.application.routes.draw do
           get :posts
           get :likes
           get :solved
+          get :comment
+          get :coin_top_three
+          get :post_top_three
+          get :comment_top_three
         end
       end
       resources :problems

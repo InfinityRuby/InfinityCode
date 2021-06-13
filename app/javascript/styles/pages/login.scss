@@ -29,17 +29,27 @@
         @apply text-white bg-yellow-500 px-4 py-2 inline-block mt-2 -ml-6;
       }
       .discuss-list-box {
-        @apply p-2;
+        @apply p-4 divide-y;
         .discuss-list {
-          @apply flex p-3;
-          img {
-            @apply rounded-full;
-          }
-          div {
-            @apply ml-3;
-            h3 {
-              @apply text-gray-400 text-sm;
+          @apply flex grid grid-cols-2 p-3 justify-between;
+          .post-content {
+            @apply flex;
+            .pic{
+              width: 50px;
+              height: 50px;
+              border-radius: 50%;
+              overflow: hidden;
             }
+            div {
+              @apply ml-3;
+              h3 {  
+                @apply text-gray-400 text-sm;
+              }
+            }
+          }
+          .author {
+            @apply text-sm text-gray-500 flex flex-col justify-end mb-2 items-end;
+
           }
         }
       }
