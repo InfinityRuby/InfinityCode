@@ -1,8 +1,10 @@
-class Api::V1::ProblemAreasController < Api::V1::BaseController
+class Api::V1::ProblemsController < Api::V1::BaseController
+  #api/v1/problems
   def index
-    @problem_areas = current_user.quests.distinct.where('answers.status = ?', "Success")
+    @problems = current_user.quests.distinct.where('answers.status = ?', "Success")
   end
-
+  
+  #api/v1/problems/id
   def show
     @problem = current_user.quests.find(params[:id]).answers.where(:status => 'Success' ,:user_id => current_user)
     
