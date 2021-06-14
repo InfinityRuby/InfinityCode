@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { API, urlID } from 'component/lib'
 import marked from 'marked'
 
@@ -69,7 +69,7 @@ export default function PromptSelect({ prompts, promptsCount, user, useRecord, s
         </button>
         { switchContent ? 
         <div className="markdown-body prompt-words" 
-             dangerouslySetInnerHTML={{ __html:  marked(hint)}}></div>
+             dangerouslySetInnerHTML={{ __html: marked(hint)}}></div>
         : null }
       </div>
     )

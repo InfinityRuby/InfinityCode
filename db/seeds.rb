@@ -364,10 +364,12 @@ ActiveRecord::Base.transaction do
     )
   end
 
-  badges.each do |badge|
-    Badge.create!(
-      description: badge[:description],
-      image: badge[:image]
+  10.times do
+    Answer.create!(
+      quest_id: Faker::Number.between(from: 1, to: 5),
+      user_id: Faker::Number.between(from: 1, to: last_user_id),
+      code: '',
+      status: answer_status[Faker::Number.between(from: 0, to: 1)]
     )
   end
 
