@@ -6,7 +6,7 @@ class Api::V1::PostsController < Api::V1::BaseController
 
 
   # 查詢文章列表
-  # GET: /api/v1/posts
+  # GET: /api/v1/posts?page=1&search=查詢&anonymous=true
   def index
   end
 
