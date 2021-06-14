@@ -47,7 +47,7 @@ function PostEdit() {
         height={ 550 }
       />
       <div className="post-edit-button-wrap">
-        <button className="post-edit-button" ref={ editRef } onClick={ postEdit }>送出</button>
+        <button className="post-edit-button solid-button" ref={ editRef } onClick={ postEdit }>送出</button>
       </div>
     </div>
   )

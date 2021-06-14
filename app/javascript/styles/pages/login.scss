@@ -1,42 +1,55 @@
 .home-box {
-  @apply w-3/4 m-auto;
+  @apply w-3/4 m-auto min-w-max;
   .skill-box {
     @apply flex mb-8 justify-center;
     .skill-ruby {
-      @apply w-full bg-white shadow-xl border border-opacity-30 border-gray-200;
+      @apply w-full bg-white shadow-md border border-opacity-30 border-gray-200;
       h2 {
-        @apply inline-block text-3xl text-white bg-yellow-500 pl-5 pt-2 pr-40 pb-6 mt-4 -ml-6;
+        @apply inline-block text-3xl text-white bg-yellow-500 pl-5 pt-5 pr-40 pb-6 mt-4 -ml-6;
       }
       .progress-bar {
         @apply w-3/4 h-2 bg-gray-100 ml-10 mt-8 mb-5;
+        .progress-filler {
+          @apply bg-black w-1 h-2;
+        }
       }
       span {
         @apply ml-10 mb-5 text-2xl text-gray-400;
       }
       .start-button {
-        @apply inline-block text-white text-lg bg-yellow-500 py-4 px-10 float-right mr-12;
+        @apply outline-none block text-lg py-4 px-10 float-right mr-12 mb-5 ;
       }
     }
   }
   .social-box {
-    @apply flex mb-4 justify-between;
+    @apply flex mb-4 justify-between min-w-max;
     .discuss-box {
       @apply w-1/2 bg-white shadow-md mr-10 border border-opacity-30 border-gray-200;
       .tag {
         @apply text-white bg-yellow-500 px-4 py-2 inline-block mt-2 -ml-6;
       }
       .discuss-list-box {
-        @apply p-2;
+        @apply p-4 divide-y;
         .discuss-list {
-          @apply flex p-3;
-          img {
-            @apply rounded-full;
-          }
-          div {
-            @apply ml-3;
-            h3 {
-              @apply text-gray-400 text-sm;
+          @apply flex grid grid-cols-2 p-3 justify-between;
+          .post-content {
+            @apply flex;
+            .pic{
+              width: 50px;
+              height: 50px;
+              border-radius: 50%;
+              overflow: hidden;
             }
+            div {
+              @apply ml-3;
+              h3 {  
+                @apply text-gray-400 text-sm;
+              }
+            }
+          }
+          .author {
+            @apply text-sm text-gray-500 flex flex-col justify-end mb-2 items-end;
+
           }
         }
       }
@@ -48,28 +61,40 @@
       }
       .rank-content {
         @apply w-5/6 m-auto pt-2;
-        .rank-title {
-          @apply text-center;
-          span {
-            @apply px-6 py-2 hover:text-yellow-500;
+        .rank-button-wrapper {
+          @apply grid grid-cols-4;
+          button {
+            @apply outline-none p-3 bg-gray-100 text-gray-300 cursor-pointer tracking-widest duration-75 border-r;
+            &:last-child {
+              @apply border-none;
+            }
           }
+          button.toggle {
+            @apply bg-white text-black;
+          }
+          .toggle {
+            @apply bg-white;
+          }  
         }
-        .rank-title {
-          @apply flex justify-between;
+        .content {
+          @apply hidden p-3;
         }
-        .rank-list-box {
-          @apply text-center mt-6;
-          .rank-list {
-            @apply flex justify-between px-6 p-4;
-            .gold {
-              @apply text-yellow-400 text-3xl;
-            }
-            .sliver {
-              @apply text-gray-500 text-3xl;
-            }
-            .copper {
-              @apply text-yellow-800 text-3xl;
-            }
+        .content.toggle {
+          @apply block;
+        }
+      }
+      .rank-list-box {
+        @apply text-center mt-6 divide-y;
+        .rank-list {
+          @apply flex grid grid-cols-3 px-6 p-4;
+          .gold {
+            @apply text-yellow-400 text-3xl;
+          }
+          .silver {
+            @apply text-gray-500 text-3xl;
+          }
+          .copper {
+            @apply text-yellow-800 text-3xl;
           }
         }
       }

@@ -5,12 +5,13 @@ module.exports = {
     extend: {
       colors: {
         yellow: {
-          500: '#fb9827'
+          450: '#fbc688',
+          500: '#fb9827',
         },
         gray: {
           200: '#e2e0df',
-          500: '#929292'
-        }
+          500: '#929292',
+        },
       },
     },
   },
@@ -18,4 +19,4 @@ module.exports = {
     extend: {},
   },
   plugins: [],
-}
+};

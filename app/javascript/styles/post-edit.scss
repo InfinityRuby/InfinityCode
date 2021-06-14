@@ -11,7 +11,7 @@
     .post-edit-button-wrap{
       @apply w-full flex justify-end;
       .post-edit-button{
-        @apply w-20 h-12 border border-gray-900 bg-yellow-500 rounded-md mt-2 text-lg hover:bg-yellow-600 hover:text-white outline-none
+        @apply w-20 h-12 mt-4 mb-4 text-lg outline-none;
       }
     }
   }

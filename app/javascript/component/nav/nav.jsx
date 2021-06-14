@@ -5,6 +5,7 @@ import API from 'component/lib/API'
 function Nav() {
   const [user, setUser] = useState(true)
   const [userCoins, setUserCoins] = useState([])
+  const [loading, setLoading] = useState(false)
   const signOut = () => {
     API.delete('/users/sign_out')
       .catch(() => location.href = '/')
@@ -16,6 +17,7 @@ function Nav() {
         setUser(user)
         if(user) {
           setUserCoins(user.coin_amount)
+          setLoading(true)
         }
       })
   }, [])
@@ -28,7 +30,7 @@ function Nav() {
       </div>
       <div className="home-nav-item">
         <div className="home-nav-item-link">
-          { user ?
+          { user && loading ?
           <ul>
             <li>
               <a href="/quests">解題區</a>
@@ -44,12 +46,10 @@ function Nav() {
               <span className="amount">{ userCoins }</span>
             </li>
             <li className="user-account">
-              <a href="#">
-                <span className="user-email">
-                  { user ? `${user.email}`.substring(0, `${user.email}`.lastIndexOf('@')) : null }
-                </span>
-                <i className="fas fa-chevron-down"></i>
-              </a>
+              <span className="user-email">
+                { user ? `${user.email}`.substring(0, `${user.email}`.lastIndexOf('@')) : null }
+              </span>
+              <i className="fas fa-chevron-down"></i>
               <ul className="sub1">
                 <li onClick={ () => { location.href = '/profile' } }>個人檔案</li>
                 <li onClick={ signOut } className="navbar-link">登出</li>
@@ -60,10 +60,10 @@ function Nav() {
         { user ? null :
           <div className="user-btn">
             <div>
-              <button onClick={ () => { location.href = '/users/sign_in' } } className="user-btn-login">
+              <button onClick={ () => { location.href = '/users/sign_in' } } className="user-btn-login line-button">
                 登入
               </button>
-              <button onClick={ () => { location.href = '/users/sign_up' } } className="user-btn-signup">
+              <button onClick={ () => { location.href = '/users/sign_up' } } className="user-btn-signup solid-button">
                 註冊
               </button>
             </div>

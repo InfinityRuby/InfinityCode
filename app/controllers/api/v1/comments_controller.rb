@@ -29,7 +29,7 @@ class Api::V1::CommentsController < Api::V1::BaseController
     head :no_content
   end
 
-  # 刪除指定文章  
+  # 刪除指定文章
   # DELETE: /api/v1/posts/:post_id/comments/:id
   def destroy
     @comment.destroy

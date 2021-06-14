@@ -1,5 +1,5 @@
 #listquest-wrapper {
-  @apply pt-24  m-auto  max-w-screen-xl bg-gray-100 w-full min-h-screen;
+  @apply pt-24  m-auto  max-w-screen-xl w-full min-h-screen;
   .quest-checkbox {
     @apply font-mono flex px-2;
     .level-select, .completion-select {
@@ -12,7 +12,7 @@
   #list-quest {
     @apply grid grid-cols-2;
     .quest-name {
-      @apply rounded-md shadow-2xl m-4 bg-white hover:bg-gray-300;
+      @apply shadow-md m-4 bg-white hover:bg-gray-100 border border-opacity-30 border-gray-200;
       & > h3{
         @apply font-mono text-xl pt-4 px-4;
       }
@@ -22,10 +22,10 @@
           @apply mt-7 text-lg;
         }
         .questionBtn {
-          @apply bg-yellow-400 border-solid rounded-xl text-center border-opacity-10 py-2 w-5/12 mt-5 tracking-widest;
+          @apply outline-none text-center py-3 w-3/12 mt-5 tracking-widest;
         }
         .question-unsolved {
-          @apply bg-gray-200 border-solid rounded-xl text-center border-opacity-10 py-2 w-5/12 mt-5 tracking-widest;
+          @apply outline-none text-center py-3 w-3/12 mt-5 tracking-widest;
         }
       }
     }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { API, urlID } from 'component/lib'
 import marked from 'marked'
 
@@ -52,25 +52,24 @@ export default function PromptSelect({ prompts, promptsCount, user, useRecord, s
             <div className="prompt-window">
               <img src="/quest/star.png" />
               <h2>換取提示 : <span>- 5</span> 金幣</h2>
-              <button onClick={ () => {setDisplayWindow(false)} } className="quest-footer-button questbtn">
+              <button onClick={ () => {setDisplayWindow(false)} } className="quest-footer-button questbtn line-button">
                 取消
               </button>   
-              <button onClick={ clickPrompt } className="quest-footer-button questbtn">
+              <button onClick={ clickPrompt } className="solid-button quest-footer-button sure">
                 確定
               </button>
             </div>
           </div>
         </div>
         : null }
-        <button className="quest-prompt-button questbtn"
-                style={ index == count - 1 ? { background: '#fb9827' } : null} 
+        <button className={ index == count - 1 ?  "solid-button quest-prompt-button questbtn coin-prompt" : 'quest-prompt-button questbtn line-button' }
                 onClick={ index == count - 1 ? 
                 (useRecord ? clickPrompt : setDisplayWindow.bind(false)) : clickPrompt }>
           { index == count - 1 ? '金幣提示' : '免費提示' }
         </button>
         { switchContent ? 
         <div className="markdown-body prompt-words" 
-             dangerouslySetInnerHTML={{ __html:  marked(hint)}}></div>
+             dangerouslySetInnerHTML={{ __html: marked(hint)}}></div>
         : null }
       </div>
     )

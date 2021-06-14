@@ -1,23 +1,7 @@
 import React, { useEffect, useState, useRef }  from 'react'
-import { UserComments, Pages } from '.'
+import { CurrentComments, Pages } from './'
 import { API, urlID } from 'component/lib'
 import marked from 'marked'
-
-function CurrentComments({ comments, loginUser }) {
-  return comments.map(comment => {
-    const { id, author, content, created_at } = comment
-    return <UserComments key={ id } 
-                         id={ id }
-                         author={ author } 
-                         content={ content }
-                         loginUser={ loginUser }
-                         created={ created_at } />                       
-  })
-}
-
-function getUserName(email) {
-  return email.substring(0, email.lastIndexOf('@'))
-}
 
 export default function Comments() {
   const [commentsAPI, setCommentsAPI] = useState([])
@@ -26,9 +10,12 @@ export default function Comments() {
   const [author, setAuthor] = useState([])
   const [loginUser, setLoginUser] = useState([])
   const [commentPages, setCommentPages] = useState(1)
+  const [totalLike, setTotalLike] = useState(0)
+  const [like, setLike] = useState(false)
   const [maxPage, setMaxPage] = useState(1)
+  const [loading, setLoading] = useState(false)
   const sortCommentsRef = useRef()
-
+  
   useEffect(() => {
     API.get(`posts/${urlID()}?page=${commentPages}`)
       .then(res => {
@@ -38,14 +25,32 @@ export default function Comments() {
         setMaxPage(comments_total_pages)
         setAuthor(author)
         API.get(`posts/${urlID()}?page=${comments_total_pages}`)
-          .then(res => setQuantity(res.comments.length))
+          .then(res => {
+            setQuantity(res.comments.length)
+            setLoading(true)
+          })
       })
   }, [commentPages, quantity])
 
   useEffect(() => {
     API.get(`users`)
-      .then(res => setLoginUser(getUserName(res.email)))
-  }, [])
+      .then(res => {
+        const userName = res.email.substring(0, res.email.lastIndexOf('@'))
+        setLoginUser(userName)
+      })
+    
+    API.get(`posts/${urlID()}/islike`)
+      .then(res => {
+        const star = document.querySelector('.single-article-content-author svg')
+        res && loading && star.classList.add('text-yellow-300')
+        setLike(res)
+      })
+  }, [loading])
+
+  useEffect(() => {
+    API.get(`posts/${urlID()}/totallike`)
+      .then(res => setTotalLike(res.total_like))
+  }, [like])
 
   const postComment = () => {
     const commentTextarea = document.getElementById('comment-textarea')
@@ -109,8 +114,18 @@ export default function Comments() {
     }
   }
 
+  const liked = () => {
+    const star = document.querySelector('.single-article-content-author svg')
+    star.classList.toggle('text-yellow-300')
+    API.get(`posts/${urlID()}/like`)
+    .then(res => {
+      res.liked ? setLike(like - 1) : setLike(like + 1)
+    })
+  }
+
   return( 
     <div>
+      { loading ? 
       <div>
         <div className="single-article-title">
           <div className="single-article-title-goback">
@@ -127,13 +142,17 @@ export default function Comments() {
         <div className="single-article-content">
           <div className="single-article-content-wrap">
             <div className="single-article-content-author">
-              <img src={ author.avatar == 'default.png' ? '/default.png' : author.avatar } alt="jpg" />
+              <img src={ author.avatar } alt="jpg" />
               { commentsAPI.unknown == true ? 
               <h3 style={{ color: 'blue' }}>匿名</h3> : 
               <h3 style={{ color: 'green' }}>{ author.name }</h3> 
               }
-              <i className="fa fa-star"></i>
-              <span>11212</span>
+              <div>
+                <div onClick={ liked }>
+                  <i className="fa fa-star"></i>
+                </div>
+                <span>{ totalLike }</span>
+              </div>
               <span>上次編輯日期: { `${commentsAPI.created_at}`.slice(0, 10) }</span>
             </div>
             <div className="single-article-content-body">
@@ -168,13 +187,14 @@ export default function Comments() {
           <div className="single-article-textarea-border">
             <button id="comment-button" onClick={ postComment }>送出</button>
           </div>
-            </div>
+        </div>
         <CurrentComments comments={ comments } loginUser={ loginUser } />
         <Pages comments={ comments } 
                commentPages={ commentPages }  
                setCommentPages={ setCommentPages }
                maxPage={ maxPage } />
       </div>
+      : null }
     </div>
   )
 }

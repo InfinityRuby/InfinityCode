@@ -4,14 +4,14 @@ class DockerService
   def initialize(condition)
     @image = condition[:image]
     @file = condition[:file]
-    
+
     # image 版本處理
     unless @image.include? ':'
       if @image == 'ruby'
         @image = @image + ':2.7.3'
       else
         @image = @image + ':latest'
-      end    
+      end
     end
 
   end

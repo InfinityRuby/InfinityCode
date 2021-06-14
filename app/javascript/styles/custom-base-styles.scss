@@ -4,6 +4,9 @@ ol li {
 ul li {
   @apply list-disc;
 }
-button {
-  // 未解決，開 issue 另外處理
+.solid-button {
+  @apply outline-none bg-yellow-500 border border-yellow-500 hover:bg-yellow-450 hover:border-yellow-450 text-white;
+}
+.line-button {
+  @apply outline-none bg-white border border-opacity-100 border-yellow-500 text-yellow-500 hover:text-white hover:border-yellow-500 hover:bg-yellow-500;
 }

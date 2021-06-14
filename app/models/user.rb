@@ -16,14 +16,18 @@ class User < ApplicationRecord
   after_create do
     create_profile
   end
-  after_commit :check_user_achievement
+
+  after_commit do
+    check_user_achievement
+    check_coins_achievement
+  end
 
   before_create do
     set_default_value
   end
 
 
-  def self.create_from_provider_data(provider_data) 
+  def self.create_from_provider_data(provider_data)
     where(provider: provider_data.provider, uid: provider_data.uid).first_or_create do |user|
     user.email = provider_data.info.email
     user.password = Devise.friendly_token[0, 20]
@@ -59,4 +63,37 @@ class User < ApplicationRecord
 
     create_achievement(badge_id)
   end
+
+  # 檢查成就 - 金幣數量 & 排行榜金幣數量第一
+  def check_coins_achievement
+    if (self.coin_amount != nil)
+
+      @user = User.find(self.id)
+
+      case
+      when (self.coin_amount >= 10 and self.coin_amount < 50)
+        badge_id = 9
+      when (self.coin_amount >= 50 and self.coin_amount < 100)
+        badge_id = 10
+      when (self.coin_amount >= 100 and self.coin_amount < 500)
+        badge_id = 11
+      when (self.coin_amount >= 500)
+        badge_id = 12
+      end
+
+      create_achievement(badge_id)
+
+      first_user = User.order(coin_amount: :desc).first
+
+      if (first_user.id == self.id)
+        badge_id = 19
+
+        create_achievement(badge_id)
+      end
+
+    end
+
+  end
+
+  # 檢查成就 - 排行榜 - 金幣
 end
