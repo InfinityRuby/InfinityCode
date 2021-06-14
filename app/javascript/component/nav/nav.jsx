@@ -14,7 +14,15 @@ function Nav() {
   useEffect(() => {
     API.get('users')
       .then(user => {
-        setUser(user)
+        if (user && Object.keys(user).length === 0 && user.constructor === Object) {
+          setUser(false)
+        }else{
+          setUser(user)
+        }
+        // console.log(user === true)
+        // console.log(Object.keys(user).length )
+        // console.log(user.constructor === Object)
+        // setUser(user && Object.keys(user).length === 0 && user.constructor === Object)
         if(user) {
           setUserCoins(user.coin_amount)
           setLoading(true)

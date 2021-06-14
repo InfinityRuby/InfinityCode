@@ -1,5 +1,5 @@
 class Api::V1::QuestsController < Api::V1::BaseController
-  before_action :signed_in?, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # 查詢符合篩選資料的題目
   # GET: /api/v1/quests?status=Success

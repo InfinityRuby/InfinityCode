@@ -1,5 +1,5 @@
 class Api::V1::PromptsController < Api::V1::BaseController
-  before_action :signed_in?
+  before_action :authenticate_user!
 
   # 查詢指定題目的提示列表
   # GET: /api/v1/quests/:quest_id/prompts
