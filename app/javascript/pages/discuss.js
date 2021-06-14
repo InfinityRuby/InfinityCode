@@ -2,7 +2,7 @@ document.addEventListener('turbolinks:load', () => {
   const items = document.querySelectorAll('.discuss-list');
 
   if (items) {
-    fetch('api/v1/posts')
+    fetch('/api/v1/posts')
       .then((res) => res.json())
       .then((obj) => obj.posts)
       .then((posts) => {
