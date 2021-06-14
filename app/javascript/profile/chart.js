@@ -18,7 +18,7 @@ document.addEventListener('turbolinks:load', () => {
         const totalEasy = percent.total_easy
         const totalMedium = percent.total_medium
         const totalHard = percent.total_hard
-        const totalPercent = (percent.total_percentage * 100).toFixed(0)
+        const totalPercent = (percent.total_percentage * 100).toFixed(0);
 
         questAmount.textContent = `${totalPercent}%`
         easyHtml.lastElementChild.innerHTML = `<span>${easy}題/${totalEasy}題</span>`

@@ -2,14 +2,14 @@ document.addEventListener('turbolinks:load', () => {
   const ranks = document.querySelector(".rank-content");
   const rankBtn = document.querySelectorAll(".rank-button");
 
-  if(ranks) {
+  if (ranks) {
     // Function - 排行榜 API 串接
     const dataRender = (e) => {
-      let toggledBtn = document.querySelector('button.toggle');
-      let toggledDiv = document.querySelector('div.toggle');
+      const toggledBtn = document.querySelector('button.toggle');
+      const toggledDiv = document.querySelector('div.toggle');
       let type;
 
-      if(e) {
+      if (e) {
         toggledBtn.classList.remove('toggle');
         e.target.classList.add('toggle');
 
@@ -21,8 +21,8 @@ document.addEventListener('turbolinks:load', () => {
       }
 
       fetch(`/api/v1/ranks/${type}`)
-        .then(res => res.json())
-        .then(obj => {
+        .then((res) => res.json())
+        .then((obj) => {
           obj.forEach((data, index) => {
             const item = document.querySelector(`.${type}-${index + 1}`);
             const color = ['gold', 'silver', 'copper'];
@@ -30,11 +30,11 @@ document.addEventListener('turbolinks:load', () => {
             item.innerHTML = `<i class="fas fa-trophy ${color[index]}"></i><span class="name">${data.profile.name}</span><span class="count">${data.score}</span>`;
           });
         });
-    }
+    };
 
     dataRender();
 
-    rankBtn.forEach(btn => {
+    rankBtn.forEach((btn) => {
       btn.addEventListener('click', dataRender);
     });
   }
