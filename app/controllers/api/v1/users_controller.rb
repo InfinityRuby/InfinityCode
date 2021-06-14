@@ -1,6 +1,7 @@
-class Api::V1::UsersController < Api::V1::BaseController 
+class Api::V1::UsersController < Api::V1::BaseController
+  before_action :authenticate_user!, only: [:completed_rate]
+
   def index
-    json_response(current_user)
   end
 
   # 查詢特定使用者的解題完成率
@@ -16,30 +17,30 @@ class Api::V1::UsersController < Api::V1::BaseController
     medium = level_solved["Medium"]
     hard = level_solved["Hard"]
 
-    if quest_solved == 0 && total_quest.to_f == 0 
+    if quest_solved == 0 && total_quest.to_f == 0
       total_percentage = 0
-    else 
-      total_percentage = (quest_solved / total_quest.to_f).round(2)    
+    else
+      total_percentage = (quest_solved / total_quest.to_f).round(2)
     end
 
     if easy == nil
       easy_percentage = 0
       easy = 0
-    else 
+    else
       easy_percentage = (easy / level_total["Easy"].to_f).round(2)
     end
 
     if medium == nil
       medium_percentage = 0
       medium = 0
-    else 
+    else
       medium_percentage = (medium / level_total["Medium"].to_f).round(2)
     end
 
     if hard == nil
       hard_percentage = 0
       hard = 0
-    else 
+    else
       hard_percentage = (hard / level_total["Hard"].to_f).round(2)
     end
 

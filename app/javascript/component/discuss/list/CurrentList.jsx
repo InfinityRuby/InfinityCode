@@ -16,18 +16,20 @@ export default function CurrentList({ lists }) {
 function SearchDisplayList({ title, content, id, newComment, author }) {
   return(
     <div className="discuss">
-      <img src={ author.avatar } alt="jpg" />
+      { content ? <div className="pic"><img src={ author.avatar } alt="jpg" /></div> : null }
       <div>      
-        <h2><a href={ `posts/${id}` }>{ title }</a></h2>
+        <h2><a href={ content ? `posts/${id}` : `posts/${id}/answer` }>{ title }</a></h2>
+        { content ?
         <h3 dangerouslySetInnerHTML={ {__html: marked(`${content.slice(0, 10).replace('```', '')}...`)} }>
         </h3>
+        : null }
       </div>
+      { content ?
       <div>
         <div>文章作者: <span>{ author.name }</span></div>
-        <div>
-          最新回覆: <span>{ newComment.name }</span>
-        </div>
+        <div>最新回覆: <span>{ newComment.name }</span></div>
       </div>
+      : null }
     </div>
   )
 }

@@ -1,35 +1,23 @@
 class Api::V1::CommentsController < Api::V1::BaseController
   before_action :find_comment, only: [:show, :update, :destroy]
-  before_action :signed_in?, except: [:index, :show]
-
-  # 查詢特定文章的留言列表  
-  # GET: /api/v1/posts/:post_id/comments
-  def index
-  end
+  before_action :authenticate_user!, except: [:index, :show]
 
   # 新增特定文章的留言  
   # POST: /api/v1/posts/:post_id/comments
   # params: { content: '測試訊息' }
   def create
-    @comment = current_user.comments.create!(comment_params)
-    json_response(@comment, :created)
-  end
-
-  # 查詢特定文章的單一留言  
-  # GET: /api/v1/posts/:post_id/comments/:id
-  def show
-    json_response(@comment)
+    @comment = current_user.comments.create!(comment_params.merge(post_id: params[:post_id]))
   end
 
   # 編輯指定文章  
-  # PUT: /api/v1/posts/:post_id/comments/:id
+  # PUT: /api/v1/comments/:id
   # params: { content: '測試訊息' }
   def update
     @comment.update(comment_params)
     head :no_content
   end
 
-  # 刪除指定文章  
+  # 刪除指定文章
   # DELETE: /api/v1/posts/:post_id/comments/:id
   def destroy
     @comment.destroy
@@ -38,16 +26,10 @@ class Api::V1::CommentsController < Api::V1::BaseController
 
   private
   def comment_params
-    params[:comment][:post_id] = params[:post_id]
-    params.require(:comment).permit(:content, :post_id, :picture, :email)
-  end
-
-  def find_post
-    @post = Post.find(params[:post_id])
+    params.require(:comment).permit(:content)
   end
 
   def find_comment
     @comment = current_user.comments.find(params[:id])
   end
-
 end

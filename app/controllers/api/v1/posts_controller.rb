@@ -1,16 +1,14 @@
 class Api::V1::PostsController < Api::V1::BaseController
-  before_action :find_user_post, only: [:destroy, :update, :user_like, :total_like]
-  before_action :find_post, only: [:show]
-  before_action :signed_in?, except: [:index, :show]
+  before_action :find_user_post, only: [:destroy, :update]
+  before_action :find_post, only: [:show, :user_like, :total_like, :is_like?]
+  before_action :authenticate_user!, except: [:index, :show]
 
-
-
-  # 查詢文章列表  
-  # GET: /api/v1/posts
+  # 查詢文章列表
+  # GET: /api/v1/posts?page=1&search=查詢&anonymous=true
   def index
   end
 
-  # 新增文章  
+  # 新增文章
   # POST: /api/v1/posts
   # params: { title: '標題', content: '內容' }
   def create
@@ -18,14 +16,14 @@ class Api::V1::PostsController < Api::V1::BaseController
     json_response(@post, :created)
   end
 
-  # 查詢指定文章  
+  # 查詢指定文章
   # GET: /api/v1/posts/:id
   # GET: /api/v1/posts/:id           建立時間，逆向排序
-  # GET: /api/v1/posts/:id?order=asc 建立時間，正向排序 
+  # GET: /api/v1/posts/:id?order=asc 建立時間，正向排序
   def show
   end
 
-  # 編輯指定文章  
+  # 編輯指定文章
   # PUT: /api/v1/posts/:id
   # params: { title: '標題', content: '內容' }
   def update
@@ -33,11 +31,16 @@ class Api::V1::PostsController < Api::V1::BaseController
     head :no_content
   end
 
-  # 刪除指定文章  
+  # 刪除指定文章
   # DELETE: /api/v1/posts/:id
   def destroy
     @post.destroy
     head :no_content
+  end
+
+  def is_like?
+    @result = current_user.liked? @post
+    json_response(@result)
   end
 
   #【GET】 查詢指定文章，使用者是否點過讚 /api/v1/posts/:id/like

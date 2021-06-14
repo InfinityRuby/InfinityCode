@@ -13,5 +13,6 @@ import "styles"
 import "icon/fontawesome"
 import "quest"
 import "component"
-import 'profile'
+import "profile"
 import "highlight"
+import "pages"

@@ -1,5 +1,5 @@
 class Api::V1::PromptsController < Api::V1::BaseController
-  before_action :signed_in?
+  before_action :authenticate_user!
 
   # 查詢指定題目的提示列表
   # GET: /api/v1/quests/:quest_id/prompts
@@ -9,7 +9,7 @@ class Api::V1::PromptsController < Api::V1::BaseController
     json_response(prompts)
   end
 
-  # 查詢指定題目的特定提示  
+  # 查詢指定題目的特定提示
   # GET: /api/v1/prompts/:id
   def show
     prompt = Prompt.find(params[:id])

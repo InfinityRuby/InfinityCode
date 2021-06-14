@@ -1,5 +1,5 @@
 class Api::V1::CoinsController < Api::V1::BaseController
-  before_action :signed_in?
+  before_action :authenticate_user!
 
   def index
     @coins = current_user.coins

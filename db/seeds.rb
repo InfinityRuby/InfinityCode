@@ -2,45 +2,45 @@ quests = [
   {
     title: 'Hello InfinityCode!',
     level: 'Easy',
-    description: 'Let\'s get started with Ruby!<br />Go ahead and type the following code in the code-editor:<br />`print "Hello InfinityCode!!"`',
+    description: '讓我們一起踏入 Ruby 的世界吧！<br />首先請繼續按照指示完成此題練習吧！請在右側程式編輯器中輸入：<br />`print "Hello InfinityCode!!"`',
     picture: '',
     problem: ''
   },
   {
-    title: 'Two Sum',
+    title: '兩數之和',
     level: 'Easy',
-    description: 'Given an `array` of integers `nums` and an integer `target`, return indices of the two numbers such that they add up to target.<br />
-    You may assume that each input would have exactly one solution, and you may not use the same element twice.<br />
-    You can return the answer in any order.',
+    description: '給定一個整數陣列 `nums` 以及一個整數目標值 `target` ，請在該陣列中找出相加總和為目標值的兩數。並回傳其數字於陣列中的索引值。<br />
+    你可以假設每種輸入值只會對應一個答案。同時，整數陣列中的同一元素不得重複使用。<br />
+    你可以按任意順序回傳答案。',
     picture: '',
     problem: File.read("./public/problem/q-2.txt")
   },
   {
-    title: 'Shuffle the Array',
+    title: '陣列重組',
     level: 'Easy',
-    description: 'Given the array `nums` consisting of `2n` elements in the form `[x1,x2,...,xn,y1,y2,...,yn]`.<br />
-    *Return the array in the form* `[x1,y1,x2,y2,...,xn,yn]`.',
+    description: '給你一個整數陣列 `nums` ，陣列中包含 `2n` 個元素，並依照 `[x1, x2, ..., xn, y1, y2, ..., yn]` 規則排序。<br />
+    請將陣列按照 `[x1, y1, x2, y2, ..., xn, yn]` 的新規則進行重組並回傳。',
     picture: '![](/quest/3-picture.png)',
     problem: File.read("./public/problem/q-3.txt")
   },
   {
-    title: '3Sum',
+    title: '三數之和',
     level: 'Medium',
-    description: 'Given an integer array nums, return all the triplets `[nums[i], nums[j], nums[k]]` such that `i != j`, `i != k`, and `j != k`, and `nums[i] + nums[j] + nums[k] == 0`.<br />
-    Notice that the solution set must not contain duplicate triplets.',
+    description: '給你一個包含 `n` 個整數的陣列 `nums` ，判斷 `nums` 中是否存在三個元素 *a、b、c* ，使得三個數字總和為 0 。請你找出總和為 0 且元素不重複的組合。<br />
+    **注意：**答案中不可以包含重複的陣列組合。',
     picture: '![](/quest/4-picture.png)',
     problem: File.read("./public/problem/q-4.txt")
   },
   {
-    title: 'First Missing Positive',
+    title: '缺少的第一個正整數',
     level: 'Hard',
-    description: 'Given an unsorted integer array `nums`, find the smallest missing positive integer.<br />
-    You must implement an algorithm that runs in `O(n)` time and uses constant extra space.',
+    description: '給你一個尚未排序的整數陣列 `nums` ，請找出其中沒有出現且最小的正整數。<br />
+    請你讓時間複雜度為 `O(n)` 並且只使用常數級別額外空間的解決方案。',
     picture: '![](/quest/5-picture.png)',
     problem: File.read("./public/problem/q-5.txt")
   },
   {
-    title: 'Palindrome Number',
+    title: '回文數字',
     level: 'Easy',
     description: 'Given an integer `x`, return `true` if `x` is palindrome integer.<br />
     An integer is a **palindrome** when it reads the same backward as forward. For example, `121` is palindrome while `123` is not.',
@@ -48,7 +48,7 @@ quests = [
     problem: ''
   },
   {
-    title: 'Remove Nth Node From End of List',
+    title: '刪除列表的倒數第 N 個節點',
     level: 'Medium',
     description: 'Given the `head` of a linked list, remove the `$n^{th}$` node from the end of the list and return its head.<br />
     **Follow up:** Could you do this in one pass?',
@@ -56,7 +56,7 @@ quests = [
     problem: ''
   },
   {
-    title: 'Valid Parentheses',
+    title: '有效的括號',
     level: 'Easy',
     description: 'Given a string `s` containing just the characters `(`, `)`, `{`, `}`, `[` and `]`, determine if the input string is valid.<br />
     An input string is valid if:<br />
@@ -66,7 +66,7 @@ quests = [
     problem: ''
   },
   {
-    title: 'Remove Duplicates from Sorted Array',
+    title: '刪除有序數列中的重複項目',
     level: 'Easy',
     description: 'Given a sorted array *nums*, remove the duplicates in-place such that each element appears only *once* and returns the new length.<br />
     Do not allocate extra space for another array, you must do this by **modifying the input array in-place with O(1) extra memory.<br />
@@ -77,7 +77,7 @@ quests = [
     picture: '![](/quest/9-picture.png)'
   },
   {
-    title: 'Count and Say',
+    title: '外觀數列',
     level: 'Medium',
     description: 'The **count-and-say** sequence is a sequence of digit strings defined by the recursive formula:<br />
     - `countAndSay(1) = "1"`<br />
@@ -87,23 +87,23 @@ quests = [
     picture: '![](/quest/10-picture.png)'
   },
   {
-    title: 'Sqrt(x)',
+    title: 'x 的平方根',
     level: 'Easy',
-    description: 'Given a non-negative integer `x`, compute and return *the square root of* `x`.<br />
-    Since the return type is an integer, the decimal digits are **truncated**, and only **the integer part** of the result is returned.',
+    description: '給定一個非負整數 `x` ，計算並回傳 `x` *的平方根*。<br />
+    由於回傳的型別是整數，如果有小數部分將 **無條件捨去**，並只保留 **整數部分** 的結果回傳。',
     picture: '![](/quest/11-picture.png)',
     problem: ''
   },
   {
-    title: 'Climbing Stairs',
+    title: '爬樓梯',
     level: 'Easy',
-    description: 'You are climbing a staircase. It takes `n` steps to reach the top.<br />
-    Each time you can either climb `1` or `2` steps. In how many distinct ways can you climb to the top?',
+    description: '你正在爬樓梯，需要 `n` 階才能到達頂樓。<br />
+    每次你可以選擇爬 `1` 或 `2` 個階梯。你有多少種不同的方法可以爬到頂樓呢？',
     picture: '![](/quest/12-picture.png)',
     problem: ''
   },
   {
-    title: 'Set Matrix Zeroes',
+    title: '矩陣置零',
     level: 'Medium',
     description: 'Given an `m * n` matrix. If an element is **0**, set its entire row and column to **0**. Do it in-place.<br />
     **Follow up:**<br />
@@ -114,7 +114,7 @@ quests = [
     problem: ''
   },
   {
-    title: 'Sort Colors',
+    title: '顏色排序',
     level: 'Medium',
     description: 'Given an array `nums` with `n` objects colored red, white, or blue, sort them **in-place** so that objects of the same color are adjacent, with the colors in the order red, white, and blue.<br />
     We will use the integers `0`, `1`, and `2` to represent the color red, white, and blue, respectively.<br />
@@ -123,7 +123,7 @@ quests = [
     problem: ''
   },
   {
-    title: 'Minimum Window Substring',
+    title: '最小覆蓋的字串',
     level: 'Hard',
     description: 'Given two strings `s` and `t` of lengths `m` and `n` respectively, return *the minimum window in `s` which will contain all the characters in `t`*. If there is no such window in `s` that covers all characters in `t`, return *the empty string `""`*.<br />
     **Note** that If there is such a window, it is guaranteed that there will always be only one unique minimum window in `s`.',
@@ -136,57 +136,52 @@ prompts = [
   {
     quest_id: 1,
     aseq: 1,
-    hint: 'using puts or print in ruby'
+    hint: '請使用 Ruby 中印出字串的 `puts` 或是 `print` 方法。'
   },
   {
     quest_id: 1,
     aseq: 2,
-    hint: 'using double quotes in a string→ ""'
+    hint: '請使用雙引號將字串前後包住 → ""'
   },
   {
     quest_id: 2,
     aseq: 1,
-    hint: 'A really brute force way would be to search for all possible pairs of numbers but that would be too slow. Again, it\'s best to try out brute force solutions for just for completeness. It is from these brute force solutions that you can come up with optimizations.'
+    hint: '可以採暴力解法去搜尋每一對可能的數字組合，這個方法可用但效率非常慢。但同樣地，為了先完整將此題解出來，你可以先使用暴力解法。待成功後，再持續修正改善你的解法。'
   },
   {
     quest_id: 2,
     aseq: 2,
-    hint: 'The second train of thought is, without changing the array, can we use additional space somehow? Like maybe a hash map to speed up the search?'
+    hint: '第二個思考方向是，在不改變數字陣列的情況下，我們能以某種方式使用額外的空間嗎？像是用一個雜湊表 (hash map) 來加速查詢速度？'
   },
   {
     quest_id: 3,
     aseq: 1,
-    hint: 'Use two pointers to create the new array of 2n elements. The first starting at the beginning and the other starting at $(n+1)^{th}$ position. Alternate between them and create the new array.'
+    hint: '使用兩個變數當作指標，去建立出包含 2n 個元素的新陣列。第一個從陣列開頭開始，而另一個從 $(n+1)^{th}$ 位置開始。輪流將其元素取出至新陣列，並移動指標依序取出。'
   },
   {
     quest_id: 4,
     aseq: 1,
-    hint: 'So, we essentially need to find three numbers x, y, and z such that they add up to the given value. If we fix one of the numbers say x, we are left with the two-sum problem at hand!'
+    hint: '所以實質上我們需要找到三個數字 a、b、c ，以至於他們的總和會剛好等於目標值 。假如我們想調整其中一個數字 a ，剩下的兩數就等同「兩數之和」這題的概念了。'
   },
   {
     quest_id: 4,
     aseq: 2,
-    hint: 'For the two-sum problem, if we fix one of the numbers, say`x`<br />, we have to scan the entire array to find the next number`y`<br />which is `value - x`<br />where value is the input parameter. Can we change our array somehow so that this search becomes faster?'
-  },
-  {
-    quest_id: 4,
-    aseq: 3,
-    hint: 'The second train of thought for two-sum is, without changing the array, can we use additional space somehow? Like maybe a hash map to speed up the search?The second train of thought for two-sum is, without changing the array, can we use additional space somehow? Like maybe a hash map to speed up the search?'
+    hint: '針對「兩數之和」的問題，如果我們修正其一數字 `a` ，<br />我們必須去掃描整個陣列找到下一個數字 `b`<br />也就是 `目標值 - a`<br />然而目標值是輸入的參數。我們可以用某種方式改變我們的陣列，以至於讓搜尋速度更快嗎?'
   },
   {
     quest_id: 5,
     aseq: 1,
-    hint: 'Think about how you would solve the problem in non-constant space. Can you apply that logic to the existing space?'
+    hint: '想想看你會如何解決非常數問題？你能運用相同邏輯想法在既有的空間嗎？'
   },
   {
     quest_id: 5,
     aseq: 2,
-    hint: 'We don\'t care about duplicates or non-positive integers'
+    hint: '我們並不在意重複或是非正整數的問題'
   },
   {
     quest_id: 5,
     aseq: 3,
-    hint: 'Remember that O(2n) = O(n)'
+    hint: '切記 O(2n) = O(n)'
   }
 ]
 
@@ -342,76 +337,74 @@ badges = [
 
 answer_status = ["Success", "Failure"]
 
-
-
-quests.each do |quest|
-  Quest.create!(
-    title: quest[:title],
-    level: quest[:level],
-    description: quest[:description],
-    picture: quest[:picture],
-    problem: quest[:problem]
-  )
-end
-
-prompts.each do |prompt|
-  Prompt.create!(
-    quest_id: prompt[:quest_id],
-    aseq: prompt[:aseq],
-    hint: prompt[:hint]
-  )
-end
-
-test_cases.each do |test_case|
-  Case.create!(
-    quest_id: test_case[:quest_id],
-    input: test_case[:input],
-    output: test_case[:output]
-  )
-end
-
-badges.each do |badge|
-  Badge.create!(
-    description: badge[:description],
-    image: badge[:image]
-  )
-end
-
-
-
-if User.count > 0
-  last_user_id = User.last.id
-
-  10.times do
-    Post.create(
-      title: Faker::Lorem.paragraph,
-      content: Faker::Lorem.paragraph(sentence_count: 2),
-      user_id: Faker::Number.between(from: 1, to: last_user_id)
+ActiveRecord::Base.transaction do
+  quests.each do |quest|
+    Quest.create!(
+      title: quest[:title],
+      level: quest[:level],
+      description: quest[:description],
+      picture: quest[:picture],
+      problem: quest[:problem]
     )
   end
 
-  10.times do
-    Comment.create(
-      content: Faker::Lorem.paragraph,
-      user_id: Faker::Number.between(from: 1, to: last_user_id),
-      post_id: Faker::Number.between(from: 1, to: 10)
+  prompts.each do |prompt|
+    Prompt.create!(
+      quest_id: prompt[:quest_id],
+      aseq: prompt[:aseq],
+      hint: prompt[:hint]
     )
   end
 
-  10.times do
-    Coin.create(
-      user_id: Faker::Number.between(from: 1, to: last_user_id),
-      coin_change: Faker::Number.between(from: -10, to: 10),
-      description: 'test'
+  test_cases.each do |test_case|
+    Case.create!(
+      quest_id: test_case[:quest_id],
+      input: test_case[:input],
+      output: test_case[:output]
     )
   end
 
-  10.times do 
-    Answer.create!(
-      quest_id: Faker::Number.between(from: 1, to: 5),
-      user_id: Faker::Number.between(from: 1, to: last_user_id),
-      code: '',
-      status: answer_status[Faker::Number.between(from: 0, to: 1)]
+  badges.each do |badge|
+    Badge.create!(
+      description: badge[:description],
+      image: badge[:image]
     )
+  end
+
+  if User.count > 0
+    last_user_id = User.last.id
+
+    10.times do
+      Post.create(
+        title: Faker::Lorem.paragraph,
+        content: Faker::Lorem.paragraph(sentence_count: 2),
+        user_id: Faker::Number.between(from: 1, to: last_user_id)
+      )
+    end
+
+    10.times do
+      Comment.create(
+        content: Faker::Lorem.paragraph,
+        user_id: Faker::Number.between(from: 1, to: last_user_id),
+        post_id: Faker::Number.between(from: 1, to: 10)
+      )
+    end
+
+    10.times do
+      Coin.create(
+        user_id: Faker::Number.between(from: 1, to: last_user_id),
+        coin_change: Faker::Number.between(from: -10, to: 10),
+        description: 'test'
+      )
+    end
+
+    10.times do
+      Answer.create!(
+        quest_id: Faker::Number.between(from: 1, to: 5),
+        user_id: Faker::Number.between(from: 1, to: last_user_id),
+        code: '',
+        status: answer_status[Faker::Number.between(from: 0, to: 1)]
+      )
+    end
   end
 end

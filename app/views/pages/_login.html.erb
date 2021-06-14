@@ -3,69 +3,75 @@
     <div class="skill-box">
       <div class="skill-ruby">
         <h2>RUBY</h2>
-        <div class="progress-bar"></div>
-        <span>0%</span>
-        <span class="start-button"><a href="/quests">開始測驗</a></span>
+        <div class="progress-bar">
+        </div>
+        <span class="percent"></span>
+        <button class="start-button solid-button"><a href="/quests">開始測驗</a></button>
       </div>
     </div>
     <div class="social-box">
       <div class="discuss-box">
         <div class="tag">討論區</div>
         <div class="discuss-list-box">
-            <div class="discuss-list">
-              <img src="https://picsum.photos/50/50?grayscale" alt="jpg" />
-              <div>
-                <h2><a href="#">Title</a></h2>
-                <h3>content</h3>
-              </div>
-            </div>
-            <div class="discuss-list">
-              <img src="https://picsum.photos/50/50?grayscale" alt="jpg" />
-              <div>
-                <h2><a href="#">Title</a></h2>
-                <h3>content</h3>
-              </div>
-            </div>
-            <div class="discuss-list">
-              <img src="https://picsum.photos/50/50?grayscale" alt="jpg" />
-              <div>
-                <h2><a href="#">Title</a></h2>
-                <h3>content</h3>
-              </div>
-            </div>
-            <div class="discuss-list">
-              <img src="https://picsum.photos/50/50?grayscale" alt="jpg" />
-              <div>
-                <h2><a href="#">Title</a></h2>
-                <h3>content</h3>
-              </div>
-            </div>
+          <div class="discuss-list first">
           </div>
+          <div class="discuss-list second">
+          </div>
+          <div class="discuss-list third">
+          </div>
+          <div class="discuss-list fourth">
+          </div>
+        </div>
       </div>
       <div class="rank-box">
         <div class="tag">排行榜</div>
         <div class="rank-content">
-          <div class="rank-title">
-            <span><a href="#">解題數</a></span>
-            <span><a href="#">金幣數</a></span>
-            <span><a href="#">得讚數</a></span>
-            <span><a href="#">發文數</a></span>
+          <div class="rank-button-wrapper">
+            <button class="rank-button toggle" data-id="coins">金幣數</button>
+            <button class="rank-button" data-id="solved">解題數</button>
+            <button class="rank-button" data-id="posts">發文數</button>
+            <button class="rank-button" data-id="likes">得讚數</button>
           </div>
-          <div class="rank-list-box">
-            <div class="rank-list">
-              <i class="fas fa-trophy gold"></i>
-              <span class="name">user name</span>
-              <span class="count">22</span>
+          <div class="content-wrapper">
+            <div class="content toggle" id="coins">
+              <div class="rank-list-box">
+                <div class="rank-list coins-1">
+                </div>
+                <div class="rank-list coins-2">
+                </div>
+                <div class="rank-list coins-3">
+                </div>
+              </div>
             </div>
-            <div class="rank-list">
-              <i class="fas fa-trophy sliver"></i>
-              <span class="name">user name</span>
-              <span class="count">20</span>
+            <div class="content" id="solved">
+              <div class="rank-list-box">
+                <div class="rank-list solved-1">
+                </div>
+                <div class="rank-list solved-2">
+                </div>
+                <div class="rank-list solved-3">
+                </div>
+              </div>
             </div>
-            <div class="rank-list">
-              <i class="fas fa-trophy copper"></i>
-              <span class="name">user name</span>
-              <span class="count">15</span>
+            <div class="content" id="likes">
+              <div class="rank-list-box">
+                <div class="rank-list likes-1">
+                </div>
+                <div class="rank-list likes-2">
+                </div>
+                <div class="rank-list likes-3">
+                </div>
+              </div>
+            </div>
+            <div class="content" id="posts">
+              <div class="rank-list-box">
+                <div class="rank-list posts-1">
+                </div>
+                <div class="rank-list posts-2">
+                </div>
+                <div class="rank-list post-3">
+                </div>
+              </div>      
             </div>
           </div>
         </div>

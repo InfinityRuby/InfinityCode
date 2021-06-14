@@ -1,3 +1,3 @@
 import './text-marked';
 import './github-markdown.css';
-import './chart'
+import './chart';

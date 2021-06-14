@@ -1,7 +1,8 @@
 class ProfilesController < ApplicationController
   before_action :current_profile, only: [:show, :edit, :update]
 
-  def show  
+  def show
+    @badges = Badge.all
   end
 
   def edit
