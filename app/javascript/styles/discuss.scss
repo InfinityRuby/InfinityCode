@@ -14,19 +14,22 @@
         @apply flex justify-between items-center p-2 bg-gray-100;
         & > div:nth-child(1){
           @apply pt-1 w-8/12 flex items-center text-sm;    
-          & > a:nth-child(n){
-            @apply text-lg text-black hover:text-gray-500 mx-2
+          & > a{
+            @apply text-lg text-black hover:text-gray-500;
+            svg{
+              @apply text-xl text-yellow-500 mx-1 hover:text-yellow-600;
+            }
           }
           & > span{
-            @apply text-lg text-gray-500 ml-10
+            @apply text-lg text-gray-500 ml-8;
           } 
         }
   
         & > div:nth-child(2){
-          @apply w-4/12 flex justify-end
+          @apply w-4/12 flex justify-end;
         }    
         input{
-          @apply w-64 h-8 rounded-sm text-base text-center border-2 
+          @apply w-64 h-8 rounded-sm text-base text-center border-2;
         }    
       }      
       &:nth-child(n+3){
