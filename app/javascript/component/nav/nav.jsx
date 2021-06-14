@@ -51,10 +51,11 @@ function Nav() {
               <span className="amount">{ userCoins }</span>
             </li>
             <li className="user-account">
-              <span className="user-email">
-                { user ? `${user.email}`.substring(0, `${user.email}`.lastIndexOf('@')) : null }
-              </span>
-              <i className="fas fa-chevron-down"></i>
+              <div className="user-email">
+                <img src={ user.avatar } alt="avatar" />
+                <span>{ user ? user.email.substring(0, user.email.lastIndexOf('@')) : null }</span>
+                <i className="fas fa-chevron-down"></i>
+              </div>
               <ul className="sub1">
                 <li onClick={ () => { location.href = '/profile' } }>個人檔案</li>
                 <li onClick={ signOut } className="navbar-link">登出</li>

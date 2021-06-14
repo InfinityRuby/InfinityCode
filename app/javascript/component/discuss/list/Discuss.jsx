@@ -7,23 +7,24 @@ export default function Discuss() {
   const [maxPage, setMaxPage] = useState([])
   const [initPage, setInitPage] = useState(1)
   const [search, setSearch] = useState(`&search=`)
+  const [anonymous, setAnonymous] = useState(`&anonymous=`)
   const [quantity, setQuantity] = useState(0)
   const [url, setURL] = useState(`posts`)
   const [loading, setLoading] = useState(false)
   
   useEffect(() => {
-    API.get(`${url}?page=${initPage}${search}`)
+    API.get(`${url}?page=${initPage}${search}${anonymous}`)
       .then(res => {
         const { posts, total_pages } = res
         setLists(posts)
         setMaxPage(total_pages)
-        API.get(`${url}?page=${total_pages}${search}`)
+        API.get(`${url}?page=${total_pages}${search}${anonymous}`)
           .then(res => {
             setQuantity(res.posts.length)
             setLoading(true)
           })
       })
-  }, [initPage, search, url])
+  }, [initPage, search, url, anonymous])
 
   const searchList = event => {
     const searchInput = document.getElementById('searchListInput')
@@ -35,16 +36,13 @@ export default function Discuss() {
   }
 
   const pageSwitch = page => {
+    setAnonymous(`&anonymous`)
     setURL(page)
   }
 
   const unknownDisplay = () => {
-    API.get('posts')
-      .then(res => {
-        const unknownUser = res.posts.filter(item => item.unknown)
-        setInitPage(1)
-        setLists(unknownUser)
-      })
+    setURL(`posts`)
+    setAnonymous(`&anonymous=true`)
   }
 
   const switchDisplay = event => {

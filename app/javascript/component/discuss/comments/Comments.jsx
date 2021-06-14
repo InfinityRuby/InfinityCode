@@ -14,23 +14,24 @@ export default function Comments() {
   const [like, setLike] = useState(false)
   const [maxPage, setMaxPage] = useState(1)
   const [loading, setLoading] = useState(false)
+  const [sort, setSort] = useState(`&order=`)
   const sortCommentsRef = useRef()
   
   useEffect(() => {
-    API.get(`posts/${urlID()}?page=${commentPages}`)
+    API.get(`posts/${urlID()}?page=${commentPages}${sort}`)
       .then(res => {
         const { comments, comments_total_pages, author } = res
         setCommentsAPI(res)
         setComments(comments)
         setMaxPage(comments_total_pages)
         setAuthor(author)
-        API.get(`posts/${urlID()}?page=${comments_total_pages}`)
+        API.get(`posts/${urlID()}?page=${comments_total_pages}${sort}`)
           .then(res => {
             setQuantity(res.comments.length)
             setLoading(true)
           })
       })
-  }, [commentPages, quantity])
+  }, [commentPages, quantity, sort])
 
   useEffect(() => {
     API.get(`users`)
@@ -54,11 +55,7 @@ export default function Comments() {
 
   const postComment = () => {
     const commentTextarea = document.getElementById('comment-textarea')
-    const apiData = { 
-      content: commentTextarea.value, 
-      picture: author.avatar,
-      email: author.name
-    }
+    const apiData = { content: commentTextarea.value  }
 
     if(commentTextarea.value) {
       API.create(`posts/${urlID()}/comments`, apiData)
@@ -88,17 +85,10 @@ export default function Comments() {
   
 
   const sortComments = (status = false) => {
-    comments.splice(0, comments.length)
-    API.get(`posts/${urlID()}`)
-      .then(res => {
-        const storageCache = []
-        const sortComments = storageCache.concat(res.comments)
-        const reverseComments = storageCache.concat(res.comments.reverse())
-        status == true ? setComments(sortComments) : setComments(reverseComments)
-      }) 
+    status == true ?  setSort(`&order=`) : setSort(`&order=asc`)
   }
 
-  const selectedOption = (event) => {
+  const selectedOption = event => {
     const selected = event.target.selectedIndex
     if(sortCommentsRef.current.options[selected].value == 'sort') {
       sortComments(true)
@@ -135,15 +125,13 @@ export default function Comments() {
             <i className="fas fa-paperclip"></i>
             <h2>{ commentsAPI.title }</h2>
           </div>
-          <div className="single-article-title-icon">
-            <i className="fas fa-exclamation-triangle"></i>
-          </div>
+          <div className="single-article-title-icon"></div>
         </div>
         <div className="single-article-content">
           <div className="single-article-content-wrap">
             <div className="single-article-content-author">
               <img src={ author.avatar } alt="jpg" />
-              { commentsAPI.unknown == true ? 
+              { author.name == '匿名' ? 
               <h3 style={{ color: 'blue' }}>匿名</h3> : 
               <h3 style={{ color: 'green' }}>{ author.name }</h3> 
               }
@@ -174,7 +162,7 @@ export default function Comments() {
           </select>
         </div>
 
-        { author.name == loginUser ?
+        { author.email.substring(0, author.email.lastIndexOf('@')) == loginUser ?
         <div>
           <span><a href={ `/posts/${urlID()}/edit` }>文章編輯</a></span> 
           <span onClick={ destroyPost }>文章刪除</span> 
