@@ -337,76 +337,76 @@ badges = [
 
 answer_status = ["Success", "Failure"]
 
-
-
-quests.each do |quest|
-  Quest.create!(
-    title: quest[:title],
-    level: quest[:level],
-    description: quest[:description],
-    picture: quest[:picture],
-    problem: quest[:problem]
-  )
-end
-
-prompts.each do |prompt|
-  Prompt.create!(
-    quest_id: prompt[:quest_id],
-    aseq: prompt[:aseq],
-    hint: prompt[:hint]
-  )
-end
-
-test_cases.each do |test_case|
-  Case.create!(
-    quest_id: test_case[:quest_id],
-    input: test_case[:input],
-    output: test_case[:output]
-  )
-end
-
-badges.each do |badge|
-  Badge.create!(
-    description: badge[:description],
-    image: badge[:image]
-  )
-end
-
-
-
-if User.count > 0
-  last_user_id = User.last.id
-
-  10.times do
-    Post.create(
-      title: Faker::Lorem.paragraph,
-      content: Faker::Lorem.paragraph(sentence_count: 2),
-      user_id: Faker::Number.between(from: 1, to: last_user_id)
+ActiveRecord::Base.transaction do
+  quests.each do |quest|
+    Quest.create!(
+      title: quest[:title],
+      level: quest[:level],
+      description: quest[:description],
+      picture: quest[:picture],
+      problem: quest[:problem]
     )
   end
 
-  10.times do
-    Comment.create(
-      content: Faker::Lorem.paragraph,
-      user_id: Faker::Number.between(from: 1, to: last_user_id),
-      post_id: Faker::Number.between(from: 1, to: 10)
+  prompts.each do |prompt|
+    Prompt.create!(
+      quest_id: prompt[:quest_id],
+      aseq: prompt[:aseq],
+      hint: prompt[:hint]
     )
   end
 
-  10.times do
-    Coin.create(
-      user_id: Faker::Number.between(from: 1, to: last_user_id),
-      coin_change: Faker::Number.between(from: -10, to: 10),
-      description: 'test'
+  test_cases.each do |test_case|
+    Case.create!(
+      quest_id: test_case[:quest_id],
+      input: test_case[:input],
+      output: test_case[:output]
     )
   end
 
-  10.times do
-    Answer.create!(
-      quest_id: Faker::Number.between(from: 1, to: 5),
-      user_id: Faker::Number.between(from: 1, to: last_user_id),
-      code: '',
-      status: answer_status[Faker::Number.between(from: 0, to: 1)]
+  badges.each do |badge|
+    Badge.create!(
+      description: badge[:description],
+      image: badge[:image]
     )
+  end
+
+
+
+  if User.count > 0
+    last_user_id = User.last.id
+
+    10.times do
+      Post.create(
+        title: Faker::Lorem.paragraph,
+        content: Faker::Lorem.paragraph(sentence_count: 2),
+        user_id: Faker::Number.between(from: 1, to: last_user_id)
+      )
+    end
+
+    10.times do
+      Comment.create(
+        content: Faker::Lorem.paragraph,
+        user_id: Faker::Number.between(from: 1, to: last_user_id),
+        post_id: Faker::Number.between(from: 1, to: 10)
+      )
+    end
+
+    10.times do
+      Coin.create(
+        user_id: Faker::Number.between(from: 1, to: last_user_id),
+        coin_change: Faker::Number.between(from: -10, to: 10),
+        description: 'test'
+      )
+    end
+
+    10.times do
+      Answer.create!(
+        quest_id: Faker::Number.between(from: 1, to: 5),
+        user_id: Faker::Number.between(from: 1, to: last_user_id),
+        code: '',
+        status: answer_status[Faker::Number.between(from: 0, to: 1)]
+      )
+    end
   end
 end
