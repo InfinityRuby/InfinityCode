@@ -95,7 +95,7 @@ function QuestResult() {
       <div className={ correctDisplay ? "quest-success-window" : "quest-error-window" }>
         <div>
           <div>
-            <span className="tracking-wider">{ correctDisplay ? "Success" : "Error" }</span>
+            <span className="tracking-wider">{ correctDisplay ? "成功" : "失敗" }</span>
           </div>
           <div onClick={ () => { setMessage(undefined) } }>
             <i className="fas fa-times"></i>
