@@ -15,4 +15,3 @@ import "quest"
 import "component"
 import 'profile'
 import "highlight"
-import 'pages'

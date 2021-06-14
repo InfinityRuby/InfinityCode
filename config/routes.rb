@@ -8,9 +8,6 @@ Rails.application.routes.draw do
   resources :quests
   resource :profile, only: [:show, :edit, :update]
 
-  get "/quests/questdata", to: "quests#questdata"
-
-
   # API 路徑設定
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
@@ -34,8 +31,8 @@ Rails.application.routes.draw do
       end
       resources :ranks do
         collection do
-          get :coin
-          get :post
+          get :coins
+          get :posts
           get :likes
           get :solved
         end
