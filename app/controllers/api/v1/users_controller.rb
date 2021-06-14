@@ -1,6 +1,5 @@
 class Api::V1::UsersController < Api::V1::BaseController
   def index
-    json_response(current_user)
   end
 
   # 查詢特定使用者的解題完成率
