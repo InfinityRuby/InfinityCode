@@ -1,5 +1,5 @@
 .profile-wrap {
-  @apply flex justify-center;
+  @apply flex justify-center min-h-screen;
   .profile-user-wrap {
     @apply w-1/4 m-10 shadow bg-white;
     #user_profile_name {
