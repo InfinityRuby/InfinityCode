@@ -51,7 +51,10 @@
         <% if badge_count > 0 %>
           <% is_gotten = 'show' %>
         <% end %>
-        <%= image_tag(badge.image, class: "badge #{ is_gotten }", title: badge.description) %>
+        <% if badge.id > 20 %>
+          <% is_large = 'large' %>
+        <% end %>
+        <%= image_tag(badge.image, class: "badge #{ is_gotten } #{ is_large }", title: badge.description) %>
       <% end %>
     </div>
   </div>

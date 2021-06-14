@@ -5,7 +5,7 @@ class Api::V1::PostsController < Api::V1::BaseController
 
 
 
-  # 查詢文章列表  
+  # 查詢文章列表
   # GET: /api/v1/posts
   def index
   end
