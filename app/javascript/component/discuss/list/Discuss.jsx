@@ -8,21 +8,22 @@ export default function Discuss() {
   const [initPage, setInitPage] = useState(1)
   const [search, setSearch] = useState(`&search=`)
   const [quantity, setQuantity] = useState(0)
+  const [url, setURL] = useState(`posts`)
   const [loading, setLoading] = useState(false)
   
   useEffect(() => {
-    API.get(`posts?page=${initPage}${search}`)
+    API.get(`${url}?page=${initPage}${search}`)
       .then(res => {
         const { posts, total_pages } = res
         setLists(posts)
         setMaxPage(total_pages)
-        API.get(`posts?page=${total_pages}`)
+        API.get(`${url}?page=${total_pages}${search}`)
           .then(res => {
             setQuantity(res.posts.length)
             setLoading(true)
           })
       })
-  }, [initPage, search])
+  }, [initPage, search, url])
 
   const searchList = event => {
     const searchInput = document.getElementById('searchListInput')
@@ -33,9 +34,8 @@ export default function Discuss() {
     }      
   }
 
-  const resetDiscuss = () => {
-    API.get(`posts`)
-      .then(res => setLists(res.posts))
+  const pageSwitch = page => {
+    setURL(page)
   }
 
   const unknownDisplay = () => {
@@ -47,13 +47,14 @@ export default function Discuss() {
       })
   }
 
-  const switchDisplay = (event) => {
+  const switchDisplay = event => {
     document.querySelectorAll('.discuss:nth-child(1) > a').forEach(a => {
-      a.style.color = "#9ca3af"
-      event.target.style.color = "black"
+      a.classList.add('page-opacity')
+      event.target.classList.remove('page-opacity')
     })
     event.target.textContent == "匿名的文章" && unknownDisplay()
-    event.target.textContent == "全部的文章" && resetDiscuss()
+    event.target.textContent == "全部的文章" && pageSwitch(`posts`)
+    event.target.textContent == "已解題答案" && pageSwitch(`problems`)
   }
 
   return(
@@ -62,7 +63,8 @@ export default function Discuss() {
     <div>
       <div className="discuss">
         <a onClick={ switchDisplay }>全部的文章</a>
-        <a onClick={ switchDisplay }>匿名的文章</a>
+        <a className="page-opacity" onClick={ switchDisplay }>匿名的文章</a>
+        <a className="page-opacity" onClick={ switchDisplay }>已解題答案</a>
       </div>
       <div className="discuss">
         <div>

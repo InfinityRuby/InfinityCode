@@ -5,13 +5,11 @@
     .discuss{
       @apply flex bg-white border-b border-l border-r shadow-md bg-gradient-to-r;
       &:nth-child(1) > a{
-        @apply m-3 text-xl cursor-pointer
+        @apply m-3 text-xl cursor-pointer hover:opacity-80;
       }   
-      &:nth-child(1){
-        & > a:nth-child(n+2){
-          @apply text-gray-400 hover:text-black
-        }   
-      }
+      .page-opacity{
+        @apply opacity-30;
+      }  
       &:nth-child(2){
         @apply flex justify-between items-center p-2 bg-gray-100;
         & > div:nth-child(1){

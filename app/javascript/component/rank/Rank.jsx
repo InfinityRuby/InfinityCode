@@ -4,7 +4,7 @@ import { API } from 'component/lib'
 import RankInfo from './RankInfo'
 
 function Ranking() {
-  const [species, setSpecies] = useState(`coin`)
+  const [species, setSpecies] = useState(`coins`)
   const [rankInfo, setRankInfo] = useState([])
 
   useEffect(() => {
@@ -25,10 +25,10 @@ function Ranking() {
   return(
     <div className="wrap">
       <div className="pages">
-        <div onClick={ switchPage.bind(this, `coin`) }>金幣數</div>
-        <div className="page-opacity" onClick={ switchPage.bind(this, `comment`) }>留言數</div>
-        <div className="page-opacity" onClick={ switchPage.bind(this, `post`) }>發文數</div>
-        <div className="page-opacity" onClick={ switchPage }>解題數</div>
+        <div onClick={ switchPage.bind(this, `coins`) }>金幣數</div>
+        <div className="page-opacity" onClick={ switchPage.bind(this, `solved`) }>解題數</div>
+        <div className="page-opacity" onClick={ switchPage.bind(this, `posts`) }>發文數</div>
+        <div className="page-opacity" onClick={ switchPage.bind(this, `likes`) }>得讚數</div>
       </div>
       <div className="body">
         <div className="title">

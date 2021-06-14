@@ -3,6 +3,8 @@ export default function urlID(type) {
   let currentID
   if(type == 'edit') {
     url = url.replace('/edit', '')
+  }else if(type == 'answer') {
+    url = url.replace('/answer', '')
   }
   currentID = url.substring(url.lastIndexOf('/') + 1)   
   return currentID

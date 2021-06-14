@@ -49,14 +49,18 @@ function QuestResult() {
       .then(res => setUser(res))
     API.get(`quests/${urlID()}`)
       .then(quest => {
-        if(quest.level == 'Easy') {
+        let level
+        if(quest.level == '簡單') {
           setLevelCoins(5)
-        }else if(quest.level == 'Medium') {
+          level = 'Easy'
+        }else if(quest.level == '中等') {
           setLevelCoins(10)
+          level = 'Medium'
         }else {
           setLevelCoins(15)
+          level = 'Hard'
         }
-        API.get(`quests?status=Success&level[]=${quest.level}`)
+        API.get(`quests?status=Success&level[]=${level}`)
           .then(quests => {
             const currentQuest = quests.find(el => el.id == urlID())
             setIsSolved(currentQuest.is_solved)
@@ -78,7 +82,10 @@ function QuestResult() {
             <button 
             onClick={ () => { location.href = `/quests/${Number(urlID()) + 1}` } }
             className="quest-footer-button questbtn solid-button next">下一題</button>
-            <button className="quest-footer-button questbtn line-button quest-discuss">解題討論區</button>
+            <button className="quest-footer-button questbtn line-button quest-discuss" 
+                    onClick={ () => {location.href = `/posts/${urlID()}/answer`} }>
+              解題討論區
+            </button>
           </div>
         </div>
       </div>
