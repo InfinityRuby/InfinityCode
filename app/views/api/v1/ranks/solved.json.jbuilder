@@ -9,14 +9,16 @@ end
 top_ten_users = users.max(10) { |a, b| a[:solved_count] <=> b[:solved_count] }
 
 json.array! top_ten_users do |user|
-  json.id user[:id]
+  if user[:solved_count] > 0
+    json.id user[:id]
 
-  profile = User.find(user[:id]).profile
+    profile = User.find(user[:id]).profile
 
-  json.profile do
-    json.name profile.name
-    json.avatar profile.avatar.url
+    json.profile do
+      json.name profile.name
+      json.avatar profile.avatar.url
+    end
+
+    json.score user[:solved_count]
   end
-
-  json.score user[:solved_count]
 end
