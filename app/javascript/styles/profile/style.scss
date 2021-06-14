@@ -86,10 +86,14 @@
       @apply flex flex-wrap;
 
       .badge {
-        @apply w-24 h-24 opacity-25 filter brightness-50;
+        @apply w-24 h-24 p-2 opacity-25 filter brightness-50;
 
         &.show {
           @apply opacity-100 filter brightness-100;
+        }
+
+        &.large {
+          @apply w-32 h-32;
         }
       }
     }
