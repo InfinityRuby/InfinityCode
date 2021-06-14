@@ -1,3 +1,3 @@
-import './disscuss';
+import './discuss';
 import './quest';
 import './rank'
