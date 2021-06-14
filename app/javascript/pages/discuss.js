@@ -1,11 +1,11 @@
 document.addEventListener('turbolinks:load', () => {
   const items = document.querySelectorAll('.discuss-list');
 
-  if(items) {
+  if (items) {
     fetch('api/v1/posts')
-      .then(res => res.json())
-      .then(obj => obj.posts)
-      .then(posts => {
+      .then((res) => res.json())
+      .then((obj) => obj.posts)
+      .then((posts) => {
         items.forEach((item, index) => {
           const post = posts[index];
           const id = post.id;
