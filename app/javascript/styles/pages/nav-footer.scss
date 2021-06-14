@@ -18,10 +18,23 @@
         li {
           @apply list-none py-5 px-4 hover:text-yellow-500 tracking-wider;
           &:nth-child(4) {
-            @apply flex
+            @apply flex;
           }
-          .user-email{
-            @apply text-green-600 mr-2 tracking-wider;
+          .user-email {
+            @apply flex justify-center items-center mr-2 tracking-wider;
+            svg {
+              @apply mx-2;
+            }
+            span {
+              @apply text-green-600 mr-1;
+            }
+            img {
+              width: 26px !important;
+              height: 26px;
+              border-radius: 50%;
+              verflow: hidden;
+              margin-right: 8px;
+            }
           }
           ul {
             @apply hidden absolute top-full right-12 shadow-md border border-opacity-10;

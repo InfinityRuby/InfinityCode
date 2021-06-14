@@ -27,7 +27,11 @@
         .single-article-content-author{
           @apply w-full text-lg flex items-center text-gray-200;
           & > img{
-            @apply rounded-full w-12 h-12 mr-2
+            width: 45px !important;
+            height: 45px;
+            border-radius: 50%;
+            verflow: hidden;
+            margin-right: 8px;
           }
           & svg{
             @apply cursor-pointer
@@ -46,7 +50,11 @@
       .single-article-user-comments{
         @apply flex flex-col text-base w-10/12 my-7 m-auto;
         img{
-          @apply rounded-full              
+          width: 45px !important;
+          height: 45px;
+          border-radius: 50%;
+          verflow: hidden;
+          margin-right: 8px;
         }
       }      
     } 
@@ -90,7 +98,11 @@
         }
       }
       img{
-        @apply rounded-full w-12 h-12;
+        width: 40px !important;
+        height: 40px;
+        border-radius: 50%;
+        verflow: hidden;
+        margin-right: 8px;
       }
     }
     pre{
@@ -151,7 +163,11 @@
     @apply ml-4
   }
   img{
-    @apply w-12 h-12
+    width: 40px !important;
+    height: 40px;
+    border-radius: 50%;
+    verflow: hidden;
+    margin-right: 8px;
   }
 }
 

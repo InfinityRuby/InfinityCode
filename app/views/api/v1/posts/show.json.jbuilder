@@ -4,7 +4,7 @@ json.(post, :id, :title, :content, :anonymous, :created_at, :updated_at)
 json.author do
   if post.anonymous == true
     json.name '匿名'
-    json.email 'Email 已隱藏'
+    json.email post.user.email 
     json.avatar url_for('/default.png')
   else
     json.name post.user.profile.name

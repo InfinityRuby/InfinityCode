@@ -31,7 +31,11 @@
             &:nth-child(2) {
               @apply text-green-600;
               img{
-                @apply rounded-full w-10 h-10 flex mx-1;
+                width: 36px !important;
+                height: 36px;
+                border-radius: 50%;
+                verflow: hidden;
+                margin-right: 8px;
               }
             }
             &:nth-child(3) {
