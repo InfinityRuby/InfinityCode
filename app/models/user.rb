@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :quests, through: :answers
   acts_as_voter
   has_many :achievements
-
+  has_many :badges, through: :achievements
 
   after_create do
     create_profile

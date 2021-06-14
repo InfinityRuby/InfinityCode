@@ -1,43 +1,58 @@
 <div class="user-index-container">
-   <div class="profile-wrap">
-      <div class="profile-user-wrap">
-         <p class="profile-table profile-avatar"><%= image_tag(@profile.avatar_url, class: 'avatar') if @profile.avatar_url %></p>
-         <p class="profile-table profile-name">使用者名稱：<%= current_user.profile.name %></p>
-         <p class="profile-table">簡介：<br/><span class="profile-text markdown-body"><%= current_user.profile.bio %></span></p>
-         <button><%= link_to "編輯", edit_profile_path %></button>
+  <div class="profile-wrap">
+    <div class="profile-user-wrap">
+      <p class="profile-table profile-avatar"><%= image_tag(@profile.avatar_url, class: 'avatar') if @profile.avatar_url %></p>
+      <p class="profile-table profile-name">使用者名稱：<%= current_user.profile.name %></p>
+      <p class="profile-table">簡介：<br/><span class="profile-text markdown-body"><%= current_user.profile.bio %></span></p>
+      <button><%= link_to "編輯", edit_profile_path %></button>
+    </div>
+
+  <div class="profile-quest-wrap">
+    <span class="percentage">題目完成度</span>
+    <span class="quest-amount"></span>
+
+    <div class="chart">
+      <canvas id="myChart" width="200" height="200"></canvas>
+    </div>
+
+    <div class="numerical">
+      <div class="easy">
+        <span class="title">簡單</span>
+        <p></p>
       </div>
-      <div class="profile-quest-wrap">
-         <span class="percentage">題目完成度</span>
-         <span class="quest-amount"></span>
-         <div class="chart">
-            <canvas id="myChart" width="200" height="200"></canvas>
-         </div>
-         <div class="numerical">
-            <div class="easy">
-               <span class="title">簡單</span>
-               <p></p>
-            </div>
-            <div class="medium">
-               <span class="title">中等</span>
-               <p></p>
-            </div>
-            <div class="hard">
-               <span class="title">困難</span>
-               <p></p>
-            </div>
-         </div>
-         <div class="allchart">
-            <div class="chart">
-               <canvas id="easy" width="200" height="200"></canvas>
-            </div>
-            <div class="chart">
-               <canvas id="medium" width="200" height="200"></canvas>
-            </div>
-            <div class="chart">
-               <canvas id="hard" width="200" height="200"></canvas>
-            </div>
-         </div>
+      <div class="medium">
+        <span class="title">中等</span>
+        <p></p>
       </div>
-      <div class="profile-medal-wrap">獎牌區</div>
-   </div>
+      <div class="hard">
+        <span class="title">困難</span>
+        <p></p>
+      </div>
+    </div>
+
+    <div class="allchart">
+      <div class="chart">
+        <canvas id="easy" width="200" height="200"></canvas>
+      </div>
+      <div class="chart">
+        <canvas id="medium" width="200" height="200"></canvas>
+      </div>
+      <div class="chart">
+        <canvas id="hard" width="200" height="200"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="profile-medal-wrap">
+    獎牌區
+    <div class="medal-list">
+      <% @badges.each do |badge| %>
+        <% badge_count = current_user.badges.where(id: badge.id).count %>
+        <% if badge_count > 0 %>
+          <% is_gotten = 'show' %>
+        <% end %>
+        <%= image_tag(badge.image, class: "badge #{ is_gotten }", title: badge.description) %>
+      <% end %>
+    </div>
+  </div>
 </div>
