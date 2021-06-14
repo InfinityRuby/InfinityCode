@@ -19,10 +19,7 @@ function Nav() {
         }else{
           setUser(user)
         }
-        // console.log(user === true)
-        // console.log(Object.keys(user).length )
-        // console.log(user.constructor === Object)
-        // setUser(user && Object.keys(user).length === 0 && user.constructor === Object)
+
         if(user) {
           setUserCoins(user.coin_amount)
           setLoading(true)
