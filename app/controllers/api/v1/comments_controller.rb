@@ -6,8 +6,7 @@ class Api::V1::CommentsController < Api::V1::BaseController
   # POST: /api/v1/posts/:post_id/comments
   # params: { content: '測試訊息' }
   def create
-    @comment = current_user.comments.create!(comment_params)
-    json_response(@comment, :created)
+    @comment = current_user.comments.create!(comment_params.merge(post_id: params[:post_id]))
   end
 
   # 編輯指定文章  
