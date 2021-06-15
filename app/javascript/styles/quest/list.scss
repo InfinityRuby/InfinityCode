@@ -3,7 +3,10 @@
   .quest-checkbox {
     @apply font-mono flex px-2;
     .level-select, .completion-select {
-      @apply mx-2 my-1 mt-1.5;
+      @apply mx-2 my-1 mt-1.5 cursor-pointer;
+    }
+    .level-label {
+      @apply cursor-pointer;
     }
     .split {
       @apply mr-1 ml-3 text-gray-300;
@@ -16,12 +19,12 @@
       & > h3{
         @apply font-mono text-xl pt-4 px-4;
       }
-      .listWrapper {
-        @apply flex justify-between  px-4 mb-4;
-        .questionLevel {
-          @apply mt-7 text-lg;
+      .list-wrapper {
+        @apply flex justify-between px-4 mb-4;
+        .question-level {
+          @apply justify-center items-center mt-7 text-lg py-1 px-5 border flex;
         }
-        .questionBtn {
+        .question-btn {
           @apply outline-none text-center py-3 w-3/12 mt-5 tracking-widest;
         }
         .question-unsolved {

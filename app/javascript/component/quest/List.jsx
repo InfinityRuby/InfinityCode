@@ -34,12 +34,12 @@ function List() {
     
         <div className="split">|</div>
         <input type="checkbox" className="completion-select quests-checkbox" 
-        id="level-isSolved" onClick={ () => levelChange(3) }/>
-        <label htmlFor="level-isSolved">已解決</label>
+        id="level-solved" onClick={ () => levelChange(3) }/>
+        <label htmlFor="level-solved" className="level-label">已解決</label>
     
         <input type="checkbox" className="completion-select quests-checkbox" 
         id="level-unsolved" onClick={ () => levelChange(4) }/>
-        <label htmlFor="level-unsolved">未解決</label>
+        <label htmlFor="level-unsolved" className="level-label">未解決</label>
       </div>
       <div id="list-quest">
         <Quests lists={ lists } />
@@ -63,10 +63,15 @@ function Quest({ id, title, level, solved }) {
   return (
     <a className = "quest-name" href={`/quests/${id}`}>
       <h3>{ title }</h3>
-      <div className = "listWrapper">
-        <div className="questionLevel"><p>{ level }</p></div>
+      <div className = "list-wrapper">
+        <div className={ `question-level 
+                         ${level == `簡單` && `bg-green-200 border-green-500 text-green-700`}
+                         ${level == `中等` && `bg-yellow-200 border-yellow-500 text-yellow-700`}
+                         ${level == `困難` && `bg-red-200 border-red-500 text-red-700`}` }>
+          <p>{ level }</p>
+        </div>
         <button className={ solved ? 
-          'questionBtn solid-button' : 'questionBtn question-unsolved line-button' }>
+          'question-btn solid-button' : 'question-btn question-unsolved line-button' }>
           { solved ? '已解決' : '未解決' }
         </button>
       </div>
