@@ -36,7 +36,7 @@ export default function Comments() {
   useEffect(() => {
     API.get(`users`)
       .then(res => {
-        const userName = res.email.substring(0, res.email.lastIndexOf('@'))
+        const userName = res.email
         setLoginUser(userName)
       })
     
@@ -55,7 +55,7 @@ export default function Comments() {
 
   const postComment = () => {
     const commentTextarea = document.getElementById('comment-textarea')
-    const apiData = { content: commentTextarea.value  }
+    const apiData = { content: commentTextarea.value }
 
     if(commentTextarea.value) {
       API.create(`posts/${urlID()}/comments`, apiData)
@@ -65,8 +65,8 @@ export default function Comments() {
             content: res.content, 
             created_at: res.created_at,
             author: {
-              avatar: author.avatar,
-              name: loginUser
+              avatar: res.avatar,
+              name: res.name
             }
           }
           const newCommentsTotal = comments.concat(postNewComment)
@@ -141,11 +141,11 @@ export default function Comments() {
                 </div>
                 <span>{ totalLike }</span>
               </div>
-              <span>上次編輯日期: { `${commentsAPI.created_at}`.slice(0, 10) }</span>
+              <span>上次編輯日期: { commentsAPI.created_at.slice(0, 10) }</span>
             </div>
             <div className="single-article-content-body">
               <div className="markdown-body" 
-                   dangerouslySetInnerHTML={ {__html: marked(`${commentsAPI.content}`)} }>
+                   dangerouslySetInnerHTML={ {__html: marked(commentsAPI.content)} }>
               </div>
             </div>
           </div>
@@ -162,7 +162,7 @@ export default function Comments() {
           </select>
         </div>
 
-        { author.email.substring(0, author.email.lastIndexOf('@')) == loginUser ?
+        { author.email == loginUser ?
         <div>
           <span><a href={ `/posts/${urlID()}/edit` }>文章編輯</a></span> 
           <span onClick={ destroyPost }>文章刪除</span> 

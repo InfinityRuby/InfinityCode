@@ -16,7 +16,7 @@ export default function CurrentComments({ comments, loginUser }) {
 }
 
 function UserComments({ id, author, content, created, loginUser }) {
-  const { name, avatar } = author
+  const { email, name, avatar } = author
   const [currentComment, setCurrentComment] = useState(0)
   const commentRef = useRef()
   const editInput = document.querySelector(`.single-article-comments-${currentComment} p`)
@@ -53,7 +53,7 @@ function UserComments({ id, author, content, created, loginUser }) {
         <CommentsAction commentRef= { commentRef } 
                         setCurrentComment= { setCurrentComment } 
                         currentComment = { currentComment } 
-                        name={ name } 
+                        email={ email } 
                         loginUser={ loginUser } />
       </div>
     </div>
