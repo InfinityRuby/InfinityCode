@@ -53,7 +53,7 @@ function Nav() {
             <li className="user-account">
               <div className="user-email">
                 <img src={ user.avatar } alt="avatar" />
-                <span>{ user ? user.email.substring(0, user.email.lastIndexOf('@')) : null }</span>
+                <span>{ user ? user.name : null }</span>
                 <i className="fas fa-chevron-down"></i>
               </div>
               <ul className="sub1">

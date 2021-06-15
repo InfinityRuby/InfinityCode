@@ -1,17 +1,13 @@
 import React, { useEffect } from 'react'
 import API from 'component/lib/API'
 
-function CommentsAction({ commentRef, setCurrentComment, currentComment, name, loginUser }) { 
+function CommentsAction({ commentRef, setCurrentComment, currentComment, email, loginUser }) { 
   useEffect(() => {
     const targetComment = document.getElementById(commentsID(commentRef))
-    if(targetComment) {
-      targetComment.focus()
-    }
+    targetComment && targetComment.focus()
   }, [currentComment])
-  
-  const editComment = () => {  
-    setCurrentComment(commentsID(commentRef))
-  }
+
+  const editComment = () => { setCurrentComment(commentsID(commentRef)) }
 
   const destroyComment = () => {    
     if(confirm('確認要刪除這則留言？')) {
@@ -19,7 +15,7 @@ function CommentsAction({ commentRef, setCurrentComment, currentComment, name, l
     API.delete(`/api/v1/comments/${commentsID(commentRef)}`)
     } 
   }
-  
+
   const cancelEditComment = () => { setCurrentComment(0) }
 
   return(
@@ -29,7 +25,7 @@ function CommentsAction({ commentRef, setCurrentComment, currentComment, name, l
         <button onClick={ cancelEditComment }>取消</button> 
         : 
       <div>
-        { name == loginUser ? 
+        { email == loginUser ? 
         <div>
           <button onClick={ editComment }>編輯</button>
           <button onClick={ destroyComment }>刪除</button>
