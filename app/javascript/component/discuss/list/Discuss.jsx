@@ -66,12 +66,14 @@ export default function Discuss() {
       </div>
       <div className="discuss">
         <div>
-          <a href="/posts/new"><i className="fas fa-plus-square"></i>新增文章</a>
           <span>文章數量 { maxPage != 0 ? (maxPage - 1) * 10 + quantity : 0 }</span>
-        </div>
-        <div>
           <div className="discuss-search">
             <input type="text" placeholder="搜尋文章" id="searchListInput" onKeyPress={ searchList } />    
+          </div>
+        </div>
+        <div>
+          <div>
+            <a href="/posts/new"><i className="fas fa-plus-square"></i>新增文章</a>
           </div>
         </div>
       </div>
