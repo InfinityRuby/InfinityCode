@@ -19,7 +19,7 @@ function PostNew() {
       anonymous: anonymous
     }
 
-    if(titleInput.value.length >= 6 && contentTextarea.value.length >= 6){
+    if(titleInput.value.length >= 10 && contentTextarea.value.length >= 15){
       API.create("posts", apiData)
         .then(res => location.href = `/posts/${res.id}`)
       editRef.current.style = "background: #ffa100; color: #000"
@@ -36,8 +36,8 @@ function PostNew() {
   return (
     <div className="post-new-wrap">
       <div className="post-new-title">
-        { errorWarn ? <div style={{ color: "#f00" }}>欄位必須填，至少6個字</div> : null }
-        <input type="text" row="30" col="30" className="post-new-input" ref={ titleInputRef } placeholder="文章標題，至少輸入六個字"/>
+        { errorWarn ? <div style={{ color: "#f00" }}>欄位必須填，至少10個字</div> : null }
+        <input type="text" row="30" col="30" className="post-new-input" ref={ titleInputRef } placeholder="文章標題，至少輸入10個字"/>
       </div>
       <div className="anonymous">
         <input type="checkbox" name="anonymous" id="anonymous" value="匿名發送貼文" onClick={ anonymousStatus } />
@@ -47,7 +47,7 @@ function PostNew() {
       </div>
       <MDEditor
         textareaProps={ {
-          placeholder: "可以輸入markdown語法，內容至少六個字",
+          placeholder: "可以輸入markdown語法，內容至少15個字",
           icon: <span style={{ padding: "0 5px" }}>Custom Toolbar</span>
         } }
         height={ 550 }
