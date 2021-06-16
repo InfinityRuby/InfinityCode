@@ -19,7 +19,7 @@ function PostNew() {
       anonymous: anonymous
     }
 
-    if(titleInput.value.length >= 10 && contentTextarea.value.length >= 15){
+    if(titleInput.value.length >= 10 && contentTextarea.value.length >= 10){
       API.create("posts", apiData)
         .then(res => location.href = `/posts/${res.id}`)
       editRef.current.style = "background: #ffa100; color: #000"
@@ -47,7 +47,7 @@ function PostNew() {
       </div>
       <MDEditor
         textareaProps={ {
-          placeholder: "可以輸入markdown語法，內容至少15個字",
+          placeholder: "可以輸入markdown語法，內容至少10個字",
           icon: <span style={{ padding: "0 5px" }}>Custom Toolbar</span>
         } }
         height={ 550 }

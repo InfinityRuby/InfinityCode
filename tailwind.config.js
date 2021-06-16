@@ -13,6 +13,15 @@ module.exports = {
           500: '#929292',
         },
       },
+      width: {
+        450: '450px',
+      },
+      minWidth: {
+        978: '978px'
+      },
+      maxWidth: {
+        1800: '1800px'
+      },
     },
   },
   variants: {

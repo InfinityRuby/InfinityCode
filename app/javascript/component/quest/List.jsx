@@ -50,25 +50,31 @@ function List() {
 
 function Quests({ lists }) {
   return lists.map(list => {
-    const { id, title, level, is_solved } = list
+    const { id, title, level, is_solved, correct_rate } = list
     return <Quest key={ id }
                   id={ id }
                   title={ title }
                   level={ level }
-                  solved={ is_solved } />
+                  solved={ is_solved }
+                  correct_rate={ correct_rate } />
   })
 }
 
-function Quest({ id, title, level, solved }) {
+function Quest({ id, title, level, solved, correct_rate }) {
   return (
     <a className = "quest-name" href={`/quests/${id}`}>
       <h3>{ title }</h3>
       <div className = "list-wrapper">
-        <div className={ `question-level 
-                         ${level == `簡單` && `bg-green-200 border-green-500 text-green-700`}
-                         ${level == `中等` && `bg-yellow-200 border-yellow-500 text-yellow-700`}
-                         ${level == `困難` && `bg-red-200 border-red-500 text-red-700`}` }>
-          <p>{ level }</p>
+        <div>
+          <div className={ `question-level
+                           ${level == `簡單` && `bg-green-100 border-green-500 text-green-500`}
+                           ${level == `中等` && `bg-yellow-100 border-yellow-500 text-yellow-500`}
+                           ${level == `困難` && `bg-red-100 border-red-500 text-red-500`}` }>
+            <p>{ level }</p>
+          </div>
+          <span>正確率：{ correct_rate }</span>
+          <img src="/quest/star.jpg" alt="star" />
+          <span>{ level == `簡單` && 5 || level == `中等` && 10 || level == `困難` && 15 }</span>
         </div>
         <button className={ solved ? 
           'question-btn solid-button' : 'question-btn question-unsolved line-button' }>

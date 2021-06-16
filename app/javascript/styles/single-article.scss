@@ -1,5 +1,5 @@
 .single-article-container{
-  @apply w-full flex justify-center pt-24 min-h-screen;
+  @apply w-full flex justify-center p-24 m-auto min-h-screen min-w-978 max-w-1800;
   .single-article-wrap{
     @apply w-7/12 bg-white shadow-md h-1/2;
     .single-article-title{
@@ -150,7 +150,7 @@
 .single-article-textarea-border{
   @apply w-10/12 border-2 rounded-b-md border-gray-300 flex justify-end;
   & > button{
-    @apply border-l-2 border-yellow-300 rounded-b-sm p-2 bg-yellow-500 opacity-70 text-white hover:bg-yellow-600 outline-none;
+    @apply border-l-2 border-yellow-300 rounded-b-sm p-2 bg-yellow-500 opacity-70 text-white hover:bg-yellow-450 outline-none;
   }
 }
 

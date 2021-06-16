@@ -10,8 +10,8 @@ document.addEventListener('turbolinks:load', () => {
           items.forEach((item, index) => {
             const post = posts[index];
             const id = post.id;
-            const title = post.title.slice(0, 6);
-            const content = post.content.slice(0, 6);
+            const title = post.title.slice(0, 13);
+            const content = post.content.slice(0, 13);
             const name = post.author.name;
             const avatar = post.author.avatar;
   
