@@ -31,7 +31,7 @@ function Nav() {
     <div className="home-nav">
       <div className="home-logo">
         <a href="/"><p className="home-logo-text">無 限 解 碼 戰</p></a>
-        <img src="/quest/infinity-logo.png" alt="infinity" />
+        <img src="/quest/logo.png" alt="infinity" />
       </div>
       <div className="home-nav-item">
         <div className="home-nav-item-link">
