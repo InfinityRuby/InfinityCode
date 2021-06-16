@@ -1,6 +1,5 @@
 class Api::V1::CommentsController < Api::V1::BaseController
   before_action :find_comment, only: [:show, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
 
   # 新增特定文章的留言  
   # POST: /api/v1/posts/:post_id/comments
