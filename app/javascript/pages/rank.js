@@ -26,8 +26,9 @@ document.addEventListener('turbolinks:load', () => {
           obj.forEach((data, index) => {
             const item = document.querySelector(`.${type}-${index + 1}`);
             const color = ['gold', 'silver', 'copper'];
-
-            item.innerHTML = `<i class="fas fa-trophy ${color[index]}"></i><span class="name">${data.profile.name}</span><span class="count">${data.score}</span>`;
+            if (item) {
+              item.innerHTML = `<i class="fas fa-trophy ${color[index]}"></i><span class="name">${data.profile.name}</span><span class="count">${data.score}</span>`;
+            }
           });
         });
     };

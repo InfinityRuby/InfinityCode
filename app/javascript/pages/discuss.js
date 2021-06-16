@@ -1,21 +1,20 @@
 document.addEventListener('turbolinks:load', () => {
   const items = document.querySelectorAll('.discuss-list');
 
-  if (items) {
+  if (items.length > 0) {
     fetch('/api/v1/posts')
       .then((res) => res.json())
       .then((obj) => obj.posts)
       .then((posts) => {
         if (posts.length > 0) {
-          items.forEach((item, index) => {
-            const post = posts[index];
+          posts.forEach((post, index) => {
             const id = post.id;
             const title = post.title.slice(0, 13);
             const content = post.content.slice(0, 13);
             const name = post.author.name;
             const avatar = post.author.avatar;
   
-            item.innerHTML = `<div class="post-content">
+            items[index].innerHTML = `<div class="post-content">
               <div class="pic"><img src="${avatar}" alt="jpg" /></div>
             <div>
               <h2><a href="/posts/${id}">${title}</a></h2>
