@@ -30,7 +30,11 @@ class Api::V1::QuestsController < Api::V1::BaseController
     log = container.run
 
     # 測試案例比對
-    status = (output.join("\r\n").eql?(log.chomp) ? 'Success' : 'Failure')
+    if params[:quest][:code].empty?
+      status = 'Failure'
+    else
+      status = (output.join("\r\n").eql?(log.chomp) ? 'Success' : 'Failure')
+    end
     answer = current_user.answers.create!(answer_params.merge(quest_id: params[:id], status: status))
 
     # 刪除暫存檔
