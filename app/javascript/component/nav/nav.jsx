@@ -7,8 +7,8 @@ function Nav() {
   const [userCoins, setUserCoins] = useState([])
   const [loading, setLoading] = useState(false)
   const signOut = () => {
-    API.delete('/users/sign_out')
-      .catch(() => location.href = '/')
+    fetch('/users/sign_out')
+      .then(() => location.href = '/')
   }
 
   useEffect(() => {
