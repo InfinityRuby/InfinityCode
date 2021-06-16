@@ -6,6 +6,8 @@ document.addEventListener('turbolinks:load', () => {
       .then((res) => res.json())
       .then((obj) => obj.posts)
       .then((posts) => {
+        posts = posts.slice(0, 4);
+        
         if (posts.length > 0) {
           posts.forEach((post, index) => {
             const id = post.id;
