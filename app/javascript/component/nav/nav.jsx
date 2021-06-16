@@ -16,7 +16,7 @@ function Nav() {
       .then(user => {
         if (user && Object.keys(user).length === 0 && user.constructor === Object) {
           setUser(false)
-        }else{
+        }else {
           setUser(user)
         }
 
@@ -47,13 +47,13 @@ function Nav() {
               <a href="/ranking">排行榜</a>
             </li>
             <li className="coin">
-              <img src="/quest/star.png" alt="star" />
+              <img src="/quest/star.jpg" alt="star" />
               <span className="amount">{ userCoins }</span>
             </li>
             <li className="user-account">
               <div className="user-email">
                 <img src={ user.avatar } alt="avatar" />
-                <span>{ user ? user.name : null }</span>
+                <span>{ user ? user.email.substring(0, user.email.lastIndexOf('@')) : null }</span>
                 <i className="fas fa-chevron-down"></i>
               </div>
               <ul className="sub1">

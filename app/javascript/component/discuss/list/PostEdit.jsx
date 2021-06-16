@@ -22,7 +22,7 @@ function PostEdit() {
     const contentTextarea = document.querySelector(".w-md-editor-text-input")
     const apiData = { title: titleInput.value, content: contentTextarea.value }
     
-    if(titleInput.value.length >= 10 && contentTextarea.value.length >= 15){
+    if(titleInput.value.length >= 10 && contentTextarea.value.length >= 10){
       API.put(`posts/${urlID("edit")}`, apiData)
       editRef.current.style = "background: #ffa100; color: #000"
       location.href = `/posts/${urlID("edit")}`
@@ -41,7 +41,7 @@ function PostEdit() {
       </div>
       <MDEditor
         textareaProps={ {
-          placeholder: "可輸入markdown語法，至少15個字",
+          placeholder: "可輸入markdown語法，至少10個字",
           icon: <span style={{ padding: "0 5px" }}>Custom Toolbar</span>
         } }
         height={ 550 }

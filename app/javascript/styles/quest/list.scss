@@ -20,9 +20,21 @@
         @apply font-mono text-xl pt-4 px-4;
       }
       .list-wrapper {
-        @apply flex justify-between px-4 mb-4;
+        @apply flex justify-between items-end px-4 mb-4;
+        & > div {
+          @apply flex items-end;
+          & > span:nth-of-type(1) {
+            @apply ml-3 text-gray-500;
+          }
+          & > span:nth-of-type(2) {
+            @apply text-yellow-500;
+          }    
+          & > img {
+            @apply w-5 h-5 rounded-full mb-0.5 ml-3 mr-1;
+          }
+        }
         .question-level {
-          @apply justify-center items-center mt-7 text-lg py-1 px-5 border flex;
+          @apply flex justify-center items-center mt-7 text-base py-1 px-3 border;
         }
         .question-btn {
           @apply outline-none text-center py-3 w-3/12 mt-5 tracking-widest;
