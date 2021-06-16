@@ -1,7 +1,7 @@
 .home-nav {
   @apply flex items-center justify-between px-7 bg-white shadow-md fixed w-full top-0 z-50 min-w-max;
   .home-logo {
-    @apply flex items-center flex-shrink-0 text-black mr-6;
+    @apply flex items-center flex-shrink-0 text-black mr-6 h-20;
     .home-logo-text {
       @apply font-semibold text-xl tracking-tight;
     }
@@ -13,13 +13,25 @@
     @apply w-full block flex-grow lg:flex lg:items-center lg:w-auto;
     .home-nav-item-link {
       @apply flex lg:flex-grow pl-7 justify-end;
-      ul {
-        @apply flex cursor-pointer text-lg;
+      & > ul {
+        @apply flex cursor-pointer text-lg h-20;
         li {
-          @apply list-none py-5 px-4 hover:text-yellow-500 tracking-wider;
+          @apply flex items-center list-none px-4 hover:text-yellow-500 tracking-wider min-h-full;
           &:nth-child(4) {
             @apply flex;
           }
+          ul {
+            @apply hidden absolute top-full right-12 shadow-md border border-opacity-10;
+            li {
+              @apply bg-white px-6 text-black py-3 border-b border-opacity-5;
+            }
+          }
+          img {
+            @apply w-5 h-5 mr-1 align-bottom;
+          }
+        }
+        .user-account{
+          
           .user-email {
             @apply flex justify-center items-center mr-2 tracking-wider;
             svg {
@@ -35,15 +47,6 @@
               verflow: hidden;
               margin-right: 8px;
             }
-          }
-          ul {
-            @apply hidden absolute top-full right-12 shadow-md border border-opacity-10;
-            li {
-              @apply bg-white px-6 text-black py-3 border-b border-opacity-5;
-            }
-          }
-          img {
-            @apply w-9 h-7 align-bottom;
           }
         }
         li:hover ul {

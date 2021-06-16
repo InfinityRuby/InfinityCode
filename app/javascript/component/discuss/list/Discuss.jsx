@@ -66,7 +66,7 @@ export default function Discuss() {
       </div>
       <div className="discuss">
         <div>
-          <span>文章數量 { maxPage != 0 ? (maxPage - 1) * 10 + quantity : 0 }</span>
+          <div><span>文章數量 { maxPage != 0 ? (maxPage - 1) * 10 + quantity : 0 }</span></div>
           <div className="discuss-search">
             <input type="text" placeholder="搜尋文章" id="searchListInput" onKeyPress={ searchList } />    
           </div>
