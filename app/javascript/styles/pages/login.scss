@@ -33,7 +33,7 @@
         .discuss-list-box {
           @apply p-4 divide-y;
           .discuss-list {
-            @apply flex grid grid-cols-2 p-3 justify-between;
+            @apply flex p-3 justify-between;
             .post-content {
               @apply flex;
               .pic{
@@ -44,6 +44,9 @@
               }
               div {
                 @apply ml-3;
+                h2 {
+                  @apply hover:text-gray-400;
+                }
                 h3 {  
                   @apply text-gray-400 text-sm;
                 }
@@ -66,7 +69,7 @@
           .rank-button-wrapper {
             @apply grid grid-cols-4;
             button {
-              @apply outline-none p-3 bg-gray-100 text-gray-300 cursor-pointer tracking-widest duration-75 border-r;
+              @apply outline-none p-3 bg-gray-100 text-gray-300 cursor-pointer tracking-widest duration-75 border-r hover:text-black hover:bg-white;
               &:last-child {
                 @apply border-none;
               }
