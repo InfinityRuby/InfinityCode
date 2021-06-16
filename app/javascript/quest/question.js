@@ -34,7 +34,7 @@ document.addEventListener('turbolinks:load', () => {
       content.classList.add('active');
     });
   }
-  if (document.querySelector('#editor')) {
+  if (document.querySelector('#editor') && editor === undefined) {
     editor = CodeMirror.fromTextArea(document.querySelector('#editor'), {
       mode: 'ruby',
       theme: 'default',
