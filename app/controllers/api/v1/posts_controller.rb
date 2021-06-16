@@ -1,7 +1,6 @@
 class Api::V1::PostsController < Api::V1::BaseController
   before_action :find_user_post, only: [:destroy, :update]
   before_action :find_post, only: [:show, :user_like, :total_like, :is_like?]
-  before_action :authenticate_user!, except: [:index, :show]
 
   # 查詢文章列表
   # GET: /api/v1/posts?page=1&search=查詢&anonymous=true

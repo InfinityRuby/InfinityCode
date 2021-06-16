@@ -1,5 +1,4 @@
 class Api::V1::RanksController < Api::V1::BaseController
-  before_action :authenticate_user!
 
   # 查詢排行榜前十名 - 金幣數量
   # GET: /api/v1/ranks/coins
