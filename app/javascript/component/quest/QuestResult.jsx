@@ -74,7 +74,7 @@ function QuestResult() {
       <div className="quest-answer-wrap">
         <div className="quest-answer-content">
           <div className="quest-answer-button">
-            <div><img src="/quest/star.png" /><span>{ isSolved ? null : `+${levelCoins}` }</span></div>
+            <div><img src="/quest/star.jpg" /><span>{ isSolved ? null : `+${levelCoins}` }</span></div>
             <h2>Good job !</h2>
             <button
             onClick={ () => { location.href = `/quests` } } 
