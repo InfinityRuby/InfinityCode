@@ -33,7 +33,7 @@ json.array! quests do |quest|
   if total_count == 0 && correct_count == 0
     correct_rate = '無'
   else
-    correct_rate = "#{ (correct_count / total_count.to_f).round(4) * 100 }%"
+    correct_rate = "#{ (correct_count / total_count.to_f * 100).round(2) }%"
   end
 
   # 是否解題過
