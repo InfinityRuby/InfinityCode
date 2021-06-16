@@ -25,7 +25,7 @@ class Profile < ApplicationRecord
     # 大頭貼上傳
     avatar = @user.profile.avatar_url
 
-    if avatar != 'default.png'
+    if avatar != '/default.png'
       badge_id = 20
       create_achievement(badge_id)
     end
