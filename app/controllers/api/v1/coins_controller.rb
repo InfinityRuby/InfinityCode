@@ -1,5 +1,5 @@
 class Api::V1::CoinsController < Api::V1::BaseController
-  
+
   def index
     @coins = current_user.coins
     json_response(@coins)
