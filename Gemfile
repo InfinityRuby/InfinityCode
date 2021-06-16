@@ -33,6 +33,7 @@ gem 'acts_as_votable'
 
 # 會員模組
 gem 'devise', '~> 4.8'
+gem 'devise-i18n'
 gem 'omniauth', '~> 2.0', '>= 2.0.4'
 gem 'omniauth-facebook', '~> 8.0'
 gem 'omniauth-google-oauth2', '~> 1.0'
