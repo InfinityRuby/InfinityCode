@@ -38,6 +38,4 @@ json.posts posts do |post|
   else
     json.newest_comment_author "目前尚無留言"
   end
-
-  
 end

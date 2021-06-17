@@ -13,12 +13,3 @@ when 'Hard'
 end
 
 json.level level
-
-# json.array! quests do |quest|
-#   json.(quest, :id, :title)
-
-  
-
-
-  
-# end
