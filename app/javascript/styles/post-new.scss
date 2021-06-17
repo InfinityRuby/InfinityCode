@@ -16,8 +16,11 @@
     }
     .anonymous{
       @apply flex items-center mb-1;
+      #anonymous{
+        @apply cursor-pointer;
+      }
       .checkbox-value-anonymous{
-        @apply text-sm text-gray-600 ml-0.5
+        @apply text-sm text-gray-600 ml-0.5 cursor-pointer;
       }
     }
   }
