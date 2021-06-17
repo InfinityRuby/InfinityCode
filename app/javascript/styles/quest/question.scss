@@ -3,6 +3,7 @@
   min-width: 978px;
   max-width: 1800px;
   height: 100vh;
+  margin: auto;
   position: relative;
 }
 .quest-tablist {
@@ -229,7 +230,7 @@
       color: #fb9827;
     }
     &  > img{
-      width: 40%;
+      width: 30%;
       margin: auto;
       margin-bottom: 20px;
       display: inline-block;
@@ -311,7 +312,7 @@
     margin-top: 15px;
   }
   & > img{
-    width: 50%;
+    width: 40%;
     margin: auto;
   }
 }
