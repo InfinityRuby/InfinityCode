@@ -1,5 +1,5 @@
 #listquest-wrapper {
-  @apply pt-24  m-auto  max-w-screen-xl w-full min-h-screen;
+  @apply pt-24  m-auto  max-w-screen-xl w-full min-h-screen min-w-978;
   .quest-checkbox {
     @apply font-mono flex px-2;
     .level-select, .completion-select {

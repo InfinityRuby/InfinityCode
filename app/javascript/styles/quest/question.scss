@@ -226,11 +226,13 @@
   div{
     margin-right: 20px;
     &  > span{
-      font-size: 50px;
+      font-size: 75px;
+      margin-left: 10px;
+      margin-top: 10px;
       color: #fb9827;
     }
     &  > img{
-      width: 30%;
+      width: 28%;
       margin: auto;
       margin-bottom: 20px;
       display: inline-block;
