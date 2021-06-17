@@ -22,7 +22,8 @@ function PostEdit() {
     const contentTextarea = document.querySelector(".w-md-editor-text-input")
     const apiData = { title: titleInput.value, content: contentTextarea.value }
     
-    if(titleInput.value.length >= 10 && contentTextarea.value.length >= 10){
+    if(titleInput.value.length >= 8 && titleInput.value.length <= 20 && 
+      contentTextarea.value.length >= 10 && contentTextarea.value.length <= 300){
       API.put(`posts/${urlID("edit")}`, apiData)
       editRef.current.style = "background: #ffa100; color: #000"
       location.href = `/posts/${urlID("edit")}`
@@ -36,8 +37,8 @@ function PostEdit() {
   return (
     <div className="post-edit-wrap">
       <div className="post-edit-title">
-        { errorWarn ? <div style={{ color: "#f00" }}>欄位必須填，至少10個字</div> : null }
-        <input type="text" row="30" col="30" className="post-edit-input" />
+        { errorWarn ? <div style={{ color: "#f00" }}>標題8~20個字，內容10~300個字</div> : null }
+        <input type="text" row="30" col="30" className="post-edit-input" placeholder="文章標題，至少輸入8個字"/>
       </div>
       <MDEditor
         textareaProps={ {
