@@ -120,15 +120,21 @@ function MessageWindow({ output, input, expected }) {
     <div className="display-message-wrap">
       <div className="display-message">
         <div>Your input :</div>
-        <div>{ input.map((intput, index) => <p key={ index }>{ intput }</p>) }</div>
+        <div className={ input == '' ? `h-6` : null }>
+          { input.map((intput, index) => <p key={ index }>{ intput }</p>) }
+        </div>
       </div>
       <div className="display-message">
         <div>Output :</div>
-        <div>{ output.map((output, index) => <p key={ index }>{ output }</p>) }</div>
+        <div className={ output == '' ? `h-6` : null }>
+          { output.map((output, index) => <p key={ index }>{ output }</p>) }
+        </div>
       </div>
       <div className="display-message">
         <div>Expected :</div>
-        <div>{ expected.map((expected, index) => <p key={ index }>{ expected }</p>) }</div>
+        <div>
+          { expected.map((expected, index) => <p key={ index }>{ expected }</p>) }
+        </div>
       </div>
     </div>
   )
