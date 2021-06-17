@@ -63,7 +63,7 @@ function QuestResult() {
         API.get(`quests?status=Success&level[]=${level}`)
           .then(quests => {
             const currentQuest = quests.find(el => el.id == urlID())
-            setIsSolved(currentQuest.is_solved)
+            currentQuest ? setIsSolved(currentQuest.is_solved) : setIsSolved(currentQuest)
           })
       })
   }, [])
