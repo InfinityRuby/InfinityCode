@@ -35,7 +35,7 @@ document.addEventListener('turbolinks:load', () => {
     });
   }
 
-  if (document.querySelector('#editor') && document.querySelector('.CodeMirror-wrap') == null) {
+  if (document.querySelector('#editor')) {
     editor = CodeMirror.fromTextArea(document.querySelector('#editor'), {
       mode: 'ruby',
       theme: 'default',
