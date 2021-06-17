@@ -18,7 +18,7 @@ export default function Pages({ initPage, setInitPage, maxPage }) {
       <button onClick={ previousPage }>上一頁</button>
       <button onClick={ changePage }>{ initPage }</button>
       { initPage + 1 <= maxPage ? <button onClick={ changePage }>{ initPage + 1}</button> : null }
-      { initPage + 2 <= maxPage ? <button>{ initPage + 2 }</button> : null }
+      { initPage + 2 <= maxPage ? <button onClick={ changePage }>{ initPage + 2 }</button> : null }
       { initPage + 3 <= maxPage ? <button onClick={ changePage }>{ initPage + 3 }</button> : null }
       { initPage + 4 <= maxPage ? <button onClick={ changePage }>{ initPage + 4 }</button> : null }
       <button onClick={ () => nextPage(1) }>下一頁</button>
