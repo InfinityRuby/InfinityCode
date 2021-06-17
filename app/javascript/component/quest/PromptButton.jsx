@@ -50,7 +50,7 @@ export default function PromptSelect({ prompts, promptsCount, user, useRecord, s
         <div className="prompt-wrap">
           <div className="prompt-content">
             <div className="prompt-window">
-              <img src="/quest/star.png" />
+              <img src="/quest/star.jpg" />
               <h2>換取提示 : <span>- 5</span> 金幣</h2>
               <button onClick={ () => {setDisplayWindow(false)} } className="quest-footer-button questbtn line-button">
                 取消

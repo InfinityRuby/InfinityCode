@@ -1,0 +1,5 @@
+# @param {ListNode} head
+# @param {Integer} n
+# @return {ListNode}
+def remove_nth_from_end(head, n)    
+end
