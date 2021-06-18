@@ -27,7 +27,7 @@ function Answer() {
       setLoading(true)
     }
     getAPI()
-  }, [])
+  }, [commentPages])
   return(
     <div>
       <div className="single-article-title">
