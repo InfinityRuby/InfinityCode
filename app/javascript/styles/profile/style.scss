@@ -1,7 +1,7 @@
 .profile-wrap {
   @apply flex justify-center min-h-screen min-w-max;
   .profile-user-wrap {
-    @apply w-1/4 m-10 shadow bg-white h-1/2;
+    @apply w-1/4 m-10 shadow bg-white h-1/2 flex flex-col;
     #user_profile_name {
       @apply border-gray-500 border 
     }
@@ -11,8 +11,8 @@
     .profile-table {
       @apply block p-3 whitespace-pre-line;
     }
-    button {
-      @apply bg-yellow-500 border border-yellow-500 hover:bg-yellow-450 hover:border-yellow-450 text-white font-bold py-2 px-4 m-3 outline-none;
+    .edit-button {
+      @apply bg-yellow-500 border border-yellow-500 hover:bg-yellow-450 hover:border-yellow-450 text-white font-bold py-2 px-4 m-3 w-20 text-center;
     }
     .profile-name {
       @apply relative;
