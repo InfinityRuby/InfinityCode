@@ -14,8 +14,8 @@
           <%= f.label :bio, '簡介：'%>
           <%= f.text_area :bio, id: 'avatar-text', class: 'edit-input edit-text-input', cols: 20, rows: 10 %>
         </div>
-        <button><%= link_to '回上一頁', profile_path, class: 'profile-submitbtn profile-back line-button' %></button>
-        <button><%= f.submit "編輯送出", class: 'profile-submitbtn solid-button' %></button>
+        <%= link_to '回上一頁', profile_path, class: 'profile-submitbtn profile-back line-button cursor-pointer' %>
+        <%= f.submit "編輯送出", class: 'profile-submitbtn solid-button cursor-pointer' %>
       <% end %>
     </div>
   </div>
